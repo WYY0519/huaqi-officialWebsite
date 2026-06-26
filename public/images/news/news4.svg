@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00a8ff"/>
+      <stop offset="100%" stop-color="#0066cc"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bgGrad)"/>
+  <circle cx="100" cy="100" r="150" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="700" cy="300" r="200" fill="rgba(255,255,255,0.1)"/>
+  <text x="400" y="160" text-anchor="middle" font-family="sans-serif" font-size="48" font-weight="bold" fill="white">护航低空·合规先行</text>
+  <text x="400" y="220" text-anchor="middle" font-family="sans-serif" font-size="24" fill="rgba(255,255,255,0.9)">华启天成（深圳）智能科技有限公司</text>
+  <line x1="200" y1="250" x2="600" y2="250" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  <rect x="0" y="350" width="800" height="50" fill="rgba(0,0,0,0.1)"/>
+</svg>

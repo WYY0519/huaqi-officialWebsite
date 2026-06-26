@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd"/>
+      <stop offset="100%" style="stop-color:#bbdefb"/>
+    </linearGradient>
+    <linearGradient id="drone2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1565c0"/>
+      <stop offset="100%" style="stop-color:#0d47a1"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg2)"/>
+  <!-- 固定翼机身 -->
+  <path d="M150 220 L300 190 L450 220 L300 230 Z" fill="url(#drone2)"/>
+  <!-- 机翼 -->
+  <path d="M180 210 L100 195 L120 210 L250 220 Z" fill="#1976d2"/>
+  <path d="M420 210 L500 195 L480 210 L350 220 Z" fill="#1976d2"/>
+  <!-- 尾翼 -->
+  <path d="M440 215 L470 185 L480 215 Z" fill="#1565c0"/>
+  <path d="M440 225 L470 255 L480 225 Z" fill="#1565c0"/>
+  <!-- 螺旋桨 -->
+  <ellipse cx="160" cy="208" rx="30" ry="5" fill="#42a5f5" opacity="0.6"/>
+  <ellipse cx="440" cy="208" rx="30" ry="5" fill="#42a5f5" opacity="0.6"/>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="700" viewBox="0 0 1920 700">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#5BA3D9;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:#E8B87A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F0C89A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cloud" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0" />
+      <stop offset="30%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="70%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+    <linearGradient id="mountain1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c5f7c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a3d52;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="mountain2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a7a8f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3d6575;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="fog" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+    <filter id="blur1" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+    </filter>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="1920" height="700" fill="url(#sky)"/>
+  
+  <!-- Distant mountains -->
+  <g opacity="0.5">
+    <polygon points="0,500 100,420 250,460 400,380 550,440 700,360 850,420 1000,350 1150,400 1300,340 1450,380 1600,320 1750,370 1920,310 1920,500" fill="#4a7a8f"/>
+  </g>
+  
+  <!-- Mid mountains -->
+  <polygon points="0,550 150,450 300,500 500,400 700,480 900,380 1100,450 1300,370 1500,430 1700,360 1920,420 1920,550" fill="url(#mountain2)"/>
+  
+  <!-- Cloud sea layer 1 -->
+  <g filter="url(#blur1)">
+    <ellipse cx="200" cy="520" rx="300" ry="40" fill="url(#cloud)" opacity="0.9"/>
+    <ellipse cx="600" cy="540" rx="350" ry="45" fill="url(#cloud)" opacity="0.85"/>
+    <ellipse cx="1000" cy="530" rx="280" ry="35" fill="url(#cloud)" opacity="0.8"/>
+    <ellipse cx="1400" cy="545" rx="320" ry="40" fill="url(#cloud)" opacity="0.85"/>
+    <ellipse cx="1800" cy="525" rx="250" ry="38" fill="url(#cloud)" opacity="0.9"/>
+  </g>
+  
+  <!-- Cloud sea layer 2 -->
+  <g filter="url(#blur1)" opacity="0.7">
+    <ellipse cx="350" cy="560" rx="250" ry="30" fill="url(#cloud)"/>
+    <ellipse cx="800" cy="570" rx="300" ry="35" fill="url(#cloud)"/>
+    <ellipse cx="1200" cy="565" rx="270" ry="32" fill="url(#cloud)"/>
+    <ellipse cx="1600" cy="575" rx="280" ry="33" fill="url(#cloud)"/>
+  </g>
+  
+  <!-- Near mountains -->
+  <polygon points="0,620 200,520 400,580 600,490 800,560 1000,480 1200,540 1400,470 1600,530 1800,460 1920,520 1920,620" fill="url(#mountain1)"/>
+  
+  <!-- Bottom fog -->
+  <rect x="0" y="580" width="1920" height="120" fill="url(#fog)"/>
+  
+  <!-- Sun glow -->
+  <circle cx="1600" cy="100" r="80" fill="#FFE082" opacity="0.4"/>
+  <circle cx="1600" cy="100" r="50" fill="#FFE082" opacity="0.6"/>
+  <circle cx="1600" cy="100" r="30" fill="#FFF3C4" opacity="0.8"/>
+  
+  <!-- Drone silhouette -->
+  <g transform="translate(1100, 300) scale(1.5)" fill="#1a3d52" opacity="0.9">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="25" ry="8"/>
+    <!-- Arms -->
+    <line x1="-20" y1="-3" x2="-55" y2="-25" stroke="#1a3d52" stroke-width="2.5"/>
+    <line x1="20" y1="-3" x2="55" y2="-25" stroke="#1a3d52" stroke-width="2.5"/>
+    <line x1="-20" y1="3" x2="-55" y2="25" stroke="#1a3d52" stroke-width="2.5"/>
+    <line x1="20" y1="3" x2="55" y2="25" stroke="#1a3d52" stroke-width="2.5"/>
+    <!-- Landing gear -->
+    <line x1="-15" y1="8" x2="-20" y2="25" stroke="#1a3d52" stroke-width="2"/>
+    <line x1="15" y1="8" x2="20" y2="25" stroke="#1a3d52" stroke-width="2"/>
+    <line x1="-25" y1="25" x2="25" y2="25" stroke="#1a3d52" stroke-width="2"/>
+    <!-- Propeller blur -->
+    <ellipse cx="-55" cy="-25" rx="18" ry="4" fill="#1a3d52" opacity="0.4"/>
+    <ellipse cx="55" cy="-25" rx="18" ry="4" fill="#1a3d52" opacity="0.4"/>
+    <ellipse cx="-55" cy="25" rx="18" ry="4" fill="#1a3d52" opacity="0.4"/>
+    <ellipse cx="55" cy="25" rx="18" ry="4" fill="#1a3d52" opacity="0.4"/>
+    <!-- Camera -->
+    <rect x="-4" y="8" width="8" height="6" rx="1"/>
+  </g>
+</svg>
