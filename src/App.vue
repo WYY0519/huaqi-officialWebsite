@@ -13,8 +13,8 @@
           </div>
         </div>
         <nav class="nav-menu" :class="{ open: isMobileMenuOpen }">
-          <a v-for="(item, i) in navItems" :key="i" :href="item.href" class="nav-link"
-            :class="{ active: activeSection === item.id }" @click.prevent="handleNavClick(item.id)">{{ item.label }}</a>
+          <router-link v-for="(item, i) in navItems" :key="i" :to="item.href" class="nav-link"
+            :class="{ active: activeSection === item.id }" @click="handleNavClick(item.id)">{{ item.label }}</router-link>
           <!-- <button class="mobile-login-btn" @click="isMobileMenuOpen = false">联系我们</button> -->
         </nav>
         <div class="header-actions">
@@ -32,272 +32,8 @@
       </div>
     </header>
 
-    <!-- 主视觉区域 - Banner轮播 -->
-    <section id="home" class="hero-section" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
-      <!-- 轮播容器 -->
-      <div class="slider-wrapper">
-        <div v-for="(slide, index) in slides" :key="index" class="slide" :class="{ active: currentSlide === index }">
-          <div class="slide-bg">
-            <img :src="slide.bgImage" alt="" class="slide-bg-img">
-          </div>
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <h1 class="slide-title" v-html="bannerTitle"></h1>
-            <p class="slide-subtitle">{{ bannerSubtitle }}</p>
-            <a :href="bannerLink" class="hero-btn">{{ bannerBtnText }}</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 轮播箭头（手机端隐藏） -->
-      <button class="banner-arrow banner-arrow-left" @click="prevSlide">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
-      <button class="banner-arrow banner-arrow-right" @click="nextSlide">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
-
-      <!-- 分页指示器 -->
-      <div class="swiper-pagination">
-        <span v-for="(slide, index) in slides" :key="index" class="pagination-dot"
-          :class="{ active: currentSlide === index }" @click="goToSlide(index)"></span>
-      </div>
-
-    </section>
-
-    <!-- 核心产品解决方案 -->
-    <section id="solutions" class="solutions-section">
-      <div class="container">
-        <h2 class="section-title">核心行业解决方案</h2>
-        <p class="section-subtitle">五大垂直赛道全场景智能化覆盖</p>
-        <div class="sol-list">
-          <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row"
-            :class="{ reverse: index % 2 !== 0 }">
-            <div class="sol-media">
-              <div class="sol-video-box">
-                <div class="sol-play-btn">▶</div>
-              </div>
-            </div>
-            <div class="sol-text">
-              <h3 class="sol-scene-title">{{ item.title }}</h3>
-              <p class="sol-scene-sub">{{ item.sub }}</p>
-              <p class="sol-scene-desc">{{ item.desc }}</p>
-              <div class="sol-tags">
-                <span class="sol-tag" v-for="(tag, ti) in item.tags" :key="ti">{{ tag }}</span>
-              </div>
-              <a href="#" class="sol-more">了解更多 →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- 数据统计 -->
-    <section class="stats-section">
-      <div class="container">
-        <h2 class="section-title">品牌实力与核心技术背书</h2>
-        <p class="section-subtitle">覆盖全场景应用需求</p>
-        <div class="stats-grid">
-          <div class="stat-card" v-for="(stat, index) in companyStats" :key="index">
-            <span class="stat-value">{{ stat.value }}<span class="stat-unit">{{ stat.unit }}</span></span>
-            <span class="stat-label">{{ stat.label }}</span>
-          </div>
-        </div>
-        <div class="tech-cards-grid">
-          <div class="tech-card" v-for="(card, index) in techCards" :key="index">
-            <div class="tech-icon" v-html="card.icon"></div>
-            <div class="tech-card-body">
-              <h3 class="tech-card-title">{{ card.title }}</h3>
-              <p class="tech-card-desc">{{ card.desc }}</p>
-              <span class="tech-card-tag">{{ card.tag }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 产品展示 -->
-    <section id="products" class="products-section">
-      <div class="container">
-        <h2 class="section-title">旗舰产品矩阵</h2>
-        <p class="section-subtitle">覆盖全场景应用需求</p>
-        <div class="products-carousel" @mouseenter="pauseProductSlideAutoplay" @mouseleave="resumeProductSlideAutoplay">
-          <div class="products-grid-showcase">
-            <div v-for="(product, index) in productSlides" :key="product.id" class="product-showcase-item"
-              :class="{ 'center': index === 1 }">
-              <div class="product-card">
-                <img :src="product.image" :alt="product.name" class="product-bg-img">
-                <div class="product-overlay">
-                  <h3 class="product-name">{{ product.name }}</h3>
-                  <p class="product-spec">{{ product.spec }}</p>
-                  <div class="product-buttons">
-                    <button class="product-btn product-btn-primary">立即购买</button>
-                    <button class="product-btn product-btn-secondary">了解更多</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 轮播箭头 -->
-          <button class="product-arrow product-arrow-left" @click="prevProductSlide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </button>
-          <button class="product-arrow product-arrow-right" @click="nextProductSlide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </button>
-
-          <!-- 分页指示器 -->
-          <div class="product-pagination">
-            <span v-for="(_, index) in totalProductSlides" :key="index" class="product-pagination-dot"
-              :class="{ active: currentProductSlide === index }" @click="goToProductSlide(index)"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 全流程服务保障体系 -->
-    <section class="coverage-section">
-      <div class="container">
-        <h2 class="section-title">全流程服务保障体系</h2>
-        <p class="section-subtitle">覆盖全场景应用需求</p>
-        <div class="coverage-grid">
-          <div class="coverage-item" v-for="(item, index) in coverageItems" :key="index">
-            <div class="coverage-icon" v-html="item.icon"></div>
-            <h3 class="coverage-label">{{ item.label }}</h3>
-            <p class="coverage-desc">{{ item.desc }}</p>
-            <div class="coverage-tag">{{ item.tag }}</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 新闻动态 -->
-    <section id="news" class="news-section">
-      <div class="container">
-        <h2 class="section-title">新闻动态</h2>
-        <p class="section-subtitle">覆盖全场景应用需求</p>
-        <div class="news-layout">
-          <!-- 大新闻卡片 -->
-          <div class="news-main-card">
-            <div class="news-main-image">
-              <img :src="newsItems[0].image" :alt="newsItems[0].title">
-            </div>
-            <div class="news-main-content">
-              <div v-if="newsItems[0].isHot" class="news-hot-tag">HOT</div>
-              <h2 class="news-main-title">{{ newsItems[0].title }}</h2>
-              <p class="news-main-excerpt">{{ newsItems[0].excerpt }}</p>
-              <a :href="newsItems[0].link" class="news-read-more">阅读更多 →</a>
-            </div>
-          </div>
-
-          <!-- 三个小新闻卡片 -->
-          <div class="news-small-grid">
-            <div class="news-small-card" v-for="news in newsItems.slice(1)" :key="news.id">
-              <div class="news-small-image">
-                <img :src="news.image" :alt="news.title">
-              </div>
-              <div class="news-small-content">
-                <div class="news-meta">
-                  <span class="news-category">{{ news.category }}</span>
-                  <span class="news-date">{{ news.date }}</span>
-                </div>
-                <h3 class="news-title">{{ news.title }}</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 获取专属解决方案 -->
-    <section id="contact" class="contact-section">
-      <div class="container">
-        <h2 class="section-title">获取专属解决方案</h2>
-        <p class="section-subtitle">专业团队1对1定制方案2小时内快速响应</p>
-        <div class="contact-content">
-          <!-- 左侧信息 -->
-          <div class="contact-info">
-            <div class="contact-features">
-              <span class="contact-feature-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="2">
-                  <path
-                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                </svg>
-                免费咨询
-              </span>
-              <span class="contact-feature-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                2h快速响应
-              </span>
-              <span class="contact-feature-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="2">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0110 0v4" />
-                </svg>
-                保密协议
-              </span>
-            </div>
-            <h3 class="contact-info-title">开启智能化升级之旅</h3>
-            <p class="contact-info-desc">无论您身处消防救援、高空清洗、军警安防还是水利巡检领域，我们的专业团队将根据您的实际场景需求，量身定制最优无人机解决方案。</p>
-            <p class="contact-trusted-label">TRUSTED BY INDUSTRY LEADERS</p>
-            <div class="contact-trusted-grid">
-              <span class="trusted-item" v-for="(brand, i) in trustedBrands" :key="i">{{ brand }}</span>
-            </div>
-          </div>
-          <!-- 右侧表单 -->
-          <div class="contact-form-wrapper">
-            <form @submit.prevent="submitForm" class="contact-form">
-              <div class="form-row">
-                <div class="form-field">
-                  <svg class="form-field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999"
-                    stroke-width="2">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
-                  <input type="text" placeholder="您的名字" class="form-input" v-model="formData.contact">
-                </div>
-                <div class="form-field">
-                  <svg class="form-field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999"
-                    stroke-width="2">
-                    <path
-                      d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                  </svg>
-                  <input type="tel" placeholder="联系电话" class="form-input" v-model="formData.phone">
-                </div>
-              </div>
-              <div class="form-field">
-                <svg class="form-field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999"
-                  stroke-width="2">
-                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                  <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
-                </svg>
-                <input type="text" placeholder="所属公司" class="form-input" v-model="formData.company">
-              </div>
-              <div class="form-field form-field-textarea">
-                <textarea placeholder="请描述您的需求(限500字)" class="form-input form-textarea" v-model="formData.message"
-                  maxlength="500" @input="updateMessageLength"></textarea>
-                <span class="form-char-count">{{ messageLength }}/500</span>
-              </div>
-              <button type="submit" class="submit-btn">提交需求免费获取方案 <span class="submit-arrow">→</span></button>
-              <p class="form-privacy">提交即表示您同意我们的隐私政策，信息将严格保密</p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 页面内容 -->
+    <router-view />
 
     <!-- 页脚 -->
     <footer class="footer">
@@ -508,7 +244,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 // 移动端菜单状态
 const isMobileMenuOpen = ref(false)
@@ -537,30 +276,10 @@ const navItems = [
   { id: 'about', label: '关于我们', href: '/about' }
 ]
 
-// 表单数据
-const formData = ref({
-  company: '',
-  contact: '',
-  phone: '',
-  email: '',
-  message: ''
-})
-
-// 需求描述字数统计
-const messageLength = computed(() => formData.value.message.length)
-const updateMessageLength = () => { }
-
-// 合作品牌
-const trustedBrands = ref([
-  '中国邮政', '顺丰速运', '中国石油', '中国移动',
-  '国家电网', '中国中铁', '中国电建', '中国石化'
-])
-
 // 发送客服消息
 const sendChatMessage = () => {
   if (!chatInput.value.trim()) return
 
-  // 添加用户消息
   chatMessages.value.push({
     id: Date.now(),
     type: 'user',
@@ -568,17 +287,14 @@ const sendChatMessage = () => {
     timestamp: new Date().toLocaleTimeString()
   })
 
-  // 清空输入框
   chatInput.value = ''
 
-  // 滚动到底部
   nextTick(() => {
     if (chatMessagesRef.value) {
       chatMessagesRef.value.scrollTop = chatMessagesRef.value.scrollHeight
     }
   })
 
-  // 模拟客服回复（1秒后）
   setTimeout(() => {
     chatMessages.value.push({
       id: Date.now() + 1,
@@ -587,7 +303,6 @@ const sendChatMessage = () => {
       timestamp: new Date().toLocaleTimeString()
     })
 
-    // 再次滚动到底部
     nextTick(() => {
       if (chatMessagesRef.value) {
         chatMessagesRef.value.scrollTop = chatMessagesRef.value.scrollHeight
@@ -596,439 +311,19 @@ const sendChatMessage = () => {
   }, 1000)
 }
 
-// 解决方案数据
-const solutions = ref([
-  {
-    title: '消防灭火',
-    image: '/images/solutions/fire.svg'
-  },
-  {
-    title: '应急救援',
-    image: '/images/solutions/rescue.svg'
-  },
-  {
-    title: '户外巡检',
-    image: '/images/solutions/inspection.svg'
-  },
-  {
-    title: '仓储物流',
-    image: '/images/solutions/logistics.svg'
-  },
-  {
-    title: '消防灭火解决方案',
-    image: '/images/solutions/fire-solution.svg'
-  },
-  {
-    title: '应急救援解决方案',
-    image: '/images/solutions/rescue-solution.svg'
-  }
-])
-
-// 核心产品解决方案
-const solutionItems = ref([
-  {
-    title: '消防灭火',
-    desc: '搭载灭火弹/灭火剂载荷，快速抵达火场，实现高楼、林区等复杂场景精准灭火。',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><path d="M12 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z"/><path d="M9 18c0 1.7 1.3 3 3 3s3-1.3 3-3"/><line x1="12" y1="12" x2="12" y2="15"/></svg>'
-  },
-  {
-    title: '应急救援',
-    desc: '全地形快速响应，搭载热成像与喊话设备，协助搜救人员精准定位被困人员。',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>'
-  },
-  {
-    title: '公共安全',
-    desc: '城市治安巡逻、大型活动安保，实时回传高清影像，构建空中安防防线。',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
-  },
-  {
-    title: '户外巡检',
-    desc: '电力线路、输油管道、森林防火等场景自主巡检，降低人工成本与安全风险。',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
-  },
-  {
-    title: '仓储物流',
-    desc: '智能航线规划，自动化配送与盘点，支持多机协同作业，大幅提升物流效率。',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>'
-  },
-])
-
-// 解决方案场景列表（左右交替）
-const solutionScenes = ref([
-  {
-    title: '城市消防',
-    sub: '高空灭火 · 危化处置 · 生命搜救',
-    desc: '解决传统消防"够不着、进不去、响应慢"的核心痛点，突破150米高度完成超高层建筑精准灭火任务，响应时效缩短60%，集成热成像搜救模块，穿透浓烟锁定被困人员，开辟紧急救援通道。',
-    tags: ['高层灭火', '危化品处置', '人员搜救'],
-    link: '#'
-  },
-  {
-    title: '森林消防',
-    sub: '火情预警 · 精准灭火 · 安全巡护',
-    desc: '破解传统森林消防"巡护难、响应慢、风险高"三大难题，紧扣森林防火打早、打小、打了处置原则，依托无人机替代人工实现24小时全域火情监控，发现初起火源即刻远程精准投弹灭火，响应速度提升3倍以上。立足早期火情快速处置，从源头遏制火势蔓延，大幅降低救援人员伤亡风险、压缩灭火作业成本。',
-    tags: ['精准灭火', '火情预警', '安全巡护'],
-    link: '#'
-  },
-  {
-    title: '挂载系列适配',
-    sub: '快速部署 · 无缝兼容 · 多场景覆盖',
-    desc: '适配大疆FC200/FC100/T200/T100/M400及自研多系列无人机飞行平台；快装快拆，满足消防灭火、应急救援、物资运输、高空清洗等多元化作业需求。',
-    tags: ['消防协作', '精准投送', '物资运输', '应急救援'],
-    link: '#'
-  },
-  {
-    title: '高空清洗',
-    sub: '建筑幕墙 · 高层外立面',
-    desc: '替代高危"蜘蛛人"作业，免搭绳索脚手架，规避高空坠落风险；四款喷头按需切换、多航线模式可选，长效续航＋高清摄像实时监测，强效除污，综合人力成本直降80%。',
-    tags: ['建筑幕墙', '风电叶片', '桥梁检测'],
-    link: '#'
-  },
-  {
-    title: '光伏清洗',
-    sub: '全场景光伏电站',
-    desc: '智能识别污渍，精准调控水量，2.2米宽幅喷淋与高压双摇摆清洗模式随意切换；可自主规划清洗航线，缩减运维工期，清洗后的光伏板发电量至高提升15-30%。',
-    tags: ['光伏电站', '桥梁检测'],
-    link: '#'
-  },
-  {
-    title: '科研定制服务',
-    sub: '地质勘测 · 气象探测 · 生态调研',
-    desc: '面向科研领域的定制化无人机平台，具备多载荷集成能力与高精度数据采集性能，可满足环境监测、野外科研等作业要求。可根据实际科研任务进行专项开发，覆盖地质勘测、气象探测、生态调研等应用场景，提供专业解决方案。',
-    tags: ['平台定制', '载荷开发', '算法适配', '联合开发'],
-    link: '#'
-  },
-])
-
-// 公司统计数据
-const companyStats = ref([
-  { value: '275', unit: '项', label: '核心发明专利' },
-  { value: '36', unit: '个', label: '软件著作权' },
-  { value: '3000', unit: '+', label: '政企标杆客户' },
-  { value: '10000', unit: '+', label: '落地实施项目' },
-  { value: '2', unit: 'h', label: '紧急响应时效' },
-])
-
-const techCards = ref([
-  {
-    title: '飞控研发',
-    desc: '自研多旋翼/固定翼飞控系统，支持全自主飞行、智能避障、编队协同，累计飞行超50万架次零重大事故。',
-    tag: '275+项专利',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="28" height="28"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>'
-  },
-  {
-    title: '载荷兼容',
-    desc: '模块化载荷快拆接口，兼容可见光、红外、激光雷达、喊话器、探照灯、灭火弹等38余种任务载荷。',
-    tag: '38+种载荷',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="28" height="28"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M8 8V6a4 4 0 018 0v2"/><circle cx="12" cy="13" r="2"/></svg>'
-  },
-  {
-    title: '工业防护',
-    desc: '中雨可飞，-20°C至55°C宽温工作，抗7级强风，防电磁干扰，满足全天候工业级作业需求。',
-    tag: 'IP55防护',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="28" height="28"><path d="M12 2l-7 4v6c0 5 3.5 9.7 7 11 3.5-1.3 7-6 7-11V6l-7-4z"/></svg>'
-  },
-  {
-    title: '定制开发',
-    desc: '从需求分析到方案落地，提供软硬件一体化定制服务，支持OEM/ODM最快30天交付原型。',
-    tag: '30天交付',
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="28" height="28"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3-3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-3 3z"/><path d="M5 12l6 6L3 21l3-8z"/></svg>'
-  },
-])
-
-// 产品数据
-const products = ref([
-  {
-    id: 1,
-    name: 'HW-200',
-    spec: '多旋翼工业无人机',
-    image: '/images/products/drone1.svg'
-  },
-  {
-    id: 2,
-    name: 'HW-300',
-    spec: '垂直起降固定翼无人机',
-    image: '/images/products/drone2.svg'
-  },
-  {
-    id: 3,
-    name: 'HW-400',
-    spec: '大型工业无人机',
-    image: '/images/products/drone3.svg'
-  },
-  {
-    id: 4,
-    name: 'HW-500',
-    spec: '特种作业无人机',
-    image: '/images/products/drone4.svg'
-  },
-  {
-    id: 5,
-    name: 'HW-600',
-    spec: '农业植保无人机',
-    image: '/images/products/drone5.svg'
-  },
-  {
-    id: 6,
-    name: 'HW-700',
-    spec: '测绘专用无人机',
-    image: '/images/products/drone6.svg'
-  }
-])
-
-// 产品轮播状态
-const currentProductSlide = ref(1)
-const productSlideInterval = ref<ReturnType<typeof setInterval> | null>(null)
-const productSlidePaused = ref(false)
-
-// 计算当前显示的产品（3个一组，中间为高亮产品）
-const productSlides = computed(() => {
-  // 让当前索引的产品始终显示在中间位置
-  const mid = currentProductSlide.value
-  const prev = (mid - 1 + products.value.length) % products.value.length
-  const next = (mid + 1) % products.value.length
-  return [
-    { ...products.value[prev], id: products.value[prev].id },
-    { ...products.value[mid], id: products.value[mid].id },
-    { ...products.value[next], id: products.value[next].id }
-  ]
-})
-
-// 总轮播页数（每个产品都有机会作为中间高亮产品）
-const totalProductSlides = computed(() => {
-  return products.value.length
-})
-
-// 产品轮播方法
-const prevProductSlide = () => {
-  currentProductSlide.value = (currentProductSlide.value - 1 + totalProductSlides.value) % totalProductSlides.value
-  resetProductSlideAutoplay()
-}
-
-const nextProductSlide = () => {
-  currentProductSlide.value = (currentProductSlide.value + 1) % totalProductSlides.value
-  resetProductSlideAutoplay()
-}
-
-const goToProductSlide = (index: number) => {
-  currentProductSlide.value = index
-  resetProductSlideAutoplay()
-}
-
-// 产品轮播自动播放
-const startProductSlideAutoplay = () => {
-  if (productSlidePaused.value) return
-  productSlideInterval.value = setInterval(() => {
-    currentProductSlide.value = (currentProductSlide.value + 1) % totalProductSlides.value
-  }, 4000)
-}
-
-const stopProductSlideAutoplay = () => {
-  if (productSlideInterval.value) {
-    clearInterval(productSlideInterval.value)
-    productSlideInterval.value = null
-  }
-}
-
-const resetProductSlideAutoplay = () => {
-  stopProductSlideAutoplay()
-  startProductSlideAutoplay()
-}
-
-const pauseProductSlideAutoplay = () => {
-  productSlidePaused.value = true
-  stopProductSlideAutoplay()
-}
-
-const resumeProductSlideAutoplay = () => {
-  productSlidePaused.value = false
-  startProductSlideAutoplay()
-}
-
-// 服务保障数据
-const coverageItems = ref([
-  {
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3-3a1 1 0 000-1.4l-1.6-1.6a1 1 0 00-1.4 0l-3 3z"/><path d="M5 12l6 6L3 21l3-8z"/></svg>',
-    label: '定制研发',
-    desc: '从需求调研到方案设计，提供软硬件定制开发服务，持OEM/ODM合作模式。',
-    tag: '30天交付'
-  },
-  {
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>',
-    label: '技术支持',
-    desc: '7X24小时技术响应，提供远程诊断、现场支援、系统升级等全周期技术服务。',
-    tag: '7x24h'
-  },
-  {
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
-    label: '培训认证',
-    desc: '专业飞行操作培训、载荷使用培训、维护保养培训。',
-    tag: '持证上岗'
-  },
-  {
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
-    label: '售后保障',
-    desc: '整机1年质保，终身技术支持。',
-    tag: '1年质保'
-  },
-  {
-    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#00cefc" stroke-width="1.8" width="32" height="32"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
-    label: '现场演示',
-    desc: '支持全国范围上门演示，真实场景飞行验证，让客户亲眼见证产品实力。',
-    tag: '免费上门'
-  }
-])
-
-// 新闻数据
-const newsItems = ref([
-  {
-    id: 1,
-    title: '深耕消防应急   聚焦实战应用',
-    excerpt: '新乡市消防救援局局长刘增民一行莅临华启天成开展无人机专项调研',
-    date: '2026.05.26',
-    category: '行业展会',
-    image: '/images/news/news1.svg',
-    isHot: true,
-    link: '#'
-  },
-  {
-    id: 2,
-    title: '华启天成亮相2025深圳国际无人机展，RT100旗舰机型获创新金奖',
-    excerpt: '',
-    date: '2026.05.26',
-    category: '行业展会',
-    image: '/images/news/news2.svg',
-    isHot: false,
-    link: '#'
-  },
-  {
-    id: 3,
-    title: '华启天成亮相2026世界无人机大会 | 斩获双奖实力出圈',
-    excerpt: '',
-    date: '2025.05.22',
-    category: '行业展会',
-    image: '/images/news/news3.svg',
-    isHot: false,
-    link: '#'
-  },
-  {
-    id: 4,
-    title: '华启天成关于落实"无人机运行识别"及"实名登记"新规相关事宜的公告',
-    excerpt: '',
-    date: '2026.04.30',
-    category: '行业新规',
-    image: '/images/news/news4.svg',
-    isHot: false,
-    link: '#'
-  }
-])
-
-// 方法
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
 }
 
-const submitForm = () => {
-  console.log('表单提交:', formData.value)
-  alert('感谢您的提交，我们会尽快与您联系！')
-  formData.value = { company: '', contact: '', phone: '', email: '', message: '' }
-}
-
-// 轮播数据 - 只换图片，文字不变
-const slides = ref([
-  { bgImage: '/images/hero-bg.svg' },
-  { bgImage: '/images/hero-bg2.svg' },
-  { bgImage: '/images/hero-bg3.svg' }
-])
-
-// 固定文字内容
-const bannerTitle = '华启天成<span class="highlight">H400</span>行业级无人机'
-const bannerSubtitle = '重载无界，驰援未来'
-const bannerLink = '/products/h400'
-const bannerBtnText = '了解更多'
-
-const currentSlide = ref(0)
-const totalSlides = computed(() => slides.value.length)
-let autoplayTimer: ReturnType<typeof setInterval> | null = null
-let isPaused = false
-
-const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + totalSlides.value) % totalSlides.value
-  resetAutoplay()
-}
-
-const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % totalSlides.value
-  resetAutoplay()
-}
-
-const goToSlide = (index: number) => {
-  currentSlide.value = index
-  resetAutoplay()
-}
-
-const startAutoplay = () => {
-  if (isPaused) return
-  autoplayTimer = setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % totalSlides.value
-  }, 5000)
-}
-
-const stopAutoplay = () => {
-  if (autoplayTimer) {
-    clearInterval(autoplayTimer)
-    autoplayTimer = null
-  }
-}
-
-const resetAutoplay = () => {
-  stopAutoplay()
-  startAutoplay()
-}
-
-const pauseAutoplay = () => {
-  isPaused = true
-  stopAutoplay()
-}
-
-const resumeAutoplay = () => {
-  isPaused = false
-  startAutoplay()
-}
-
-onMounted(() => {
-  startAutoplay()
-  startProductSlideAutoplay()
-})
-
-// 滚动动画与导航高亮
-
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
-
-  // 导航高亮
-  const sections = navItems.map(item => document.getElementById(item.id))
-  const scrollPos = window.scrollY + 100
-  for (let i = sections.length - 1; i >= 0; i--) {
-    if (sections[i] && sections[i]!.offsetTop <= scrollPos) {
-      activeSection.value = navItems[i].id
-      break
-    }
-  }
-
-  // 滚动渐入动画
-  document.querySelectorAll('.fade-in-section').forEach(el => {
-    const rect = el.getBoundingClientRect()
-    if (rect.top < window.innerHeight * 0.85) {
-      el.classList.add('visible')
-    }
-  })
 }
 
 const handleNavClick = (id: string) => {
   activeSection.value = id
-  const el = document.getElementById(id)
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' })
+  isMobileMenuOpen.value = false
+  if (id === 'home') {
+    router.push('/')
   }
 }
 
@@ -1038,7 +333,6 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   handleScroll()
 
-  // 为卡片添加渐入动画
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -1058,11 +352,10 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
   observer?.disconnect()
-  stopProductSlideAutoplay()
 })
 </script>
 
-<style scoped>
+<style>
 /* 全局样式 */
 * {
   margin: 0;
@@ -1123,15 +416,15 @@ onUnmounted(() => {
 }
 
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header.scrolled .logo-name,
 .header.scrolled .logo-sub,
 .header.scrolled .nav-link {
-  color: #333;
+  color: #fff;
 }
 
 .header.scrolled .nav-link:hover,
@@ -1145,7 +438,7 @@ onUnmounted(() => {
 }
 
 .header.scrolled .mobile-menu-btn span {
-  background: #333;
+  background: #fff;
 }
 
 .header-container {
