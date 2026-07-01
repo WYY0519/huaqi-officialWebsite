@@ -4,23 +4,21 @@
     <header class="header" :class="{ scrolled: isScrolled }">
       <div class="header-container">
         <div class="logo">
-          <svg class="logo-icon" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 0L0 16L10 16L8 36L20 24L32 36L30 16L40 16L20 0Z" fill="white" />
-          </svg>
+          <img class="logo-icon" src="./assets/home/图标/logo.png" alt="华启天成" />
           <div class="logo-text-group">
             <span class="logo-name">华启天成</span>
-            <span class="logo-sub">HOUYEN</span>
           </div>
         </div>
         <nav class="nav-menu" :class="{ open: isMobileMenuOpen }">
           <router-link v-for="(item, i) in navItems" :key="i" :to="item.href" class="nav-link"
-            :class="{ active: activeSection === item.id }" @click="handleNavClick(item.id)">{{ item.label }}</router-link>
+            :class="{ active: activeSection === item.id }" @click="handleNavClick(item.id)">{{ item.label
+            }}</router-link>
           <!-- <button class="mobile-login-btn" @click="isMobileMenuOpen = false">联系我们</button> -->
         </nav>
         <div class="header-actions">
           <a href="/contact" class="contact-btn">
             联系我们
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
               <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg>
@@ -43,8 +41,8 @@
           <div class="footer-brand">
             <div class="footer-logo-wrap">
               <svg class="footer-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 4L8 36H14L20 18L26 36H32L20 4Z" fill="#00cefc" />
-                <path d="M12 28L20 8L28 28" stroke="#00cefc" stroke-width="2" fill="none" />
+                <path d="M20 4L8 36H14L20 18L26 36H32L20 4Z" fill="#00D4ff " />
+                <path d="M12 28L20 8L28 28" stroke="#00D4ff" stroke-width="2" fill="none" />
               </svg>
               <div class="footer-logo-text">
                 <span class="footer-brand-name">华启天成</span>
@@ -370,9 +368,10 @@ onUnmounted(() => {
 }
 
 .container {
-  /* max-width: 1200px; */
+  width: 100%;
   margin: 0 auto;
   padding: 0 80px;
+  box-sizing: border-box;
 }
 
 /* 滚动动画 */
@@ -413,6 +412,7 @@ onUnmounted(() => {
   right: 0;
   z-index: 1000;
   transition: background 0.3s, box-shadow 0.3s;
+  font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
 }
 
 .header.scrolled {
@@ -429,11 +429,11 @@ onUnmounted(() => {
 
 .header.scrolled .nav-link:hover,
 .header.scrolled .nav-link.active {
-  color: #00cefc;
+  color: #00D4ff;
 }
 
 .header.scrolled .contact-btn {
-  background: #00cefc;
+  background: #00D4ff;
   color: white;
 }
 
@@ -442,26 +442,24 @@ onUnmounted(() => {
 }
 
 .header-container {
-  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 36px 80px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 90px;
+  box-sizing: border-box;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
 }
 
 .logo-icon {
-  width: 36px;
-  height: 32px;
+  margin-right: 15px
 }
 
 .logo-text-group {
@@ -470,8 +468,8 @@ onUnmounted(() => {
 }
 
 .logo-name {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 17.5px;
+  font-weight: 900;
   color: #fff;
   line-height: 1.2;
   letter-spacing: 2px;
@@ -485,9 +483,12 @@ onUnmounted(() => {
 }
 
 .nav-menu {
+  font-size: 16px;
   display: flex;
   align-items: center;
   gap: 40px;
+  /* margin-left: auto;
+  margin-right: 40px; */
 }
 
 .nav-link {
@@ -513,7 +514,7 @@ onUnmounted(() => {
   left: 50%;
   width: 0;
   height: 2px;
-  background: #00cefc;
+  background: #00D4ff;
   transition: width 0.3s, left 0.3s;
 }
 
@@ -530,21 +531,21 @@ onUnmounted(() => {
 .contact-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: #00cefc;
-  color: white;
+  gap: 9px;
+  background: #00D4ff;
+  color: black;
   border: none;
-  padding: 10px 24px;
-  border-radius: 4px;
+  padding: 18px 30px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 12px;
+  /* font-weight: 500; */
   transition: background 0.3s, transform 0.3s;
   text-decoration: none;
 }
 
 .contact-btn:hover {
-  background: #00cefc;
+  background: #00D4ff;
   transform: translateY(-1px);
 }
 
@@ -600,42 +601,47 @@ onUnmounted(() => {
 /* 主视觉区域 */
 .hero-section {
   position: relative;
-  height: 100vh;
-  min-height: 560px;
+  height: auto;
   overflow: hidden;
 }
 
 /* 轮播容器 */
 .slider-wrapper {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  line-height: 0;
 }
 
 .slide {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
   opacity: 0;
+  visibility: hidden;
   transition: opacity 0.8s ease-in-out;
   pointer-events: none;
 }
 
 .slide.active {
+  position: relative;
+  height: auto;
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
 .slide-bg {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
   z-index: 0;
 }
 
 .slide-bg-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* 图片靠上展示，裁掉底部大量山体 */
-  object-position: center top;
+  height: auto;
+  display: block;
 }
 
 .slide-overlay {
@@ -645,14 +651,23 @@ onUnmounted(() => {
 }
 
 .slide-content {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 2;
-  padding: 0 8%;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: center;
   align-items: flex-start;
+}
+
+.slide-logos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32px;
 }
 
 .hero-title,
@@ -663,16 +678,17 @@ onUnmounted(() => {
   margin-bottom: 16px;
   line-height: 1.3;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  padding-left: 6%
 }
 
 :deep(.slide-title) .highlight,
 .slide-content :deep(.highlight),
 .slide-content .highlight {
-  color: #00cefc !important;
+  color: #00D4ff !important;
 }
 
 .slide-content h1 .highlight {
-  color: #00cefc !important;
+  color: #00D4ff !important;
 }
 
 .hero-subtitle,
@@ -683,6 +699,7 @@ onUnmounted(() => {
   /* 缩小副标题和按钮间距 */
   font-weight: 400;
   letter-spacing: 2px;
+  padding-left: 6%
 }
 
 .hero-btn {
@@ -698,7 +715,8 @@ onUnmounted(() => {
   font-weight: 500;
   transition: all 0.3s;
   background: transparent;
-  /* 自动跟随父容器居中 */
+  margin-left: 6%
+    /* 自动跟随父容器居中 */
 }
 
 .hero-btn:hover {
@@ -763,7 +781,7 @@ onUnmounted(() => {
 }
 
 .pagination-dot.active {
-  background: 00cefc;
+  background: 00D4ff;
   width: 48px;
 }
 
@@ -786,7 +804,7 @@ onUnmounted(() => {
   transform: translateX(-50%);
   width: 120px;
   height: 1px;
-  background: #00cefc;
+  background: #00D4ff;
 }
 
 .section-subtitle {
@@ -919,7 +937,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: #00cefc;
+  color: #00D4ff;
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
@@ -971,7 +989,7 @@ onUnmounted(() => {
   display: block;
   font-size: 36px;
   font-weight: bold;
-  color: #00cefc;
+  color: #00D4ff;
 }
 
 .stat-label {
@@ -1005,7 +1023,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   font-size: 30px;
-  color: #00cefc;
+  color: #00D4ff;
   cursor: pointer;
   transition: transform 0.3s;
 }
@@ -1138,7 +1156,7 @@ onUnmounted(() => {
   display: block;
   font-size: 48px;
   font-weight: 800;
-  color: #00cefc;
+  color: #00D4ff;
   line-height: 1.1;
   margin-bottom: 10px;
 }
@@ -1216,7 +1234,7 @@ onUnmounted(() => {
   margin-top: 16px;
   padding: 5px 16px;
   background: #e8f4fd;
-  color: #00cefc;
+  color: #00D4ff;
   border-radius: 20px;
   font-size: 13px;
   font-weight: 600;
@@ -1323,7 +1341,7 @@ onUnmounted(() => {
 }
 
 .product-btn-primary:hover {
-  background: #00cefc;
+  background: #00D4ff;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 168, 255, 0.4);
 }
@@ -1399,7 +1417,7 @@ onUnmounted(() => {
 }
 
 .product-pagination-dot.active {
-  background: #00cefc;
+  background: #00D4ff;
   width: 48px;
 }
 
@@ -1481,7 +1499,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 6px 16px;
   background: #e6f7ff;
-  color: #00cefc;
+  color: #00D4ff;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
@@ -1559,7 +1577,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #00cefc;
+  color: #00D4ff;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -1614,7 +1632,7 @@ onUnmounted(() => {
 }
 
 .news-category {
-  color: #00cefc;
+  color: #00D4ff;
   font-size: 12px;
   font-weight: 600;
 }
@@ -1762,7 +1780,7 @@ onUnmounted(() => {
 
 .form-input:focus {
   outline: none;
-  border-color: #00cefc;
+  border-color: #00D4ff;
 }
 
 .form-field-textarea {
@@ -1785,7 +1803,7 @@ onUnmounted(() => {
 
 .submit-btn {
   width: 100%;
-  background: #00cefc;
+  background: #00D4ff;
   color: white;
   border: none;
   padding: 16px;
@@ -1882,7 +1900,7 @@ onUnmounted(() => {
 }
 
 .footer-social-icon:hover {
-  background: #00cefc;
+  background: #00D4ff;
   color: white;
 }
 
@@ -1919,7 +1937,7 @@ onUnmounted(() => {
 }
 
 .footer-menu-list a:hover {
-  color: #00cefc;
+  color: #00D4ff;
 }
 
 /* 右侧二维码 */
@@ -1983,8 +2001,7 @@ onUnmounted(() => {
   }
 
   .header-container {
-    padding: 0 24px;
-    height: 70px;
+    padding: 24px;
   }
 
   .nav-menu {
@@ -2019,7 +2036,7 @@ onUnmounted(() => {
 
   .nav-link:hover,
   .nav-link.active {
-    color: #00cefc;
+    color: #00D4ff;
     background: rgba(255, 255, 255, 0.06);
   }
 
@@ -2037,12 +2054,11 @@ onUnmounted(() => {
 
   /* 轮播 iPad 适配 */
   .hero-section {
-    height: 80vh;
-    min-height: 480px;
+    height: auto;
   }
 
   .slide-content {
-    padding: 0 6%;
+    /* padding: 0 6%; */
   }
 
   .hero-title,
@@ -2221,13 +2237,11 @@ onUnmounted(() => {
   }
 
   .header-container {
-    height: 56px;
-    padding: 0 16px;
+    padding: 16px;
   }
 
   .logo-icon {
-    width: 26px;
-    height: 23px;
+    width: 20%;
   }
 
   .logo-name {
@@ -2241,8 +2255,7 @@ onUnmounted(() => {
 
   /* 轮播手机适配 */
   .hero-section {
-    height: 100svh;
-    min-height: 480px;
+    height: auto;
   }
 
   .slide-content {
@@ -2273,6 +2286,11 @@ onUnmounted(() => {
 
   /* 手机隐藏左右箭头 */
   .banner-arrow {
+    display: none;
+  }
+
+  /* 手机隐藏slide中的logo */
+  .slide-logos {
     display: none;
   }
 
@@ -2713,7 +2731,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #00cefc 0%, #0099cc 100%);
+  background: linear-gradient(135deg, #00D4ff 0%, #0099cc 100%);
   color: white;
 }
 
@@ -2784,7 +2802,7 @@ onUnmounted(() => {
 }
 
 .chat-message.user .chat-message-avatar {
-  background: #00cefc;
+  background: #00D4ff;
   color: white;
 }
 
@@ -2802,7 +2820,7 @@ onUnmounted(() => {
 }
 
 .chat-message.user .chat-message-content {
-  background: #00cefc;
+  background: #00D4ff;
   color: white;
   border-bottom-right-radius: 4px;
 }
@@ -2826,12 +2844,12 @@ onUnmounted(() => {
 }
 
 .chat-input:focus {
-  border-color: #00cefc;
+  border-color: #00D4ff;
 }
 
 .chat-send-btn {
   padding: 12px 24px;
-  background: #00cefc;
+  background: #00D4ff;
   color: white;
   border: none;
   border-radius: 24px;
