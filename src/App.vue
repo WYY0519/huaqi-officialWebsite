@@ -361,16 +361,23 @@ onUnmounted(() => {
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 .app {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Noto Sans SC', 'Source Han Sans CN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   color: #333;
+  overflow-x: hidden;
 }
 
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 140px 0 151px;
   box-sizing: border-box;
 }
 
@@ -787,31 +794,28 @@ onUnmounted(() => {
 
 /* 通用区块样式 */
 .section-title {
-  font-family: "Alibaba PuHuiTi Heavy", "Noto Sans SC Black", sans-serif;
+  font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
   text-align: center;
-  font-size: 50px;
+  font-size: 41.5px;
   font-weight: 900;
-  color: #333;
+  color: #000;
   margin-bottom: 30px;
   position: relative;
 }
 
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
+.section-line {
+  width: 161px;
   height: 1px;
   background: #00D4ff;
+  margin: 0 auto;
 }
 
 .section-subtitle {
   text-align: center;
-  font-size: 20px;
-  color: #b3b2b2;
-  margin-bottom: 50px;
+  font-size: 15px;
+  color: #adb1b5;
+  margin-top: 24px;
+  margin-bottom: 52px;
   position: relative;
 }
 
@@ -855,20 +859,15 @@ onUnmounted(() => {
 
 .sol-media {
   position: relative;
-  min-height: 320px;
-  background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
   overflow: hidden;
   border-radius: 12px
 }
 
 .sol-video-box {
   width: 100%;
-  height: 100%;
-  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
 }
 
 .sol-play-btn {
@@ -1040,7 +1039,7 @@ onUnmounted(() => {
 }
 
 .solutions-block-title {
-  font-family: "Alibaba PuHuiTi Heavy", "Noto Sans SC Black", sans-serif;
+  font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
   text-align: center;
   font-size: 34px;
   font-weight: 900;
@@ -1656,9 +1655,10 @@ onUnmounted(() => {
 /* 联系区块 */
 /* 联系区块 */
 .contact-section {
-  padding: 80px 0;
+  padding: 112px 0 118px;
   background: #FFF;
   text-align: center;
+  margin-right: 80px;
 }
 
 /* 联系区块继承通用标题样式，无需额外覆盖 */
@@ -1675,38 +1675,35 @@ onUnmounted(() => {
 .contact-features {
   display: flex;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .contact-feature-item {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
-  color: #555;
+  font-size: 15px;
+  color: #adb1b5;
 }
 
 .contact-info-title {
-  font-size: 30px;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 16px;
-  line-height: 1.3;
+  font-size: 33px;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 48px;
 }
 
 .contact-info-desc {
   font-size: 20px;
-  color: #666;
-  line-height: 1.8;
-  margin-bottom: 20px;
+  color: #adb1b5;
+  margin-bottom: 42px;
 }
 
 .contact-trusted-label {
-  font-size: 13px;
-  color: #999;
+  font-size: 20px;
+  color: #adb1b5;
   letter-spacing: 1px;
-  margin-bottom: 40px;
-  font-weight: 500;
+  margin-bottom: 69px;
 }
 
 .contact-trusted-grid {
@@ -1716,15 +1713,16 @@ onUnmounted(() => {
 }
 
 .trusted-item {
+  width: 166px;
+  height: 59px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 16px;
   background: #f6f8f9;
   border: 1px solid #c1c6c8;
   border-radius: 8px;
-  font-size: 13px;
-  color: #9b9ea0;
+  font-size: 15px;
+  color: #adb1b5;
   text-align: center;
   white-space: nowrap;
 }
@@ -1733,7 +1731,7 @@ onUnmounted(() => {
 .contact-form-wrapper {
   background: #F6F8F9;
   border-radius: 12px;
-  padding: 36px;
+  padding: 57px 48px 48px;
   /* box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); */
   border: 2px solid #bbbfc3;
 }
@@ -1741,13 +1739,14 @@ onUnmounted(() => {
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  /* gap: 32px; */
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+  margin-bottom: 32px
 }
 
 .form-field {
@@ -1764,14 +1763,15 @@ onUnmounted(() => {
 
 .form-input {
   width: 100%;
-  padding: 14px 14px 14px 42px;
+  height: 85px;
   border: 1px solid #bbbfc3;
   border-radius: 10px;
   font-size: 15px;
-  color: #333;
+  color: #bfc3c5;
   transition: border-color 0.3s;
   background: white;
   box-sizing: border-box;
+  padding: 12px 12px 12px 40px;
 }
 
 .form-input::placeholder {
@@ -1788,28 +1788,32 @@ onUnmounted(() => {
 }
 
 .form-field-textarea .form-textarea {
-  min-height: 120px;
+  width: 100%;
+  min-height: 157px;
   resize: vertical;
-  padding-top: 14px;
+  padding: 12px 14px 28px 14px;
+  box-sizing: border-box;
 }
 
 .form-char-count {
   position: absolute;
-  bottom: 12px;
-  right: 14px;
+  bottom: 8px;
+  right: 12px;
   font-size: 12px;
   color: #ccc;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .submit-btn {
   width: 100%;
-  background: #00D4ff;
+  height: 79px;
+  background: #22dbff;
   color: white;
   border: none;
   padding: 16px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: 12px;
+  font-size: 19px;
   cursor: pointer;
   transition: background 0.3s;
   display: flex;
@@ -1829,8 +1833,8 @@ onUnmounted(() => {
 .form-privacy {
   text-align: center;
   font-size: 12px;
-  color: #bbb;
-  margin-top: 4px;
+  color: #adb1b5;
+  margin-top: 10px;
 }
 
 /* 页脚 */
@@ -2057,9 +2061,7 @@ onUnmounted(() => {
     height: auto;
   }
 
-  .slide-content {
-    /* padding: 0 6%; */
-  }
+
 
   .hero-title,
   .slide-title {
@@ -2081,14 +2083,6 @@ onUnmounted(() => {
 
   .sol-row.reverse {
     direction: ltr;
-  }
-
-  .sol-media {
-    min-height: 240px;
-  }
-
-  .sol-video-box {
-    min-height: 240px;
   }
 
   .sol-text {
@@ -2195,6 +2189,14 @@ onUnmounted(() => {
 
   .contact-form-wrapper {
     padding: 28px;
+  }
+
+  .contact-section {
+    margin-right: 0;
+  }
+
+  .form-field-textarea .form-textarea {
+    min-height: 150px;
   }
 
   /* 页脚响应式 - 平板端 */
@@ -2462,22 +2464,77 @@ onUnmounted(() => {
     width: 30px;
   }
 
-  /* 联系区块继承通用响应式样式 */
+  /* 联系区块手机端响应式 */
+  .contact-section {
+    padding: 50px 15px;
+    overflow: hidden;
+    margin-right: 0;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 5px;
+  }
 
   .contact-info-title {
     font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .contact-info-desc {
+    font-size: 14px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .contact-trusted-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .trusted-item {
+    width: 100%;
+    height: 45px;
+    font-size: 12px;
+    padding: 0 8px;
   }
 
   .contact-form-wrapper {
-    padding: 20px;
+    padding: 15px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .contact-form {
+    width: 100%;
   }
 
   .form-row {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-field {
+    width: 100%;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    font-size: 14px;
+  }
+
+  .form-field-textarea .form-textarea {
+    min-height: 140px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 600;
   }
 
   /* 页脚响应式 - 手机端 */
@@ -2529,6 +2586,26 @@ onUnmounted(() => {
 
   .chat-input-area {
     padding: 12px 16px;
+  }
+
+  .section-subtitle {
+    margin-bottom: 32px;
+  }
+
+  .form-input {
+    height: 65px;
+  }
+
+  .form-row {
+    margin-bottom: 12px;
+  }
+
+  .form-field-textarea .form-textarea {
+    margin: 12px 0;
+  }
+
+  .submit-btn {
+    height: 50px;
   }
 }
 
@@ -2623,6 +2700,50 @@ onUnmounted(() => {
 
   .news-title {
     font-size: 14px;
+  }
+
+  /* 小屏手机 contact 区块适配 */
+  .contact-section {
+    padding: 30px 10px;
+    margin-right: 0;
+  }
+
+  .contact-info-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .contact-info-desc {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .contact-trusted-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .trusted-item {
+    height: 40px;
+    font-size: 11px;
+  }
+
+  .contact-form-wrapper {
+    padding: 12px;
+  }
+
+  .form-input {
+    padding: 10px 10px 10px 36px;
+    font-size: 13px;
+  }
+
+  .form-field-textarea .form-textarea {
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    padding: 12px 16px;
+    font-size: 13px;
   }
 }
 

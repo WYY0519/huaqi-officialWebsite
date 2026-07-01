@@ -1,7 +1,8 @@
 <template>
   <section id="products" class="products-section">
     <div class="container">
-      <h2 class="section-title">旗舰产品矩阵</h2>
+      <p class="section-title">旗舰产品矩阵</p>
+      <p class="section-line" ></p>
       <p class="section-subtitle">覆盖全场景应用需求</p>
       <div class="products-carousel" @mouseenter="pauseProductSlideAutoplay" @mouseleave="resumeProductSlideAutoplay">
         <div class="products-grid-showcase">

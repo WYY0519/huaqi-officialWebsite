@@ -1,7 +1,8 @@
 <template>
   <section id="news" class="news-section">
     <div class="container">
-      <h2 class="section-title">新闻动态</h2>
+      <p class="section-title">新闻动态</p>
+      <p class="section-line"></p>
       <p class="section-subtitle">覆盖全场景应用需求</p>
       <div class="news-layout">
         <div class="news-main-card">

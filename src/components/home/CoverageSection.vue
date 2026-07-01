@@ -1,7 +1,8 @@
 <template>
   <section class="coverage-section">
     <div class="container">
-      <h2 class="section-title">全流程服务保障体系</h2>
+      <p class="section-title">全流程服务保障体系</p>
+      <p class="section-line"></p>
       <p class="section-subtitle">覆盖全场景应用需求</p>
       <div class="coverage-grid">
         <div class="coverage-item" v-for="(item, index) in coverageItems" :key="index">

@@ -1,7 +1,8 @@
 <template>
   <section class="stats-section">
     <div class="container">
-      <h2 class="section-title">品牌实力与核心技术背书</h2>
+      <p class="section-title">品牌实力与核心技术背书</p>
+      <p class="section-line"></p>
       <p class="section-subtitle">覆盖全场景应用需求</p>
       <div class="stats-grid">
         <div class="stat-card" v-for="(stat, index) in companyStats" :key="index">

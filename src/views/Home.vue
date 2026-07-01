@@ -1,15 +1,15 @@
 <template>
   <div class="home">
     <!-- 轮播图 -->
-    <HeroBanner />
+    <!-- <HeroBanner /> -->
     <!-- 核心产品解决方案 -->
-    <SolutionSection />
+    <!-- <SolutionSection /> -->
     <!-- 数据统计 -->
-    <StatsSection />
+    <!-- <StatsSection /> -->
     <!-- 产品展示 -->
-    <ProductsSection />
+    <!-- <ProductsSection /> -->
     <!-- 全流程服务保障体系 -->
-    <CoverageSection />
+    <!-- <CoverageSection /> -->
     <!-- 新闻动态 -->
     <NewsSection />
     <!-- 获取专属解决方案 -->
