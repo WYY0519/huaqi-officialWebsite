@@ -75,7 +75,140 @@ const submitForm = () => {
 }
 </script>
 
-<style scoped>
+<style>
+/* 联系区块 */
+.contact-section {
+  padding: 112px 0 118px;
+  background: #FFF;
+  text-align: center;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 60px;
+  text-align: left;
+  align-items: start;
+}
+
+/* 左侧信息区 */
+.contact-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.contact-features {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.contact-feature-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  color: #adb1b5;
+}
+
+.contact-info-title {
+  font-size: 33px;
+  font-weight: 900;
+  color: #000;
+  margin-bottom: 48px;
+}
+
+.contact-info-desc {
+  font-size: 20px;
+  color: #adb1b5;
+  margin-bottom: 42px;
+}
+
+.contact-trusted-label {
+  font-size: 20px;
+  color: #adb1b5;
+  letter-spacing: 1px;
+  margin-bottom: 69px;
+}
+
+.contact-trusted-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.trusted-item {
+  width: 100%;
+  height: 59px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f8f9;
+  border: 1px solid #c1c6c8;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #adb1b5;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+/* 右侧表单区 */
+.contact-form-wrapper {
+  background: #F6F8F9;
+  border-radius: 12px;
+  padding: 57px 48px 48px;
+  border: 2px solid #bbbfc3;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px
+}
+
+.form-field {
+  position: relative;
+}
+
+.form-field-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.form-input {
+  width: 100%;
+  height: 85px;
+  border: 1px solid #bbbfc3;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #bfc3c5;
+  transition: border-color 0.3s;
+  background: white;
+  box-sizing: border-box;
+  padding: 12px 12px 12px 50px;
+}
+
+.form-input::placeholder {
+  color: #bbb;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #00D4ff;
+}
+
 /* 明确设置思源黑体CN字体 */
 .contact-section * {
   font-family: 'Noto Sans SC', 'Source Han Sans CN', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -91,27 +224,116 @@ const submitForm = () => {
 
 .form-field-textarea .form-textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 157px;
   resize: vertical;
   box-sizing: border-box;
   padding: 12px 14px 32px 14px;
 }
 
-.form-field-textarea .form-char-count {
+.form-char-count {
   position: absolute;
   bottom: 8px;
   right: 12px;
   font-size: 12px;
-  color: #999;
+  color: #ccc;
   pointer-events: none;
   z-index: 1;
+}
+
+.form-field-textarea .form-char-count {
   background: rgba(255, 255, 255, 0.8);
   padding: 2px 4px;
   border-radius: 3px;
 }
 
+.submit-btn {
+  width: 100%;
+  height: 79px;
+  background: #22dbff;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 19px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.submit-btn:hover {
+  background: #00b8e6;
+}
+
+.submit-arrow {
+  font-size: 18px;
+}
+
+.form-privacy {
+  text-align: center;
+  font-size: 12px;
+  color: #adb1b5;
+  margin-top: 10px;
+}
+
 /* 中等屏幕 (1200px ~ 1400px) */
 @media (max-width: 1400px) {
+  .contact-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 50px;
+  }
+
+  .contact-info-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .contact-info-desc {
+    font-size: 17px;
+    margin-bottom: 36px;
+  }
+
+  .contact-trusted-label {
+    font-size: 17px;
+    margin-bottom: 50px;
+  }
+
+  .trusted-item {
+    width: 100%;
+    height: 50px;
+  }
+
+  .contact-trusted-grid {
+    gap: 10px;
+  }
+
+  .contact-features {
+    margin-bottom: 50px;
+  }
+
+  .contact-feature-item {
+    font-size: 14px;
+  }
+
+  .contact-form-wrapper {
+    padding: 48px 42px 42px;
+  }
+
+  .form-input {
+    height: 80px;
+  }
+
+  .submit-btn {
+    height: 75px;
+    font-size: 18px;
+  }
+
+  .form-row {
+    margin-bottom: 30px;
+  }
+
   .form-field-textarea .form-textarea {
     min-height: 150px;
   }
@@ -124,24 +346,104 @@ const submitForm = () => {
 
 /* 较小中等屏幕 (1024px ~ 1200px) */
 @media (max-width: 1200px) {
+  .contact-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .contact-info-title {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+
+  .contact-info-desc {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  .contact-trusted-label {
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .trusted-item {
+    width: 100%;
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .contact-trusted-grid {
+    gap: 8px;
+  }
+
+  .contact-features {
+    margin-bottom: 40px;
+  }
+
+  .contact-feature-item {
+    font-size: 13px;
+  }
+
+  .contact-form-wrapper {
+    padding: 40px 36px 36px;
+  }
+
+  .form-input {
+    height: 75px;
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    height: 70px;
+    font-size: 17px;
+  }
+
+  .form-row {
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
   .form-field-textarea .form-textarea {
     min-height: 140px;
   }
 
-  .form-field-textarea .form-char-count {
+  .form-char-count {
     bottom: 8px;
     right: 10px;
+  }
+
+  .form-privacy {
+    font-size: 11px;
+    margin-top: 8px;
   }
 }
 
 /* iPad 适配 (≤1024px) */
 @media (max-width: 1024px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
   .contact-features {
+    flex-wrap: wrap;
     gap: 16px;
   }
 
   .contact-feature-item {
     font-size: 14px;
+  }
+
+  .contact-trusted-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .contact-form-wrapper {
+    padding: 28px;
+  }
+
+  .contact-section {
+    margin-right: 0;
   }
 
   .contact-info-title {
@@ -158,17 +460,27 @@ const submitForm = () => {
     font-size: 16px;
     margin-bottom: 40px;
   }
+
+  .form-field-textarea .form-textarea {
+    min-height: 150px;
+  }
 }
 
 /* 手机适配 (≤768px) */
 @media (max-width: 768px) {
   .contact-section {
-    padding: 60px 15px;
+    padding: 50px 15px;
+    overflow: hidden;
+    margin-right: 0;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 5px;
   }
 
   .contact-features {
-    /* flex-direction: column; */
-    /* align-items: center; */
     gap: 12px;
     margin-bottom: 40px;
   }
@@ -178,13 +490,15 @@ const submitForm = () => {
   }
 
   .contact-info-title {
-    font-size: 24px;
-    margin-bottom: 24px;
+    font-size: 22px;
+    margin-bottom: 20px;
   }
 
   .contact-info-desc {
-    font-size: 16px;
-    margin-bottom: 24px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     line-height: 1.6;
   }
 
@@ -193,10 +507,60 @@ const submitForm = () => {
     margin-bottom: 30px;
   }
 
+  .contact-trusted-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
   .trusted-item {
     width: 100%;
     height: 50px;
     font-size: 13px;
+    padding: 0 8px;
+  }
+
+  .contact-form-wrapper {
+    padding: 15px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .contact-form {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .form-field {
+    width: 100%;
+  }
+
+  .form-field-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 65px;
+    padding: 12px 12px 12px 40px;
+    font-size: 14px;
+  }
+
+  .form-field-textarea .form-textarea {
+    min-height: 140px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    height: 50px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 600;
   }
 
   .form-textarea {
@@ -207,17 +571,18 @@ const submitForm = () => {
 /* 小屏手机适配 (≤480px) */
 @media (max-width: 480px) {
   .contact-section {
-    padding: 40px 10px;
+    padding: 30px 10px;
+    margin-right: 0;
   }
 
   .contact-info-title {
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 18px;
+    margin-bottom: 15px;
   }
 
   .contact-info-desc {
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 13px;
+    margin-bottom: 15px;
   }
 
   .contact-trusted-label {
@@ -225,9 +590,37 @@ const submitForm = () => {
     margin-bottom: 20px;
   }
 
+  .contact-trusted-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
   .trusted-item {
-    height: 45px;
-    font-size: 12px;
+    height: 40px;
+    font-size: 11px;
+  }
+
+  .contact-form-wrapper {
+    padding: 12px;
+  }
+
+  .form-field-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .form-input {
+    padding: 10px 10px 10px 36px;
+    font-size: 13px;
+  }
+
+  .form-field-textarea .form-textarea {
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    padding: 12px 16px;
+    font-size: 13px;
   }
 
   .form-textarea {

@@ -139,7 +139,137 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
+<style>
+/* 解决方案区块 - 左右交替布局 */
+.solutions-section {
+  padding: 80px 0;
+  background: #f4f8fd;
+}
+
+.sol-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sol-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 20px rgba(0, 100, 200, 0.07);
+  transition: box-shadow 0.3s;
+}
+
+.sol-row:hover {
+  box-shadow: 0 8px 36px rgba(0, 100, 200, 0.13);
+}
+
+/* 偶数项：文字在左，视频在右 */
+.sol-row.reverse {
+  direction: rtl;
+}
+
+.sol-row.reverse > * {
+  direction: ltr;
+}
+
+.sol-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px
+}
+
+.sol-text {
+  padding: 44px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.sol-scene-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1.2;
+}
+
+.sol-scene-sub {
+  font-size: 14px;
+  color: #b3b2b2;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.sol-scene-desc {
+  font-size: 15px;
+  color: #666;
+  font-weight: 800;
+  line-height: 1.9;
+}
+
+.sol-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sol-tag {
+  padding: 5px 16px;
+  color: #666;
+  border-radius: 20px;
+  font-size: 13px;
+  border: 1px solid #dedddd;
+}
+
+.sol-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #00D4ff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 4px;
+  transition: gap 0.2s;
+}
+
+.sol-more:hover {
+  gap: 8px;
+}
+
+/* 响应式 - iPad */
+@media (max-width: 1024px) {
+  .sol-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sol-row.reverse {
+    direction: ltr;
+  }
+
+  .sol-text {
+    padding: 28px 24px;
+  }
+}
+
+/* 响应式 - 手机 */
+@media (max-width: 768px) {
+  .sol-scene-title {
+    font-size: 22px;
+  }
+
+  .sol-text {
+    padding: 20px 18px;
+    gap: 10px;
+  }
+}
+
 /* 图片容器 - 固定宽高比 */
 .sol-image-container {
   width: 100%;

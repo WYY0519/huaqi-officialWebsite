@@ -58,3 +58,252 @@ const resumeAutoplay = () => { isPaused = false; startAutoplay() }
 onMounted(() => { startAutoplay() })
 onUnmounted(() => { stopAutoplay() })
 </script>
+
+<style>
+/* 主视觉区域 */
+.hero-section {
+  position: relative;
+  height: auto;
+  overflow: hidden;
+}
+
+/* 轮播容器 */
+.slider-wrapper {
+  position: relative;
+  line-height: 0;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out;
+  pointer-events: none;
+}
+
+.slide.active {
+  position: relative;
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.slide-bg {
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+
+.slide-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.slide-logos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.hero-title,
+.slide-title {
+  font-size: 52px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1.3;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  padding-left: 6%
+}
+
+:deep(.slide-title) .highlight,
+.slide-content :deep(.highlight),
+.slide-content .highlight {
+  color: #00D4ff !important;
+}
+
+.slide-content h1 .highlight {
+  color: #00D4ff !important;
+}
+
+.hero-subtitle,
+.slide-subtitle {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 28px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  padding-left: 6%
+}
+
+.hero-btn {
+  align-self: unset;
+  display: inline-block;
+  padding: 12px 36px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s;
+  background: transparent;
+  margin-left: 6%
+}
+
+.hero-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+
+/* 轮播箭头 */
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 50px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.banner-arrow:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.banner-arrow-left {
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.banner-arrow-right {
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+/* 轮播分页指示器 */
+.swiper-pagination {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pagination-dot {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.3s, width 0.3s;
+}
+
+.pagination-dot.active {
+  background: 00D4ff;
+  width: 48px;
+}
+
+/* 响应式 - iPad */
+@media (max-width: 1024px) {
+  .hero-section {
+    height: auto;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 40px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 20px;
+  }
+}
+
+/* 响应式 - 手机 */
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+  }
+
+  .slide-content {
+    padding: 0 5%;
+    align-items: flex-start;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 26px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  .hero-btn {
+    padding: 10px 28px;
+    font-size: 14px;
+    border-radius: 24px;
+    align-self: flex-start;
+  }
+
+  .banner-arrow {
+    display: none;
+  }
+
+  .slide-logos {
+    display: none;
+  }
+}
+
+/* 响应式 - 小屏手机 */
+@media (max-width: 480px) {
+  .hero-title,
+  .slide-title {
+    font-size: 22px;
+  }
+}
+</style>
