@@ -59,31 +59,51 @@ const hotTagStyle = {
 
 /* 大新闻卡片 */
 .news-main-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  min-height: 320px;
+  width: 100%;
 }
 
 .news-main-image {
-  height: 100%;
+  position: relative;
+  flex: 0 0 60%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 0;
+}
+
+.news-main-image::before {
+  content: '';
+  display: block;
+  padding-top: 65.74%; /* 612/931 × 100% */
 }
 
 .news-main-image img {
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: block;
 }
 
 .news-main-content {
-  padding: 59px 0 140px 72px;
+  padding: 59px 72px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
+  flex: 1;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .news-hot-tag {
@@ -98,7 +118,7 @@ const hotTagStyle = {
   color: white;
   font-size: 13px;
   font-weight: 600;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   align-self: flex-start;
   border-radius: 0;
   padding: 0;
@@ -108,13 +128,13 @@ const hotTagStyle = {
   font-size: 30px;
   font-weight: 900;
   color: #000;
-  margin-bottom: 77px;
+  margin-bottom: 30px;
 }
 
 .news-main-excerpt {
   font-size: 23.5px;
   color: #000;
-  margin-bottom: 105px;
+  margin-bottom: 30px;
 }
 
 .news-read-more {
@@ -136,7 +156,7 @@ const hotTagStyle = {
 .news-small-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 70px;
 }
 
 .news-small-card {
@@ -160,14 +180,15 @@ const hotTagStyle = {
 }
 
 .news-small-content {
-  padding: 20px;
+  padding-top: 24px;
 }
 
 .news-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 19px;
+  margin-bottom: 13px;
+  font-size: 12px;
 }
 
 .news-category {
@@ -184,7 +205,7 @@ const hotTagStyle = {
 .news-title {
   font-size: 16px;
   font-weight: 600;
-  color: #1a1a2e;
+  color: #000000;
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -195,17 +216,15 @@ const hotTagStyle = {
 /* 响应式 - iPad */
 @media (max-width: 1024px) {
   .news-main-card {
-    grid-template-columns: 1fr;
-    min-height: auto;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
   }
 
   .news-main-image {
+    width: 100%;
     height: auto;
-  }
-
-  .news-main-image img {
-    height: auto;
-    object-fit: contain;
+    aspect-ratio: 931 / 612;
   }
 
   .news-main-content {
@@ -225,17 +244,15 @@ const hotTagStyle = {
 /* 响应式 - 手机 */
 @media (max-width: 768px) {
   .news-main-card {
-    grid-template-columns: 1fr;
-    min-height: auto;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
   }
 
   .news-main-image {
+    width: 100%;
     height: auto;
-  }
-
-  .news-main-image img {
-    height: auto;
-    object-fit: contain;
+    aspect-ratio: 931 / 612;
   }
 
   .news-main-content {
