@@ -1658,7 +1658,6 @@ body {
   padding: 112px 0 118px;
   background: #FFF;
   text-align: center;
-  margin-right: 80px;
 }
 
 /* 联系区块继承通用标题样式，无需额外覆盖 */
@@ -1771,7 +1770,7 @@ body {
   transition: border-color 0.3s;
   background: white;
   box-sizing: border-box;
-  padding: 12px 12px 12px 40px;
+  padding: 12px 12px 12px 50px;
 }
 
 .form-input::placeholder {
@@ -1997,6 +1996,140 @@ body {
 }
 
 /* 响应式设计 */
+
+/* 中等屏幕 (1200px ~ 1400px) - 联系部分同比例缩小 */
+@media (max-width: 1400px) {
+  .contact-content {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 50px;
+  }
+  
+  .contact-info-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  
+  .contact-info-desc {
+    font-size: 17px;
+    margin-bottom: 36px;
+  }
+  
+  .contact-trusted-label {
+    font-size: 17px;
+    margin-bottom: 50px;
+  }
+  
+  .trusted-item {
+    width: 140px;
+    height: 50px;
+  }
+  
+  .contact-trusted-grid {
+    gap: 10px;
+  }
+  
+  .contact-features {
+    margin-bottom: 50px;
+  }
+  
+  .contact-feature-item {
+    font-size: 14px;
+  }
+  
+  /* 右侧表单区域微调 */
+  .contact-form-wrapper {
+    padding: 48px 42px 42px;
+  }
+  
+  .form-input {
+    height: 80px;
+  }
+  
+  .submit-btn {
+    height: 75px;
+    font-size: 18px;
+  }
+  
+  .form-row {
+    margin-bottom: 30px;
+  }
+}
+
+/* 较小中等屏幕 (1024px ~ 1200px) - 进一步缩小 */
+@media (max-width: 1200px) {
+  .contact-content {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+  }
+  
+  .contact-info-title {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+
+  .contact-info-desc {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  .contact-trusted-label {
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .trusted-item {
+    width: 120px;
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .contact-trusted-grid {
+    gap: 8px;
+  }
+
+  .contact-features {
+    margin-bottom: 40px;
+  }
+
+  .contact-feature-item {
+    font-size: 13px;
+  }
+
+  /* 右侧表单区域也相应调整 */
+  .contact-form-wrapper {
+    padding: 40px 36px 36px;
+  }
+
+  .form-input {
+    height: 75px;
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    height: 70px;
+    font-size: 17px;
+  }
+
+  .form-row {
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .form-field-textarea .form-textarea {
+    min-height: 140px;
+    margin: 28px 0 22px 0;
+  }
+
+  .form-char-count {
+    bottom: 16px;
+    right: 10px;
+  }
+
+  .form-privacy {
+    font-size: 11px;
+    margin-top: 8px;
+  }
+}
 
 /* iPad / 平板 (768px ~ 1024px) */
 @media (max-width: 1024px) {

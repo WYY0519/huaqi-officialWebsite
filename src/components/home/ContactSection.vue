@@ -109,6 +109,32 @@ const submitForm = () => {
   border-radius: 3px;
 }
 
+/* 中等屏幕 (1200px ~ 1400px) */
+@media (max-width: 1400px) {
+  .form-field-textarea .form-textarea {
+    min-height: 150px;
+    margin: 30px 0 25px 0;
+  }
+
+  .form-field-textarea .form-char-count {
+    bottom: 18px;
+    right: 10px;
+  }
+}
+
+/* 较小中等屏幕 (1024px ~ 1200px) */
+@media (max-width: 1200px) {
+  .form-field-textarea .form-textarea {
+    min-height: 140px;
+    margin: 28px 0 22px 0;
+  }
+
+  .form-field-textarea .form-char-count {
+    bottom: 16px;
+    right: 10px;
+  }
+}
+
 /* iPad 适配 (≤1024px) */
 @media (max-width: 1024px) {
   .contact-features {
@@ -142,8 +168,8 @@ const submitForm = () => {
   }
 
   .contact-features {
-    flex-direction: column;
-    align-items: center;
+    /* flex-direction: column; */
+    /* align-items: center; */
     gap: 12px;
     margin-bottom: 40px;
   }
