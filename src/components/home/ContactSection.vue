@@ -84,6 +84,9 @@ const submitForm = () => {
 /* 修复 textarea 和字数统计 */
 .form-field-textarea {
   width: 100%;
+  position: relative;
+  margin-top: 33px;
+  margin-bottom: 27px;
 }
 
 .form-field-textarea .form-textarea {
@@ -91,15 +94,13 @@ const submitForm = () => {
   min-height: 120px;
   resize: vertical;
   box-sizing: border-box;
-  padding: 12px 14px 28px 14px;
-  position: relative;
-  margin: 33px 0 27px 0;
+  padding: 12px 14px 32px 14px;
 }
 
 .form-field-textarea .form-char-count {
   position: absolute;
-  bottom: 20px;
-  right: 10px;
+  bottom: 8px;
+  right: 12px;
   font-size: 12px;
   color: #999;
   pointer-events: none;
@@ -113,11 +114,10 @@ const submitForm = () => {
 @media (max-width: 1400px) {
   .form-field-textarea .form-textarea {
     min-height: 150px;
-    margin: 30px 0 25px 0;
   }
 
   .form-field-textarea .form-char-count {
-    bottom: 18px;
+    bottom: 8px;
     right: 10px;
   }
 }
@@ -126,11 +126,10 @@ const submitForm = () => {
 @media (max-width: 1200px) {
   .form-field-textarea .form-textarea {
     min-height: 140px;
-    margin: 28px 0 22px 0;
   }
 
   .form-field-textarea .form-char-count {
-    bottom: 16px;
+    bottom: 8px;
     right: 10px;
   }
 }
