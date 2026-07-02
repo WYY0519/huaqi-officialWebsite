@@ -10,10 +10,10 @@
             <img :src="newsItems[0].image" :alt="newsItems[0].title">
           </div>
           <div class="news-main-content">
-            <div v-if="newsItems[0].isHot" class="news-hot-tag">HOT</div>
+            <div v-if="newsItems[0].isHot" class="news-hot-tag" :style="hotTagStyle">HOT</div>
             <h2 class="news-main-title">{{ newsItems[0].title }}</h2>
             <p class="news-main-excerpt">{{ newsItems[0].excerpt }}</p>
-            <a :href="newsItems[0].link" class="news-read-more">阅读更多 →</a>
+            <a :href="newsItems[0].link" class="news-read-more">阅读更多<span>→</span></a>
           </div>
         </div>
         <div class="news-small-grid">
@@ -37,6 +37,11 @@
 
 <script setup lang="ts">
 import { newsItems } from '../../data/homeData'
+
+const hotTagBg = new URL('../../assets/home/图标/z.png', import.meta.url).href
+const hotTagStyle = {
+  backgroundImage: `url(${hotTagBg})`
+}
 </script>
 
 <style>

@@ -1348,14 +1348,14 @@ body {
 
 /* 新闻动态区块 */
 .news-section {
-  padding: 80px 0;
+  padding: 74px 0;
   background: #f6f8f9;
 }
 
 .news-layout {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 32px;
 }
 
 /* 大新闻卡片 */
@@ -1370,54 +1370,61 @@ body {
 }
 
 .news-main-image {
-  overflow: hidden;
+  height: 100%;
 }
 
 .news-main-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 .news-main-content {
-  padding: 20px 70px 60px;
+  padding: 59px 0 140px 72px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
 }
 
 .news-hot-tag {
-  display: inline-block;
-  padding: 6px 16px;
-  background: #ff6b35;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 36px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
   color: white;
-  border-radius: 24px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 36px;
+  margin-bottom: 60px;
   align-self: flex-start;
+  border-radius: 0;
+  padding: 0;
 }
 
 .news-main-title {
-  font-size: 38px;
+  font-size: 30px;
   font-weight: 900;
-  color: #1a1a2e;
-  margin-bottom: 36px;
-  line-height: 1.4;
+  color: #000;
+  margin-bottom: 77px;
+  /* line-height: 1.4; */
 }
 
 .news-main-excerpt {
-  font-size: 24px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 46px;
-  letter-spacing: 1px;
+  font-size: 23.5px;
+  color: #000;
+  /* line-height: 1.6; */
+  margin-bottom: 105px;
+  /* letter-spacing: 1px; */
 }
 
 .news-read-more {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   color: #00D4ff;
   font-size: 16px;
   font-weight: 600;
@@ -1450,15 +1457,13 @@ body {
 }
 
 .news-small-image {
-  height: 180px;
-  overflow: hidden;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .news-small-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: block;
+  max-width: 100%;
 }
 
 .news-small-content {
@@ -1979,8 +1984,17 @@ body {
 
   /* 新闻动态响应式 - 平板端 */
   .news-main-card {
-    grid-template-columns: 1fr 1fr;
-    min-height: 280px;
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .news-main-image {
+    height: auto;
+  }
+
+  .news-main-image img {
+    height: auto;
+    object-fit: contain;
   }
 
   .news-main-content {
@@ -1994,10 +2008,6 @@ body {
   .news-small-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-  }
-
-  .news-small-image {
-    height: 150px;
   }
 
   /* 联系区块响应式 - 平板端 */
@@ -2153,7 +2163,12 @@ body {
   }
 
   .news-main-image {
-    height: 200px;
+    height: auto;
+  }
+
+  .news-main-image img {
+    height: auto;
+    object-fit: contain;
   }
 
   .news-main-content {
@@ -2171,10 +2186,6 @@ body {
   .news-small-grid {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
-
-  .news-small-image {
-    height: 160px;
   }
 
   /* 产品展示手机适配 - 只显示一张卡片 */
@@ -2394,8 +2405,6 @@ body {
     margin-bottom: 12px;
   }
 
-  .form-field-textarea .form-textarea {}
-
   .submit-btn {
     height: 50px;
   }
@@ -2460,10 +2469,6 @@ body {
   }
 
   /* 新闻动态响应式 - 小屏手机 */
-  .news-main-image {
-    height: 180px;
-  }
-
   .news-main-content {
     padding: 20px;
   }
@@ -2480,10 +2485,6 @@ body {
 
   .news-read-more {
     font-size: 14px;
-  }
-
-  .news-small-image {
-    height: 140px;
   }
 
   .news-small-content {

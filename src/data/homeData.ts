@@ -42,10 +42,10 @@ export const coverageItems = ref([
 ])
 
 export const newsItems = ref([
-  { id: 1, title: '深耕消防应急   聚焦实战应用', excerpt: '新乡市消防救援局局长刘增民一行莅临华启天成开展无人机专项调研', date: '2026.05.26', category: '行业展会', image: '/images/news/news1.svg', isHot: true, link: '#' },
-  { id: 2, title: '华启天成亮相2025深圳国际无人机展，RT100旗舰机型获创新金奖', excerpt: '', date: '2026.05.26', category: '行业展会', image: '/images/news/news2.svg', isHot: false, link: '#' },
-  { id: 3, title: '华启天成亮相2026世界无人机大会 | 斩获双奖实力出圈', excerpt: '', date: '2025.05.22', category: '行业展会', image: '/images/news/news3.svg', isHot: false, link: '#' },
-  { id: 4, title: '华启天成关于落实"无人机运行识别"及"实名登记"新规相关事宜的公告', excerpt: '', date: '2026.04.30', category: '行业新规', image: '/images/news/news4.svg', isHot: false, link: '#' },
+  { id: 1, title: '深耕消防应急   聚焦实战应用', excerpt: '新乡市消防救援局局长刘增民一行莅临华启天成开展无人机专项调研', date: '2026.05.26', category: '行业展会', image: new URL('../assets/home/新闻模块/a.png', import.meta.url).href, isHot: true, link: '#' },
+  { id: 2, title: '华启天成亮相2025深圳国际无人机展，RT100旗舰机型获创新金奖', excerpt: '', date: '2026.05.26', category: '行业展会', image: new URL('../assets/home/新闻模块/b 拷贝.jpg', import.meta.url).href, isHot: false, link: '#' },
+  { id: 3, title: '华启天成亮相2026世界无人机大会 | 斩获双奖实力出圈', excerpt: '', date: '2025.05.22', category: '行业展会', image: new URL('../assets/home/新闻模块/c.png', import.meta.url).href, isHot: false, link: '#' },
+  { id: 4, title: '华启天成关于落实"无人机运行识别"及"实名登记"新规相关事宜的公告', excerpt: '', date: '2026.04.30', category: '行业新规', image: new URL('../assets/home/新闻模块/d.png', import.meta.url).href, isHot: false, link: '#' },
 ])
 
 export const trustedBrands = ref(['中国邮政', '顺丰速运', '中国石油', '中国移动', '国家电网', '中国中铁', '中国电建', '中国石化'])

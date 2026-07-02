@@ -9,7 +9,7 @@
     <!-- 产品展示 -->
     <!-- <ProductsSection /> -->
     <!-- 全流程服务保障体系 -->
-    <!-- <CoverageSection /> -->
+    <CoverageSection />
     <!-- 新闻动态 -->
     <NewsSection />
     <!-- 获取专属解决方案 -->
