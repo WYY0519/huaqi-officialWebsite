@@ -34,153 +34,7 @@
     <router-view />
 
     <!-- 页脚 -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-main">
-          <!-- 左侧品牌 -->
-          <div class="footer-brand">
-            <div class="footer-logo-wrap">
-              <svg class="footer-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 4L8 36H14L20 18L26 36H32L20 4Z" fill="#00D4ff " />
-                <path d="M12 28L20 8L28 28" stroke="#00D4ff" stroke-width="2" fill="none" />
-              </svg>
-              <div class="footer-logo-text">
-                <span class="footer-brand-name">华启天成</span>
-                <span class="footer-brand-sub">ROUTEN</span>
-              </div>
-            </div>
-            <div class="footer-social-icons">
-              <a href="#" class="footer-social-icon" title="微信">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                  <path
-                    d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.456 2.107c-1.875-.085-3.745.486-5.15 1.7-1.48 1.304-2.25 3.387-1.48 5.562.67 1.895 2.477 3.272 4.642 3.758.264.059.533.089.801.089.95 0 1.866-.29 2.622-.793a.712.712 0 01.59.082l1.574.92a.272.272 0 00.14.045c.133 0 .241-.108.241-.244 0-.06-.024-.118-.04-.177l-.324-1.223a.49.49 0 01.176-.55C20.135 17.557 21 15.832 21 14c0-2.87-2.479-5.646-5.946-5.902zm-1.68 2.87c.532 0 .964.438.964.978s-.432.979-.964.979-.964-.439-.964-.98.432-.977.964-.977zm4.832 0c.532 0 .964.438.964.978s-.432.979-.964.979-.964-.439-.964-.98.432-.977.964-.977z" />
-                </svg>
-              </a>
-              <a href="#" class="footer-social-icon" title="抖音">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                  <path
-                    d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.16v-3.44a4.85 4.85 0 01-3.77-1.7V6.69h3.77z" />
-                </svg>
-              </a>
-              <a href="#" class="footer-social-icon" title="微信">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                  <path
-                    d="M12 2C6.48 2 2 5.82 2 10.5c0 2.67 1.44 5.05 3.68 6.54l-.92 2.74 3.18-1.59c1.02.28 2.1.43 3.2.43h.26c-.17-.56-.26-1.14-.26-1.73 0-4.96 4.49-8.99 10.02-8.99.26 0 .52.01.78.03C21.86 4.33 17.36 2 12 2zm-3.5 7.5a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zm7 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zM12 22c-1.1 0-2.16-.17-3.16-.48l-.32-.1-1.9.95.6-1.8C6.08 19.29 5 17.5 5 15.5c0-3.58 3.58-6.5 8-6.5s8 2.92 8 6.5-3.58 6.5-8 6.5c-.83 0-1.64-.1-2.41-.29-.08-.02-.16-.03-.24-.04l-.35.08z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- 中间链接菜单 -->
-          <div class="footer-menu-grid">
-            <div class="footer-menu-col">
-              <h4 class="footer-menu-title">产品中心</h4>
-              <ul class="footer-menu-list">
-                <li><a href="#">多旋翼飞行平台</a></li>
-                <li><a href="#">复合翼飞行平台</a></li>
-                <li><a href="#">系留无人机</a></li>
-                <li><a href="#">智能无人机指挥车</a></li>
-                <li><a href="#">载荷配件</a></li>
-              </ul>
-            </div>
-            <div class="footer-menu-col">
-              <h4 class="footer-menu-title">解决方案</h4>
-              <ul class="footer-menu-list">
-                <li><a href="#">城市消防</a></li>
-                <li><a href="#">森林消防</a></li>
-                <li><a href="#">高空清洗</a></li>
-                <li><a href="#">大疆全系挂载适配</a></li>
-                <li><a href="#">科研定制服务</a></li>
-              </ul>
-            </div>
-            <div class="footer-menu-col">
-              <h4 class="footer-menu-title">服务支持</h4>
-              <ul class="footer-menu-list">
-                <li><a href="#">定制研发</a></li>
-                <li><a href="#">技术支持</a></li>
-                <li><a href="#">培训认证</a></li>
-                <li><a href="#">售后保障</a></li>
-                <li><a href="#">现场演示</a></li>
-              </ul>
-            </div>
-            <div class="footer-menu-col">
-              <h4 class="footer-menu-title">关于我们</h4>
-              <ul class="footer-menu-list">
-                <li><a href="#">关于我们</a></li>
-                <li><a href="#">企业简介</a></li>
-                <li><a href="#">发展历程</a></li>
-                <li><a href="#">资质荣誉</a></li>
-                <li><a href="#">新闻动态</a></li>
-                <li><a href="#">加入我们</a></li>
-              </ul>
-            </div>
-            <div class="footer-menu-col">
-              <h4 class="footer-menu-title">服务支持</h4>
-              <ul class="footer-menu-list">
-                <li><a href="#">产品手册</a></li>
-                <li><a href="#">技术白皮书</a></li>
-                <li><a href="#">操作视频</a></li>
-                <li><a href="#">常见问题</a></li>
-                <li><a href="#">下载中心</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- 右侧二维码 -->
-          <div class="footer-qrcode">
-            <div class="footer-qrcode-img">
-              <svg viewBox="0 0 100 100" width="100" height="100" fill="white">
-                <rect x="5" y="5" width="30" height="30" rx="2" />
-                <rect x="65" y="5" width="30" height="30" rx="2" />
-                <rect x="5" y="65" width="30" height="30" rx="2" />
-                <rect x="10" y="10" width="20" height="20" rx="1" fill="#2a2a2a" />
-                <rect x="70" y="10" width="20" height="20" rx="1" fill="#2a2a2a" />
-                <rect x="10" y="70" width="20" height="20" rx="1" fill="#2a2a2a" />
-                <rect x="15" y="15" width="10" height="10" fill="white" />
-                <rect x="75" y="15" width="10" height="10" fill="white" />
-                <rect x="15" y="75" width="10" height="10" fill="white" />
-                <rect x="40" y="5" width="8" height="8" fill="white" />
-                <rect x="52" y="5" width="8" height="8" fill="white" />
-                <rect x="40" y="18" width="8" height="8" fill="white" />
-                <rect x="52" y="18" width="8" height="8" fill="white" />
-                <rect x="40" y="40" width="20" height="20" rx="2" fill="white" />
-                <rect x="45" y="45" width="10" height="10" fill="#2a2a2a" />
-                <rect x="5" y="40" width="8" height="8" fill="white" />
-                <rect x="18" y="40" width="8" height="8" fill="white" />
-                <rect x="5" y="52" width="8" height="8" fill="white" />
-                <rect x="18" y="52" width="8" height="8" fill="white" />
-                <rect x="65" y="40" width="8" height="8" fill="white" />
-                <rect x="78" y="40" width="8" height="8" fill="white" />
-                <rect x="90" y="40" width="5" height="8" fill="white" />
-                <rect x="65" y="52" width="8" height="8" fill="white" />
-                <rect x="78" y="52" width="8" height="8" fill="white" />
-                <rect x="40" y="65" width="8" height="8" fill="white" />
-                <rect x="52" y="65" width="8" height="8" fill="white" />
-                <rect x="65" y="65" width="10" height="10" fill="white" />
-                <rect x="80" y="65" width="10" height="10" fill="white" />
-                <rect x="65" y="80" width="10" height="10" fill="white" />
-                <rect x="80" y="80" width="15" height="15" rx="2" fill="white" />
-                <rect x="83" y="83" width="9" height="9" fill="#2a2a2a" />
-              </svg>
-            </div>
-            <p class="footer-qrcode-text">扫一扫关注</p>
-            <p class="footer-qrcode-text">华启天成公众号</p>
-          </div>
-        </div>
-
-        <!-- 底部信息栏 -->
-        <div class="footer-info-bar">
-          <span>服务电话：16680932174（微信同号）</span>
-          <span class="footer-info-divider"></span>
-          <span>公司地址:深圳市龙华区观湖街道鹭湖社区观乐路5号多彩科创园B座303</span>
-        </div>
-
-        <!-- 版权信息 -->
-        <div class="footer-bottom">
-          <p>Copyright © 2025 华启天成 All Rights Reserved</p>
-        </div>
-      </div>
-    </footer>
+    <Footer />
 
     <!-- 右侧浮动联系栏 -->
     <div class="float-toolbar">
@@ -244,6 +98,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
+import Footer from './components/home/Footer.vue'
 
 const router = useRouter()
 
@@ -1664,13 +1519,18 @@ body {
 
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 60px;
   text-align: left;
   align-items: start;
 }
 
 /* 左侧信息区 */
+.contact-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
 .contact-features {
   display: flex;
   gap: 20px;
@@ -1712,7 +1572,7 @@ body {
 }
 
 .trusted-item {
-  width: 166px;
+  width: 100%;
   height: 59px;
   display: flex;
   align-items: center;
@@ -1724,6 +1584,9 @@ body {
   color: #adb1b5;
   text-align: center;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
 }
 
 /* 右侧表单区 */
@@ -1784,13 +1647,15 @@ body {
 
 .form-field-textarea {
   position: relative;
+  margin-top: 33px;
+  margin-bottom: 27px;
 }
 
 .form-field-textarea .form-textarea {
   width: 100%;
   min-height: 157px;
   resize: vertical;
-  padding: 12px 14px 28px 14px;
+  padding: 12px 14px 32px 14px;
   box-sizing: border-box;
 }
 
@@ -1836,171 +1701,14 @@ body {
   margin-top: 10px;
 }
 
-/* 页脚 */
-.footer {
-  background: #2a2a2a;
-  color: rgba(255, 255, 255, 0.7);
-  padding: 70px 30px 0;
-}
-
-.footer-main {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 50px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* 左侧品牌区 */
-.footer-brand {
-  min-width: 120px;
-}
-
-.footer-logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.footer-logo-icon {
-  width: 40px;
-  height: 40px;
-}
-
-.footer-logo-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-brand-name {
-  font-size: 22px;
-  font-weight: 700;
-  color: white;
-}
-
-.footer-brand-sub {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 1px;
-}
-
-.footer-social-icons {
-  display: flex;
-  gap: 10px;
-}
-
-.footer-social-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.7);
-  transition: background 0.3s, color 0.3s;
-}
-
-.footer-social-icon:hover {
-  background: #00D4ff;
-  color: white;
-}
-
-/* 中间链接菜单 */
-.footer-menu-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
-}
-
-.footer-menu-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 16px;
-}
-
-.footer-menu-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-menu-list li {
-  margin-bottom: 10px;
-}
-
-.footer-menu-list a {
-  color: rgba(255, 255, 255, 0.55);
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.footer-menu-list a:hover {
-  color: #00D4ff;
-}
-
-/* 右侧二维码 */
-.footer-qrcode {
-  text-align: center;
-  min-width: 120px;
-}
-
-.footer-qrcode-img {
-  width: 100px;
-  height: 100px;
-  background: #444;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-
-.footer-qrcode-text {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
-  margin: 2px 0;
-}
-
-/* 底部信息栏 */
-.footer-info-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 30px 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-info-divider {
-  width: 1px;
-  height: 14px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* 版权信息 */
-.footer-bottom {
-  padding: 30px 0;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.4);
-}
+/* 页脚样式已移至Footer.vue组件 */
 
 /* 响应式设计 */
 
 /* 中等屏幕 (1200px ~ 1400px) - 联系部分同比例缩小 */
 @media (max-width: 1400px) {
   .contact-content {
-    grid-template-columns: 1fr 1.1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 50px;
   }
   
@@ -2020,7 +1728,7 @@ body {
   }
   
   .trusted-item {
-    width: 140px;
+    width: 100%;
     height: 50px;
   }
   
@@ -2058,7 +1766,7 @@ body {
 /* 较小中等屏幕 (1024px ~ 1200px) - 进一步缩小 */
 @media (max-width: 1200px) {
   .contact-content {
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 40px;
   }
   
@@ -2078,7 +1786,7 @@ body {
   }
 
   .trusted-item {
-    width: 120px;
+    width: 100%;
     height: 44px;
     font-size: 13px;
   }
@@ -2117,11 +1825,10 @@ body {
 
   .form-field-textarea .form-textarea {
     min-height: 140px;
-    margin: 28px 0 22px 0;
   }
 
   .form-char-count {
-    bottom: 16px;
+    bottom: 8px;
     right: 10px;
   }
 
@@ -2332,37 +2039,7 @@ body {
     min-height: 150px;
   }
 
-  /* 页脚响应式 - 平板端 */
-  .footer-main {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
-  }
-
-  .footer-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-menu-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .footer-menu-grid>div:last-child,
-  .footer-menu-grid>div:nth-child(4) {
-    grid-column: span 1;
-  }
-
-  .footer-info-bar {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .footer-info-divider {
-    display: none;
-  }
+  /* 页脚响应式样式已移至Footer.vue组件 */
 }
 
 /* 手机 (≤768px) */
@@ -2653,6 +2330,11 @@ body {
     width: 100%;
   }
 
+  .form-field-icon {
+    width: 18px;
+    height: 18px;
+  }
+
   .form-input {
     width: 100%;
     padding: 12px 12px 12px 40px;
@@ -2670,15 +2352,7 @@ body {
     font-weight: 600;
   }
 
-  /* 页脚响应式 - 手机端 */
-  .footer-menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .footer-qrcode {
-    margin-top: 10px;
-  }
+  /* 页脚响应式样式已移至Footer.vue组件 */
 
   /* 手机端浮动工具栏调整 */
   .float-toolbar {
@@ -2734,7 +2408,6 @@ body {
   }
 
   .form-field-textarea .form-textarea {
-    margin: 12px 0;
   }
 
   .submit-btn {
@@ -2863,6 +2536,11 @@ body {
 
   .contact-form-wrapper {
     padding: 12px;
+  }
+
+  .form-field-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .form-input {
