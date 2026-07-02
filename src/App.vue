@@ -39,26 +39,13 @@
     <!-- 右侧浮动联系栏 -->
     <div class="float-toolbar">
       <a href="tel:400-xxx-xxxx" class="float-btn" title="电话咨询">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" width="22" height="22">
-          <path
-            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-        </svg>
+        <img src="./assets/home/图标/n.png" alt="">
       </a>
       <a href="#" class="float-btn" title="在线客服" @click.prevent="showChatModal = true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" width="22" height="22">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          <path d="M8 10h.01M12 10h.01M16 10h.01" />
-        </svg>
+        <img src="./assets/home/图标/n.png" alt="在线客服">
       </a>
       <a href="#" class="float-btn" title="公司地址">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" width="22" height="22">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          <path d="M6 12h.01M18 12h.01" />
-        </svg>
+        <img src="./assets/home/图标/n.png" alt="公司地址">
       </a>
     </div>
 
@@ -1711,53 +1698,53 @@ body {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 50px;
   }
-  
+
   .contact-info-title {
     font-size: 28px;
     margin-bottom: 40px;
   }
-  
+
   .contact-info-desc {
     font-size: 17px;
     margin-bottom: 36px;
   }
-  
+
   .contact-trusted-label {
     font-size: 17px;
     margin-bottom: 50px;
   }
-  
+
   .trusted-item {
     width: 100%;
     height: 50px;
   }
-  
+
   .contact-trusted-grid {
     gap: 10px;
   }
-  
+
   .contact-features {
     margin-bottom: 50px;
   }
-  
+
   .contact-feature-item {
     font-size: 14px;
   }
-  
+
   /* 右侧表单区域微调 */
   .contact-form-wrapper {
     padding: 48px 42px 42px;
   }
-  
+
   .form-input {
     height: 80px;
   }
-  
+
   .submit-btn {
     height: 75px;
     font-size: 18px;
   }
-  
+
   .form-row {
     margin-bottom: 30px;
   }
@@ -1769,7 +1756,7 @@ body {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 40px;
   }
-  
+
   .contact-info-title {
     font-size: 24px;
     margin-bottom: 32px;
@@ -2407,8 +2394,7 @@ body {
     margin-bottom: 12px;
   }
 
-  .form-field-textarea .form-textarea {
-  }
+  .form-field-textarea .form-textarea {}
 
   .submit-btn {
     height: 50px;
