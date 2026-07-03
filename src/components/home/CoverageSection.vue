@@ -6,7 +6,7 @@
       <p class="section-subtitle">覆盖全场景应用需求</p>
       <div class="coverage-grid">
         <div class="coverage-item" v-for="(item, index) in coverageItems" :key="index">
-          <div class="coverage-icon" v-html="item.icon"></div>
+          <div class="coverage-icon"><img :src="item.icon" :alt="item.label" /></div>
           <h3 class="coverage-label">{{ item.label }}</h3>
           <p class="coverage-desc">{{ item.desc }}</p>
           <div class="coverage-tag">{{ item.tag }}</div>
@@ -23,22 +23,23 @@ import { coverageItems } from '../../data/homeData'
 <style>
 /* 全流程服务保障体系区块 */
 .coverage-section {
-  padding: 80px 0;
+  padding: 74px 0;
   background: #f8f9fa;
 }
 
 .coverage-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 24px;
 }
 
 .coverage-item {
   text-align: center;
-  padding: 30px 20px;
+  padding: 47px 32px 40px 31px;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 100, 200, 0.08);
+  border-radius: 8px;
+  min-height: 434px;
+  box-sizing: border-box;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -51,33 +52,34 @@ import { coverageItems } from '../../data/homeData'
 }
 
 .coverage-icon {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, #e6f7ff 0%, #bae7ff 100%);
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
-.coverage-icon svg {
-  width: 32px;
-  height: 32px;
+.coverage-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .coverage-label {
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f1419;
+  margin-bottom: 19px;
 }
 
 .coverage-desc {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: 14px;
+  color: #adb1b5;
   flex: 1;
 }
 
@@ -94,12 +96,13 @@ import { coverageItems } from '../../data/homeData'
 /* 响应式 - iPad */
 @media (max-width: 1024px) {
   .coverage-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
   }
 
   .coverage-item {
     padding: 24px 16px;
+    min-height: auto;
   }
 
   .coverage-icon {
@@ -120,12 +123,13 @@ import { coverageItems } from '../../data/homeData'
 /* 响应式 - 小屏手机 */
 @media (max-width: 480px) {
   .coverage-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 16px;
   }
 
   .coverage-item {
     padding: 20px 12px;
+    min-height: auto;
   }
 
   .coverage-icon {
@@ -134,9 +138,9 @@ import { coverageItems } from '../../data/homeData'
     margin-bottom: 12px;
   }
 
-  .coverage-icon svg {
-    width: 24px;
-    height: 24px;
+  .coverage-icon img {
+    width: 100%;
+    height: 100%;
   }
 
   .coverage-label {

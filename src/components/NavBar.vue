@@ -1,5 +1,5 @@
 <template>
-  <header class="header" :class="{ scrolled: isScrolled }">
+  <header class="header" :class="{ scrolled: isScrolled, 'menu-open': isMobileMenuOpen }">
     <div class="header-container">
       <div class="logo">
         <img class="logo-icon" src="../assets/home/图标/logo.png" alt="华启天成" />
@@ -50,8 +50,34 @@ const navItems = [
   { id: 'about', label: '关于我们', href: '/about' }
 ]
 
+const preventScroll = (e: TouchEvent | WheelEvent) => {
+  e.preventDefault()
+}
+
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
+  // 禁止/允许页面滚动
+  if (isMobileMenuOpen.value) {
+    document.body.style.overflow = 'hidden'
+    // 防止iOS弹性滚动
+    document.body.style.position = 'fixed'
+    document.body.style.width = '100%'
+    document.body.style.top = `-${window.scrollY}px`
+    // 防止触摸滚动
+    document.addEventListener('touchmove', preventScroll, { passive: false })
+    // 防止鼠标滚轮滚动
+    document.addEventListener('wheel', preventScroll, { passive: false })
+  } else {
+    const scrollY = document.body.style.top
+    document.body.style.overflow = ''
+    document.body.style.position = ''
+    document.body.style.width = ''
+    document.body.style.top = ''
+    window.scrollTo(0, parseInt(scrollY || '0') * -1)
+    // 移除滚动阻止
+    document.removeEventListener('touchmove', preventScroll)
+    document.removeEventListener('wheel', preventScroll)
+  }
 }
 
 const handleScroll = () => {
@@ -61,6 +87,15 @@ const handleScroll = () => {
 const handleNavClick = (id: string) => {
   activeSection.value = id
   isMobileMenuOpen.value = false
+  // 恢复页面滚动
+  const scrollY = document.body.style.top
+  document.body.style.overflow = ''
+  document.body.style.position = ''
+  document.body.style.width = ''
+  document.body.style.top = ''
+  window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  // 移除触摸滚动阻止
+  document.removeEventListener('touchmove', preventScroll)
   if (id === 'home') {
     router.push('/')
   }
@@ -73,6 +108,18 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  // 确保组件卸载时恢复滚动
+  const scrollY = document.body.style.top
+  document.body.style.overflow = ''
+  document.body.style.position = ''
+  document.body.style.width = ''
+  document.body.style.top = ''
+  if (scrollY) {
+    window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  }
+  // 移除滚动阻止
+  document.removeEventListener('touchmove', preventScroll)
+  document.removeEventListener('wheel', preventScroll)
 })
 </script>
 
@@ -90,15 +137,19 @@ onUnmounted(() => {
 }
 
 .header.scrolled {
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header.scrolled .logo-name,
 .header.scrolled .logo-sub,
 .header.scrolled .nav-link {
-  color: #fff;
+  color: #0f1419;
+}
+
+.header.scrolled .logo-icon {
+  filter: invert(1) brightness(0);
 }
 
 .header.scrolled .nav-link:hover,
@@ -112,7 +163,7 @@ onUnmounted(() => {
 }
 
 .header.scrolled .mobile-menu-btn span {
-  background: #fff;
+  background: #0f1419;
 }
 
 .header-container {
@@ -270,7 +321,7 @@ onUnmounted(() => {
   .nav-menu {
     display: none;
     position: fixed;
-    top: 70px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -279,9 +330,9 @@ onUnmounted(() => {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 20px;
+    padding-top: 80px;
     gap: 0;
-    z-index: 999;
+    z-index: 998;
   }
 
   .nav-menu.open {
@@ -313,6 +364,10 @@ onUnmounted(() => {
 
   .header-actions {
     display: none;
+  }
+
+  .header.menu-open {
+    background: rgba(0, 30, 60, 0.97);
   }
 }
 

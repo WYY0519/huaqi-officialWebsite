@@ -23,8 +23,7 @@ const emit = defineEmits<{
 .float-toolbar {
   position: fixed;
   right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 120px;
   display: flex;
   flex-direction: column;
   gap: 12px;

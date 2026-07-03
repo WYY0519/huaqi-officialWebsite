@@ -12,7 +12,7 @@
       </div>
       <div class="tech-cards-grid">
         <div class="tech-card" v-for="(card, index) in techCards" :key="index">
-          <div class="tech-icon" v-html="card.icon"></div>
+          <div class="tech-icon"><img :src="card.icon" :alt="card.title" /></div>
           <div class="tech-card-body">
             <h3 class="tech-card-title">{{ card.title }}</h3>
             <p class="tech-card-desc">{{ card.desc }}</p>
@@ -115,13 +115,20 @@ import { companyStats, techCards } from '../../data/homeData'
   width: 80px;
   height: 80px;
   min-width: 80px;
-  background: #dbf2f9;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   align-self: flex-start;
+  overflow: hidden;
+}
+
+.tech-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .tech-card-body {

@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import Footer from './components/home/Footer.vue'
 import NavBar from './components/NavBar.vue'
 import FloatToolbar from './components/FloatToolbar.vue'
@@ -29,7 +29,9 @@ const showChatModal = ref(false)
 
 let observer: IntersectionObserver | null = null
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick()
+
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -93,8 +95,7 @@ body {
 
 .solution-card,
 .product-card,
-.news-card,
-.coverage-item {
+.news-card {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.3s;
@@ -102,10 +103,14 @@ body {
 
 .solution-card.visible,
 .product-card.visible,
-.news-card.visible,
-.coverage-item.visible {
+.news-card.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* coverage-item 不做入场隐藏，直接显示 */
+.coverage-item {
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
 /* 通用区块样式 */
