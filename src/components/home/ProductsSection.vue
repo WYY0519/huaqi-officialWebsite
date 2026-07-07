@@ -9,7 +9,7 @@
     <div class="carousel-wrapper" @mouseenter="pauseProductSlideAutoplay" @mouseleave="resumeProductSlideAutoplay">
       <div class="carousel-track" :style="trackStyle" @transitionend="onTransitionEnd">
         <div v-for="(item, idx) in loopedSlides" :key="'slide-' + idx" class="carousel-item">
-          <div class="product-card">
+          <div class="product-card" :class="{ 'highlighted': isHighlightedCard(idx) }">
             <img :src="item.image" :alt="item.name" class="product-bg-img" />
             <div class="product-overlay">
               <h3 class="product-name">{{ item.name }}</h3>
@@ -19,6 +19,7 @@
                 <button class="product-btn product-btn-secondary">下载手册</button>
               </div>
             </div>
+            <div v-if="!isHighlightedCard(idx)" class="card-mask"></div>
           </div>
         </div>
       </div>
@@ -91,6 +92,12 @@ const realIndex = computed(() => {
   if (len === 0) return 0
   return ((currentIndex.value - CLONE_COUNT) % len + len) % len
 })
+
+/** 判断是否是高亮卡片（当前显示的第二个卡片） */
+function isHighlightedCard(loopIndex: number): boolean {
+  // 第二个卡片的索引是 currentIndex + 1
+  return loopIndex === currentIndex.value + 1
+}
 
 /** 轨道样式 */
 const trackStyle = computed(() => ({
@@ -188,11 +195,13 @@ onUnmounted(() => {
 */
 
 .products-section {
-  --card-width: 499px;
-  --card-height: 423px;
-  --card-gap: 28px;
+  /* 动态计算：保证任意宽度下至少显示3个完整卡片 + 右侧半张 */
+  --pl: clamp(27px, 7.2vw, 140px);
+  --card-gap: clamp(5px, 1.5vw, 28px);
+  --card-width: clamp(96px, calc((100vw - var(--pl) - 2 * var(--card-gap)) / 3.1), 499px);
+  --card-height: calc(var(--card-width) * 423 / 499);
 
-  padding: 80px 0 60px 140px;
+  padding: clamp(60px, 4.1vw, 80px) 0 clamp(40px, 3.1vw, 60px) var(--pl);
   background: #f5f6f8;
   overflow: hidden;
 }
@@ -218,7 +227,7 @@ onUnmounted(() => {
 /* ======= 卡片本体 ======= */
 .product-card {
   position: relative;
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
   background: #e8eaed;
   cursor: pointer;
@@ -231,6 +240,26 @@ onUnmounted(() => {
 
 .product-card:hover {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+}
+
+/* 高亮卡片样式 */
+.product-card.highlighted {
+  transform: scale(1.05);
+  /* box-shadow: 0 16px 60px rgba(0, 168, 255, 0.3); */
+  z-index: 10;
+}
+
+/* 蒙版样式 */
+.card-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(252, 252, 252, 0.5);
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 8px;
 }
 
 /* ======= 图片 ======= */
@@ -366,13 +395,6 @@ onUnmounted(() => {
 
 /* 大屏 1440px ~ 1950px */
 @media (max-width: 1440px) {
-  .products-section {
-    --card-width: 370px;
-    --card-height: 314px;
-    --card-gap: 21px;
-    padding-left: 104px;
-  }
-
   .product-name {
     font-size: 24px;
   }
@@ -388,13 +410,6 @@ onUnmounted(() => {
 
 /* iPad Pro 横屏 / 小桌面 1024px ~ 1440px */
 @media (max-width: 1024px) {
-  .products-section {
-    --card-width: 262px;
-    --card-height: 222px;
-    --card-gap: 15px;
-    padding-left: 73px;
-  }
-
   .product-name {
     font-size: 17px;
   }
@@ -419,15 +434,34 @@ onUnmounted(() => {
   }
 }
 
-/* iPad 竖屏 768px ~ 1024px */
-@media (max-width: 768px) {
-  .products-section {
-    --card-width: 197px;
-    --card-height: 167px;
-    --card-gap: 11px;
-    padding-left: 55px;
+/* 中等屏幕 860px ~ 1024px */
+@media (max-width: 860px) {
+  .product-name {
+    font-size: 16px;
   }
 
+  .product-spec {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+
+  .product-overlay {
+    padding: 14px 18px;
+  }
+
+  .product-btn {
+    padding: 4px 13px;
+    font-size: 10px;
+  }
+
+  .carousel-controls {
+    padding: 16px 35px 50px 0;
+    margin: 0 180px;
+  }
+}
+
+/* iPad 竖屏 768px ~ 860px */
+@media (max-width: 768px) {
   .product-name {
     font-size: 15px;
   }
@@ -468,13 +502,6 @@ onUnmounted(() => {
 
 /* 手机 480px ~ 768px */
 @media (max-width: 480px) {
-  .products-section {
-    --card-width: 123px;
-    --card-height: 104px;
-    --card-gap: 7px;
-    padding: 60px 0 40px 34px;
-  }
-
   .carousel-wrapper {
     margin-top: 32px;
   }
@@ -532,13 +559,6 @@ onUnmounted(() => {
 
 /* 小手机 ≤375px */
 @media (max-width: 375px) {
-  .products-section {
-    --card-width: 96px;
-    --card-height: 81px;
-    --card-gap: 5px;
-    padding-left: 27px;
-  }
-
   .product-name {
     font-size: 10px;
   }
