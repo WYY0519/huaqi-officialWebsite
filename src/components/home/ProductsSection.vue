@@ -2,38 +2,45 @@
   <section id="products" class="products-section">
     <div class="container">
       <p class="section-title">旗舰产品矩阵</p>
-      <p class="section-line" ></p>
+      <p class="section-line"></p>
       <p class="section-subtitle">覆盖全场景应用需求</p>
-      <div class="products-carousel" @mouseenter="pauseProductSlideAutoplay" @mouseleave="resumeProductSlideAutoplay">
-        <div class="products-grid-showcase">
-          <div v-for="(product, index) in productSlides" :key="product.id" class="product-showcase-item"
-            :class="{ 'center': index === 1 }">
-            <div class="product-card">
-              <img :src="product.image" :alt="product.name" class="product-bg-img">
-              <div class="product-overlay">
-                <h3 class="product-name">{{ product.name }}</h3>
-                <p class="product-spec">{{ product.spec }}</p>
-                <div class="product-buttons">
-                  <button class="product-btn product-btn-primary">立即购买</button>
-                  <button class="product-btn product-btn-secondary">了解更多</button>
-                </div>
+    </div>
+
+    <div class="carousel-wrapper" @mouseenter="pauseProductSlideAutoplay" @mouseleave="resumeProductSlideAutoplay">
+      <div class="carousel-track" :style="trackStyle" @transitionend="onTransitionEnd">
+        <div v-for="(item, idx) in loopedSlides" :key="'slide-' + idx" class="carousel-item">
+          <div class="product-card">
+            <img :src="item.image" :alt="item.name" class="product-bg-img" />
+            <div class="product-overlay">
+              <h3 class="product-name">{{ item.name }}</h3>
+              <p class="product-spec">{{ item.spec }}</p>
+              <div class="product-buttons">
+                <button class="product-btn product-btn-primary">立即购买</button>
+                <button class="product-btn product-btn-secondary">下载手册</button>
               </div>
             </div>
           </div>
         </div>
-        <button class="product-arrow product-arrow-left" @click="prevProductSlide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-        <button class="product-arrow product-arrow-right" @click="nextProductSlide">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
+      </div>
+
+      <div class="carousel-controls">
         <div class="product-pagination">
-          <span v-for="(_, index) in totalProductSlides" :key="index" class="product-pagination-dot"
-            :class="{ active: currentProductSlide === index }" @click="goToProductSlide(index)"></span>
+          <span v-for="(_, i) in products.length" :key="'dot-' + i" class="product-pagination-dot"
+            :class="{ active: realIndex === i }" @click="goToSlide(i)"></span>
+        </div>
+        <div class="carousel-arrows">
+          <button class="product-arrow" @click="prevSlide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button class="product-arrow" @click="nextSlide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -44,370 +51,513 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { products } from '../../data/homeData'
 
-// 产品轮播
-const currentProductSlide = ref(1)
-const productSlideInterval = ref<ReturnType<typeof setInterval> | null>(null)
-const productSlidePaused = ref(false)
+/*
+ * 无限循环轮播原理：
+ * 1. 在真实数据前拼接末尾 N 张，在真实数据后拼接开头 N 张
+ * 2. 初始显示位置设为 clonePrefix（即第一张真实数据所在位置）
+ * 3. 滑动到克隆区域时，transitionend 无动画跳回真实对应位置
+ * 4. 用户看到的效果：永远能继续往左/右滑，且不会出现空白
+ *
+ * 布局：左侧紧贴 padding-left，右侧第 4 张被 overflow:hidden 裁剪
+ * 要求：左侧永远是完整卡片
+ */
 
-const productSlides = computed(() => {
-  const mid = currentProductSlide.value
-  const prev = (mid - 1 + products.value.length) % products.value.length
-  const next = (mid + 1) % products.value.length
-  return [{ ...products.value[prev] }, { ...products.value[mid] }, { ...products.value[next] }]
+/** 可见卡片数上限（含被裁剪的那张），用于决定克隆数量 */
+const CLONE_COUNT = 6
+
+/** 克隆后完整数组：[...尾部N张, ...真实数据, ...头部N张] */
+const loopedSlides = computed(() => {
+  const src = products.value
+  const len = src.length
+  if (len === 0) return []
+  const prefix = []
+  const suffix = []
+  for (let i = 0; i < CLONE_COUNT; i++) {
+    prefix.push(src[(len - CLONE_COUNT + i) % len])
+    suffix.push(src[i % len])
+  }
+  return [...prefix, ...src, ...suffix]
 })
 
-const totalProductSlides = computed(() => products.value.length)
+/** 当前滑动到的"loopedSlides"索引，初始 = CLONE_COUNT（真实第一张） */
+const currentIndex = ref(CLONE_COUNT)
+const animating = ref(true) // 是否带过渡动画
+const slideInterval = ref<ReturnType<typeof setInterval> | null>(null)
+const paused = ref(false)
 
-const prevProductSlide = () => {
-  currentProductSlide.value = (currentProductSlide.value - 1 + totalProductSlides.value) % totalProductSlides.value
-  resetProductSlideAutoplay()
+/** 用于分页点高亮的真实索引 */
+const realIndex = computed(() => {
+  const len = products.value.length
+  if (len === 0) return 0
+  return ((currentIndex.value - CLONE_COUNT) % len + len) % len
+})
+
+/** 轨道样式 */
+const trackStyle = computed(() => ({
+  transform: `translateX(calc(-${currentIndex.value} * (var(--card-width) + var(--card-gap))))`,
+  transition: animating.value ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+}))
+
+/** 每次滑一张卡片 */
+function nextSlide() {
+  animating.value = true
+  currentIndex.value++
 }
 
-const nextProductSlide = () => {
-  currentProductSlide.value = (currentProductSlide.value + 1) % totalProductSlides.value
-  resetProductSlideAutoplay()
+function prevSlide() {
+  animating.value = true
+  currentIndex.value--
 }
 
-const goToProductSlide = (index: number) => {
-  currentProductSlide.value = index
-  resetProductSlideAutoplay()
-}
+/** 动画结束后，若滑到了克隆区域则无动画跳回真实位置 */
+function onTransitionEnd() {
+  const len = products.value.length
+  if (len === 0) return
 
-const startProductSlideAutoplay = () => {
-  if (productSlidePaused.value) return
-  productSlideInterval.value = setInterval(() => {
-    currentProductSlide.value = (currentProductSlide.value + 1) % totalProductSlides.value
-  }, 4000)
-}
+  const lastRealIndex = CLONE_COUNT + len - 1
 
-const stopProductSlideAutoplay = () => {
-  if (productSlideInterval.value) {
-    clearInterval(productSlideInterval.value)
-    productSlideInterval.value = null
+  // 滑到了末尾克隆区（>= 第 len + CLONE_COUNT 张）
+  if (currentIndex.value > lastRealIndex) {
+    animating.value = false
+    currentIndex.value = currentIndex.value - len
+    // 下一帧恢复动画
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        animating.value = true
+      })
+    })
+  }
+
+  // 滑到了开头克隆区（< CLONE_COUNT）
+  if (currentIndex.value < CLONE_COUNT) {
+    animating.value = false
+    currentIndex.value = currentIndex.value + len
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        animating.value = true
+      })
+    })
   }
 }
 
-const resetProductSlideAutoplay = () => {
-  stopProductSlideAutoplay()
-  startProductSlideAutoplay()
+/** 分页点点击 */
+function goToSlide(realIdx: number) {
+  animating.value = true
+  currentIndex.value = CLONE_COUNT + realIdx
 }
 
-const pauseProductSlideAutoplay = () => {
-  productSlidePaused.value = true
-  stopProductSlideAutoplay()
+/** 自动播放 */
+function startAutoplay() {
+  if (paused.value) return
+  slideInterval.value = setInterval(nextSlide, 4000)
 }
 
-const resumeProductSlideAutoplay = () => {
-  productSlidePaused.value = false
-  startProductSlideAutoplay()
+function stopAutoplay() {
+  if (slideInterval.value) {
+    clearInterval(slideInterval.value)
+    slideInterval.value = null
+  }
+}
+
+function pauseProductSlideAutoplay() {
+  paused.value = true
+  stopAutoplay()
+}
+
+function resumeProductSlideAutoplay() {
+  paused.value = false
+  startAutoplay()
 }
 
 onMounted(() => {
-  startProductSlideAutoplay()
+  startAutoplay()
 })
 
 onUnmounted(() => {
-  stopProductSlideAutoplay()
+  stopAutoplay()
 })
 </script>
 
-<style>
-/* 产品展示区块 */
+<style scoped>
+/*
+  设计稿基准：1950px
+  卡片尺寸：499 × 423px
+  间距：28px
+  每屏显示：3张完整 + 右边半张
+  左侧紧贴 padding-left，右侧被 overflow 裁剪
+*/
+
 .products-section {
-  padding: 80px 0;
-  background: #f8f9fa;
+  --card-width: 499px;
+  --card-height: 423px;
+  --card-gap: 28px;
+
+  padding: 80px 0 60px 140px;
+  background: #f5f6f8;
+  overflow: hidden;
 }
 
-.product-showcase-item {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.carousel-wrapper {
+  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
 }
 
-.product-showcase-item:not(.center) {
-  opacity: 0.5;
-  filter: blur(2px);
+.carousel-track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--card-gap);
+  will-change: transform;
 }
 
-.product-showcase-item.center {
-  opacity: 1;
-  filter: blur(0);
-  z-index: 2;
+.carousel-item {
+  flex-shrink: 0;
+  width: var(--card-width);
 }
 
-.product-showcase-item:hover {
-  opacity: 1 !important;
-  filter: blur(0) !important;
-}
-
+/* ======= 卡片本体 ======= */
 .product-card {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  height: 400px;
+  background: #e8eaed;
   cursor: pointer;
-}
-
-.product-showcase-item.center .product-card {
-  box-shadow: 0 16px 50px rgba(0, 120, 200, 0.25);
+  transition: box-shadow 0.4s;
+  opacity: 1 !important;
+  transform: none !important;
+  width: var(--card-width);
+  height: var(--card-height);
 }
 
 .product-card:hover {
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
 }
 
+/* ======= 图片 ======= */
 .product-bg-img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* ======= 文字遮罩 ======= */
 .product-overlay {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.4) 100%);
+  justify-content: flex-start;
+  padding: 24px 28px;
 }
 
 .product-name {
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+  letter-spacing: 1px;
 }
 
 .product-spec {
-  font-size: 14px;
-  opacity: 0.8;
-  margin-bottom: 24px;
+  font-size: 13px;
+  color: rgba(30, 30, 60, 0.7);
+  margin: 0 0 16px;
 }
 
 .product-buttons {
   display: flex;
-  justify-content: center;
-  gap: 14px;
+  gap: 10px;
 }
 
 .product-btn {
-  padding: 6px 12px;
-  border-radius: 24px;
+  padding: 6px 16px;
+  border-radius: 20px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
   border: none;
+  white-space: nowrap;
 }
 
 .product-btn-primary {
   background: rgba(0, 168, 255, 0.9);
-  color: white;
+  color: #fff;
 }
 
 .product-btn-primary:hover {
-  background: #00D4ff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 168, 255, 0.4);
+  background: #00c4f0;
+  transform: translateY(-1px);
 }
 
 .product-btn-secondary {
-  color: black;
-  border: 1px solid black;
-  background: none;
-}
-
-/* 产品轮播容器 */
-.products-carousel {
-  position: relative;
-  padding: 0 60px;
-}
-
-/* 轮播箭头 */
-.product-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 48px;
-  height: 48px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(20, 20, 40, 0.75);
+  color: #fff;
   border: none;
-  border-radius: 50%;
-  cursor: pointer;
+}
+
+.product-btn-secondary:hover {
+  background: rgba(20, 20, 40, 0.9);
+  transform: translateY(-1px);
+}
+
+/* ======= 底部控制栏 ======= */
+.carousel-controls {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  backdrop-filter: blur(4px);
+  justify-content: space-between;
+  padding: 45px 60px 80px 0;
+  margin: 0 550px;
 }
 
-.product-arrow:hover {
-  background: rgba(0, 0, 0, 0.5);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.product-arrow-left {
-  left: 0;
-}
-
-.product-arrow-right {
-  right: 0;
-}
-
-/* 产品分页指示器 */
 .product-pagination {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
 .product-pagination-dot {
-  width: 32px;
+  width: 28px;
   height: 3px;
   border-radius: 2px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.18);
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .product-pagination-dot.active {
-  background: #00D4ff;
-  width: 48px;
+  background: #00c4f0;
+  width: 44px;
 }
 
-/* 产品网格展示 */
-.products-grid-showcase {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+.carousel-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.product-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  display: flex;
   align-items: center;
-  transition: opacity 0.3s ease;
+  justify-content: center;
+  transition: all 0.3s;
 }
 
-/* 轮播内产品卡片始终可见 */
-.products-carousel .product-card {
-  opacity: 1 !important;
+.product-arrow:hover {
+  border-color: #00c4f0;
+  color: #00c4f0;
 }
 
-/* 响应式 - iPad */
-@media (max-width: 1024px) {
-  .products-grid-showcase {
-    gap: 20px;
-  }
+/* ============================================================
+   响应式
+   ============================================================ */
 
-  .product-showcase-item:not(.center) {
-    opacity: 0.5;
-    filter: blur(1px);
-  }
-
-  .product-card {
-    height: 320px;
-  }
-
-  .product-arrow {
-    width: 40px;
-    height: 40px;
-  }
-
-  .products-carousel {
-    padding: 0 50px;
-  }
-
-  .product-pagination {
-    bottom: -35px;
-  }
-}
-
-/* 响应式 - 手机 */
-@media (max-width: 768px) {
-  .products-grid-showcase {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    max-width: 400px;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    height: 300px;
-  }
-
-  .product-showcase-item {
-    position: absolute;
-    width: 100%;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .product-showcase-item:not(.center) {
-    opacity: 0;
-    filter: blur(4px);
-    transform: scale(0.8);
-    pointer-events: none;
-  }
-
-  .product-showcase-item.center {
-    opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
-    z-index: 2;
-  }
-
-  .product-card {
-    height: 280px;
+/* 大屏 1440px ~ 1950px */
+@media (max-width: 1440px) {
+  .products-section {
+    --card-width: 370px;
+    --card-height: 314px;
+    --card-gap: 21px;
+    padding-left: 104px;
   }
 
   .product-name {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .product-overlay {
+    padding: 20px 24px;
+  }
+
+  .carousel-controls {
+    padding: 20px 48px 60px 0;
+  }
+}
+
+/* iPad Pro 横屏 / 小桌面 1024px ~ 1440px */
+@media (max-width: 1024px) {
+  .products-section {
+    --card-width: 262px;
+    --card-height: 222px;
+    --card-gap: 15px;
+    padding-left: 73px;
+  }
+
+  .product-name {
+    font-size: 17px;
   }
 
   .product-spec {
-    font-size: 13px;
+    font-size: 12px;
+    margin-bottom: 12px;
   }
 
-  .products-carousel {
-    padding: 0 10px;
-    position: relative;
-    height: 350px;
+  .product-overlay {
+    padding: 16px 20px;
   }
 
-  .product-arrow {
-    width: 36px;
-    height: 36px;
-    background: rgba(0, 0, 0, 0.5);
+  .product-btn {
+    padding: 5px 14px;
+    font-size: 11px;
   }
 
-  .product-arrow svg {
-    width: 18px;
-    height: 18px;
+  .carousel-controls {
+    padding: 20px 40px 60px 0;
+    margin: 0 260px;
+  }
+}
+
+/* iPad 竖屏 768px ~ 1024px */
+@media (max-width: 768px) {
+  .products-section {
+    --card-width: 197px;
+    --card-height: 167px;
+    --card-gap: 11px;
+    padding-left: 55px;
   }
 
-  .product-pagination {
-    bottom: 10px;
+  .product-name {
+    font-size: 15px;
+  }
+
+  .product-spec {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .product-overlay {
+    padding: 14px 16px;
+  }
+
+  .product-btn {
+    padding: 4px 12px;
+    font-size: 10px;
+  }
+
+  .carousel-controls {
+    padding: 16px 30px 40px 0;
+    margin: 0 140px;
   }
 
   .product-pagination-dot {
-    width: 20px;
+    width: 22px;
     height: 2px;
   }
 
   .product-pagination-dot.active {
-    width: 30px;
+    width: 36px;
+  }
+
+  .product-arrow {
+    width: 32px;
+    height: 32px;
   }
 }
 
-/* 响应式 - 小屏手机 */
+/* 手机 480px ~ 768px */
 @media (max-width: 480px) {
-  .products-grid {
-    grid-template-columns: 1fr;
+  .products-section {
+    --card-width: 123px;
+    --card-height: 104px;
+    --card-gap: 7px;
+    padding: 60px 0 40px 34px;
+  }
+
+  .carousel-wrapper {
+    margin-top: 32px;
+  }
+
+  .product-name {
+    font-size: 12px;
+  }
+
+  .product-spec {
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
+
+  .product-overlay {
+    padding: 8px 10px;
+  }
+
+  .product-buttons {
+    gap: 4px;
+  }
+
+  .product-btn {
+    padding: 3px 8px;
+    font-size: 8px;
+  }
+
+  .carousel-controls {
+    padding: 12px 20px 30px 0;
+    margin: 0 60px;
+  }
+
+  .product-pagination-dot {
+    width: 16px;
+    height: 2px;
+  }
+
+  .product-pagination-dot.active {
+    width: 24px;
+  }
+
+  .carousel-arrows {
+    gap: 6px;
+  }
+
+  .product-arrow {
+    width: 26px;
+    height: 26px;
+  }
+
+  .product-arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* 小手机 ≤375px */
+@media (max-width: 375px) {
+  .products-section {
+    --card-width: 96px;
+    --card-height: 81px;
+    --card-gap: 5px;
+    padding-left: 27px;
+  }
+
+  .product-name {
+    font-size: 10px;
+  }
+
+  .product-spec {
+    font-size: 8px;
+  }
+
+  .product-overlay {
+    padding: 6px 8px;
+  }
+
+  .product-btn {
+    padding: 2px 6px;
+    font-size: 7px;
+  }
+
+  .carousel-controls {
+    margin: 0 30px;
   }
 }
 </style>

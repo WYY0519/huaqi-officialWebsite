@@ -83,12 +83,16 @@ export const techCards = ref([
 ]);
 
 export const products = ref([
-  { id: 1, name: 'HW-200', spec: '多旋翼工业无人机', image: '/images/products/drone1.svg' },
-  { id: 2, name: 'HW-300', spec: '垂直起降固定翼无人机', image: '/images/products/drone2.svg' },
-  { id: 3, name: 'HW-400', spec: '大型工业无人机', image: '/images/products/drone3.svg' },
-  { id: 4, name: 'HW-500', spec: '特种作业无人机', image: '/images/products/drone4.svg' },
-  { id: 5, name: 'HW-600', spec: '农业植保无人机', image: '/images/products/drone5.svg' },
-  { id: 6, name: 'HW-700', spec: '测绘专用无人机', image: '/images/products/drone6.svg' },
+  { id: 1, name: 'HW-200', spec: '多旋翼工业无人机', image: new URL('../assets/home/旗舰矩阵/1.png', import.meta.url).href },
+  { id: 2, name: 'HW-300', spec: '垂直起降固定翼无人机', image: new URL('../assets/home/旗舰矩阵/2.png', import.meta.url).href },
+  { id: 3, name: 'HW-400', spec: '大型工业无人机', image: new URL('../assets/home/旗舰矩阵/3.png', import.meta.url).href },
+  { id: 4, name: 'HW-500', spec: '特种作业无人机', image: new URL('../assets/home/旗舰矩阵/4.png', import.meta.url).href },
+  { id: 5, name: 'HW-600', spec: '农业植保无人机', image: new URL('../assets/home/旗舰矩阵/5.png', import.meta.url).href },
+  { id: 6, name: 'HW-700', spec: '测绘专用无人机', image: new URL('../assets/home/旗舰矩阵/6.png', import.meta.url).href },
+  { id: 7, name: 'HW-800', spec: '智能侦察无人机', image: new URL('../assets/home/旗舰矩阵/7.png', import.meta.url).href },
+  { id: 8, name: 'HW-900', spec: '消防灭火无人机', image: new URL('../assets/home/旗舰矩阵/8.png', import.meta.url).href },
+  { id: 9, name: 'HW-1000', spec: '应急救援无人机', image: new URL('../assets/home/旗舰矩阵/9.png', import.meta.url).href },
+  { id: 10, name: 'HW-1100', spec: '高空清洗无人机', image: new URL('../assets/home/旗舰矩阵/10.png', import.meta.url).href },
 ]);
 
 const coverageIconF = new URL('../assets/home/图标/f.png', import.meta.url).href;

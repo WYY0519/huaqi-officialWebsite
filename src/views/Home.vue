@@ -7,7 +7,7 @@
     <!-- 数据统计 -->
     <!-- <StatsSection /> -->
     <!-- 产品展示 -->
-    <!-- <ProductsSection /> -->
+    <ProductsSection />
     <!-- 全流程服务保障体系 -->
     <CoverageSection />
     <!-- 新闻动态 -->
