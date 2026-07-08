@@ -13,11 +13,11 @@
             <div class="product-card" :class="{ 'highlighted': isHighlightedCard(idx) }">
               <img :src="item.image" :alt="item.name" class="product-bg-img" />
               <div class="product-overlay">
-                <h3 class="product-name">{{ item.name }}</h3>
+                <p class="product-name">{{ item.name }}</p>
                 <p class="product-spec">{{ item.spec }}</p>
                 <div class="product-buttons">
                   <button class="product-btn product-btn-primary">立即购买</button>
-                  <button class="product-btn product-btn-secondary">下载手册</button>
+                  <button class="product-btn product-btn-secondary">了解更多</button>
                 </div>
               </div>
               <div v-if="!isHighlightedCard(idx)" class="card-mask"></div>
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <!-- 控制条在 clip 外，正常文档流居中显示 -->
+      <!-- 控制条在 clip 外，居中显示 -->
 
       <div class="carousel-controls">
         <div class="product-pagination">
@@ -201,7 +201,7 @@ onUnmounted(() => {
   /* 动态计算：保证任意宽度下至少显示3个完整卡片 + 右侧半张 */
   --pl: clamp(27px, 7.2vw, 140px);
   --card-gap: clamp(5px, 1.5vw, 28px);
-  --card-width: clamp(96px, calc((100vw - var(--pl) - 2 * var(--card-gap)) / 3.1), 499px);
+  --card-width: clamp(96px, calc((100vw - var(--pl) - 2 * var(--card-gap)) / 3.5), 499px);
   --card-height: calc(var(--card-width) * 423 / 499);
 
   padding: clamp(60px, 4.1vw, 80px) 0 clamp(40px, 3.1vw, 60px) var(--pl);
@@ -292,17 +292,17 @@ onUnmounted(() => {
 }
 
 .product-name {
-  font-size: 32px;
-  font-weight: 700;
-  color: #1a1a2e;
+  font-size: 30px;
+  /* font-weight: 700; */
+  color: #000000;
   margin: 0 0 4px;
   letter-spacing: 1px;
 }
 
 .product-spec {
-  font-size: 13px;
-  color: rgba(30, 30, 60, 0.7);
-  margin: 0 0 16px;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0 0 14px;
 }
 
 .product-buttons {
@@ -311,7 +311,7 @@ onUnmounted(() => {
 }
 
 .product-btn {
-  padding: 6px 16px;
+  padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -322,8 +322,9 @@ onUnmounted(() => {
 }
 
 .product-btn-primary {
-  background: rgba(0, 168, 255, 0.9);
+  background: #00d4ff;
   color: #fff;
+  font-size: 7px
 }
 
 .product-btn-primary:hover {
@@ -332,9 +333,10 @@ onUnmounted(() => {
 }
 
 .product-btn-secondary {
-  background: rgba(20, 20, 40, 0.75);
-  color: #fff;
-  border: none;
+  background: none;
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 1);
+  font-size: 7px
 }
 
 .product-btn-secondary:hover {
@@ -348,7 +350,10 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   gap: 40px;
-  padding: 40px 0 60px 0;
+  padding: 40px 0 0px 0;
+  white-space: nowrap;
+  position: relative;
+  z-index: 5;
 }
 
 .product-pagination {
@@ -358,7 +363,7 @@ onUnmounted(() => {
 }
 
 .product-pagination-dot {
-  width: 28px;
+  width: 20px;
   height: 3px;
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.18);
@@ -368,7 +373,7 @@ onUnmounted(() => {
 
 .product-pagination-dot.active {
   background: #00c4f0;
-  width: 44px;
+  width: 28px;
 }
 
 .carousel-arrows {
