@@ -13,11 +13,15 @@
       <div class="tech-cards-grid">
         <div class="tech-card" v-for="(card, index) in techCards" :key="index">
           <div class="tech-icon"><img :src="card.icon" :alt="card.title" /></div>
-          <div class="tech-card-body">
-            <h3 class="tech-card-title">{{ card.title }}</h3>
-            <p class="tech-card-desc">{{ card.desc }}</p>
+          <div style="    display: flex;
+    flex-direction: column;">
+            <div class="tech-card-body">
+              <h3 class="tech-card-title">{{ card.title }}</h3>
+              <p class="tech-card-desc">{{ card.desc }}</p>
+            </div>
             <span class="tech-card-tag">{{ card.tag }}</span>
           </div>
+          <!--  -->
         </div>
       </div>
     </div>
@@ -32,7 +36,7 @@ import { companyStats, techCards } from '../../data/homeData'
 /* 数据统计区块 */
 .stats-section {
   padding: 70px 0 80px;
-  background: linear-gradient(to bottom, #e8f4fd 2%, #ffffff 100%);
+  background: linear-gradient(to bottom, #dbeefb 2%, #ffffff 100%);
 }
 
 .stats-main-title {
@@ -55,10 +59,10 @@ import { companyStats, techCards } from '../../data/homeData'
   grid-template-columns: repeat(5, 1fr);
   gap: 0;
   text-align: center;
-  margin-bottom: 28px;
-  background: #f6f8f9;
+  margin-bottom: 15px;
+  background: #f5f8f9;
   border-radius: 12px;
-  padding: 24px 12px;
+  padding: 88px 0 80px 0px;
 }
 
 .stat-card {
@@ -70,40 +74,43 @@ import { companyStats, techCards } from '../../data/homeData'
 
 .stat-value {
   display: block;
-  font-size: 48px;
+  font-size: 60px;
   font-weight: 800;
   color: #00D4ff;
-  line-height: 1.1;
-  margin-bottom: 10px;
+  margin-bottom: 22px;
 }
 
 .stat-unit {
   font-size: 22px;
-  font-weight: 600;
-  color: #5f656b;
+  /* font-weight: 600; */
+  color: #6b7077;
 }
 
 .stat-label {
-  font-size: 14px;
-  color: #5f656b;
+  font-size: 27.5px;
+  color: #6b7077;
 }
 
 /* 技术特性卡片 */
 .tech-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 797px);
+  gap: 17px;
+  justify-content: center;
 }
 
 .tech-card {
-  background: #f6f8f9;
+  background: #f5f8f9;
   border-radius: 12px;
-  padding: 24px;
+  /* padding: 24px; */
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  /* gap: 20px; */
   box-shadow: 0 2px 16px rgba(0, 120, 200, 0.07);
   transition: box-shadow 0.3s, transform 0.3s;
+  width: 797px;
+  height: 325px;
+  box-sizing: border-box;
 }
 
 .tech-card:hover {
@@ -112,9 +119,9 @@ import { companyStats, techCards } from '../../data/homeData'
 }
 
 .tech-icon {
-  width: 80px;
-  height: 80px;
-  min-width: 80px;
+  width: 117px;
+  height: 123px;
+  min-width: 117px;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -122,12 +129,13 @@ import { companyStats, techCards } from '../../data/homeData'
   flex-shrink: 0;
   align-self: flex-start;
   overflow: hidden;
+  margin: 51px 59px 0 48px
 }
 
 .tech-icon img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
@@ -136,38 +144,55 @@ import { companyStats, techCards } from '../../data/homeData'
   flex-direction: column;
   flex: 1;
   min-width: 0;
+  margin: 57px 125px 0 0
 }
 
 .tech-card-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1a1a2e;
+  font-size: 30px;
+  font-weight: 600;
+  color: #000000;
   margin-bottom: 10px;
 }
 
 .tech-card-desc {
-  font-size: 14px;
-  color: #888;
-  line-height: 1.9;
+  font-size: 21px;
+  color: #adb1b5;
   flex: 1;
 }
 
 .tech-card-tag {
   display: inline-block;
-  margin-top: 16px;
+  margin: 0 29px 26px 0;
   padding: 5px 16px;
-  background: #e8f4fd;
-  color: #00D4ff;
+  background: #def5f9;
+  color: #0cd7ff;
   border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 18.5px;
+  /* font-weight: 600; */
   align-self: flex-end;
+  border: 1px solid #b1eefa;
 }
 
 /* 响应式 - iPad */
 @media (max-width: 1024px) {
   .stats-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .tech-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tech-card {
+    width: 100%;
+    height: auto;
+    min-height: 280px;
+  }
+
+  .tech-icon {
+    width: 60px;
+    height: 63px;
+    min-width: 60px;
   }
 }
 
@@ -199,7 +224,16 @@ import { companyStats, techCards } from '../../data/homeData'
   }
 
   .tech-card {
+    width: 100%;
+    height: auto;
+    min-height: 240px;
     padding: 20px 18px 16px;
+  }
+
+  .tech-icon {
+    width: 50px;
+    height: 53px;
+    min-width: 50px;
   }
 }
 
@@ -207,6 +241,17 @@ import { companyStats, techCards } from '../../data/homeData'
 @media (max-width: 480px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tech-card {
+    padding: 16px 14px 12px;
+    min-height: 200px;
+  }
+
+  .tech-icon {
+    width: 40px;
+    height: 42px;
+    min-width: 40px;
   }
 }
 </style>

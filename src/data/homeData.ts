@@ -53,46 +53,99 @@ export const companyStats = ref([
   { value: '2', unit: 'h', label: '紧急响应时效' },
 ]);
 
-const techIconF = new URL('../assets/home/图标/f.png', import.meta.url).href;
+const techIconA = new URL('../assets/home/图标/a.png', import.meta.url).href;
+const techIconB = new URL('../assets/home/图标/b.png', import.meta.url).href;
+const techIconC = new URL('../assets/home/图标/c.png', import.meta.url).href;
+const techIconD = new URL('../assets/home/图标/d.png', import.meta.url).href;
 
 export const techCards = ref([
   {
     title: '飞控研发',
     desc: '自研多旋翼/固定翼飞控系统，支持全自主飞行、智能避障、编队协同，累计飞行超50万架次零重大事故。',
     tag: '275+项专利',
-    icon: techIconF,
+    icon: techIconA,
   },
   {
     title: '载荷兼容',
     desc: '模块化载荷快拆接口，兼容可见光、红外、激光雷达、喊话器、探照灯、灭火弹等38余种任务载荷。',
     tag: '38+种载荷',
-    icon: techIconF,
+    icon: techIconB,
   },
   {
     title: '工业防护',
     desc: '中雨可飞，-20°C至55°C宽温工作，抗7级强风，防电磁干扰，满足全天候工业级作业需求。',
     tag: 'IP55防护',
-    icon: techIconF,
+    icon: techIconD,
   },
   {
     title: '定制开发',
     desc: '从需求分析到方案落地，提供软硬件一体化定制服务，支持OEM/ODM最快30天交付原型。',
     tag: '30天交付',
-    icon: techIconF,
+    icon: techIconC,
   },
 ]);
 
 export const products = ref([
-  { id: 1, name: 'HW-200', spec: '多旋翼工业无人机', image: new URL('../assets/home/旗舰矩阵/1.png', import.meta.url).href },
-  { id: 2, name: 'HW-300', spec: '垂直起降固定翼无人机', image: new URL('../assets/home/旗舰矩阵/2.png', import.meta.url).href },
-  { id: 3, name: 'HW-400', spec: '大型工业无人机', image: new URL('../assets/home/旗舰矩阵/3.png', import.meta.url).href },
-  { id: 4, name: 'HW-500', spec: '特种作业无人机', image: new URL('../assets/home/旗舰矩阵/4.png', import.meta.url).href },
-  { id: 5, name: 'HW-600', spec: '农业植保无人机', image: new URL('../assets/home/旗舰矩阵/5.png', import.meta.url).href },
-  { id: 6, name: 'HW-700', spec: '测绘专用无人机', image: new URL('../assets/home/旗舰矩阵/6.png', import.meta.url).href },
-  { id: 7, name: 'HW-800', spec: '智能侦察无人机', image: new URL('../assets/home/旗舰矩阵/7.png', import.meta.url).href },
-  { id: 8, name: 'HW-900', spec: '消防灭火无人机', image: new URL('../assets/home/旗舰矩阵/8.png', import.meta.url).href },
-  { id: 9, name: 'HW-1000', spec: '应急救援无人机', image: new URL('../assets/home/旗舰矩阵/9.png', import.meta.url).href },
-  { id: 10, name: 'HW-1100', spec: '高空清洗无人机', image: new URL('../assets/home/旗舰矩阵/10.png', import.meta.url).href },
+  {
+    id: 1,
+    name: 'HW-200',
+    spec: '多旋翼工业无人机',
+    image: new URL('../assets/home/旗舰矩阵/1.png', import.meta.url).href,
+  },
+  {
+    id: 2,
+    name: 'HW-300',
+    spec: '垂直起降固定翼无人机',
+    image: new URL('../assets/home/旗舰矩阵/2.png', import.meta.url).href,
+  },
+  {
+    id: 3,
+    name: 'HW-400',
+    spec: '大型工业无人机',
+    image: new URL('../assets/home/旗舰矩阵/3.png', import.meta.url).href,
+  },
+  {
+    id: 4,
+    name: 'HW-500',
+    spec: '特种作业无人机',
+    image: new URL('../assets/home/旗舰矩阵/4.png', import.meta.url).href,
+  },
+  {
+    id: 5,
+    name: 'HW-600',
+    spec: '农业植保无人机',
+    image: new URL('../assets/home/旗舰矩阵/5.png', import.meta.url).href,
+  },
+  {
+    id: 6,
+    name: 'HW-700',
+    spec: '测绘专用无人机',
+    image: new URL('../assets/home/旗舰矩阵/6.png', import.meta.url).href,
+  },
+  {
+    id: 7,
+    name: 'HW-800',
+    spec: '智能侦察无人机',
+    image: new URL('../assets/home/旗舰矩阵/7.png', import.meta.url).href,
+  },
+  {
+    id: 8,
+    name: 'HW-900',
+    spec: '消防灭火无人机',
+    image: new URL('../assets/home/旗舰矩阵/8.png', import.meta.url).href,
+  },
+  {
+    id: 9,
+    name: 'HW-1000',
+    spec: '应急救援无人机',
+    image: new URL('../assets/home/旗舰矩阵/9.png', import.meta.url).href,
+  },
+  {
+    id: 10,
+    name: 'HW-1100',
+    spec: '高空清洗无人机',
+    image: new URL('../assets/home/旗舰矩阵/10.png', import.meta.url).href,
+  },
 ]);
 
 const coverageIconF = new URL('../assets/home/图标/f.png', import.meta.url).href;

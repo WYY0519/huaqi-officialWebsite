@@ -29,8 +29,9 @@ import { coverageItems } from '../../data/homeData'
 
 .coverage-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, 276px);
   gap: 24px;
+  justify-content: space-between;
 }
 
 .coverage-item {
@@ -38,7 +39,8 @@ import { coverageItems } from '../../data/homeData'
   padding: 47px 32px 40px 31px;
   background: white;
   border-radius: 8px;
-  min-height: 434px;
+  width: 276px;
+  height: 434px;
   box-sizing: border-box;
   transition: all 0.3s ease;
   display: flex;
@@ -103,6 +105,8 @@ import { coverageItems } from '../../data/homeData'
   .coverage-item {
     padding: 24px 16px;
     min-height: auto;
+    width: auto;
+    height: auto;
   }
 
   .coverage-icon {
@@ -130,6 +134,8 @@ import { coverageItems } from '../../data/homeData'
   .coverage-item {
     padding: 20px 12px;
     min-height: auto;
+    width: auto;
+    height: auto;
   }
 
   .coverage-icon {

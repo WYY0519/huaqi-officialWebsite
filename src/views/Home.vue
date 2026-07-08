@@ -3,9 +3,9 @@
     <!-- 轮播图 -->
     <!-- <HeroBanner /> -->
     <!-- 核心产品解决方案 -->
-    <!-- <SolutionSection /> -->
+    <SolutionSection />
     <!-- 数据统计 -->
-    <!-- <StatsSection /> -->
+    <StatsSection />
     <!-- 产品展示 -->
     <ProductsSection />
     <!-- 全流程服务保障体系 -->
