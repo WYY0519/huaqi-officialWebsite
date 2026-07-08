@@ -16,8 +16,13 @@
                 <p class="product-name">{{ item.name }}</p>
                 <p class="product-spec">{{ item.spec }}</p>
                 <div class="product-buttons">
-                  <button class="product-btn product-btn-primary">立即购买</button>
-                  <button class="product-btn product-btn-secondary">了解更多</button>
+                  <template v-if="isHighlightedCard(idx)">
+                    <button class="product-btn product-btn-primary">立即购买</button>
+                    <button class="product-btn product-btn-secondary">了解更多</button>
+                  </template>
+                  <template v-else>
+                    <button class="product-btn product-btn-primary">了解更多</button>
+                  </template>
                 </div>
               </div>
               <div v-if="!isHighlightedCard(idx)" class="card-mask"></div>
@@ -245,7 +250,7 @@ onUnmounted(() => {
 }
 
 .product-card:hover {
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* 高亮卡片样式 */
@@ -288,7 +293,7 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 24px 28px;
+  padding: 38px 28px;
 }
 
 .product-name {
@@ -336,11 +341,13 @@ onUnmounted(() => {
   background: none;
   color: #000000;
   border: 1px solid rgba(0, 0, 0, 1);
-  font-size: 7px
+  font-size: 7px;
+  transition: all 0.3s ease;
 }
 
 .product-btn-secondary:hover {
-  background: rgba(20, 20, 40, 0.9);
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.6);
   transform: translateY(-1px);
 }
 
@@ -415,7 +422,7 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 20px 0 60px 0;
+    padding: 20px 0 0px 0;
   }
 }
 
@@ -440,7 +447,7 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 20px 0 60px 0;
+    padding: 20px 0 0px 0;
     gap: 32px;
   }
 
@@ -484,7 +491,7 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 16px 0 50px 0;
+    padding: 16px 0 0px 0;
     gap: 28px;
   }
 
@@ -515,49 +522,53 @@ onUnmounted(() => {
 /* iPad 竖屏 768px ~ 860px */
 @media (max-width: 768px) {
   .product-name {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .product-spec {
-    font-size: 11px;
-    margin-bottom: 10px;
+    font-size: 10px;
+    margin-bottom: 8px;
   }
 
   .product-overlay {
-    padding: 14px 16px;
+    padding: 12px 14px;
   }
 
   .product-btn {
-    padding: 4px 12px;
-    font-size: 10px;
+    padding: 3px 10px;
+    font-size: 9px;
+  }
+
+  .product-buttons {
+    gap: 6px;
   }
 
   .carousel-controls {
-    padding: 16px 0 40px 0;
-    gap: 24px;
+    padding: 14px 0 0px 0;
+    gap: 20px;
   }
 
   .product-pagination {
-    gap: 4px;
+    gap: 3px;
   }
 
   .product-pagination-dot {
-    width: 18px;
+    width: 16px;
     height: 2px;
   }
 
   .product-pagination-dot.active {
-    width: 28px;
+    width: 24px;
   }
 
   .product-arrow {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .product-arrow svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -568,12 +579,12 @@ onUnmounted(() => {
   }
 
   .product-name {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .product-spec {
-    font-size: 9px;
-    margin-bottom: 6px;
+    font-size: 8px;
+    margin-bottom: 5px;
   }
 
   .product-overlay {
@@ -585,40 +596,40 @@ onUnmounted(() => {
   }
 
   .product-btn {
-    padding: 3px 8px;
-    font-size: 8px;
+    padding: 2px 7px;
+    font-size: 7px;
   }
 
   .carousel-controls {
-    padding: 12px 0 30px 0;
-    gap: 20px;
+    padding: 10px 0 0px 0;
+    gap: 16px;
   }
 
   .product-pagination {
-    gap: 3px;
+    gap: 2px;
   }
 
   .product-pagination-dot {
-    width: 14px;
+    width: 12px;
     height: 2px;
   }
 
   .product-pagination-dot.active {
-    width: 22px;
+    width: 18px;
   }
 
   .carousel-arrows {
-    gap: 6px;
+    gap: 5px;
   }
 
   .product-arrow {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 
   .product-arrow svg {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -642,7 +653,7 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 8px 0 20px 0;
+    padding: 8px 0 0px 0;
     gap: 16px;
   }
 
