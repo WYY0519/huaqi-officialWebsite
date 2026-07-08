@@ -13,8 +13,7 @@
       <div class="tech-cards-grid">
         <div class="tech-card" v-for="(card, index) in techCards" :key="index">
           <div class="tech-icon"><img :src="card.icon" :alt="card.title" /></div>
-          <div style="    display: flex;
-    flex-direction: column;">
+          <div class="tech-card-content">
             <div class="tech-card-body">
               <h3 class="tech-card-title">{{ card.title }}</h3>
               <p class="tech-card-desc">{{ card.desc }}</p>
@@ -63,6 +62,10 @@ import { companyStats, techCards } from '../../data/homeData'
   background: #f5f8f9;
   border-radius: 12px;
   padding: 88px 0 80px 0px;
+  max-width: 1600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .stat-card {
@@ -94,9 +97,13 @@ import { companyStats, techCards } from '../../data/homeData'
 /* 技术特性卡片 */
 .tech-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 797px);
+  grid-template-columns: repeat(2, 1fr);
   gap: 17px;
   justify-content: center;
+  max-width: 1600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tech-card {
@@ -108,7 +115,7 @@ import { companyStats, techCards } from '../../data/homeData'
   /* gap: 20px; */
   box-shadow: 0 2px 16px rgba(0, 120, 200, 0.07);
   transition: box-shadow 0.3s, transform 0.3s;
-  width: 797px;
+  width: 100%;
   height: 325px;
   box-sizing: border-box;
 }
@@ -137,6 +144,11 @@ import { companyStats, techCards } from '../../data/homeData'
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+.tech-card-content {
+  display: flex;
+  flex-direction: column;
 }
 
 .tech-card-body {
@@ -173,42 +185,19 @@ import { companyStats, techCards } from '../../data/homeData'
   border: 1px solid #b1eefa;
 }
 
-/* 响应式 - iPad */
-@media (max-width: 1024px) {
+/* 响应式 - 桌面端 1440px */
+@media (max-width: 1440px) {
+  .stats-section {
+    padding: 52px 0 59px;
+  }
+
   .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .tech-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .tech-card {
-    width: 100%;
-    height: auto;
-    min-height: 280px;
-  }
-
-  .tech-icon {
-    width: 60px;
-    height: 63px;
-    min-width: 60px;
-  }
-}
-
-/* 响应式 - 手机 */
-@media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-  }
-
-  .stat-card {
-    padding: 8px 6px 14px;
+    padding: 65px 0 59px 0px;
   }
 
   .stat-value {
-    font-size: 28px;
+    font-size: 44px;
+    margin-bottom: 16px;
   }
 
   .stat-unit {
@@ -216,42 +205,282 @@ import { companyStats, techCards } from '../../data/homeData'
   }
 
   .stat-label {
-    font-size: 12px;
+    font-size: 20px;
   }
 
   .tech-cards-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tech-card {
+    width: 100%;
+    height: 240px;
+  }
+
+  .tech-icon {
+    width: 86px;
+    height: 91px;
+    min-width: 86px;
+    margin: 38px 44px 0 35px;
+  }
+
+  .tech-card-body {
+    margin: 42px 92px 0 0;
+  }
+
+  .tech-card-title {
+    font-size: 22px;
+  }
+
+  .tech-card-desc {
+    font-size: 15px;
+  }
+
+  .tech-card-tag {
+    font-size: 14px;
+  }
+}
+
+/* 响应式 - iPad Pro 横屏 1024px */
+@media (max-width: 1024px) {
+  .stats-section {
+    padding: 37px 0 42px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 46px 0 42px 0px;
+  }
+
+  .stat-value {
+    font-size: 31px;
+    margin-bottom: 12px;
+  }
+
+  .stat-unit {
+    font-size: 12px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+  }
+
+  .tech-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
   }
 
   .tech-card {
     width: 100%;
     height: auto;
-    min-height: 240px;
-    padding: 20px 18px 16px;
+    min-height: 171px;
   }
 
   .tech-icon {
-    width: 50px;
-    height: 53px;
-    min-width: 50px;
+    width: 61px;
+    height: 65px;
+    min-width: 61px;
+    margin: 27px 31px 0 25px;
+  }
+
+  .tech-card-body {
+    margin: 30px 66px 0 0;
+  }
+
+  .tech-card-title {
+    font-size: 16px;
+  }
+
+  .tech-card-desc {
+    font-size: 11px;
+  }
+
+  .tech-card-tag {
+    font-size: 10px;
   }
 }
 
-/* 响应式 - 小屏手机 */
-@media (max-width: 480px) {
+/* 响应式 - iPad 竖屏 768px */
+@media (max-width: 768px) {
+  .stats-section {
+    padding: 28px 0 32px;
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    padding: 35px 0 32px 0px;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 8px 6px 14px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .stat-unit {
+    font-size: 9px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .tech-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 7px;
   }
 
   .tech-card {
-    padding: 16px 14px 12px;
-    min-height: 200px;
+    width: 100%;
+    height: auto;
+    min-height: 128px;
+    padding: 15px;
   }
 
   .tech-icon {
-    width: 40px;
-    height: 42px;
-    min-width: 40px;
+    width: 46px;
+    height: 49px;
+    min-width: 46px;
+    margin: 15px 15px 0 15px;
+  }
+
+  .tech-card-content {
+    margin: 10px 10px 0 0;
+  }
+
+  .tech-card-body {
+    margin: 10px 10px 0 0;
+  }
+
+  .tech-card-title {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .tech-card-desc {
+    font-size: 8px;
+    line-height: 1.5;
+  }
+
+  .tech-card-tag {
+    font-size: 7px;
+    padding: 3px 10px;
+    margin: 0 10px 10px 0;
+  }
+}
+
+/* 响应式 - 手机 480px */
+@media (max-width: 480px) {
+  .stats-section {
+    padding: 20px 0 24px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 25px 0 24px 0px;
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 6px 4px 10px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .stat-unit {
+    font-size: 7px;
+  }
+
+  .stat-label {
+    font-size: 8px;
+  }
+
+  .tech-cards-grid {
+    gap: 5px;
+  }
+
+  .tech-card {
+    min-height: 100px;
+    padding: 12px;
+  }
+
+  .tech-icon {
+    width: 35px;
+    height: 37px;
+    min-width: 35px;
+    margin: 12px 12px 0 12px;
+  }
+
+  .tech-card-title {
+    font-size: 10px;
+  }
+
+  .tech-card-desc {
+    font-size: 7px;
+  }
+
+  .tech-card-tag {
+    font-size: 6px;
+    padding: 2px 8px;
+    margin: 0 8px 8px 0;
+  }
+}
+
+/* 响应式 - 小屏手机 375px */
+@media (max-width: 375px) {
+  .stats-section {
+    padding: 16px 0 20px;
+  }
+
+  .stats-grid {
+    padding: 20px 0 20px 0px;
+    gap: 6px;
+  }
+
+  .stat-value {
+    font-size: 15px;
+  }
+
+  .stat-unit {
+    font-size: 6px;
+  }
+
+  .stat-label {
+    font-size: 7px;
+  }
+
+  .tech-card {
+    min-height: 85px;
+    padding: 10px;
+  }
+
+  .tech-icon {
+    width: 30px;
+    height: 32px;
+    min-width: 30px;
+    margin: 10px 10px 0 10px;
+  }
+
+  .tech-card-title {
+    font-size: 9px;
+  }
+
+  .tech-card-desc {
+    font-size: 6px;
+  }
+
+  .tech-card-tag {
+    font-size: 5px;
+    padding: 2px 6px;
+    margin: 0 6px 6px 0;
   }
 }
 </style>
