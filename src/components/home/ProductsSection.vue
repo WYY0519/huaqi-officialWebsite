@@ -7,22 +7,25 @@
     </div>
 
     <div class="carousel-wrapper" @mouseenter="pauseProductSlideAutoplay" @mouseleave="resumeProductSlideAutoplay">
-      <div class="carousel-track" :style="trackStyle" @transitionend="onTransitionEnd">
-        <div v-for="(item, idx) in loopedSlides" :key="'slide-' + idx" class="carousel-item">
-          <div class="product-card" :class="{ 'highlighted': isHighlightedCard(idx) }">
-            <img :src="item.image" :alt="item.name" class="product-bg-img" />
-            <div class="product-overlay">
-              <h3 class="product-name">{{ item.name }}</h3>
-              <p class="product-spec">{{ item.spec }}</p>
-              <div class="product-buttons">
-                <button class="product-btn product-btn-primary">立即购买</button>
-                <button class="product-btn product-btn-secondary">下载手册</button>
+      <div class="carousel-clip">
+        <div class="carousel-track" :style="trackStyle" @transitionend="onTransitionEnd">
+          <div v-for="(item, idx) in loopedSlides" :key="'slide-' + idx" class="carousel-item">
+            <div class="product-card" :class="{ 'highlighted': isHighlightedCard(idx) }">
+              <img :src="item.image" :alt="item.name" class="product-bg-img" />
+              <div class="product-overlay">
+                <h3 class="product-name">{{ item.name }}</h3>
+                <p class="product-spec">{{ item.spec }}</p>
+                <div class="product-buttons">
+                  <button class="product-btn product-btn-primary">立即购买</button>
+                  <button class="product-btn product-btn-secondary">下载手册</button>
+                </div>
               </div>
+              <div v-if="!isHighlightedCard(idx)" class="card-mask"></div>
             </div>
-            <div v-if="!isHighlightedCard(idx)" class="card-mask"></div>
           </div>
         </div>
       </div>
+      <!-- 控制条在 clip 外，正常文档流居中显示 -->
 
       <div class="carousel-controls">
         <div class="product-pagination">
@@ -209,6 +212,9 @@ onUnmounted(() => {
 .carousel-wrapper {
   margin-top: 48px;
   position: relative;
+}
+
+.carousel-clip {
   overflow: hidden;
 }
 
@@ -340,9 +346,9 @@ onUnmounted(() => {
 .carousel-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 45px 60px 80px 0;
-  margin: 0 550px;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 0 60px 0;
 }
 
 .product-pagination {
@@ -404,7 +410,7 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 20px 48px 60px 0;
+    padding: 20px 0 60px 0;
   }
 }
 
@@ -429,8 +435,26 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 20px 40px 60px 0;
-    margin: 0 260px;
+    padding: 20px 0 60px 0;
+    gap: 32px;
+  }
+
+  .product-pagination {
+    gap: 6px;
+  }
+
+  .product-pagination-dot {
+    width: 24px;
+    height: 3px;
+  }
+
+  .product-pagination-dot.active {
+    width: 38px;
+  }
+
+  .product-arrow {
+    width: 34px;
+    height: 34px;
   }
 }
 
@@ -455,8 +479,31 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 16px 35px 50px 0;
-    margin: 0 180px;
+    padding: 16px 0 50px 0;
+    gap: 28px;
+  }
+
+  .product-pagination {
+    gap: 5px;
+  }
+
+  .product-pagination-dot {
+    width: 20px;
+    height: 2px;
+  }
+
+  .product-pagination-dot.active {
+    width: 32px;
+  }
+
+  .product-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .product-arrow svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -481,22 +528,31 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 16px 30px 40px 0;
-    margin: 0 140px;
+    padding: 16px 0 40px 0;
+    gap: 24px;
+  }
+
+  .product-pagination {
+    gap: 4px;
   }
 
   .product-pagination-dot {
-    width: 22px;
+    width: 18px;
     height: 2px;
   }
 
   .product-pagination-dot.active {
-    width: 36px;
+    width: 28px;
   }
 
   .product-arrow {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .product-arrow svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -529,17 +585,21 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    padding: 12px 20px 30px 0;
-    margin: 0 60px;
+    padding: 12px 0 30px 0;
+    gap: 20px;
+  }
+
+  .product-pagination {
+    gap: 3px;
   }
 
   .product-pagination-dot {
-    width: 16px;
+    width: 14px;
     height: 2px;
   }
 
   .product-pagination-dot.active {
-    width: 24px;
+    width: 22px;
   }
 
   .carousel-arrows {
@@ -547,13 +607,13 @@ onUnmounted(() => {
   }
 
   .product-arrow {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   .product-arrow svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -577,7 +637,31 @@ onUnmounted(() => {
   }
 
   .carousel-controls {
-    margin: 0 30px;
+    padding: 8px 0 20px 0;
+    gap: 16px;
+  }
+
+  .product-pagination {
+    gap: 2px;
+  }
+
+  .product-pagination-dot {
+    width: 12px;
+    height: 2px;
+  }
+
+  .product-pagination-dot.active {
+    width: 18px;
+  }
+
+  .product-arrow {
+    width: 22px;
+    height: 22px;
+  }
+
+  .product-arrow svg {
+    width: 10px;
+    height: 10px;
   }
 }
 </style>
