@@ -88,10 +88,12 @@ const isSingleColumn = computed(() => props.categories.length === 1)
 
 .dropdown-panel.single-column {
   position: absolute;
-  width: 280px;
+  width: 200px;
   left: 50%;
   transform: translateX(-50%);
-  top: 100%;
+  top: 137%;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .dropdown-grid {
