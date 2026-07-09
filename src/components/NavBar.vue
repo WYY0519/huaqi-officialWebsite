@@ -189,11 +189,11 @@ onUnmounted(() => {
 .header.product-hovered :deep(.product-dropdown .nav-link.active::after) {
   content: '';
   position: absolute;
-  bottom: -38px;
+  bottom: -45px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: #0f1419;
+  height: 1px;
+  background: #000000;
 }
 
 .header.product-hovered .contact-btn {

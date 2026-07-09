@@ -78,7 +78,7 @@ const isSingleColumn = computed(() => props.categories.length === 1)
 .dropdown-panel {
   display: none;
   position: fixed;
-  top: 135px;
+  top: 139px;
   left: 0;
   right: 0;
   background: #fff;
