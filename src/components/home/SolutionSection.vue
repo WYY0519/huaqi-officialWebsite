@@ -2,13 +2,12 @@
   <section id="solutions" class="solutions-section">
     <div class="container">
       <p class="section-title">核心行业解决方案</p>
-      <p class="section-line" ></p>
+      <p class="section-line"></p>
       <p class="section-subtitle">五大垂直赛道全场景智能化覆盖</p>
       <div class="sol-list">
         <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row" :class="{ reverse: index % 2 !== 0 }">
           <div class="sol-media">
-            <div class="sol-video-box" 
-                 @mouseenter="startCarousel(index)" @mouseleave="pauseCarousel(index)">
+            <div class="sol-video-box" @mouseenter="startCarousel(index)" @mouseleave="pauseCarousel(index)">
               <div class="sol-image-container">
                 <img v-for="(img, imgIndex) in getImages(index)" :key="imgIndex" :src="img"
                   :class="['sol-image', { 'active': currentIndex[index] === imgIndex || (currentIndex[index] === undefined && imgIndex === 0) }]"
@@ -22,13 +21,13 @@
             </div>
           </div>
           <div class="sol-text">
-            <h3 class="sol-scene-title">{{ item.title }}</h3>
+            <p class="sol-scene-title">{{ item.title }}</p>
             <p class="sol-scene-sub">{{ item.sub }}</p>
             <p class="sol-scene-desc">{{ item.desc }}</p>
             <div class="sol-tags">
               <span class="sol-tag" v-for="(tag, ti) in item.tags" :key="ti">{{ tag }}</span>
             </div>
-            <a href="#" class="sol-more">了解更多 →</a>
+            <a href="#" class="sol-more">了解更多 <span style="margin-left: 15px;">→</span></a>
           </div>
         </div>
       </div>
@@ -212,7 +211,7 @@ onUnmounted(() => {
   direction: rtl;
 }
 
-.sol-row.reverse > * {
+.sol-row.reverse>* {
   direction: ltr;
 }
 
@@ -238,65 +237,96 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   padding-top: 0;
+  background: #f5f5f5;
+}
+
+/* 大屏幕 (1920px+) - 按照图片原始尺寸展示 */
+@media (min-width: 1920px) {
+  .sol-row {
+    align-items: start;
+  }
+
+  .sol-media .sol-video-box {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .sol-media .sol-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 62.79%; /* 5400/8600 = 0.6279 保持图片原始宽高比 */
+  }
 }
 
 .sol-text {
-  padding: 44px 48px;
+  padding: 80px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .sol-scene-title {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 800;
   color: #1a1a2e;
   line-height: 1.2;
+  margin-bottom: 8px;
 }
 
 .sol-scene-sub {
-  font-size: 14px;
-  color: #b3b2b2;
+  font-size: 15px;
+  color: #9b9e9f;
   font-weight: 500;
   letter-spacing: 0.5px;
+  margin-bottom: 12px;
 }
 
 .sol-scene-desc {
   font-size: 15px;
   color: #666;
-  font-weight: 800;
-  line-height: 1.9;
+  line-height: 1.8;
 }
 
 .sol-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  padding: 24px 0;
 }
 
 .sol-tag {
-  padding: 5px 16px;
-  color: #666;
-  border-radius: 20px;
-  font-size: 13px;
-  border: 1px solid #dedddd;
+  padding: 8px 20px;
+  color: #555;
+  border-radius: 24px;
+  font-size: 14px;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  transition: all 0.2s;
+}
+
+.sol-tag:hover {
+  border-color: #00D4ff;
+  color: #00D4ff;
+  background: #f0f9ff;
 }
 
 .sol-more {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   color: #00D4ff;
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  margin-top: 4px;
+  margin-top: 8px;
   transition: gap 0.2s;
 }
 
 .sol-more:hover {
-  gap: 8px;
+  gap: 10px;
 }
 
 /* 响应式 - iPad */
@@ -310,7 +340,28 @@ onUnmounted(() => {
   }
 
   .sol-text {
-    padding: 28px 24px;
+    padding: 32px 28px;
+  }
+
+  .sol-scene-title {
+    font-size: 28px;
+  }
+
+  .sol-scene-sub {
+    font-size: 14px;
+  }
+
+  .sol-scene-desc {
+    font-size: 14px;
+  }
+
+  .sol-tags {
+    padding: 20px 0;
+  }
+
+  .sol-tag {
+    padding: 6px 16px;
+    font-size: 13px;
   }
 
   /* iPad下恢复padding-top样式 */
@@ -330,13 +381,38 @@ onUnmounted(() => {
 
 /* 响应式 - 手机 */
 @media (max-width: 768px) {
-  .sol-scene-title {
-    font-size: 22px;
+  .sol-text {
+    padding: 24px 20px;
+    gap: 12px;
   }
 
-  .sol-text {
-    padding: 20px 18px;
-    gap: 10px;
+  .sol-scene-title {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .sol-scene-sub {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .sol-scene-desc {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .sol-tags {
+    padding: 16px 0;
+    gap: 8px;
+  }
+
+  .sol-tag {
+    padding: 5px 14px;
+    font-size: 12px;
+  }
+
+  .sol-more {
+    font-size: 14px;
   }
 
   /* 手机下恢复padding-top样式 */
@@ -356,7 +432,7 @@ onUnmounted(() => {
 
 /* 图片容器 - 由 .sol-media .sol-image-container 控制 */
 
-/* 单张图片样式 - 完全填满容器 */
+/* 单张图片样式 - 按原始比例填满容器，不留白 */
 .sol-image {
   position: absolute;
   top: 0;
