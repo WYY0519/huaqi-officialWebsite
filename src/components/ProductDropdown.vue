@@ -76,6 +76,13 @@ const panelStyle = computed(() => {
   color: inherit;
 }
 
+.nav-link:active,
+.col-item:active {
+  color: inherit !important;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
 .nav-link::after {
   content: '';
   position: absolute;
