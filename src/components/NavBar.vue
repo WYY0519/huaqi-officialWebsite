@@ -789,7 +789,7 @@ onUnmounted(() => {
 }
 
 .mobile-nav-submenu.is-open {
-  max-height: 500px;
+  max-height: none;
   opacity: 1;
   padding: 12px 16px;
 }
