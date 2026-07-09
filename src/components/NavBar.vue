@@ -11,7 +11,7 @@
       <nav class="nav-menu" :class="{ open: isMobileMenuOpen }">
         <template v-for="(item, i) in navItems" :key="i">
           <ProductDropdown v-if="item.children" :label="item.label" :href="item.href" :categories="item.children"
-            :is-active="activeSection === item.id" @click="handleNavClick(item.id)"
+            :is-active="activeSection === item.id" :width="item.width" @click="handleNavClick(item.id)"
             @mouseenter="isProductHovered = true" @mouseleave="isProductHovered = false" />
           <router-link v-else :to="item.href" class="nav-link"
             :class="{ active: activeSection === item.id && item.id !== 'home' }" @click="handleNavClick(item.id)">{{
@@ -59,17 +59,17 @@ const navItems = [
   },
   {
     id: 'solutions', label: '行业解决方案', children: [
-      { category: '行业解决方案', items: ['城市消防', '森林消防', '清洗系列', '挂载系列适配', '固定翼系统巡检系列', '系留系列', '科研定制服务'] }
+      { items: ['城市消防', '森林消防', '清洗系列', '挂载系列适配', '固定翼系统巡检系列', '系留系列', '科研定制服务'] }
     ]
   },
   {
-    id: 'support', label: '服务支持', children: [
-      { category: '服务支持', items: ['售后保障', '技术支持', '建议与反馈'] }
+    id: 'support', label: '服务支持', width: '138px', children: [
+      { items: ['售后保障', '技术支持', '建议与反馈'] }
     ]
   },
   {
-    id: 'about', label: '关于我们', children: [
-      { category: '关于我们', items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
+    id: 'about', label: '关于我们', width: '127px', children: [
+      { items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
     ]
   }
 ]
