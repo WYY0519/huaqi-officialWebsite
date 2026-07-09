@@ -11,10 +11,12 @@
       <nav class="nav-menu" :class="{ open: isMobileMenuOpen }">
         <template v-for="(item, i) in navItems" :key="i">
           <ProductDropdown v-if="item.children" :label="item.label" :href="item.href" :categories="item.children"
-            :is-active="activeSection === item.id" :width="item.width" @click="handleNavClick(item.id)"
-            @mouseenter="isProductHovered = true" @mouseleave="isProductHovered = false" />
+            :is-active="hoveredItem ? hoveredItem === item.id : activeSection === item.id" :width="item.width"
+            @click="handleNavClick(item.id)" @mouseenter="isProductHovered = true; hoveredItem = item.id"
+            @mouseleave="isProductHovered = false; hoveredItem = ''" />
           <router-link v-else :to="item.href" class="nav-link"
-            :class="{ active: activeSection === item.id && item.id !== 'home' }" @click="handleNavClick(item.id)">{{
+            :class="{ active: (hoveredItem ? hoveredItem === item.id : activeSection === item.id) && item.id !== 'home' }"
+            @click="handleNavClick(item.id)">{{
               item.label }}</router-link>
         </template>
       </nav>
@@ -65,7 +67,8 @@
         </div>
         <div v-if="openMobileSubmenu === item.id" class="mobile-nav-submenu">
           <div v-for="(category, ci) in item.children" :key="ci" class="mobile-nav-submenu-group">
-            <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{ category.category }}</div>
+            <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{
+              category.category }}</div>
             <div v-for="(subItem, si) in category.items" :key="si" class="mobile-nav-submenu-item">
               <router-link :to="item.href + '?type=' + encodeURIComponent(subItem)" class="mobile-nav-submenu-link"
                 @click="handleNavClick(item.id)">{{ subItem }}</router-link>
@@ -92,11 +95,12 @@ const isScrolled = ref(false)
 const activeSection = ref('')
 const isProductHovered = ref(false)
 const openMobileSubmenu = ref('')
+const hoveredItem = ref('')
 
 const navItems = [
   { id: 'home', label: '首页', href: '/' },
   {
-    id: 'products', label: '产品中心', href: '/products', children: [
+    id: 'products', label: '产品中心', children: [
       { category: '多旋翼飞行平台', items: ['H400', 'H200', 'TF100', 'F140', 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
       { category: '固定翼飞行平台', items: ['WRCQ-32A', 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
       { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '影视照明系留10公斤级', '2公斤级系留'] },
@@ -105,17 +109,17 @@ const navItems = [
     ]
   },
   {
-    id: 'solutions', label: '行业解决方案', href: '/solutions', children: [
+    id: 'solutions', label: '行业解决方案', children: [
       { items: ['城市消防', '森林消防', '清洗系列', '挂载系列适配', '固定翼系统巡检系列', '系留系列', '科研定制服务'] }
     ]
   },
   {
-    id: 'support', label: '服务支持', href: '/support', width: '138px', children: [
-      {  items: ['售后保障', '技术支持', '建议与反馈'] }
+    id: 'support', label: '服务支持', width: '138px', children: [
+      { items: ['售后保障', '技术支持', '建议与反馈'] }
     ]
   },
   {
-    id: 'about', label: '关于我们', href: '/about', width: '127px', children: [
+    id: 'about', label: '关于我们', width: '127px', children: [
       { items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
     ]
   }
