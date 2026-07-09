@@ -105,7 +105,7 @@ const panelStyle = computed(() => {
 .dropdown-grid {
   display: flex;
   justify-content: center;
-  padding: 32px 80px 36px;
+  padding: 28px 0 37px 313px
 }
 
 .dropdown-grid.single-grid {
@@ -137,10 +137,10 @@ const panelStyle = computed(() => {
 .col-item {
   color: #333;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16.5px;
   padding: 6px 0;
-  line-height: 1.8;
-  transition: color 0.2s;
+  /* line-height: 1.8; */
+  /* transition: color 0.2s; */
 }
 
 .col-item:hover {
