@@ -62,10 +62,7 @@ import { companyStats, techCards } from '../../data/homeData'
   background: #f5f8f9;
   border-radius: 12px;
   padding: 88px 0 80px 0px;
-  max-width: 1600px;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .stat-card {
@@ -100,10 +97,7 @@ import { companyStats, techCards } from '../../data/homeData'
   grid-template-columns: repeat(2, 1fr);
   gap: 17px;
   justify-content: center;
-  max-width: 1600px;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .tech-card {
@@ -116,7 +110,7 @@ import { companyStats, techCards } from '../../data/homeData'
   box-shadow: 0 2px 16px rgba(0, 120, 200, 0.07);
   transition: box-shadow 0.3s, transform 0.3s;
   width: 100%;
-  height: 325px;
+  aspect-ratio: 797 / 325;
   box-sizing: border-box;
 }
 
@@ -273,7 +267,6 @@ import { companyStats, techCards } from '../../data/homeData'
 
   .tech-card {
     width: 100%;
-    height: auto;
     min-height: 171px;
   }
 
@@ -337,7 +330,6 @@ import { companyStats, techCards } from '../../data/homeData'
 
   .tech-card {
     width: 100%;
-    height: auto;
     min-height: 128px;
     padding: 15px;
   }

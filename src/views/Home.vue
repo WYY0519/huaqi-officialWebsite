@@ -2,6 +2,8 @@
   <div class="home">
     <!-- 轮播图 -->
     <!-- <HeroBanner /> -->
+    <StatsSection />
+
     <!-- 核心产品解决方案 -->
     <SolutionSection />
     <!-- 数据统计 -->

@@ -7,13 +7,18 @@
       <div class="sol-list">
         <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row" :class="{ reverse: index % 2 !== 0 }">
           <div class="sol-media">
-            <div class="sol-video-box" @mouseenter="startCarousel(index)" @mouseleave="pauseCarousel(index)">
+            <div class="sol-video-box" 
+                 @mouseenter="startCarousel(index)" @mouseleave="pauseCarousel(index)">
               <div class="sol-image-container">
                 <img v-for="(img, imgIndex) in getImages(index)" :key="imgIndex" :src="img"
                   :class="['sol-image', { 'active': currentIndex[index] === imgIndex || (currentIndex[index] === undefined && imgIndex === 0) }]"
                   :alt="item.title + ' - 图片' + (imgIndex + 1)" />
               </div>
-              <div class="sol-play-btn">▶</div>
+              <div class="sol-play-btn" :class="{ 'hidden': isPlaying[index] }">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5.14v14l11-7-11-7z" fill="white" />
+                </svg>
+              </div>
             </div>
           </div>
           <div class="sol-text">
@@ -35,8 +40,8 @@
 import { ref, onUnmounted } from 'vue'
 import { solutionScenes } from '../../data/homeData'
 
-// 使用 Vite 的 import.meta.glob 批量导入图片资源
-const imageModules = import.meta.glob('../../assets/home/**/*.png', { eager: true }) as Record<string, { default: string }>
+// 使用 Vite 的 import.meta.glob 批量导入图片资源（支持png和jpg）
+const imageModules = import.meta.glob('../../assets/home/**/*.{png,jpg}', { eager: true }) as Record<string, { default: string }>
 
 // 根据文件路径获取图片URL
 const getImageUrl = (path: string) => {
@@ -47,47 +52,47 @@ const getImageUrl = (path: string) => {
 // 定义每个解决方案对应的图片路径
 const solutionImageMap: Record<string, string[]> = {
   '城市消防': [
-    getImageUrl('../../assets/home/城市消防/a.png'),
-    getImageUrl('../../assets/home/城市消防/b.png'),
-    getImageUrl('../../assets/home/城市消防/c.png'),
-    getImageUrl('../../assets/home/城市消防/d.png'),
-    getImageUrl('../../assets/home/城市消防/e.png')
+    getImageUrl('../../assets/home/城市消防/a.jpg'),
+    getImageUrl('../../assets/home/城市消防/b.jpg'),
+    getImageUrl('../../assets/home/城市消防/c.jpg'),
+    getImageUrl('../../assets/home/城市消防/d.jpg'),
+    getImageUrl('../../assets/home/城市消防/e.jpg')
   ],
   '森林消防': [
-    getImageUrl('../../assets/home/森林消防/untitled.691.png'),
-    getImageUrl('../../assets/home/森林消防/untitled.692.png'),
-    getImageUrl('../../assets/home/森林消防/untitled.693.png'),
-    getImageUrl('../../assets/home/森林消防/untitled.694.png'),
-    getImageUrl('../../assets/home/森林消防/untitled.695.png')
+    getImageUrl('../../assets/home/森林消防/untitled.691.jpg'),
+    getImageUrl('../../assets/home/森林消防/untitled.692.jpg'),
+    getImageUrl('../../assets/home/森林消防/untitled.693.jpg'),
+    getImageUrl('../../assets/home/森林消防/untitled.694.jpg'),
+    getImageUrl('../../assets/home/森林消防/untitled.695.jpg')
   ],
-  // '挂载系列适配': [
-  //   getImageUrl('../../assets/home/挂载系列适配/a1.png'),
-  //   getImageUrl('../../assets/home/挂载系列适配/a2.png'),
-  //   getImageUrl('../../assets/home/挂载系列适配/a3.png'),
-  //   getImageUrl('../../assets/home/挂载系列适配/a4.png'),
-  //   getImageUrl('../../assets/home/挂载系列适配/a5.png')
-  // ],
-  // '高空清洗': [
-  //   getImageUrl('../../assets/home/清洗系列/无人机替换.png'),
-  //   getImageUrl('../../assets/home/清洗系列/无人机替换1.png'),
-  //   getImageUrl('../../assets/home/清洗系列/无人机替换2.png'),
-  //   getImageUrl('../../assets/home/清洗系列/无人机替换3.png'),
-  //   getImageUrl('../../assets/home/清洗系列/无人机替换4.png')
-  // ],
-  // '光伏清洗': [
-  //   getImageUrl('../../assets/home/系留系列/a1.png'),
-  //   getImageUrl('../../assets/home/系留系列/a2.png'),
-  //   getImageUrl('../../assets/home/系留系列/a3.png'),
-  //   getImageUrl('../../assets/home/系留系列/a4.png'),
-  //   getImageUrl('../../assets/home/系留系列/a5.png')
-  // ],
-  // '科研定制服务': [
-  //   getImageUrl('../../assets/home/固定翼巡检系列/a1.png'),
-  //   getImageUrl('../../assets/home/固定翼巡检系列/a2.png'),
-  //   getImageUrl('../../assets/home/固定翼巡检系列/a3.png'),
-  //   getImageUrl('../../assets/home/固定翼巡检系列/a4.png'),
-  //   getImageUrl('../../assets/home/固定翼巡检系列/a5.png')核心行业解决方案
-  // ]
+  '挂载系列适配': [
+    getImageUrl('../../assets/home/挂载系列适配/a1.jpg'),
+    getImageUrl('../../assets/home/挂载系列适配/a2.jpg'),
+    getImageUrl('../../assets/home/挂载系列适配/a3.jpg'),
+    getImageUrl('../../assets/home/挂载系列适配/a4.jpg'),
+    getImageUrl('../../assets/home/挂载系列适配/a5.jpg')
+  ],
+  '高空清洗': [
+    getImageUrl('../../assets/home/清洗系列/无人机替换.jpg'),
+    getImageUrl('../../assets/home/清洗系列/无人机替换1.jpg'),
+    getImageUrl('../../assets/home/清洗系列/无人机替换2.jpg'),
+    getImageUrl('../../assets/home/清洗系列/无人机替换3.jpg'),
+    getImageUrl('../../assets/home/清洗系列/无人机替换4.jpg')
+  ],
+  '科研定制服务': [
+    getImageUrl('../../assets/home/科研定制服务/a1.jpg'),
+    getImageUrl('../../assets/home/科研定制服务/a2.jpg'),
+    getImageUrl('../../assets/home/科研定制服务/a3.jpg'),
+    getImageUrl('../../assets/home/科研定制服务/a4.jpg'),
+    getImageUrl('../../assets/home/科研定制服务/a5.jpg')
+  ],
+  '光伏清洗': [
+    getImageUrl('../../assets/home/系留系列/a1.jpg'),
+    getImageUrl('../../assets/home/系留系列/a2.jpg'),
+    getImageUrl('../../assets/home/系留系列/a3.jpg'),
+    getImageUrl('../../assets/home/系留系列/a4 拷贝.jpg'),
+    getImageUrl('../../assets/home/系留系列/a5.jpg')
+  ]
 }
 
 // 当前显示的图片索引（每个解决方案项独立）
@@ -95,6 +100,12 @@ const currentIndex = ref<Record<number, number>>({})
 
 // 定时器引用（每个解决方案项独立）
 const timers = ref<Record<number, ReturnType<typeof setInterval>>>({})
+
+// 暂停延迟定时器引用（每个解决方案项独立）
+const pauseTimers = ref<Record<number, ReturnType<typeof setTimeout>>>({})
+
+// 播放状态（每个解决方案项独立）
+const isPlaying = ref<Record<number, boolean>>({})
 
 // 获取解决方案对应的图片数组
 const getImages = (index: number) => {
@@ -104,6 +115,17 @@ const getImages = (index: number) => {
 
 // 开始轮播
 const startCarousel = (index: number) => {
+  // 如果已经在播放，则不重复启动
+  if (isPlaying.value[index]) {
+    return
+  }
+
+  // 清除可能存在的暂停延迟定时器
+  if (pauseTimers.value[index]) {
+    clearTimeout(pauseTimers.value[index])
+    delete pauseTimers.value[index]
+  }
+
   // 初始化当前索引
   if (!(index in currentIndex.value)) {
     currentIndex.value[index] = 0
@@ -114,6 +136,9 @@ const startCarousel = (index: number) => {
     clearInterval(timers.value[index])
   }
 
+  // 设置播放状态
+  isPlaying.value[index] = true
+
   // 创建新的定时器，每2秒切换图片
   timers.value[index] = setInterval(() => {
     const images = getImages(index)
@@ -123,18 +148,31 @@ const startCarousel = (index: number) => {
   }, 2000)
 }
 
-// 暂停轮播
+// 暂停轮播（带延迟，避免快速切换）
 const pauseCarousel = (index: number) => {
-  if (timers.value[index]) {
-    clearInterval(timers.value[index])
-    delete timers.value[index]
+  // 如果已有暂停延迟定时器，先清除
+  if (pauseTimers.value[index]) {
+    clearTimeout(pauseTimers.value[index])
   }
+
+  // 设置延迟暂停（300ms）
+  pauseTimers.value[index] = setTimeout(() => {
+    if (timers.value[index]) {
+      clearInterval(timers.value[index])
+      delete timers.value[index]
+    }
+    isPlaying.value[index] = false
+    delete pauseTimers.value[index]
+  }, 300)
 }
 
 // 组件卸载时清除所有定时器
 onUnmounted(() => {
   Object.values(timers.value).forEach(timer => {
     clearInterval(timer)
+  })
+  Object.values(pauseTimers.value).forEach(timer => {
+    clearTimeout(timer)
   })
 })
 </script>
@@ -181,7 +219,25 @@ onUnmounted(() => {
 .sol-media {
   position: relative;
   overflow: hidden;
-  border-radius: 12px
+  border-radius: 12px;
+  min-height: 100%;
+}
+
+.sol-media .sol-video-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sol-media .sol-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 0;
 }
 
 .sol-text {
@@ -256,6 +312,20 @@ onUnmounted(() => {
   .sol-text {
     padding: 28px 24px;
   }
+
+  /* iPad下恢复padding-top样式 */
+  .sol-media .sol-video-box {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .sol-media .sol-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 62.79%;
+  }
 }
 
 /* 响应式 - 手机 */
@@ -268,25 +338,32 @@ onUnmounted(() => {
     padding: 20px 18px;
     gap: 10px;
   }
+
+  /* 手机下恢复padding-top样式 */
+  .sol-media .sol-video-box {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .sol-media .sol-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 62.79%;
+  }
 }
 
-/* 图片容器 - 固定宽高比 */
-.sol-image-container {
-  width: 100%;
-  position: relative;
-  padding-top: 42%;
-  background: #f5f5f5;
-  overflow: hidden;
-}
+/* 图片容器 - 由 .sol-media .sol-image-container 控制 */
 
-/* 单张图片样式 - 完全展示不裁剪 */
+/* 单张图片样式 - 完全填满容器 */
 .sol-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
@@ -306,44 +383,42 @@ onUnmounted(() => {
 .sol-play-btn {
   position: absolute;
   z-index: 10;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-/* 响应式：iPad */
-@media (max-width: 1024px) {
-  .sol-image-container {
-    padding-top: 45%;
-  }
+.sol-play-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.sol-play-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* 响应式：手机 */
 @media (max-width: 768px) {
-  .sol-image-container {
-    padding-top: 56.25%;
-  }
-
   .sol-play-btn {
-    width: 50px;
-    height: 50px;
-    bottom: 15px;
-    right: 15px;
+    width: 60px;
+    height: 60px;
   }
 }
 
 /* 响应式：小屏手机 */
 @media (max-width: 480px) {
-  .sol-image-container {
-    padding-top: 60%;
-  }
-
   .sol-play-btn {
-    width: 40px;
-    height: 40px;
-    bottom: 10px;
-    right: 10px;
+    width: 50px;
+    height: 50px;
   }
 }
 </style>
