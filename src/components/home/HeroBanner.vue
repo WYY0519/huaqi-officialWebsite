@@ -46,28 +46,30 @@ const carouselControl = inject('carouselControl') as {
   nextSlide: () => void
 }
 
-const prevSlide = () => { 
+const prevSlide = () => {
   currentSlide.value = (currentSlide.value - 1 + totalSlides.value) % totalSlides.value
   carouselControl.carouselIndex.value = currentSlide.value
-  resetAutoplay() 
+  resetAutoplay()
 }
 
-const nextSlide = () => { 
+const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % totalSlides.value
   carouselControl.carouselIndex.value = currentSlide.value
-  resetAutoplay() 
+  resetAutoplay()
 }
 
-const goToSlide = (index: number) => { 
+const goToSlide = (index: number) => {
   currentSlide.value = index
   carouselControl.carouselIndex.value = index
-  resetAutoplay() 
+  resetAutoplay()
 }
 
-const startAutoplay = () => { if (isPaused) return; autoplayTimer = setInterval(() => { 
-  currentSlide.value = (currentSlide.value + 1) % totalSlides.value
-  carouselControl.carouselIndex.value = currentSlide.value
-}, 5000) }
+const startAutoplay = () => {
+  if (isPaused) return; autoplayTimer = setInterval(() => {
+    currentSlide.value = (currentSlide.value + 1) % totalSlides.value
+    carouselControl.carouselIndex.value = currentSlide.value
+  }, 5000)
+}
 const stopAutoplay = () => { if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null } }
 const resetAutoplay = () => { stopAutoplay(); startAutoplay() }
 const pauseAutoplay = () => { isPaused = true; stopAutoplay() }
@@ -81,7 +83,7 @@ watch(() => carouselControl.carouselIndex.value, (newIndex) => {
   }
 })
 
-onMounted(() => { 
+onMounted(() => {
   startAutoplay()
   // 同步初始状态
   carouselControl.carouselIndex.value = currentSlide.value
@@ -169,7 +171,6 @@ onUnmounted(() => { stopAutoplay() })
   color: #fff;
   margin-bottom: 16px;
   line-height: 1.3;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   padding-left: 6%
 }
 
