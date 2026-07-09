@@ -3,12 +3,13 @@
     <router-link :to="href" class="nav-link" :class="{ active: isActive }">
       {{ label }}
     </router-link>
-    <div class="dropdown-panel">
-      <div class="dropdown-grid">
+    <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn }">
+      <div class="dropdown-grid" :class="{ 'single-grid': isSingleColumn }">
         <div v-for="(category, index) in categories" :key="index" class="dropdown-col">
           <div class="col-title">{{ category.category }}</div>
           <div class="col-list">
-            <a v-for="(item, i) in category.items" :key="i" :href="'/products?product=' + item" class="col-item">{{ item
+            <a v-for="(item, i) in category.items" :key="i" :href="href + '?type=' + encodeURIComponent(item)"
+              class="col-item">{{ item
               }}</a>
           </div>
         </div>
@@ -18,17 +19,21 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Category {
   category: string
   items: string[]
 }
 
-defineProps<{
+const props = defineProps<{
   label: string
   href: string
   categories: Category[]
   isActive?: boolean
 }>()
+
+const isSingleColumn = computed(() => props.categories.length === 1)
 </script>
 
 <style scoped>
@@ -81,10 +86,23 @@ defineProps<{
   z-index: 1001;
 }
 
+.dropdown-panel.single-column {
+  position: absolute;
+  width: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+}
+
 .dropdown-grid {
   display: flex;
   justify-content: center;
   padding: 32px 80px 36px;
+}
+
+.dropdown-grid.single-grid {
+  display: block;
+  padding: 20px 24px;
 }
 
 .dropdown-col {

@@ -49,7 +49,7 @@ const isProductHovered = ref(false)
 const navItems = [
   { id: 'home', label: '首页', href: '/' },
   {
-    id: 'products', label: '产品中心', href: '/products', children: [
+    id: 'products', label: '产品中心', children: [
       { category: '多旋翼飞行平台', items: ['H400', 'H200', 'TF100', 'F140', 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
       { category: '固定翼飞行平台', items: ['WRCQ-32A', 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
       { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '影视照明系留10公斤级', '2公斤级系留'] },
@@ -57,9 +57,21 @@ const navItems = [
       { category: '载荷配件', items: ['消防水枪', '消防水桶', '索降器', '灭火弹投抛器', '干粉水基灭火弹', '森林灭火弹', '喊话器', '探照灯'] }
     ]
   },
-  { id: 'solutions', label: '行业解决方案', href: '/solutions' },
-  { id: 'support', label: '服务支持', href: '/support' },
-  { id: 'about', label: '关于我们', href: '/about' }
+  {
+    id: 'solutions', label: '行业解决方案', children: [
+      { category: '行业解决方案', items: ['城市消防', '森林消防', '清洗系列', '挂载系列适配', '固定翼系统巡检系列', '系留系列', '科研定制服务'] }
+    ]
+  },
+  {
+    id: 'support', label: '服务支持', children: [
+      { category: '服务支持', items: ['售后保障', '技术支持', '建议与反馈'] }
+    ]
+  },
+  {
+    id: 'about', label: '关于我们', children: [
+      { category: '关于我们', items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
+    ]
+  }
 ]
 
 const preventScroll = (e: TouchEvent | WheelEvent) => {
@@ -143,7 +155,7 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1003;
   transition: background 0.3s, box-shadow 0.3s;
   font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
 }
@@ -173,7 +185,8 @@ onUnmounted(() => {
   color: #0f1419 !important;
 }
 
-.header.product-hovered :deep(.product-dropdown .nav-link::after) {
+.header.product-hovered :deep(.product-dropdown .nav-link:hover::after),
+.header.product-hovered :deep(.product-dropdown .nav-link.active::after) {
   content: '';
   position: absolute;
   bottom: -38px;
@@ -258,6 +271,7 @@ onUnmounted(() => {
   color: inherit;
 }
 
+.nav-link:hover::after,
 .nav-link.active::after {
   content: '';
   position: absolute;
