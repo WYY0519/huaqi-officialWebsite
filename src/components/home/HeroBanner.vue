@@ -8,20 +8,12 @@
           <h1 class="slide-title" v-html="bannerTitle"></h1>
           <p class="slide-subtitle">{{ bannerSubtitle }}</p>
           <div class="slide-logos">
-            <img class="logo-icon" src="../../assets/home/图标/logo.png" alt="华启天成" />
-            <img class="logo-icon" src="../../assets/home/图标/logo.png" alt="华启天成" />
+            <img class="logo-icon" @click="prevSlide" src="../../assets/home/图标/左.png" alt="华启天成" />
+            <img class="logo-icon" @click="nextSlide" src="../../assets/home/图标/右.png" alt="华启天成" />
           </div>
           <a :href="bannerLink" class="hero-btn">{{ bannerBtnText }}</a>
         </div>
       </div>
-      <!-- <button class="banner-arrow banner-arrow-left" @click="prevSlide"><svg width="24" height="24" viewBox="0 0 24 24"
-          fill="none">
-          <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg></button>
-      <button class="banner-arrow banner-arrow-right" @click="nextSlide"><svg width="24" height="24" viewBox="0 0 24 24"
-          fill="none">
-          <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg></button> -->
     </div>
     <div class="swiper-pagination"><span v-for="(slide, index) in slides" :key="index" class="pagination-dot"
         :class="{ active: currentSlide === index }" @click="goToSlide(index)"></span></div>
@@ -29,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, inject, watch } from 'vue'
 
 const slides = ref([
   { bgImage: new URL('../../assets/home/轮播图/消防车.png', import.meta.url).href },
@@ -46,16 +38,55 @@ const totalSlides = computed(() => slides.value.length)
 let autoplayTimer: ReturnType<typeof setInterval> | null = null
 let isPaused = false
 
-const prevSlide = () => { currentSlide.value = (currentSlide.value - 1 + totalSlides.value) % totalSlides.value; resetAutoplay() }
-const nextSlide = () => { currentSlide.value = (currentSlide.value + 1) % totalSlides.value; resetAutoplay() }
-const goToSlide = (index: number) => { currentSlide.value = index; resetAutoplay() }
-const startAutoplay = () => { if (isPaused) return; autoplayTimer = setInterval(() => { currentSlide.value = (currentSlide.value + 1) % totalSlides.value }, 5000) }
+// 注入轮播图控制方法
+const carouselControl = inject('carouselControl') as {
+  carouselIndex: { value: number }
+  totalSlides: { value: number }
+  prevSlide: () => void
+  nextSlide: () => void
+}
+
+const prevSlide = () => { 
+  currentSlide.value = (currentSlide.value - 1 + totalSlides.value) % totalSlides.value
+  carouselControl.carouselIndex.value = currentSlide.value
+  resetAutoplay() 
+}
+
+const nextSlide = () => { 
+  currentSlide.value = (currentSlide.value + 1) % totalSlides.value
+  carouselControl.carouselIndex.value = currentSlide.value
+  resetAutoplay() 
+}
+
+const goToSlide = (index: number) => { 
+  currentSlide.value = index
+  carouselControl.carouselIndex.value = index
+  resetAutoplay() 
+}
+
+const startAutoplay = () => { if (isPaused) return; autoplayTimer = setInterval(() => { 
+  currentSlide.value = (currentSlide.value + 1) % totalSlides.value
+  carouselControl.carouselIndex.value = currentSlide.value
+}, 5000) }
 const stopAutoplay = () => { if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null } }
 const resetAutoplay = () => { stopAutoplay(); startAutoplay() }
 const pauseAutoplay = () => { isPaused = true; stopAutoplay() }
 const resumeAutoplay = () => { isPaused = false; startAutoplay() }
 
-onMounted(() => { startAutoplay() })
+// 监听外部控制
+watch(() => carouselControl.carouselIndex.value, (newIndex) => {
+  if (newIndex !== currentSlide.value) {
+    currentSlide.value = newIndex
+    resetAutoplay()
+  }
+})
+
+onMounted(() => { 
+  startAutoplay()
+  // 同步初始状态
+  carouselControl.carouselIndex.value = currentSlide.value
+  carouselControl.totalSlides.value = totalSlides.value
+})
 onUnmounted(() => { stopAutoplay() })
 </script>
 
@@ -129,7 +160,6 @@ onUnmounted(() => { stopAutoplay() })
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 32px;
 }
 
 .hero-title,
@@ -301,6 +331,7 @@ onUnmounted(() => { stopAutoplay() })
 
 /* 响应式 - 小屏手机 */
 @media (max-width: 480px) {
+
   .hero-title,
   .slide-title {
     font-size: 22px;
