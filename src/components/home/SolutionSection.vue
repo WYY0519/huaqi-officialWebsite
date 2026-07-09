@@ -179,7 +179,7 @@ onUnmounted(() => {
 <style>
 /* 解决方案区块 - 左右交替布局 */
 .solutions-section {
-  padding: 80px 0;
+  padding: 80px 0 0;
   background: #f4f8fd;
 }
 
@@ -197,7 +197,7 @@ onUnmounted(() => {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 28px;
+  margin-bottom: 109px;
   box-shadow: 0 2px 20px rgba(0, 100, 200, 0.07);
   transition: box-shadow 0.3s;
 }
@@ -256,7 +256,8 @@ onUnmounted(() => {
     position: relative;
     width: 100%;
     height: auto;
-    padding-top: 62.79%; /* 5400/8600 = 0.6279 保持图片原始宽高比 */
+    padding-top: 62.79%;
+    /* 5400/8600 = 0.6279 保持图片原始宽高比 */
   }
 }
 
@@ -462,8 +463,8 @@ onUnmounted(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   display: flex;
