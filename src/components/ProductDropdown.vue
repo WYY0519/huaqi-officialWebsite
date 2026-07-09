@@ -3,7 +3,7 @@
     <router-link :to="href" class="nav-link" :class="{ active: isActive }">
       {{ label }}
     </router-link>
-    <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn }" :style="width ? { width } : { width: '200px' }">
+    <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn }" :style="panelStyle">
       <div class="dropdown-grid" :class="{ 'single-grid': isSingleColumn }">
         <div v-for="(category, index) in categories" :key="index" class="dropdown-col">
           <div class="col-title">{{ category.category }}</div>
@@ -35,6 +35,12 @@ const props = defineProps<{
 }>()
 
 const isSingleColumn = computed(() => props.categories.length === 1)
+
+const panelStyle = computed(() => {
+  if (props.width) return { width: props.width }
+  if (isSingleColumn.value) return { width: '200px' }
+  return {}
+})
 </script>
 
 <style scoped>
