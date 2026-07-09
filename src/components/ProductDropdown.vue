@@ -85,7 +85,7 @@ const panelStyle = computed(() => {
 .dropdown-panel {
   display: none;
   position: fixed;
-  top: 139px;
+  top: 110px;
   left: 0;
   right: 0;
   background: #fff;
@@ -97,7 +97,7 @@ const panelStyle = computed(() => {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 137%;
+  top: 117%;
   border-radius: 8px;
   text-align: center;
 }

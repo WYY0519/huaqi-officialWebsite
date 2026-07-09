@@ -161,9 +161,30 @@ onUnmounted(() => {
 }
 
 .header.scrolled {
-  background: rgba(10, 25, 49, 0.95);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header.scrolled .logo-name {
+  color: #0f1419;
+}
+
+.header.scrolled .logo-icon {
+  filter: invert(1) brightness(0);
+}
+
+.header.scrolled :deep(.nav-link) {
+  color: #0f1419 !important;
+}
+
+.header.scrolled .contact-btn {
+  background: #00D4ff;
+  color: black;
+}
+
+.header.scrolled .mobile-menu-btn span {
+  background: #0f1419;
 }
 
 /* 产品中心悬浮时导航栏变为白色背景 */
@@ -189,7 +210,7 @@ onUnmounted(() => {
 .header.product-hovered :deep(.product-dropdown .nav-link.active::after) {
   content: '';
   position: absolute;
-  bottom: -45px;
+  bottom: -33px;
   left: 0;
   width: 100%;
   height: 1px;
@@ -198,7 +219,7 @@ onUnmounted(() => {
 
 .header.product-hovered .contact-btn {
   background: #00D4ff;
-  color: white;
+  color: black;
 }
 
 .header.product-hovered .mobile-menu-btn span {
@@ -210,7 +231,7 @@ onUnmounted(() => {
 .header-container {
   width: 100%;
   margin: 0 auto;
-  padding: 36px 80px;
+  padding: 22px 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
