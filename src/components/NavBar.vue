@@ -258,6 +258,16 @@ onUnmounted(() => {
   color: inherit;
 }
 
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+}
+
 .header-actions {
   flex-shrink: 0;
 }
