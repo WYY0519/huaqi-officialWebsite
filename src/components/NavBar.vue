@@ -8,7 +8,7 @@
           <span class="logo-name">华启天成</span>
         </div>
       </div>
-      <nav class="nav-menu" :class="{ open: isMobileMenuOpen }">
+      <nav class="nav-menu">
         <template v-for="(item, i) in navItems" :key="i">
           <ProductDropdown v-if="item.children" :label="item.label" :href="item.href" :categories="item.children"
             :is-active="hoveredItem ? hoveredItem === item.id : activeSection === item.id" :width="item.width"
