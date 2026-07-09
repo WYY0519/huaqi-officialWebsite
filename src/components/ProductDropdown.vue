@@ -1,9 +1,9 @@
 <template>
-  <div class="product-dropdown">
+  <div class="product-dropdown" @mouseenter="showPanel = true" @mouseleave="showPanel = false">
     <router-link :to="href" class="nav-link" :class="{ active: isActive }">
       {{ label }}
     </router-link>
-    <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn }" :style="panelStyle">
+    <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn, 'is-visible': showPanel }" :style="panelStyle">
       <div class="dropdown-grid" :class="{ 'single-grid': isSingleColumn }">
         <div v-for="(category, index) in categories" :key="index" class="dropdown-col">
           <div class="col-title">{{ category.category }}</div>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 interface Category {
   category?: string
@@ -33,6 +33,8 @@ const props = defineProps<{
   isActive?: boolean
   width?: string
 }>()
+
+const showPanel = ref(false)
 
 const isSingleColumn = computed(() => props.categories.length === 1)
 
@@ -51,7 +53,9 @@ const panelStyle = computed(() => {
 }
 
 .product-dropdown:hover .dropdown-panel {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .nav-link {
@@ -72,18 +76,23 @@ const panelStyle = computed(() => {
   color: inherit;
 }
 
-.nav-link.active::after {
+.nav-link::after {
   content: '';
   position: absolute;
   bottom: -8px;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: 0;
   height: 2px;
   background: currentColor;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link.active::after {
+  width: 100%;
+  left: 0;
 }
 
 .dropdown-panel {
-  display: none;
   position: fixed;
   top: 110px;
   left: 0;
@@ -91,15 +100,34 @@ const panelStyle = computed(() => {
   background: #fff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-panel.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .dropdown-panel.single-column {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-15px);
   top: 117%;
   border-radius: 8px;
   text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-panel.single-column.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .dropdown-grid {
@@ -118,15 +146,40 @@ const panelStyle = computed(() => {
   font-size: 16.5px;
   flex: 1;
   max-width: 280px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.dropdown-col:nth-child(1) { animation-delay: 0.1s; }
+.dropdown-col:nth-child(2) { animation-delay: 0.15s; }
+.dropdown-col:nth-child(3) { animation-delay: 0.2s; }
+.dropdown-col:nth-child(4) { animation-delay: 0.25s; }
+.dropdown-col:nth-child(5) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .col-title {
   font-size: 15px;
   font-weight: 500;
   color: #666;
-  /* margin-bottom: 16px;
-  padding-bottom: 12px; */
-  /* border-bottom: 1px solid #f0f0f0; */
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: color 0.3s ease;
+}
+
+.col-title:hover {
+  color: #00D4ff;
 }
 
 .col-list {
@@ -139,12 +192,13 @@ const panelStyle = computed(() => {
   text-decoration: none;
   font-size: 16.5px;
   padding: 6px 0;
-  /* line-height: 1.8; */
-  /* transition: color 0.2s; */
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
 }
 
 .col-item:hover {
   color: #00D4ff;
+  transform: translateX(5px);
 }
 
 @media (max-width: 1024px) {

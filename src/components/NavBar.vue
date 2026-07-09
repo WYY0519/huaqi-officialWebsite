@@ -65,7 +65,7 @@
           <span class="mobile-nav-link-text">{{ item.label }}</span>
           <span class="mobile-nav-expand-icon">{{ openMobileSubmenu === item.id ? '×' : '+' }}</span>
         </div>
-        <div v-if="openMobileSubmenu === item.id" class="mobile-nav-submenu">
+        <div :class="{ 'mobile-nav-submenu': true, 'is-open': openMobileSubmenu === item.id }">
           <div v-for="(category, ci) in item.children" :key="ci" class="mobile-nav-submenu-group">
             <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{
               category.category }}</div>
@@ -174,7 +174,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 1003;
-  transition: background 0.3s, box-shadow 0.3s;
+  transition: all 0.3s ease;
   font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
 }
 
@@ -261,6 +261,11 @@ onUnmounted(() => {
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .logo-icon {
@@ -310,15 +315,21 @@ onUnmounted(() => {
   color: inherit;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+.nav-link::after {
   content: '';
   position: absolute;
   bottom: -8px;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  width: 0;
   height: 2px;
   background: currentColor;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+  left: 0;
 }
 
 .header-actions {
@@ -336,13 +347,31 @@ onUnmounted(() => {
   border-radius: 12px;
   cursor: pointer;
   font-size: 12px;
-  transition: background 0.3s, transform 0.3s;
+  transition: all 0.3s ease;
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
 .contact-btn:hover {
   background: #00D4ff;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-btn:hover::before {
+  left: 100%;
 }
 
 .mobile-menu-btn {
@@ -355,6 +384,11 @@ onUnmounted(() => {
   position: relative;
   z-index: 1001;
   padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.1);
 }
 
 .mobile-menu-btn span {
@@ -475,20 +509,25 @@ onUnmounted(() => {
 
 /* 移动端导航菜单 */
 .mobile-nav {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #fff;
+  background: linear-gradient(180deg, #fff 0%, #f8f8f8 100%);
   z-index: 1004;
   flex-direction: column;
   overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .mobile-nav.open {
-  display: flex;
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
 }
 
 .mobile-nav-header {
@@ -496,12 +535,13 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  background: #000;
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
   color: #fff;
   position: sticky;
   top: 0;
   z-index: 10;
   flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .mobile-nav-close {
@@ -513,6 +553,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-close:hover {
+  transform: rotate(90deg);
+  color: #00D4ff;
 }
 
 .mobile-nav-logo {
@@ -524,12 +570,28 @@ onUnmounted(() => {
 .mobile-nav-logo-icon {
   height: 36px;
   object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.mobile-nav-logo-icon:hover {
+  transform: scale(1.1);
 }
 
 .mobile-nav-actions {
   display: flex;
   align-items: center;
   gap: 16px;
+  opacity: 0;
+  animation: fadeIn 0.3s ease 0.2s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .mobile-nav-search {
@@ -541,6 +603,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-search:hover {
+  transform: scale(1.1);
+  color: #00D4ff;
 }
 
 .mobile-nav-shop-btn {
@@ -551,16 +619,47 @@ onUnmounted(() => {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-shop-btn:hover {
+  background: #0052a3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .mobile-nav-list {
   flex: 1;
   padding: 0;
   overflow-y: auto;
+  opacity: 0;
+  animation: fadeIn 0.3s ease 0.1s forwards;
 }
 
 .mobile-nav-item {
   border-bottom: 1px solid #e5e5e5;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.3s ease forwards;
+}
+
+.mobile-nav-item:nth-child(1) { animation-delay: 0.1s; }
+.mobile-nav-item:nth-child(2) { animation-delay: 0.15s; }
+.mobile-nav-item:nth-child(3) { animation-delay: 0.2s; }
+.mobile-nav-item:nth-child(4) { animation-delay: 0.25s; }
+.mobile-nav-item:nth-child(5) { animation-delay: 0.3s; }
+.mobile-nav-item:nth-child(6) { animation-delay: 0.35s; }
+.mobile-nav-item:nth-child(7) { animation-delay: 0.4s; }
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .mobile-nav-link {
@@ -570,6 +669,28 @@ onUnmounted(() => {
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mobile-nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: rgba(0, 212, 255, 0.1);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.mobile-nav-link:hover {
+  color: #00D4ff;
+}
+
+.mobile-nav-link:hover::before {
+  width: 100%;
 }
 
 .mobile-nav-link-row {
@@ -578,6 +699,28 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 18px 20px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mobile-nav-link-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: rgba(0, 212, 255, 0.1);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.mobile-nav-link-row:hover {
+  color: #00D4ff;
+}
+
+.mobile-nav-link-row:hover::before {
+  width: 100%;
 }
 
 .mobile-nav-link-text {
@@ -592,14 +735,31 @@ onUnmounted(() => {
   font-weight: 300;
   width: 24px;
   text-align: center;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.mobile-nav-link-row:hover .mobile-nav-expand-icon {
+  transform: rotate(45deg);
 }
 
 .mobile-nav-submenu {
-  background: #f8f8f8;
+  background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
   padding: 12px 16px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0 16px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 16px;
+}
+
+.mobile-nav-submenu.is-open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 12px 16px;
 }
 
 .mobile-nav-submenu-category {
@@ -610,10 +770,40 @@ onUnmounted(() => {
   grid-column: 1 / -1;
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-submenu-category:hover {
+  color: #00D4ff;
 }
 
 .mobile-nav-submenu-item {
   padding: 4px 0;
+  opacity: 0;
+  transform: translateY(5px);
+  animation: fadeInUp 0.2s ease forwards;
+}
+
+.mobile-nav-submenu-item:nth-child(1) { animation-delay: 0.1s; }
+.mobile-nav-submenu-item:nth-child(2) { animation-delay: 0.12s; }
+.mobile-nav-submenu-item:nth-child(3) { animation-delay: 0.14s; }
+.mobile-nav-submenu-item:nth-child(4) { animation-delay: 0.16s; }
+.mobile-nav-submenu-item:nth-child(5) { animation-delay: 0.18s; }
+.mobile-nav-submenu-item:nth-child(6) { animation-delay: 0.2s; }
+.mobile-nav-submenu-item:nth-child(7) { animation-delay: 0.22s; }
+.mobile-nav-submenu-item:nth-child(8) { animation-delay: 0.24s; }
+.mobile-nav-submenu-item:nth-child(9) { animation-delay: 0.26s; }
+.mobile-nav-submenu-item:nth-child(10) { animation-delay: 0.28s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mobile-nav-submenu-link {
@@ -621,9 +811,27 @@ onUnmounted(() => {
   text-decoration: none;
   font-size: 13px;
   line-height: 1.6;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.mobile-nav-submenu-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #00D4ff;
+  transition: width 0.3s ease;
 }
 
 .mobile-nav-submenu-link:hover {
   color: #00D4ff;
+}
+
+.mobile-nav-submenu-link:hover::before {
+  width: 100%;
 }
 </style>
