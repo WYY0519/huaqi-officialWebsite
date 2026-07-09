@@ -1,12 +1,12 @@
 <template>
-  <section class="stats-section">
+  <section class="stats-section" ref="statsSectionRef">
     <div class="container">
       <p class="section-title">品牌实力与核心技术背书</p>
       <p class="section-line"></p>
       <p class="section-subtitle">覆盖全场景应用需求</p>
       <div class="stats-grid">
         <div class="stat-card" v-for="(stat, index) in companyStats" :key="index">
-          <span class="stat-value">{{ stat.value }}<span class="stat-unit">{{ stat.unit }}</span></span>
+          <span class="stat-value">{{ animatedValues[index] }}<span class="stat-unit">{{ stat.unit }}</span></span>
           <span class="stat-label">{{ stat.label }}</span>
         </div>
       </div>
@@ -28,7 +28,92 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { companyStats, techCards } from '../../data/homeData'
+
+// stats-section 引用
+const statsSectionRef = ref<HTMLElement | null>(null)
+
+// 动画值数组，初始为0
+const animatedValues = ref<number[]>(companyStats.value.map(() => 0))
+
+// 是否已经开始动画
+let hasAnimated = false
+
+// Intersection Observer
+let observer: IntersectionObserver | null = null
+
+// 动画函数：从0到目标数字
+const animateValue = (index: number, target: number, duration: number = 2000) => {
+  const startTime = performance.now()
+  const startValue = 0
+  
+  const updateValue = (currentTime: number) => {
+    const elapsed = currentTime - startTime
+    const progress = Math.min(elapsed / duration, 1)
+    
+    // 使用缓动函数（easeOutExpo）
+    const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
+    
+    const currentValue = Math.floor(startValue + (target - startValue) * easeOutExpo)
+    animatedValues.value[index] = currentValue
+    
+    if (progress < 1) {
+      requestAnimationFrame(updateValue)
+    } else {
+      // 动画结束，确保显示最终值
+      animatedValues.value[index] = target
+    }
+  }
+  
+  requestAnimationFrame(updateValue)
+}
+
+// 开始所有数字动画
+const startAnimation = () => {
+  if (hasAnimated) return
+  hasAnimated = true
+  
+  companyStats.value.forEach((stat, index) => {
+    // 解析目标数字，移除非数字字符
+    const targetStr = stat.value.replace(/[^0-9]/g, '')
+    const target = parseInt(targetStr, 10) || 0
+    
+    // 错开动画开始时间，每个卡片延迟100ms
+    setTimeout(() => {
+      animateValue(index, target, 2000)
+    }, index * 100)
+  })
+}
+
+onMounted(() => {
+  // 创建 Intersection Observer
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startAnimation()
+          // 停止观察
+          if (statsSectionRef.value) {
+            observer?.unobserve(statsSectionRef.value)
+          }
+        }
+      })
+    },
+    {
+      threshold: 0.3, // 当30%元素可见时触发
+    }
+  )
+  
+  // 观察 stats-section
+  if (statsSectionRef.value) {
+    observer.observe(statsSectionRef.value)
+  }
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 </script>
 
 <style>
