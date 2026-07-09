@@ -82,7 +82,6 @@ import { companyStats, techCards } from '../../data/homeData'
 
 .stat-unit {
   font-size: 22px;
-  /* font-weight: 600; */
   color: #6b7077;
 }
 
@@ -103,15 +102,14 @@ import { companyStats, techCards } from '../../data/homeData'
 .tech-card {
   background: #f5f8f9;
   border-radius: 12px;
-  /* padding: 24px; */
   display: flex;
   flex-direction: row;
-  /* gap: 20px; */
   box-shadow: 0 2px 16px rgba(0, 120, 200, 0.07);
   transition: box-shadow 0.3s, transform 0.3s;
   width: 100%;
-  aspect-ratio: 797 / 325;
+  min-height: 325px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .tech-card:hover {
@@ -130,7 +128,7 @@ import { companyStats, techCards } from '../../data/homeData'
   flex-shrink: 0;
   align-self: flex-start;
   overflow: hidden;
-  margin: 51px 59px 0 48px
+  margin: 51px 59px 0 48px;
 }
 
 .tech-icon img {
@@ -143,6 +141,8 @@ import { companyStats, techCards } from '../../data/homeData'
 .tech-card-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .tech-card-body {
@@ -150,7 +150,8 @@ import { companyStats, techCards } from '../../data/homeData'
   flex-direction: column;
   flex: 1;
   min-width: 0;
-  margin: 57px 125px 0 0
+  margin: 57px 40px 0 0;
+  padding-right: 20px;
 }
 
 .tech-card-title {
@@ -163,20 +164,20 @@ import { companyStats, techCards } from '../../data/homeData'
 .tech-card-desc {
   font-size: 21px;
   color: #adb1b5;
-  flex: 1;
+  line-height: 1.5;
 }
 
 .tech-card-tag {
   display: inline-block;
-  margin: 0 29px 26px 0;
+  margin: auto 29px 26px 0;
   padding: 5px 16px;
   background: #def5f9;
   color: #0cd7ff;
   border-radius: 20px;
   font-size: 18.5px;
-  /* font-weight: 600; */
   align-self: flex-end;
   border: 1px solid #b1eefa;
+  white-space: nowrap;
 }
 
 /* 响应式 - 桌面端 1440px */
@@ -209,7 +210,7 @@ import { companyStats, techCards } from '../../data/homeData'
 
   .tech-card {
     width: 100%;
-    height: 240px;
+    min-height: 280px;
   }
 
   .tech-icon {
@@ -220,7 +221,7 @@ import { companyStats, techCards } from '../../data/homeData'
   }
 
   .tech-card-body {
-    margin: 42px 92px 0 0;
+    margin: 42px 30px 0 0;
   }
 
   .tech-card-title {
@@ -267,7 +268,7 @@ import { companyStats, techCards } from '../../data/homeData'
 
   .tech-card {
     width: 100%;
-    min-height: 171px;
+    min-height: 220px;
   }
 
   .tech-icon {
@@ -278,7 +279,7 @@ import { companyStats, techCards } from '../../data/homeData'
   }
 
   .tech-card-body {
-    margin: 30px 66px 0 0;
+    margin: 30px 20px 0 0;
   }
 
   .tech-card-title {
@@ -286,7 +287,7 @@ import { companyStats, techCards } from '../../data/homeData'
   }
 
   .tech-card-desc {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .tech-card-tag {
@@ -325,44 +326,44 @@ import { companyStats, techCards } from '../../data/homeData'
 
   .tech-cards-grid {
     grid-template-columns: 1fr;
-    gap: 7px;
+    gap: 12px;
   }
 
   .tech-card {
     width: 100%;
-    min-height: 128px;
-    padding: 15px;
+    min-height: 140px;
+    padding: 16px;
   }
 
   .tech-icon {
-    width: 46px;
-    height: 49px;
-    min-width: 46px;
-    margin: 15px 15px 0 15px;
+    width: 50px;
+    height: 53px;
+    min-width: 50px;
+    margin: 0 16px 0 0;
   }
 
   .tech-card-content {
-    margin: 10px 10px 0 0;
+    flex: 1;
   }
 
   .tech-card-body {
-    margin: 10px 10px 0 0;
+    margin: 0;
   }
 
   .tech-card-title {
-    font-size: 12px;
-    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 6px;
   }
 
   .tech-card-desc {
-    font-size: 8px;
+    font-size: 11px;
     line-height: 1.5;
   }
 
   .tech-card-tag {
-    font-size: 7px;
-    padding: 3px 10px;
-    margin: 0 10px 10px 0;
+    font-size: 9px;
+    padding: 4px 12px;
+    margin: auto 0 0 0;
   }
 }
 
@@ -396,33 +397,32 @@ import { companyStats, techCards } from '../../data/homeData'
   }
 
   .tech-cards-grid {
-    gap: 5px;
+    gap: 8px;
   }
 
   .tech-card {
-    min-height: 100px;
+    min-height: 120px;
     padding: 12px;
   }
 
   .tech-icon {
-    width: 35px;
-    height: 37px;
-    min-width: 35px;
-    margin: 12px 12px 0 12px;
+    width: 40px;
+    height: 43px;
+    min-width: 40px;
+    margin: 0 12px 0 0;
   }
 
   .tech-card-title {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .tech-card-desc {
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .tech-card-tag {
-    font-size: 6px;
-    padding: 2px 8px;
-    margin: 0 8px 8px 0;
+    font-size: 8px;
+    padding: 3px 10px;
   }
 }
 
@@ -450,29 +450,28 @@ import { companyStats, techCards } from '../../data/homeData'
   }
 
   .tech-card {
-    min-height: 85px;
+    min-height: 100px;
     padding: 10px;
   }
 
   .tech-icon {
-    width: 30px;
-    height: 32px;
-    min-width: 30px;
-    margin: 10px 10px 0 10px;
+    width: 35px;
+    height: 38px;
+    min-width: 35px;
+    margin: 0 10px 0 0;
   }
 
   .tech-card-title {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .tech-card-desc {
-    font-size: 6px;
+    font-size: 8px;
   }
 
   .tech-card-tag {
-    font-size: 5px;
-    padding: 2px 6px;
-    margin: 0 6px 6px 0;
+    font-size: 7px;
+    padding: 2px 8px;
   }
 }
 </style>
