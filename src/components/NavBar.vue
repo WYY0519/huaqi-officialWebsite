@@ -1,5 +1,6 @@
 <template>
-  <header class="header" :class="{ scrolled: isScrolled, 'menu-open': isMobileMenuOpen }">
+  <header class="header"
+    :class="{ scrolled: isScrolled, 'menu-open': isMobileMenuOpen, 'product-hovered': isProductHovered }">
     <div class="header-container">
       <div class="logo">
         <img class="logo-icon" src="../assets/home/图标/logo.png" alt="华启天成" />
@@ -8,20 +9,21 @@
         </div>
       </div>
       <nav class="nav-menu" :class="{ open: isMobileMenuOpen }">
-        <router-link
-          v-for="(item, i) in navItems"
-          :key="i"
-          :to="item.href"
-          class="nav-link"
-          :class="{ active: activeSection === item.id }"
-          @click="handleNavClick(item.id)"
-        >{{ item.label }}</router-link>
+        <template v-for="(item, i) in navItems" :key="i">
+          <ProductDropdown v-if="item.children" :label="item.label" :href="item.href" :categories="item.children"
+            :is-active="activeSection === item.id" @click="handleNavClick(item.id)"
+            @mouseenter="isProductHovered = true" @mouseleave="isProductHovered = false" />
+          <router-link v-else :to="item.href" class="nav-link"
+            :class="{ active: activeSection === item.id && item.id !== 'home' }" @click="handleNavClick(item.id)">{{
+              item.label }}</router-link>
+        </template>
       </nav>
       <div class="header-actions">
         <a href="/contact" class="contact-btn">
           联系我们
           <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
-            <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
         </a>
       </div>
@@ -35,16 +37,26 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import ProductDropdown from './ProductDropdown.vue'
 
 const router = useRouter()
 
 const isMobileMenuOpen = ref(false)
 const isScrolled = ref(false)
-const activeSection = ref('home')
+const activeSection = ref('')
+const isProductHovered = ref(false)
 
 const navItems = [
   { id: 'home', label: '首页', href: '/' },
-  { id: 'products', label: '产品中心', href: '/products' },
+  {
+    id: 'products', label: '产品中心', href: '/products', children: [
+      { category: '多旋翼飞行平台', items: ['H400', 'H200', 'TF100', 'F140', 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
+      { category: '固定翼飞行平台', items: ['WRCQ-32A', 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
+      { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '影视照明系留10公斤级', '2公斤级系留'] },
+      { category: '无人机消防车', items: ['无人机消防车'] },
+      { category: '载荷配件', items: ['消防水枪', '消防水桶', '索降器', '灭火弹投抛器', '干粉水基灭火弹', '森林灭火弹', '喊话器', '探照灯'] }
+    ]
+  },
   { id: 'solutions', label: '行业解决方案', href: '/solutions' },
   { id: 'support', label: '服务支持', href: '/support' },
   { id: 'about', label: '关于我们', href: '/about' }
@@ -137,39 +149,55 @@ onUnmounted(() => {
 }
 
 .header.scrolled {
+  background: rgba(10, 25, 49, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 产品中心悬浮时导航栏变为白色背景 */
+.header.product-hovered {
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
-.header.scrolled .logo-name,
-.header.scrolled .logo-sub,
-.header.scrolled .nav-link {
+.header.product-hovered .logo-name {
   color: #0f1419;
 }
 
-.header.scrolled .logo-icon {
+.header.product-hovered .logo-icon {
   filter: invert(1) brightness(0);
 }
 
-.header.scrolled .nav-link:hover,
-.header.scrolled .nav-link.active {
-  color: #00D4ff;
+.header.product-hovered :deep(.nav-link) {
+  color: #0f1419 !important;
 }
 
-.header.scrolled .contact-btn {
+.header.product-hovered :deep(.product-dropdown .nav-link::after) {
+  content: '';
+  position: absolute;
+  bottom: -38px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #0f1419;
+}
+
+.header.product-hovered .contact-btn {
   background: #00D4ff;
   color: white;
 }
 
-.header.scrolled .mobile-menu-btn span {
+.header.product-hovered .mobile-menu-btn span {
   background: #0f1419;
 }
+
+
 
 .header-container {
   width: 100%;
   margin: 0 auto;
-  padding: 36px 80px 0;
+  padding: 36px 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -227,24 +255,7 @@ onUnmounted(() => {
 
 .nav-link:hover,
 .nav-link.active {
-  color: #fff;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: #00D4ff;
-  transition: width 0.3s, left 0.3s;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
-  left: 0;
+  color: inherit;
 }
 
 .header-actions {
@@ -294,9 +305,17 @@ onUnmounted(() => {
   transform-origin: center;
 }
 
-.mobile-menu-btn span:nth-child(1) { top: 3px; }
-.mobile-menu-btn span:nth-child(2) { top: 11px; }
-.mobile-menu-btn span:nth-child(3) { top: 19px; }
+.mobile-menu-btn span:nth-child(1) {
+  top: 3px;
+}
+
+.mobile-menu-btn span:nth-child(2) {
+  top: 11px;
+}
+
+.mobile-menu-btn span:nth-child(3) {
+  top: 19px;
+}
 
 .mobile-menu-btn.open span:nth-child(1) {
   transform: rotate(45deg);
