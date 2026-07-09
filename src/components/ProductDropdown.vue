@@ -22,7 +22,7 @@
 import { computed } from 'vue'
 
 interface Category {
-  category: string
+  category?: string
   items: string[]
 }
 
