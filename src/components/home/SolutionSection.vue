@@ -5,7 +5,7 @@
       <p class="section-line"></p>
       <p class="section-subtitle">五大垂直赛道全场景智能化覆盖</p>
       <div class="sol-list">
-        <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row" :class="{ reverse: index % 2 !== 0 }">
+        <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row" :class="{ reverse: index % 2 !== 0 }" :ref="el => { if (el) solRowRefs[index] = el }">
           <div class="sol-media">
             <div class="sol-video-box" @mouseenter="startCarousel(index)" @mouseleave="pauseCarousel(index)">
               <div class="sol-image-container">
@@ -36,10 +36,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { solutionScenes } from '../../data/homeData'
 
 // 使用 Vite 的 import.meta.glob 批量导入图片资源（支持png和jpg）
+// 滚动动画观察器
+let observer: IntersectionObserver | null = null
+
+// sol-row 元素引用
+const solRowRefs = ref<Record<number, any>>({})
+
 const imageModules = import.meta.glob('../../assets/home/**/*.{png,jpg}', { eager: true }) as Record<string, { default: string }>
 
 // 根据文件路径获取图片URL
@@ -166,6 +172,34 @@ const pauseCarousel = (index: number) => {
 }
 
 // 组件卸载时清除所有定时器
+onMounted(() => {
+  // 创建 Intersection Observer
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const row = entry.target as HTMLElement
+          const media = row.querySelector('.sol-media') as HTMLElement
+          const text = row.querySelector('.sol-text') as HTMLElement
+          if (media) media.classList.add('animate-slide-down')
+          if (text) text.classList.add('animate-slide-up')
+          // 停止观察该元素
+          observer?.unobserve(row)
+        }
+      })
+    },
+    {
+      threshold: 0.2, // 当20%元素可见时触发
+      rootMargin: '0px 0px -50px 0px' // 底部偏移
+    }
+  )
+
+  // 观察所有 sol-row 元素
+  Object.values(solRowRefs.value).forEach((el) => {
+    if (el) observer?.observe(el)
+  })
+})
+
 onUnmounted(() => {
   Object.values(timers.value).forEach(timer => {
     clearInterval(timer)
@@ -173,6 +207,7 @@ onUnmounted(() => {
   Object.values(pauseTimers.value).forEach(timer => {
     clearTimeout(timer)
   })
+  observer?.disconnect()
 })
 </script>
 
@@ -328,6 +363,41 @@ onUnmounted(() => {
 
 .sol-more:hover {
   gap: 10px;
+}
+
+.sol-media, .sol-text {
+  opacity: 0;
+}
+
+/* 滚动动画 */
+.animate-slide-down {
+  animation: slideDown 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 响应式 - iPad */
