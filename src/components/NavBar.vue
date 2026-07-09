@@ -32,6 +32,52 @@
       </button>
     </div>
   </header>
+
+  <!-- 移动端菜单 -->
+  <div class="mobile-nav" :class="{ open: isMobileMenuOpen }">
+    <div class="mobile-nav-header">
+      <button class="mobile-nav-close" @click="toggleMobileMenu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="mobile-nav-logo">
+        <img class="mobile-nav-logo-icon" src="../assets/home/图标/logo.png" alt="华启天成" />
+      </div>
+      <div class="mobile-nav-actions">
+        <button class="mobile-nav-search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+        </button>
+        <a href="#" class="mobile-nav-shop-btn">商城</a>
+      </div>
+    </div>
+    <div class="mobile-nav-list">
+      <div class="mobile-nav-item">
+        <router-link to="/" class="mobile-nav-link" @click="handleNavClick('home')">首页</router-link>
+      </div>
+      <div v-for="(item, i) in navItems.filter(item => item.children)" :key="i" class="mobile-nav-item">
+        <div class="mobile-nav-link-row" @click="toggleMobileSubmenu(item.id)">
+          <span class="mobile-nav-link-text">{{ item.label }}</span>
+          <span class="mobile-nav-expand-icon">{{ openMobileSubmenu === item.id ? '×' : '+' }}</span>
+        </div>
+        <div v-if="openMobileSubmenu === item.id" class="mobile-nav-submenu">
+          <div v-for="(category, ci) in item.children" :key="ci" class="mobile-nav-submenu-group">
+            <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{ category.category }}</div>
+            <div v-for="(subItem, si) in category.items" :key="si" class="mobile-nav-submenu-item">
+              <router-link :to="item.href + '?type=' + encodeURIComponent(subItem)" class="mobile-nav-submenu-link"
+                @click="handleNavClick(item.id)">{{ subItem }}</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav-item">
+        <router-link to="/contact" class="mobile-nav-link" @click="handleNavClick('contact')">联系我们</router-link>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -45,11 +91,12 @@ const isMobileMenuOpen = ref(false)
 const isScrolled = ref(false)
 const activeSection = ref('')
 const isProductHovered = ref(false)
+const openMobileSubmenu = ref('')
 
 const navItems = [
   { id: 'home', label: '首页', href: '/' },
   {
-    id: 'products', label: '产品中心', children: [
+    id: 'products', label: '产品中心', href: '/products', children: [
       { category: '多旋翼飞行平台', items: ['H400', 'H200', 'TF100', 'F140', 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
       { category: '固定翼飞行平台', items: ['WRCQ-32A', 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
       { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '影视照明系留10公斤级', '2公斤级系留'] },
@@ -58,92 +105,59 @@ const navItems = [
     ]
   },
   {
-    id: 'solutions', label: '行业解决方案', children: [
+    id: 'solutions', label: '行业解决方案', href: '/solutions', children: [
       { items: ['城市消防', '森林消防', '清洗系列', '挂载系列适配', '固定翼系统巡检系列', '系留系列', '科研定制服务'] }
     ]
   },
   {
-    id: 'support', label: '服务支持', width: '138px', children: [
-      { items: ['售后保障', '技术支持', '建议与反馈'] }
+    id: 'support', label: '服务支持', href: '/support', width: '138px', children: [
+      {  items: ['售后保障', '技术支持', '建议与反馈'] }
     ]
   },
   {
-    id: 'about', label: '关于我们', width: '127px', children: [
+    id: 'about', label: '关于我们', href: '/about', width: '127px', children: [
       { items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
     ]
   }
 ]
 
-const preventScroll = (e: TouchEvent | WheelEvent) => {
-  e.preventDefault()
+const toggleMobileSubmenu = (id: string) => {
+  openMobileSubmenu.value = openMobileSubmenu.value === id ? '' : id
 }
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
+  openMobileSubmenu.value = ''
   // 禁止/允许页面滚动
   if (isMobileMenuOpen.value) {
     document.body.style.overflow = 'hidden'
-    // 防止iOS弹性滚动
-    document.body.style.position = 'fixed'
-    document.body.style.width = '100%'
-    document.body.style.top = `-${window.scrollY}px`
-    // 防止触摸滚动
-    document.addEventListener('touchmove', preventScroll, { passive: false })
-    // 防止鼠标滚轮滚动
-    document.addEventListener('wheel', preventScroll, { passive: false })
   } else {
-    const scrollY = document.body.style.top
     document.body.style.overflow = ''
-    document.body.style.position = ''
-    document.body.style.width = ''
-    document.body.style.top = ''
-    window.scrollTo(0, parseInt(scrollY || '0') * -1)
-    // 移除滚动阻止
-    document.removeEventListener('touchmove', preventScroll)
-    document.removeEventListener('wheel', preventScroll)
   }
 }
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+  isScrolled.value = scrollTop > 50
 }
 
 const handleNavClick = (id: string) => {
   activeSection.value = id
   isMobileMenuOpen.value = false
-  // 恢复页面滚动
-  const scrollY = document.body.style.top
   document.body.style.overflow = ''
-  document.body.style.position = ''
-  document.body.style.width = ''
-  document.body.style.top = ''
-  window.scrollTo(0, parseInt(scrollY || '0') * -1)
-  // 移除触摸滚动阻止
-  document.removeEventListener('touchmove', preventScroll)
   if (id === 'home') {
     router.push('/')
   }
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', handleScroll, { passive: true })
   handleScroll()
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
-  // 确保组件卸载时恢复滚动
-  const scrollY = document.body.style.top
   document.body.style.overflow = ''
-  document.body.style.position = ''
-  document.body.style.width = ''
-  document.body.style.top = ''
-  if (scrollY) {
-    window.scrollTo(0, parseInt(scrollY || '0') * -1)
-  }
-  // 移除滚动阻止
-  document.removeEventListener('touchmove', preventScroll)
-  document.removeEventListener('wheel', preventScroll)
 })
 </script>
 
@@ -431,7 +445,7 @@ onUnmounted(() => {
   }
 
   .header.menu-open {
-    background: rgba(0, 30, 60, 0.97);
+    z-index: -1;
   }
 }
 
@@ -453,5 +467,159 @@ onUnmounted(() => {
   .logo-sub {
     font-size: 8px;
   }
+}
+
+/* 移动端导航菜单 */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 1004;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.mobile-nav.open {
+  display: flex;
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #000;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.mobile-nav-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-nav-logo-icon {
+  height: 36px;
+  object-fit: contain;
+}
+
+.mobile-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-nav-search {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav-shop-btn {
+  background: #0066cc;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mobile-nav-list {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 18px 20px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.mobile-nav-link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  cursor: pointer;
+}
+
+.mobile-nav-link-text {
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mobile-nav-expand-icon {
+  color: #666;
+  font-size: 22px;
+  font-weight: 300;
+  width: 24px;
+  text-align: center;
+}
+
+.mobile-nav-submenu {
+  background: #f8f8f8;
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 16px;
+}
+
+.mobile-nav-submenu-category {
+  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 0 6px;
+  grid-column: 1 / -1;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 4px;
+}
+
+.mobile-nav-submenu-item {
+  padding: 4px 0;
+}
+
+.mobile-nav-submenu-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mobile-nav-submenu-link:hover {
+  color: #00D4ff;
 }
 </style>
