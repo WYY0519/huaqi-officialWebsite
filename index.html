@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.font.im/css?family=Noto+Sans+SC:100,300,400,500,700,900" />
   </head>
   <body style="overflow-x: hidden; max-width: 100vw;">
+    <!-- 页面加载时立即滚动到顶部，防止刷新时停留在底部 -->
+    <script>history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

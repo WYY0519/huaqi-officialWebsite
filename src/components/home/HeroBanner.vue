@@ -2,14 +2,15 @@
   <section id="home" class="hero-section" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
     <div class="slider-wrapper">
       <div v-for="(slide, index) in slides" :key="index" class="slide" :class="{ active: currentSlide === index }">
+        <!-- 第一张图片直接加载，其他轮播图懒加载 -->
         <div class="slide-bg"><img :src="slide.bgImage" alt="" class="slide-bg-img"></div>
         <div class="slide-overlay"></div>
         <div class="slide-content">
           <h1 class="slide-title" v-html="bannerTitle"></h1>
           <p class="slide-subtitle">{{ bannerSubtitle }}</p>
           <div class="slide-logos">
-            <img class="logo-icon" @click="prevSlide" src="../../assets/home/图标/左.png" alt="华启天成" />
-            <img class="logo-icon" @click="nextSlide" src="../../assets/home/图标/右.png" alt="华启天成" />
+            <img class="logo-icon" @click="prevSlide" :src="prevIcon" alt="华启天成" />
+            <img class="logo-icon" @click="nextSlide" :src="nextIcon" alt="华启天成" />
           </div>
           <a :href="bannerLink" class="hero-btn">{{ bannerBtnText }}</a>
         </div>
@@ -29,6 +30,17 @@ const slides = ref([
   { bgImage: new URL('../../assets/home/轮播图/系留.png', import.meta.url).href },
   { bgImage: new URL('../../assets/home/轮播图/H400.png', import.meta.url).href }
 ])
+
+// 动态添加preload，让浏览器尽早开始下载首屏轮播图
+const preloadLink = document.createElement('link')
+preloadLink.rel = 'preload'
+preloadLink.as = 'image'
+preloadLink.href = slides.value[0].bgImage
+document.head.appendChild(preloadLink)
+
+// 图标路径
+const prevIcon = new URL('../../assets/home/图标/左.png', import.meta.url).href
+const nextIcon = new URL('../../assets/home/图标/右.png', import.meta.url).href
 const bannerTitle = '行业级无人机 <span class="highlight">H400</span>'
 const bannerSubtitle = '重载无界，驰援未来'
 const bannerLink = '/products/h400'
@@ -39,35 +51,43 @@ let autoplayTimer: ReturnType<typeof setInterval> | null = null
 let isPaused = false
 
 // 注入轮播图控制方法
-const carouselControl = inject('carouselControl') as {
+const carouselControl = inject<{
   carouselIndex: { value: number }
   totalSlides: { value: number }
   prevSlide: () => void
   nextSlide: () => void
-}
+}>('carouselControl')
 
 const prevSlide = () => {
   currentSlide.value = (currentSlide.value - 1 + totalSlides.value) % totalSlides.value
-  carouselControl.carouselIndex.value = currentSlide.value
+  if (carouselControl) {
+    carouselControl.carouselIndex.value = currentSlide.value
+  }
   resetAutoplay()
 }
 
 const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % totalSlides.value
-  carouselControl.carouselIndex.value = currentSlide.value
+  if (carouselControl) {
+    carouselControl.carouselIndex.value = currentSlide.value
+  }
   resetAutoplay()
 }
 
 const goToSlide = (index: number) => {
   currentSlide.value = index
-  carouselControl.carouselIndex.value = index
+  if (carouselControl) {
+    carouselControl.carouselIndex.value = index
+  }
   resetAutoplay()
 }
 
 const startAutoplay = () => {
   if (isPaused) return; autoplayTimer = setInterval(() => {
     currentSlide.value = (currentSlide.value + 1) % totalSlides.value
-    carouselControl.carouselIndex.value = currentSlide.value
+    if (carouselControl) {
+      carouselControl.carouselIndex.value = currentSlide.value
+    }
   }, 5000)
 }
 const stopAutoplay = () => { if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null } }
@@ -76,8 +96,8 @@ const pauseAutoplay = () => { isPaused = true; stopAutoplay() }
 const resumeAutoplay = () => { isPaused = false; startAutoplay() }
 
 // 监听外部控制
-watch(() => carouselControl.carouselIndex.value, (newIndex) => {
-  if (newIndex !== currentSlide.value) {
+watch(() => carouselControl?.carouselIndex.value, (newIndex) => {
+  if (newIndex !== undefined && newIndex !== currentSlide.value) {
     currentSlide.value = newIndex
     resetAutoplay()
   }
@@ -86,8 +106,10 @@ watch(() => carouselControl.carouselIndex.value, (newIndex) => {
 onMounted(() => {
   startAutoplay()
   // 同步初始状态
-  carouselControl.carouselIndex.value = currentSlide.value
-  carouselControl.totalSlides.value = totalSlides.value
+  if (carouselControl) {
+    carouselControl.carouselIndex.value = currentSlide.value
+    carouselControl.totalSlides.value = totalSlides.value
+  }
 })
 onUnmounted(() => { stopAutoplay() })
 </script>

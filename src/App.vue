@@ -26,9 +26,7 @@ import ChatModal from './components/ChatModal.vue'
 
 // 客服弹窗状态
 const showChatModal = ref(false)
-
 let observer: IntersectionObserver | null = null
-
 onMounted(async () => {
   await nextTick()
 

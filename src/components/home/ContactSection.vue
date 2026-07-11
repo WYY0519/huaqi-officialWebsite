@@ -8,15 +8,15 @@
         <div class="contact-info">
           <div class="contact-features">
             <span class="contact-feature-item">
-              <img src="../../assets/home/图标/i.png" alt="免费咨询">
+              <img :src="consultIcon" alt="免费咨询">
               免费咨询
             </span>
             <span class="contact-feature-item">
-              <img src="../../assets/home/图标/o.png" alt="2h快速响应">
+              <img :src="responseIcon" alt="2h快速响应">
               2h快速响应
             </span>
             <span class="contact-feature-item">
-              <img src="../../assets/home/图标/p.png" alt="保密协议">
+              <img :src="confidentialIcon" alt="保密协议">
               保密协议
             </span>
           </div>
@@ -31,16 +31,16 @@
           <form @submit.prevent="submitForm" class="contact-form">
             <div class="form-row">
               <div class="form-field">
-                <img src="../../assets/home/图标/x.png" alt="您的名字" class="form-field-icon">
+                <img :src="nameIcon" alt="您的名字" class="form-field-icon">
                 <input type="text" placeholder="您的名字" class="form-input" v-model="formData.contact">
               </div>
               <div class="form-field">
-                <img src="../../assets/home/图标/n.png" alt="联系电话" class="form-field-icon">
+                <img :src="phoneIcon" alt="联系电话" class="form-field-icon">
                 <input type="tel" placeholder="联系电话" class="form-input" v-model="formData.phone">
               </div>
             </div>
             <div class="form-field">
-              <img src="../../assets/home/图标/v.png" alt="所属公司" class="form-field-icon">
+              <img :src="companyIcon" alt="所属公司" class="form-field-icon">
               <input type="text" placeholder="所属公司" class="form-input" v-model="formData.company">
             </div>
             <div class="form-field form-field-textarea">
@@ -62,6 +62,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { trustedBrands } from '../../data/homeData'
+
+// 图标路径
+const consultIcon = new URL('../../assets/home/图标/i.png', import.meta.url).href
+const responseIcon = new URL('../../assets/home/图标/o.png', import.meta.url).href
+const confidentialIcon = new URL('../../assets/home/图标/p.png', import.meta.url).href
+const nameIcon = new URL('../../assets/home/图标/x.png', import.meta.url).href
+const phoneIcon = new URL('../../assets/home/图标/n.png', import.meta.url).href
+const companyIcon = new URL('../../assets/home/图标/v.png', import.meta.url).href
 
 const formData = ref({ company: '', contact: '', phone: '', email: '', message: '' })
 const messageLength = computed(() => formData.value.message.length)

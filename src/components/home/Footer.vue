@@ -5,7 +5,7 @@
         <!-- 左侧品牌 -->
         <div class="footer-brand">
           <div class="footer-logo-wrap">
-            <img class="footer-logo-icon" src="../../assets/home/图标/logo.png" alt="华启天成" />
+            <img class="footer-logo-icon" :src="footerLogo" alt="华启天成" />
             <div class="footer-logo-text">
               <span class="footer-brand-name">华启天成</span>
 
@@ -13,13 +13,13 @@
           </div>
           <div class="footer-social-icons">
             <a href="#" class="footer-social-icon" title="微博">
-              <img src="../../assets/home/图标/t.png" alt="微博" />
+              <img :src="weiboIcon" alt="微博" />
             </a>
             <a href="#" class="footer-social-icon" title="抖音">
-              <img src="../../assets/home/图标/y.png" alt="抖音" />
+              <img :src="douyinIcon" alt="抖音" />
             </a>
             <a href="#" class="footer-social-icon" title="微信">
-              <img src="../../assets/home/图标/u.png" alt="微信" />
+              <img :src="wechatIcon" alt="微信" />
             </a>
           </div>
         </div>
@@ -82,7 +82,7 @@
         <!-- 右侧二维码 -->
         <div class="footer-qrcode">
           <div class="footer-qrcode-img">
-            <img src="../../assets/home/图标/二维码.png" alt="二维码" />
+            <img :src="qrcodeIcon" alt="二维码" />
           </div>
           <p class="footer-qrcode-text">扫一扫关注</p>
           <p class="footer-qrcode-text">华启天成公众号</p>
@@ -105,7 +105,12 @@
 </template>
 
 <script setup lang="ts">
-// 页脚组件逻辑（如果需要）
+// 预加载图片路径
+const footerLogo = new URL('../../assets/home/图标/logo.png', import.meta.url).href
+const weiboIcon = new URL('../../assets/home/图标/t.png', import.meta.url).href
+const douyinIcon = new URL('../../assets/home/图标/y.png', import.meta.url).href
+const wechatIcon = new URL('../../assets/home/图标/u.png', import.meta.url).href
+const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta.url).href
 </script>
 
 <style scoped>

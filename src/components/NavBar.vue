@@ -3,7 +3,7 @@
     :class="{ scrolled: isScrolled, 'menu-open': isMobileMenuOpen, 'product-hovered': isProductHovered }">
     <div class="header-container">
       <div class="logo">
-        <img class="logo-icon" src="../assets/home/图标/logo.png" alt="华启天成" />
+        <img class="logo-icon" :src="logoIcon" alt="华启天成" />
         <div class="logo-text-group">
           <span class="logo-name">华启天成</span>
         </div>
@@ -44,7 +44,7 @@
         </svg>
       </button>
       <div class="mobile-nav-logo">
-        <img class="mobile-nav-logo-icon" src="../assets/home/图标/logo.png" alt="华启天成" />
+        <img class="mobile-nav-logo-icon" :src="logoIcon" alt="华启天成" />
       </div>
       <div class="mobile-nav-actions">
         <button class="mobile-nav-search">
@@ -87,6 +87,9 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProductDropdown from './ProductDropdown.vue'
+
+// 图标路径
+const logoIcon = new URL('../assets/home/图标/logo.png', import.meta.url).href
 
 const router = useRouter()
 

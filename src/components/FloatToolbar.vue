@@ -1,18 +1,23 @@
 <template>
   <div class="float-toolbar">
     <a href="tel:400-xxx-xxxx" class="float-btn" title="电话咨询">
-      <img src="../assets/home/图标/n.png" alt="">
+      <img :src="phoneIcon" alt="">
     </a>
     <a href="#" class="float-btn" title="在线客服" @click.prevent="emit('openChat')">
-      <img src="../assets/home/图标/n.png" alt="在线客服">
+      <img :src="chatIcon" alt="在线客服">
     </a>
     <a href="#" class="float-btn" title="公司地址">
-      <img src="../assets/home/图标/n.png" alt="公司地址">
+      <img :src="addressIcon" alt="公司地址">
     </a>
   </div>
 </template>
 
 <script setup lang="ts">
+// 图标路径
+const phoneIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
+const chatIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
+const addressIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
+
 const emit = defineEmits<{
   (e: 'openChat'): void
 }>()
