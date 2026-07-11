@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="swiper-pagination"><span v-for="(slide, index) in slides" :key="index" class="pagination-dot"
+    <div class="swiper-pagination"><span v-for="(_slide, index) in slides" :key="index" class="pagination-dot"
         :class="{ active: currentSlide === index }" @click="goToSlide(index)"></span></div>
   </section>
 </template>
@@ -171,15 +171,14 @@ onUnmounted(() => { stopAutoplay() })
 
 .slide-content {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: end;
   align-items: flex-start;
+  padding-bottom: 120px;
 }
 
 .slide-logos {
@@ -240,7 +239,6 @@ onUnmounted(() => { stopAutoplay() })
   transition: all 0.3s;
   background: transparent;
   margin-left: 6%;
-  margin-bottom: 280px;
 }
 
 .hero-btn:hover {
@@ -302,57 +300,299 @@ onUnmounted(() => { stopAutoplay() })
 }
 
 .pagination-dot.active {
-  background: 00D4ff;
+  background: #00D4ff;
   width: 48px;
 }
 
-/* 响应式 - iPad */
-@media (max-width: 1024px) {
-  .hero-section {
-    height: auto;
+/* ========== 响应式：严格按1950px基准等比例缩放 ========== */
+/* 内容通过 bottom:0 锚定在图片底部，无需margin-bottom定位 */
+
+/* 响应式 - 1600px (比例 1600/1950 ≈ 0.82) */
+@media (max-width: 1600px) {
+  .slide-content {
+    padding-bottom: 102px;
   }
 
   .hero-title,
   .slide-title {
-    font-size: 40px;
+    font-size: 37px;
+    margin-bottom: 19px;
+    letter-spacing: 3px;
+  }
+
+  .slide-line {
+    width: 123px;
+    height: 7px;
+    margin-bottom: 25px;
   }
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 20px;
+    font-size: 26px;
+    margin-bottom: 23px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 20px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+  }
+
+  .swiper-pagination {
+    bottom: 20px;
+  }
+
+  .pagination-dot {
+    width: 26px;
+    height: 3px;
+  }
+
+  .pagination-dot.active {
+    width: 39px;
   }
 }
 
-/* 响应式 - 手机 */
-@media (max-width: 768px) {
-  .hero-section {
-    height: auto;
+/* 响应式 - 1440px (比例 1440/1950 ≈ 0.74) */
+@media (max-width: 1440px) {
+  .slide-content {
+    padding-bottom: 87px;
   }
 
+  .hero-title,
+  .slide-title {
+    font-size: 33px;
+    margin-bottom: 17px;
+    letter-spacing: 3px;
+  }
+
+  .slide-line {
+    width: 111px;
+    height: 6px;
+    margin-bottom: 22px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 24px;
+    margin-bottom: 21px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 18px 27px;
+    font-size: 15px;
+    border-radius: 22px;
+  }
+
+  .swiper-pagination {
+    bottom: 18px;
+  }
+
+  .pagination-dot {
+    width: 24px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 35px;
+  }
+}
+
+/* 响应式 - 1280px (比例 1280/1950 ≈ 0.656) */
+@media (max-width: 1280px) {
   .slide-content {
-    padding: 0 5%;
+    padding-bottom: 110px;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 30px;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+  }
+
+  .slide-line {
+    width: 98px;
+    height: 5px;
+    margin-bottom: 20px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 21px;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 16px 24px;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+
+  .swiper-pagination {
+    bottom: 16px;
+    gap: 7px;
+  }
+
+  .pagination-dot {
+    width: 21px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 31px;
+  }
+}
+
+/* 响应式 - 1100px (比例 1100/1950 ≈ 0.564) */
+@media (max-width: 1100px) {
+  .slide-content {
+    padding-bottom: 100px;
+  }
+
+  .slide-logos img {
+    width: 90px;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 25px;
+    margin-bottom: 13px;
+    letter-spacing: 2px;
+  }
+
+  .slide-line {
+    width: 85px;
+    height: 5px;
+    margin-bottom: 17px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 18px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 14px 20px;
+    font-size: 11px;
+    border-radius: 17px;
+  }
+
+  .swiper-pagination {
+    bottom: 14px;
+    gap: 6px;
+  }
+
+  .pagination-dot {
+    width: 18px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 27px;
+  }
+}
+
+/* 响应式 - 1024px (比例 1024/1950 ≈ 0.525) */
+@media (max-width: 1024px) {
+  .slide-content {
+    padding-bottom: 123px;
+  }
+
+  .slide-logos img {
+    width: 70px;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .slide-line {
+    width: 79px;
+    height: 4px;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 17px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 13px 19px;
+    font-size: 11px;
+    border-radius: 16px;
+  }
+
+  .swiper-pagination {
+    bottom: 13px;
+    gap: 5px;
+  }
+
+  .pagination-dot {
+    width: 17px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 25px;
+  }
+}
+
+/* 响应式 - 768px (比例 768/1950 ≈ 0.394) */
+@media (max-width: 768px) {
+  .slide-content {
+    padding-bottom: 127px;
     align-items: flex-start;
   }
 
   .hero-title,
   .slide-title {
-    font-size: 26px;
-    line-height: 1.4;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 9px;
+    letter-spacing: 2px;
+  }
+
+  .slide-line {
+    width: 59px;
+    height: 3px;
+    margin-bottom: 12px;
   }
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 11px;
     letter-spacing: 1px;
-    margin-bottom: 24px;
   }
 
   .hero-btn {
-    padding: 10px 28px;
-    font-size: 14px;
-    border-radius: 24px;
-    align-self: flex-start;
+    padding: 10px 14px;
+    font-size: 8px;
+    border-radius: 12px;
+  }
+
+  .swiper-pagination {
+    bottom: 10px;
+    gap: 4px;
+  }
+
+  .pagination-dot {
+    width: 13px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 19px;
   }
 
   .banner-arrow {
@@ -364,12 +604,50 @@ onUnmounted(() => { stopAutoplay() })
   }
 }
 
-/* 响应式 - 小屏手机 */
+/* 响应式 - 480px (比例 480/1950 ≈ 0.246) */
 @media (max-width: 480px) {
+  .slide-content {
+    padding-bottom: 80px;
+  }
 
   .hero-title,
   .slide-title {
-    font-size: 22px;
+    font-size: 11px;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .slide-line {
+    width: 37px;
+    height: 2px;
+    margin-bottom: 7px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 8px;
+    margin-bottom: 7px;
+    letter-spacing: 1px;
+  }
+
+  .hero-btn {
+    padding: 6px 9px;
+    font-size: 5px;
+    border-radius: 7px;
+  }
+
+  .swiper-pagination {
+    bottom: 6px;
+    gap: 2px;
+  }
+
+  .pagination-dot {
+    width: 8px;
+    height: 1px;
+  }
+
+  .pagination-dot.active {
+    width: 12px;
   }
 }
 </style>
