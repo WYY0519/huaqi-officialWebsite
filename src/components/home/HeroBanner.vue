@@ -6,15 +6,15 @@
         <div class="slide-bg"><img :src="slide.bgImage" alt="" class="slide-bg-img"></div>
         <div class="slide-overlay"></div>
         <div class="slide-content">
-          <div class="slide-title" v-html="bannerTitle">
+          <div class="slide-title" v-html="slide.title">
           </div>
           <div class="slide-line"> </div>
-          <div class="slide-subtitle">{{ bannerSubtitle }}</div>
+          <div class="slide-subtitle">{{ slide.subtitle }}</div>
           <div class="slide-logos">
             <img class="logo-icon" @click="prevSlide" :src="prevIcon" alt="华启天成" />
             <img class="logo-icon" @click="nextSlide" :src="nextIcon" alt="华启天成" />
           </div>
-          <a :href="bannerLink" class="hero-btn">{{ bannerBtnText }}</a>
+          <a :href="slide.link" class="hero-btn">{{ slide.btnText }}</a>
         </div>
       </div>
     </div>
@@ -27,10 +27,34 @@
 import { ref, computed, onMounted, onUnmounted, inject, watch } from 'vue'
 
 const slides = ref([
-  { bgImage: new URL('../../assets/home/轮播图/消防车.png', import.meta.url).href },
-  { bgImage: new URL('../../assets/home/轮播图/固定翼.png', import.meta.url).href },
-  { bgImage: new URL('../../assets/home/轮播图/系留.png', import.meta.url).href },
-  { bgImage: new URL('../../assets/home/轮播图/H400.png', import.meta.url).href }
+  {
+    bgImage: new URL('../../assets/home/轮播图/消防车.png', import.meta.url).href,
+    title: '行业级无人机 <span class="highlight">消防车</span>',
+    subtitle: '重载无界，驰援未来',
+    link: '/products/fire-truck',
+    btnText: '了解更多'
+  },
+  {
+    bgImage: new URL('../../assets/home/轮播图/固定翼.png', import.meta.url).href,
+    title: '行业级无人机 <span class="highlight">固定翼</span>',
+    subtitle: '重载无界，驰援未来',
+    link: '/products/fixed-wing',
+    btnText: '了解更多'
+  },
+  {
+    bgImage: new URL('../../assets/home/轮播图/系留.png', import.meta.url).href,
+    title: '行业级无人机 <span class="highlight">系留</span>',
+    subtitle: '重载无界，驰援未来',
+    link: '/products/tethered',
+    btnText: '了解更多'
+  },
+  {
+    bgImage: new URL('../../assets/home/轮播图/H400.png', import.meta.url).href,
+    title: '行业级无人机 <span class="highlight">H400</span>',
+    subtitle: '重载无界，驰援未来',
+    link: '/products/h400',
+    btnText: '了解更多'
+  }
 ])
 
 // 动态添加preload，让浏览器尽早开始下载首屏轮播图
@@ -43,10 +67,6 @@ document.head.appendChild(preloadLink)
 // 图标路径
 const prevIcon = new URL('../../assets/home/图标/左.png', import.meta.url).href
 const nextIcon = new URL('../../assets/home/图标/右.png', import.meta.url).href
-const bannerTitle = '行业级无人机 <span class="highlight">H400</span>'
-const bannerSubtitle = '重载无界，驰援未来'
-const bannerLink = '/products/h400'
-const bannerBtnText = '了解更多'
 const currentSlide = ref(3)
 const totalSlides = computed(() => slides.value.length)
 let autoplayTimer: ReturnType<typeof setInterval> | null = null
