@@ -79,7 +79,8 @@ const hotTagStyle = {
 .news-main-image::before {
   content: '';
   display: block;
-  padding-top: 65.74%; /* 612/931 × 100% */
+  padding-top: 65.74%;
+  /* 612/931 × 100% */
 }
 
 .news-main-image img {
@@ -282,6 +283,10 @@ const hotTagStyle = {
   .news-main-title {
     font-size: 18px;
     margin-bottom: 12px;
+  }
+
+  .news-section {
+    padding: 30px 10px;
   }
 
   .news-main-excerpt {

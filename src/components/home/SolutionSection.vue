@@ -5,7 +5,8 @@
       <p class="section-line"></p>
       <p class="section-subtitle">五大垂直赛道全场景智能化覆盖</p>
       <div class="sol-list">
-        <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row" :class="{ reverse: index % 2 !== 0 }" :ref="el => { if (el) solRowRefs[index] = el }">
+        <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row" :class="{ reverse: index % 2 !== 0 }"
+          :ref="el => { if (el) solRowRefs[index] = el }">
           <div class="sol-media">
             <div class="sol-video-box" @mouseenter="startCarousel(index)" @mouseleave="pauseCarousel(index)">
               <div class="sol-image-container">
@@ -365,7 +366,8 @@ onUnmounted(() => {
   gap: 10px;
 }
 
-.sol-media, .sol-text {
+.sol-media,
+.sol-text {
   opacity: 0;
 }
 
@@ -383,6 +385,7 @@ onUnmounted(() => {
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -394,6 +397,7 @@ onUnmounted(() => {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -566,6 +570,14 @@ onUnmounted(() => {
   .sol-play-btn {
     width: 50px;
     height: 50px;
+  }
+
+  .solutions-section {
+    padding: 30px 10px;
+  }
+
+  .sol-row {
+    margin-bottom: 40px;
   }
 }
 </style>

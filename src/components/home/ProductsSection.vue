@@ -578,6 +578,10 @@ onUnmounted(() => {
     margin-top: 32px;
   }
 
+  .products-section {
+    padding: 30px 0 30px 10px;
+  }
+
   .product-name {
     font-size: 11px;
   }

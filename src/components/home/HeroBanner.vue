@@ -155,12 +155,19 @@ onUnmounted(() => { stopAutoplay() })
   position: relative;
   width: 100%;
   z-index: 0;
+  overflow: hidden;
 }
 
 .slide-bg-img {
   width: 100%;
   height: auto;
   display: block;
+  transform: scale(1);
+  transition: transform 8s ease-out;
+}
+
+.slide.active .slide-bg-img {
+  transform: scale(1.1);
 }
 
 .slide-overlay {
@@ -185,6 +192,33 @@ onUnmounted(() => { stopAutoplay() })
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+/* 入场动画：从右侧滑入 */
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide.active .slide-title {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.slide.active .slide-line {
+  animation: slideInFromRight 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.slide.active .slide-subtitle {
+  animation: slideInFromRight 0.8s ease-out 0.4s forwards;
+  opacity: 0;
 }
 
 .hero-title,

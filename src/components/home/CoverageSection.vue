@@ -131,6 +131,10 @@ import { coverageItems } from '../../data/homeData'
     gap: 16px;
   }
 
+  .coverage-section {
+    padding: 30px 10px;
+  }
+
   .coverage-item {
     padding: 20px 12px;
     min-height: auto;
