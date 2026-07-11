@@ -6,8 +6,10 @@
         <div class="slide-bg"><img :src="slide.bgImage" alt="" class="slide-bg-img"></div>
         <div class="slide-overlay"></div>
         <div class="slide-content">
-          <h1 class="slide-title" v-html="bannerTitle"></h1>
-          <p class="slide-subtitle">{{ bannerSubtitle }}</p>
+          <div class="slide-title" v-html="bannerTitle">
+          </div>
+          <div class="slide-line"> </div>
+          <div class="slide-subtitle">{{ bannerSubtitle }}</div>
           <div class="slide-logos">
             <img class="logo-icon" @click="prevSlide" :src="prevIcon" alt="华启天成" />
             <img class="logo-icon" @click="nextSlide" :src="nextIcon" alt="华启天成" />
@@ -45,7 +47,7 @@ const bannerTitle = '行业级无人机 <span class="highlight">H400</span>'
 const bannerSubtitle = '重载无界，驰援未来'
 const bannerLink = '/products/h400'
 const bannerBtnText = '了解更多'
-const currentSlide = ref(0)
+const currentSlide = ref(3)
 const totalSlides = computed(() => slides.value.length)
 let autoplayTimer: ReturnType<typeof setInterval> | null = null
 let isPaused = false
@@ -104,7 +106,7 @@ watch(() => carouselControl?.carouselIndex.value, (newIndex) => {
 })
 
 onMounted(() => {
-  startAutoplay()
+  // startAutoplay() // 暂时禁用自动播放
   // 同步初始状态
   if (carouselControl) {
     carouselControl.carouselIndex.value = currentSlide.value
@@ -176,7 +178,7 @@ onUnmounted(() => { stopAutoplay() })
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end;
   align-items: flex-start;
 }
 
@@ -188,47 +190,57 @@ onUnmounted(() => { stopAutoplay() })
 
 .hero-title,
 .slide-title {
-  font-size: 52px;
-  font-weight: 700;
+  font-size: 45px;
+  font-weight: 900;
   color: #fff;
-  margin-bottom: 16px;
-  line-height: 1.3;
-  padding-left: 6%
+  margin-bottom: 23px;
+  line-height: normal;
+  padding-left: 6%;
+  font-family: 'Alibaba PuHuiTi', 'Noto Sans SC', sans-serif;
+  letter-spacing: 4px
 }
 
-:deep(.slide-title) .highlight,
-.slide-content :deep(.highlight),
-.slide-content .highlight {
+
+.slide-title .highlight {
   color: #00D4ff !important;
 }
 
-.slide-content h1 .highlight {
-  color: #00D4ff !important;
+.slide-line {
+  margin-bottom: 30px;
+  margin-left: 6%;
+  width: 150px;
+  background: linear-gradient(270deg, transparent, #00D4ff);
+  height: 8px;
+
 }
 
 .hero-subtitle,
 .slide-subtitle {
-  font-size: 22px;
+  font-size: 32px;
   color: #fff;
   margin-bottom: 28px;
   font-weight: 400;
   letter-spacing: 2px;
-  padding-left: 6%
+  padding-left: 6%;
+  font-family: 'Opposans', sans-serif;
+  letter-spacing: 3px
 }
 
 .hero-btn {
   align-self: unset;
   display: inline-block;
-  padding: 12px 36px;
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  padding: 24px 36px;
+  border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 30px;
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Opposans', sans-serif;
   transition: all 0.3s;
   background: transparent;
-  margin-left: 6%
+  margin-left: 6%;
+  margin-bottom: 280px;
 }
 
 .hero-btn:hover {
