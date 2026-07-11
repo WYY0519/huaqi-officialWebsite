@@ -356,7 +356,7 @@ onUnmounted(() => { stopAutoplay() })
 /* 响应式 - 1440px (比例 1440/1950 ≈ 0.74) */
 @media (max-width: 1440px) {
   .slide-content {
-    padding-bottom: 87px;
+    padding-bottom: 157px;
   }
 
   .hero-title,
@@ -402,7 +402,7 @@ onUnmounted(() => { stopAutoplay() })
 /* 响应式 - 1280px (比例 1280/1950 ≈ 0.656) */
 @media (max-width: 1280px) {
   .slide-content {
-    padding-bottom: 110px;
+    padding-bottom: 127px;
   }
 
   .hero-title,
@@ -449,7 +449,7 @@ onUnmounted(() => { stopAutoplay() })
 /* 响应式 - 1100px (比例 1100/1950 ≈ 0.564) */
 @media (max-width: 1100px) {
   .slide-content {
-    padding-bottom: 100px;
+    padding-bottom: 111px;
   }
 
   .slide-logos img {
@@ -500,7 +500,7 @@ onUnmounted(() => { stopAutoplay() })
 /* 响应式 - 1024px (比例 1024/1950 ≈ 0.525) */
 @media (max-width: 1024px) {
   .slide-content {
-    padding-bottom: 123px;
+    padding-bottom: 100px;
   }
 
   .slide-logos img {
@@ -545,6 +545,117 @@ onUnmounted(() => { stopAutoplay() })
 
   .pagination-dot.active {
     width: 25px;
+  }
+}
+
+/* 响应式 - 900px 平板竖屏/折叠屏 */
+@media (max-width: 900px) {
+  .slide-content {
+    padding-bottom: 90px;
+  }
+
+  .slide-logos img {
+    width: 60px;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 21px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+
+  .slide-line {
+    width: 70px;
+    height: 4px;
+    margin-bottom: 14px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 15px;
+    margin-bottom: 13px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 11px 17px;
+    font-size: 10px;
+    border-radius: 14px;
+  }
+
+  .swiper-pagination {
+    bottom: 12px;
+    gap: 5px;
+  }
+
+  .pagination-dot {
+    width: 15px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 22px;
+  }
+}
+
+/* 响应式 - 800px 平板竖屏/大屏手机 */
+@media (max-width: 800px) {
+  .slide-content {
+    padding-bottom: 120px;
+    align-items: flex-start;
+  }
+
+  .slide-logos img {
+    width: 50px;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 19px;
+    margin-bottom: 9px;
+    letter-spacing: 2px;
+  }
+
+  .slide-line {
+    width: 63px;
+    height: 3px;
+    margin-bottom: 13px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 14px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .hero-btn {
+    padding: 10px 15px;
+    font-size: 9px;
+    border-radius: 13px;
+  }
+
+  .swiper-pagination {
+    bottom: 11px;
+    gap: 4px;
+  }
+
+  .pagination-dot {
+    width: 14px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 20px;
+  }
+
+  .banner-arrow {
+    display: none;
+  }
+
+  .slide-logos {
+    display: none;
   }
 }
 
@@ -604,10 +715,66 @@ onUnmounted(() => { stopAutoplay() })
   }
 }
 
+/* 响应式 - 640px 标准手机大屏 */
+@media (max-width: 640px) {
+  .slide-content {
+    padding-bottom: 80px;
+    align-items: flex-start;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 15px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .slide-line {
+    width: 48px;
+    height: 3px;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 11px;
+    margin-bottom: 9px;
+    letter-spacing: 1px;
+  }
+
+  .hero-btn {
+    padding: 8px 12px;
+    font-size: 7px;
+    border-radius: 10px;
+  }
+
+  .swiper-pagination {
+    bottom: 8px;
+    gap: 3px;
+  }
+
+  .pagination-dot {
+    width: 11px;
+    height: 2px;
+  }
+
+  .pagination-dot.active {
+    width: 16px;
+  }
+
+  .banner-arrow {
+    display: none;
+  }
+
+  .slide-logos {
+    display: none;
+  }
+}
+
 /* 响应式 - 480px (比例 480/1950 ≈ 0.246) */
 @media (max-width: 480px) {
   .slide-content {
-    padding-bottom: 80px;
+    padding-bottom: 50px;
   }
 
   .hero-title,
@@ -648,6 +815,27 @@ onUnmounted(() => { stopAutoplay() })
 
   .pagination-dot.active {
     width: 12px;
+  }
+}
+
+/* 响应式 - 360px 超小屏手机 / iPhone SE /迷你安卓 */
+@media (max-width: 360px) {
+  .slide-content {
+    display: none;
+  }
+
+  .swiper-pagination {
+    bottom: 10px;
+    gap: 1px;
+  }
+
+  .pagination-dot {
+    width: 6px;
+    height: 1px;
+  }
+
+  .pagination-dot.active {
+    width: 9px;
   }
 }
 </style>
