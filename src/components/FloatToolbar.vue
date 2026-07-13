@@ -39,7 +39,7 @@ const emit = defineEmits<{
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.4);
+  background: none;
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -47,9 +47,9 @@ const emit = defineEmits<{
   color: white;
   text-decoration: none;
   transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
   cursor: pointer;
-  border: none;
+    border: 1px solid #252525;
   padding: 0;
 }
 

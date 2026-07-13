@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref } from 'vue'
 import Footer from './components/home/Footer.vue'
 import NavBar from './components/NavBar.vue'
 import FloatToolbar from './components/FloatToolbar.vue'
@@ -26,29 +26,8 @@ import ChatModal from './components/ChatModal.vue'
 
 // 客服弹窗状态
 const showChatModal = ref(false)
-let observer: IntersectionObserver | null = null
-onMounted(async () => {
-  await nextTick()
 
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-        }
-      })
-    },
-    { threshold: 0.1 }
-  )
-
-  document.querySelectorAll('.solution-card, .product-card, .news-card, .coverage-item').forEach(el => {
-    observer?.observe(el)
-  })
-})
-
-onUnmounted(() => {
-  observer?.disconnect()
-})
+// ✅ 原来的 IntersectionObserver / onMounted / onUnmounted / nextTick 已全部移到 Home.vue
 </script>
 
 <style>
@@ -97,6 +76,8 @@ body {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.3s;
+  /* ✅ 兜底：3秒后强制显示，防止 observer 失效导致内容永久空白 */
+  animation: safeShow 0s linear 3s forwards;
 }
 
 .solution-card.visible,
@@ -104,6 +85,14 @@ body {
 .news-card.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* 兜底动画：正常由 observer 加 .visible 显示，此动画仅在 observer 失效时兜底 */
+@keyframes safeShow {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* coverage-item 不做入场隐藏，直接显示 */
@@ -297,21 +286,18 @@ body {
 /* 响应式设计 */
 @media (max-width: 1600px) {
   .container {
-
     padding: 0 100px 0 110px;
   }
 }
 
 @media (max-width: 1400px) {
   .container {
-
     padding: 0 70px 0 80px;
   }
 }
 
 @media (max-width: 1200px) {
   .container {
-
     padding: 0 50px 0 60px;
   }
 }

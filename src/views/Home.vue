@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, ref } from 'vue'
+import { provide, ref, onMounted, onUnmounted, nextTick } from 'vue'
 import HeroBanner from '../components/home/HeroBanner.vue'
 import SolutionSection from '../components/home/SolutionSection.vue'
 import StatsSection from '../components/home/StatsSection.vue'
@@ -46,6 +46,41 @@ provide('carouselControl', {
   totalSlides,
   prevSlide,
   nextSlide
+})
+
+/* ===== 新增：滚动入场动画 Observer ===== */
+let observer: IntersectionObserver | null = null
+
+onMounted(async () => {
+  // 等所有子组件 DOM 渲染完成
+  await nextTick()
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+          // 已显示的元素不用再监听，省性能
+          observer?.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.1 }
+  )
+
+  const observeAll = () => {
+    document
+      .querySelectorAll('.solution-card, .product-card, .news-card, .coverage-item')
+      .forEach(el => observer?.observe(el))
+  }
+
+  observeAll()
+  // 兜底：子组件里若有异步数据渲染的卡片，延迟再补 observe 一次
+  setTimeout(observeAll, 300)
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
 })
 </script>
 
