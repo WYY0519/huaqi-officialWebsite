@@ -8,13 +8,13 @@
         <div v-for="(item, index) in solutionScenes" :key="index" class="sol-row" :class="{ reverse: index % 2 !== 0 }"
           :ref="el => { if (el) solRowRefs[index] = el }">
           <div class="sol-media">
-            <div class="sol-video-box" @mouseenter="startCarousel(index)" @mouseleave="pauseCarousel(index)">
+            <div class="sol-video-box" @mouseleave="pauseCarousel(index)">
               <div class="sol-image-container">
                 <img v-for="(img, imgIndex) in getImages(index)" :key="imgIndex" :src="img"
                   :class="['sol-image', { 'active': currentIndex[index] === imgIndex || (currentIndex[index] === undefined && imgIndex === 0) }]"
                   :alt="item.title + ' - 图片' + (imgIndex + 1)" />
               </div>
-              <div class="sol-play-btn" :class="{ 'hidden': isPlaying[index] }">
+              <div class="sol-play-btn" :class="{ 'hidden': isPlaying[index] }" @mouseenter="startCarousel(index)">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                   <path d="M8 5.14v14l11-7-11-7z" fill="white" />
                 </svg>
