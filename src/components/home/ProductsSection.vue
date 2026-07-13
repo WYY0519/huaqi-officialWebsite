@@ -579,7 +579,7 @@ onUnmounted(() => {
   }
 
   .products-section {
-    padding: 30px 0 30px 10px;
+    /* padding: 30px 0 30px 10px; */
   }
 
   .product-name {

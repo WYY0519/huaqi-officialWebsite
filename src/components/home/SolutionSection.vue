@@ -404,10 +404,17 @@ onUnmounted(() => {
   }
 }
 
+@media (max-width: 1500px) {
+  .sol-row {
+    margin-bottom: 89px;
+  }
+}
+
 /* 响应式 - iPad */
 @media (max-width: 1024px) {
   .sol-row {
     grid-template-columns: 1fr;
+    margin-bottom: 70px;
   }
 
   .sol-row.reverse {

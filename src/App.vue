@@ -295,6 +295,26 @@ body {
 }
 
 /* 响应式设计 */
+@media (max-width: 1600px) {
+  .container {
+
+    padding: 0 100px 0 110px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .container {
+
+    padding: 0 70px 0 80px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+
+    padding: 0 50px 0 60px;
+  }
+}
 
 /* iPad / 平板 (768px ~ 1024px) */
 @media (max-width: 1024px) {
@@ -333,7 +353,11 @@ body {
 /* 小屏手机 (≤480px) */
 @media (max-width: 480px) {
   .container {
-    padding: 0 22px;
+    /* padding: 0 22px; */
+  }
+
+  .section-title {
+    font-size: 22px;
   }
 
   .solutions-grid {

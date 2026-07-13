@@ -360,11 +360,102 @@ onUnmounted(() => { stopAutoplay() })
 
 /* ========== 响应式：严格按1950px基准等比例缩放 ========== */
 /* 内容通过 bottom:0 锚定在图片底部，无需margin-bottom定位 */
+/* 新增：1950px以上超大屏（4K/32寸大屏） 比例>1 */
+@media (min-width: 1951px) {
+  .slide-content {
+    padding-bottom: 340px;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 44px;
+    margin-bottom: 23px;
+    letter-spacing: 3px;
+  }
+
+  .slide-line {
+    width: 148px;
+    height: 9px;
+    margin-bottom: 30px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 32px;
+    margin-bottom: 28px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 24px 36px;
+    font-size: 19px;
+    border-radius: 30px;
+  }
+
+  .swiper-pagination {
+    bottom: 24px;
+  }
+
+  .pagination-dot {
+    width: 32px;
+    height: 4px;
+  }
+
+  .pagination-dot.active {
+    width: 48px;
+  }
+}
+
+/* 新增：1601px ~ 1950px 区间（2K/1080P大屏，你设计稿基准1950）比例0.82~1 */
+@media (min-width: 1601px) and (max-width: 1950px) {
+  .slide-content {
+    padding-bottom: 215px;
+  }
+
+  .hero-title,
+  .slide-title {
+    font-size: 44px;
+    margin-bottom: 23px;
+    letter-spacing: 3px;
+  }
+
+  .slide-line {
+    width: 148px;
+    height: 9px;
+    margin-bottom: 30px;
+  }
+
+  .hero-subtitle,
+  .slide-subtitle {
+    font-size: 32px;
+    margin-bottom: 28px;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 24px 36px;
+    font-size: 19px;
+    border-radius: 30px;
+  }
+
+  .swiper-pagination {
+    bottom: 24px;
+  }
+
+  .pagination-dot {
+    width: 32px;
+    height: 4px;
+  }
+
+  .pagination-dot.active {
+    width: 48px;
+  }
+}
 
 /* 响应式 - 1600px (比例 1600/1950 ≈ 0.82) */
 @media (max-width: 1600px) {
   .slide-content {
-    padding-bottom: 102px;
+    padding-bottom: 176px;
   }
 
   .hero-title,

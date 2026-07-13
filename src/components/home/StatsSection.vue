@@ -47,17 +47,17 @@ let observer: IntersectionObserver | null = null
 const animateValue = (index: number, target: number, duration: number = 2000) => {
   const startTime = performance.now()
   const startValue = 0
-  
+
   const updateValue = (currentTime: number) => {
     const elapsed = currentTime - startTime
     const progress = Math.min(elapsed / duration, 1)
-    
+
     // 使用缓动函数（easeOutExpo）
     const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress)
-    
+
     const currentValue = Math.floor(startValue + (target - startValue) * easeOutExpo)
     animatedValues.value[index] = currentValue
-    
+
     if (progress < 1) {
       requestAnimationFrame(updateValue)
     } else {
@@ -65,7 +65,7 @@ const animateValue = (index: number, target: number, duration: number = 2000) =>
       animatedValues.value[index] = target
     }
   }
-  
+
   requestAnimationFrame(updateValue)
 }
 
@@ -73,12 +73,12 @@ const animateValue = (index: number, target: number, duration: number = 2000) =>
 const startAnimation = () => {
   if (hasAnimated) return
   hasAnimated = true
-  
+
   companyStats.value.forEach((stat, index) => {
     // 解析目标数字，移除非数字字符
     const targetStr = stat.value.replace(/[^0-9]/g, '')
     const target = parseInt(targetStr, 10) || 0
-    
+
     // 错开动画开始时间，每个卡片延迟100ms
     setTimeout(() => {
       animateValue(index, target, 2000)
@@ -104,7 +104,7 @@ onMounted(() => {
       threshold: 0.3, // 当30%元素可见时触发
     }
   )
-  
+
   // 观察 stats-section
   if (statsSectionRef.value) {
     observer.observe(statsSectionRef.value)
@@ -325,7 +325,7 @@ onUnmounted(() => {
 /* 响应式 - iPad Pro 横屏 1024px */
 @media (max-width: 1024px) {
   .stats-section {
-    padding: 37px 0 42px;
+    /* padding: 37px 0 42px; */
   }
 
   .stats-grid {
@@ -383,7 +383,7 @@ onUnmounted(() => {
 /* 响应式 - iPad 竖屏 768px */
 @media (max-width: 768px) {
   .stats-section {
-    padding: 28px 0 32px;
+    /* padding: 28px 0 32px; */
   }
 
   .stats-grid {
@@ -455,7 +455,7 @@ onUnmounted(() => {
 /* 响应式 - 手机 480px */
 @media (max-width: 480px) {
   .stats-section {
-    padding: 20px 0 24px;
+    /* padding: 20px 0 24px; */
   }
 
   .stats-grid {
@@ -514,7 +514,7 @@ onUnmounted(() => {
 /* 响应式 - 小屏手机 375px */
 @media (max-width: 375px) {
   .stats-section {
-    padding: 16px 0 20px;
+    /* padding: 16px 0 20px; */
   }
 
   .stats-grid {

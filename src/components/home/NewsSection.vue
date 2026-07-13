@@ -11,7 +11,7 @@
           </div>
           <div class="news-main-content">
             <div v-if="newsItems[0].isHot" class="news-hot-tag" :style="hotTagStyle">HOT</div>
-            <h2 class="news-main-title">{{ newsItems[0].title }}</h2>
+            <p class="news-main-title">{{ newsItems[0].title }}</p>
             <p class="news-main-excerpt">{{ newsItems[0].excerpt }}</p>
             <a :href="newsItems[0].link" class="news-read-more">阅读更多<span>→</span></a>
           </div>
@@ -281,8 +281,12 @@ const hotTagStyle = {
   }
 
   .news-main-title {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 12px;
+  }
+
+  .news-hot-tag {
+    margin-bottom: 20px;
   }
 
   .news-section {
