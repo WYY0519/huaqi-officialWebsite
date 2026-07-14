@@ -4,7 +4,7 @@
       <p class="section-title">全流程服务保障体系</p>
       <p class="section-line"></p>
       <p class="section-subtitle">覆盖全场景应用需求</p>
-      <div class="coverage-grid">
+      <div class="coverage-grid" ref="coverageGrid">
         <div class="coverage-item" v-for="(item, index) in coverageItems" :key="index">
           <div class="coverage-icon"><img :src="item.icon" :alt="item.label" /></div>
           <h3 class="coverage-label">{{ item.label }}</h3>
@@ -17,7 +17,33 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { coverageItems } from '../../data/homeData'
+
+const coverageGrid = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const items = entry.target.querySelectorAll('.coverage-item')
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('animate-in')
+            }, index * 100)
+          })
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+
+  if (coverageGrid.value) {
+    observer.observe(coverageGrid.value)
+  }
+})
 </script>
 
 <style>
@@ -46,6 +72,23 @@ import { coverageItems } from '../../data/homeData'
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.coverage-item.animate-in {
+  animation: slideUpFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .coverage-item:hover {

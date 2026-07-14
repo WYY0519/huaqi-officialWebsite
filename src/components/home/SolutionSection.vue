@@ -9,7 +9,7 @@
           :ref="el => { if (el) solRowRefs[index] = el }">
           <div class="sol-media">
             <div class="sol-video-box" @mouseleave="pauseCarousel(index)">
-              <div class="sol-image-container">
+              <div class="sol-image-container" :class="index % 2 === 0 ? 'direction-left' : 'direction-right'">
                 <img v-for="(img, imgIndex) in getImages(index)" :key="imgIndex" :src="img"
                   :class="['sol-image', { 'active': currentIndex[index] === imgIndex || (currentIndex[index] === undefined && imgIndex === 0) }]"
                   :alt="item.title + ' - 图片' + (imgIndex + 1)" />
@@ -523,12 +523,32 @@ onUnmounted(() => {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+  transition: none;
 }
 
-/* 当前显示的图片 */
+/* 当前显示的图片：立即完全显示，无任何过渡动画 */
 .sol-image.active {
   opacity: 1;
+  transform: translate(0, 0) scale(1);
+  z-index: 2;
+  transition: none;
+}
+
+/* 单数模块(index 0,2,4...): 旧图片往上从左上角消失 */
+.sol-image-container.direction-left .sol-image:not(.active) {
+  opacity: 0;
+  transform: translate(-80%, -150%) scale(0.85);
+  z-index: 1;
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+/* 双数模块(index 1,3,5...): 旧图片往上从右上角消失 */
+.sol-image-container.direction-right .sol-image:not(.active) {
+  opacity: 0;
+  transform: translate(80%, -150%) scale(0.85);
+  z-index: 1;
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
 
 /* 视频盒子 */
