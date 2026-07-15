@@ -118,7 +118,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 .footer {
   background: #272727;
   color: rgba(255, 255, 255, 0.7);
-  padding: 80px 10% 50px;
+  padding-bottom: 50px;
 }
 
 /* 确保所有子元素使用思源黑体CN字体 */
@@ -133,6 +133,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   align-items: start;
+  padding: 80px 10% 40px
 }
 
 /* 左侧品牌区 */
@@ -282,11 +283,12 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 中等屏幕 (1200px ~ 1400px) */
 @media (max-width: 1400px) {
   .footer {
-    padding: 70px 8% 40px;
+    padding-bottom: 40px;
   }
 
   .footer-main {
     gap: 40px;
+    padding: 70px 8% 40px
   }
 
   .footer-menu-grid {
@@ -302,11 +304,12 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 较小中等屏幕 (1024px ~ 1200px) */
 @media (max-width: 1200px) {
   .footer {
-    padding: 60px 6% 35px;
+    padding-bottom: 35px;
   }
 
   .footer-main {
     gap: 30px;
+    padding: 60px 6% 35px;
   }
 
   .footer-menu-grid {
@@ -332,13 +335,15 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* iPad / 平板 (768px ~ 1024px) */
 @media (max-width: 1024px) {
   .footer {
-    padding: 60px 5% 30px;
+    padding-bottom: 30px;
   }
 
   .footer-main {
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
+    padding: 60px 5% 30px;
+
   }
 
   .footer-brand {
@@ -379,11 +384,12 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
 @media (max-width: 768px) {
   .footer {
-    padding: 50px 4% 25px;
+    padding-bottom:25px;
   }
 
   .footer-main {
     gap: 30px;
+    padding: 50px 4% 25px;
   }
 
   .footer-menu-grid {
@@ -418,11 +424,12 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 小屏手机 (≤480px) */
 @media (max-width: 480px) {
   .footer {
-    padding: 40px 3% 20px;
+    padding-bottom: 20px;
   }
 
   .footer-main {
     gap: 25px;
+    padding: 40px 3% 20px;
   }
 
   .footer-logo-wrap {
