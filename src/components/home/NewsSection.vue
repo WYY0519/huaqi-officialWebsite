@@ -1,5 +1,5 @@
 <template>
-  <section id="news" class="news-section">
+  <section id="news" class="news-section" ref="newsSection">
     <div class="container">
       <p class="section-title">新闻动态</p>
       <p class="section-line"></p>
@@ -36,12 +36,61 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { newsItems } from '../../data/homeData'
 
 const hotTagBg = new URL('../../assets/home/图标/z.png', import.meta.url).href
 const hotTagStyle = {
   backgroundImage: `url(${hotTagBg})`
 }
+
+const newsSection = ref<HTMLElement | null>(null)
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // 根据元素类型设置不同的延迟
+          const el = entry.target as HTMLElement
+          const delay = el.dataset.aosDelay || '0'
+          el.style.transitionDelay = `${delay}ms`
+          el.classList.add('aos-animate')
+          observer?.unobserve(el)
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+
+  // 观察标题区域
+  const titleEls = document.querySelectorAll('.news-section .section-title, .news-section .section-line, .news-section .section-subtitle')
+  titleEls.forEach((el, index) => {
+    const htmlEl = el as HTMLElement
+    htmlEl.dataset.aosDelay = String(index * 50)
+    observer?.observe(htmlEl)
+  })
+
+  // 观察主卡片
+  const mainCard = document.querySelector('.news-main-card')
+  if (mainCard) {
+    (mainCard as HTMLElement).dataset.aosDelay = '100'
+    observer?.observe(mainCard)
+  }
+
+  // 观察小卡片（带错开延迟）
+  const smallCards = document.querySelectorAll('.news-small-card')
+  smallCards.forEach((card, index) => {
+    const htmlCard = card as HTMLElement
+    htmlCard.dataset.aosDelay = String(150 + index * 50)
+    observer?.observe(htmlCard)
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 </script>
 
 <style>
@@ -64,6 +113,14 @@ const hotTagStyle = {
   border-radius: 16px;
   overflow: hidden;
   width: 100%;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.news-main-card.aos-animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .news-main-image {
@@ -163,11 +220,30 @@ const hotTagStyle = {
 .news-small-card {
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 1s ease-out, transform 1s ease-out, box-shadow 0.3s;
 }
 
-.news-small-card:hover {
-  transform: translateY(-5px);
+.news-small-card.aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 标题区域动画 */
+.news-section .section-title,
+.news-section .section-line,
+.news-section .section-subtitle {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.news-section .section-title.aos-animate,
+.news-section .section-line.aos-animate,
+.news-section .section-subtitle.aos-animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .news-small-image {
