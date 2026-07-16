@@ -127,7 +127,7 @@ watch(() => carouselControl?.carouselIndex.value, (newIndex) => {
 
 onMounted(() => {
   startAutoplay() // 暂时禁用自动播放
-  // 同步初始状态
+  // 同步初始状态 
   if (carouselControl) {
     carouselControl.carouselIndex.value = currentSlide.value
     carouselControl.totalSlides.value = totalSlides.value

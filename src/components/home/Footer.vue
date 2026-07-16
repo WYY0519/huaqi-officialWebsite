@@ -203,16 +203,20 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   width: 100%;
 }
 
+.footer-menu-grid .footer-menu-col {
+  white-space: nowrap;
+}
+
 .footer-menu-grid .footer-menu-col:nth-child(1) {
-  padding-right: 132px;
+  padding-right: 5%;
 }
 
 .footer-menu-grid .footer-menu-col:nth-child(2) {
-  padding-right: 135px;
+  padding-right: 5%;
 }
 
 .footer-menu-grid .footer-menu-col:nth-child(3) {
-  padding-right: 129px;
+  padding-right: 5%;
 }
 
 .footer-menu-grid .footer-menu-col:nth-child(4) {
@@ -224,6 +228,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   font-weight: 600;
   color: white;
   margin-bottom: 39px;
+  white-space: nowrap;
 }
 
 .footer-menu-list {
@@ -239,7 +244,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 .footer-menu-list a {
   color: #929598;
   text-decoration: none;
-  /* font-weight: 600; */
+  white-space: nowrap;
   transition: color 0.3s;
 }
 
@@ -295,34 +300,34 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 大中等屏幕 (1400px ~ 1600px) */
 @media (max-width: 1600px) {
   .footer-main {
-    grid-template-columns: 350px 1fr 240px;
-    padding: 100px 10% 60px;
+    grid-template-columns: 320px 1fr 220px;
+    padding: 100px 8% 60px;
   }
-  
+
   .footer-brand {
-    min-width: 350px;
-    max-width: 350px;
+    min-width: 320px;
+    max-width: 320px;
   }
-  
+
   .footer-qrcode {
-    min-width: 240px;
-    max-width: 240px;
+    min-width: 220px;
+    max-width: 220px;
   }
-  
+
   .footer-menu-grid {
     min-width: 0;
   }
-  
+
   .footer-menu-grid .footer-menu-col:nth-child(1) {
-    padding-right: 60px;
+    padding-right: 4%;
   }
-  
+
   .footer-menu-grid .footer-menu-col:nth-child(2) {
-    padding-right: 70px;
+    padding-right: 4%;
   }
-  
+
   .footer-menu-grid .footer-menu-col:nth-child(3) {
-    padding-right: 60px;
+    padding-right: 4%;
   }
 }
 
@@ -333,13 +338,35 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-main {
-    grid-template-columns: 378px 1fr 261px;
-    gap: 40px;
-    padding: 70px 8% 40px;
+    grid-template-columns: 300px 1fr 200px;
+    gap: 20px;
+    padding: 70px 6% 40px;
+  }
+
+  .footer-brand {
+    min-width: 300px;
+    max-width: 300px;
+  }
+
+  .footer-qrcode {
+    min-width: 200px;
+    max-width: 200px;
   }
 
   .footer-menu-grid {
-    gap: 15px;
+    gap: 10px;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(1) {
+    padding-right: 4%;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(2) {
+    padding-right: 4%;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(3) {
+    padding-right: 4%;
   }
 
   .footer-info-bar {
@@ -349,48 +376,16 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 }
 
 /* 较小中等屏幕 (1024px ~ 1200px) */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   .footer {
     padding-bottom: 35px;
   }
 
   .footer-main {
-    grid-template-columns: 378px 1fr 261px;
-    gap: 30px;
-    padding: 60px 6% 35px;
-  }
-
-  .footer-menu-grid {
-    gap: 12px;
-  }
-
-  .footer-menu-title {
-    font-size: 15px;
-    margin-bottom: 30px;
-  }
-
-  .footer-menu-list li {
-    margin-bottom: 20px;
-  }
-
-  .footer-info-bar {
-    gap: 20px;
-    padding: 30px 0;
-    font-size: 12px;
-  }
-}
-
-/* iPad / 平板 (768px ~ 1024px) */
-@media (max-width: 1024px) {
-  .footer {
-    padding-bottom: 30px;
-  }
-
-  .footer-main {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
     text-align: center;
-    padding: 60px 5% 30px;
+    padding: 60px 5% 35px;
   }
 
   .footer-brand {
@@ -407,22 +402,29 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 15px;
     max-width: none;
     margin: 0 auto;
+    text-align: center;
   }
 
-  .footer-menu-grid .footer-menu-col:nth-child(1) {
-    padding-right: 0;
+  .footer-menu-grid .footer-menu-col {
+    white-space: nowrap;
   }
 
-  .footer-menu-grid .footer-menu-col:nth-child(2) {
-    padding-right: 0;
+  .footer-menu-title {
+    font-size: 15px;
+    margin-bottom: 25px;
+    white-space: nowrap;
   }
 
-  .footer-menu-grid .footer-menu-col:nth-child(3) {
-    padding-right: 0;
+  .footer-menu-list li {
+    margin-bottom: 18px;
+  }
+
+  .footer-menu-list a {
+    font-size: 14px;
   }
 
   .footer-qrcode {
@@ -431,38 +433,44 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-info-bar {
-    flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     padding: 30px 0;
+    font-size: 12px;
+  }
+}
+
+/* iPad / 平板 (768px ~ 1024px) */
+@media (max-width: 1024px) {
+  .footer-main {
+    padding: 50px 5% 30px;
   }
 
+  .footer-menu-title {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .footer-menu-list li {
+    margin-bottom: 14px;
+  }
+
+  .footer-menu-list a {
+    font-size: 13px;
+  }
+
+  .footer-info-bar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 25px 0;
+    font-size: 11px;
+  }
 
   .footer-bottom {
-    padding: 30px 0 0;
+    padding: 20px 0 0;
   }
 }
 
-/* 大iPad / 平板 (900px ~ 1024px) */
-@media (max-width: 1024px) and (min-width: 900px) {
-  .footer-menu-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    max-width: none;
-    margin: 0 auto;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(1) {
-    padding-right: 0;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(2) {
-    padding-right: 0;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(3) {
-    padding-right: 0;
-  }
-}
+/* 大iPad / 平板 (900px ~ 1024px) - removed, covered by 1024px query */
 
 @media (max-width: 768px) {
   .footer {
@@ -470,24 +478,30 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-main {
-    gap: 30px;
-    padding: 50px 4% 25px;
+    gap: 25px;
+    padding: 40px 4% 25px;
   }
 
   .footer-menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px 10px;
     max-width: none;
     margin: 0 auto;
+    text-align: center;
   }
 
   .footer-menu-title {
-    font-size: 15px;
-    margin-bottom: 25px;
+    font-size: 14px;
+    margin-bottom: 18px;
+    white-space: nowrap;
   }
 
   .footer-menu-list li {
-    margin-bottom: 18px;
+    margin-bottom: 14px;
+  }
+
+  .footer-menu-list a {
+    font-size: 13px;
   }
 
   .footer-qrcode {
@@ -495,13 +509,13 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-info-bar {
-    padding: 25px 0;
+    padding: 20px 0;
     font-size: 11px;
   }
 
   .footer-bottom {
-    padding: 25px 0 0;
-    font-size: 13px;
+    padding: 20px 0 0;
+    font-size: 12px;
   }
 }
 
@@ -512,8 +526,8 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-main {
-    gap: 25px;
-    padding: 40px 3% 20px;
+    gap: 20px;
+    padding: 30px 3% 20px;
   }
 
   .footer-logo-wrap {
@@ -526,36 +540,38 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
   .footer-menu-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 12px 8px;
     max-width: none;
     margin: 0 auto;
+    text-align: center;
   }
 
   .footer-menu-title {
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    white-space: nowrap;
   }
 
   .footer-menu-list li {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
 
   .footer-menu-list a {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .footer-qrcode-text {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .footer-info-bar {
-    padding: 20px 0;
+    padding: 15px 0;
     font-size: 10px;
   }
 
   .footer-bottom {
-    padding: 20px 0 0;
-    font-size: 12px;
+    padding: 15px 0 0;
+    font-size: 11px;
   }
 }
 </style>
