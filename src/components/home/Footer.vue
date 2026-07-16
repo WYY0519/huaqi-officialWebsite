@@ -30,9 +30,9 @@
             <h4 class="footer-menu-title">产品中心</h4>
             <ul class="footer-menu-list">
               <li><a href="#">多旋翼飞行平台</a></li>
-              <li><a href="#">复合翼飞行平台</a></li>
+              <li><a href="#">固定翼飞行平台</a></li>
               <li><a href="#">系留无人机</a></li>
-              <li><a href="#">智能无人机指挥车</a></li>
+              <li><a href="#">无人机消防车</a></li>
               <li><a href="#">载荷配件</a></li>
             </ul>
           </div>
@@ -61,9 +61,7 @@
           <div class="footer-menu-col">
             <h4 class="footer-menu-title">关于我们</h4>
             <ul class="footer-menu-list">
-              <li><a href="#">关于我们</a></li>
               <li><a href="#">企业简介</a></li>
-              <li><a href="#">发展历程</a></li>
               <li><a href="#">资质荣誉</a></li>
               <li><a href="#">新闻动态</a></li>
               <li><a href="#">加入我们</a></li>
@@ -94,7 +92,6 @@
       <!-- 底部信息栏 -->
       <div class="footer-info-bar">
         <span>服务电话：16680932174（微信同号）</span>
-        <span class="footer-info-divider"></span>
         <span>公司地址:深圳市龙华区观湖街道鹭湖社区观乐路5号多彩科创园B座303</span>
       </div>
 
@@ -120,7 +117,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 .footer {
   background: #272727;
   color: rgba(255, 255, 255, 0.7);
-  padding-bottom: 50px;
+  padding-bottom: 53px;
 }
 
 /* 确保所有子元素使用思源黑体CN字体 */
@@ -131,11 +128,11 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 .footer-main {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 60px;
+  /* gap: 60px; */
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   align-items: start;
-  padding: 80px 10% 40px
+  padding: 121px 13.4% 75px 7%;
 }
 
 /* 左侧品牌区 */
@@ -200,8 +197,10 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 中间链接菜单 */
 .footer-menu-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .footer-menu-title {
@@ -263,12 +262,6 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   font-weight: 600;
   color: #919598;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-info-divider {
-  width: 1px;
-  height: 14px;
-  background: rgba(255, 255, 255, 0.2);
 }
 
 /* 版权信息 */
@@ -360,13 +353,10 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
-  }
-
-  .footer-menu-grid>div:last-child,
-  .footer-menu-grid>div:nth-child(4) {
-    grid-column: span 1;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .footer-info-bar {
@@ -375,18 +365,25 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
     padding: 30px 0;
   }
 
-  .footer-info-divider {
-    display: none;
-  }
 
   .footer-bottom {
     padding: 30px 0 0;
   }
 }
 
+/* 大iPad / 平板 (900px ~ 1024px) */
+@media (max-width: 1024px) and (min-width: 900px) {
+  .footer-menu-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 768px) {
   .footer {
-    padding-bottom:25px;
+    padding-bottom: 25px;
   }
 
   .footer-main {
@@ -397,6 +394,8 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   .footer-menu-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .footer-menu-title {
@@ -445,6 +444,8 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   .footer-menu-grid {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .footer-menu-title {
