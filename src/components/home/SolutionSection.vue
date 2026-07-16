@@ -24,11 +24,18 @@
           <div class="sol-text">
             <p class="sol-scene-title">{{ item.title }}</p>
             <p class="sol-scene-sub">{{ item.sub }}</p>
-            <p class="sol-scene-desc">{{ item.desc }}</p>
+            <div class="sol-scene-desc">
+              <template v-if="Array.isArray(item.desc)">
+                <p v-for="(paragraph, pi) in item.desc" :key="pi" style="margin-bottom: 10px;">{{ paragraph }}</p>
+              </template>
+              <template v-else>
+                <p>{{ item.desc }}</p>
+              </template>
+            </div>
             <div class="sol-tags">
               <span class="sol-tag" v-for="(tag, ti) in item.tags" :key="ti">{{ tag }}</span>
             </div>
-            <a href="#" class="sol-more">了解更多 <span style="margin-left: 15px;">→</span></a>
+            <router-link :to="item.link" class="sol-more">了解更多 <span style="margin-left: 15px;">→</span></router-link>
           </div>
         </div>
       </div>
@@ -78,12 +85,26 @@ const solutionImageMap: Record<string, string[]> = {
     getImageUrl('../../assets/home/挂载系列适配/a4.jpg'),
     getImageUrl('../../assets/home/挂载系列适配/a5.jpg')
   ],
-  '高空清洗': [
+  '清洗系列': [
     getImageUrl('../../assets/home/清洗系列/无人机替换.jpg'),
     getImageUrl('../../assets/home/清洗系列/无人机替换1.jpg'),
     getImageUrl('../../assets/home/清洗系列/无人机替换2.jpg'),
     getImageUrl('../../assets/home/清洗系列/无人机替换3.jpg'),
     getImageUrl('../../assets/home/清洗系列/无人机替换4.jpg')
+  ],
+  '固定翼巡检系列': [
+    getImageUrl('../../assets/home/固定翼巡检系列/a1.jpg'),
+    getImageUrl('../../assets/home/固定翼巡检系列/a2.jpg'),
+    getImageUrl('../../assets/home/固定翼巡检系列/a3.jpg'),
+    getImageUrl('../../assets/home/固定翼巡检系列/a4.jpg'),
+    getImageUrl('../../assets/home/固定翼巡检系列/a5.jpg')
+  ],
+  '系留系列': [
+    getImageUrl('../../assets/home/系留系列/a1.jpg'),
+    getImageUrl('../../assets/home/系留系列/a2.jpg'),
+    getImageUrl('../../assets/home/系留系列/a3.jpg'),
+    getImageUrl('../../assets/home/系留系列/a4 拷贝.jpg'),
+    getImageUrl('../../assets/home/系留系列/a5.jpg')
   ],
   '科研定制服务': [
     getImageUrl('../../assets/home/科研定制服务/a1.jpg'),
@@ -91,13 +112,6 @@ const solutionImageMap: Record<string, string[]> = {
     getImageUrl('../../assets/home/科研定制服务/a3.jpg'),
     getImageUrl('../../assets/home/科研定制服务/a4.jpg'),
     getImageUrl('../../assets/home/科研定制服务/a5.jpg')
-  ],
-  '光伏清洗': [
-    getImageUrl('../../assets/home/系留系列/a1.jpg'),
-    getImageUrl('../../assets/home/系留系列/a2.jpg'),
-    getImageUrl('../../assets/home/系留系列/a3.jpg'),
-    getImageUrl('../../assets/home/系留系列/a4 拷贝.jpg'),
-    getImageUrl('../../assets/home/系留系列/a5.jpg')
   ]
 }
 

@@ -41,19 +41,21 @@
             <ul class="footer-menu-list">
               <li><a href="#">城市消防</a></li>
               <li><a href="#">森林消防</a></li>
-              <li><a href="#">高空清洗</a></li>
-              <li><a href="#">大疆全系挂载适配</a></li>
+              <li><a href="#">清洗系列</a></li>
+              <li><a href="#">挂载系列适配</a></li>
+              <li><a href="#">固定翼巡检系列</a></li>
+              <li><a href="#">系留系列</a></li>
               <li><a href="#">科研定制服务</a></li>
             </ul>
           </div>
           <div class="footer-menu-col">
             <h4 class="footer-menu-title">服务支持</h4>
             <ul class="footer-menu-list">
-              <li><a href="#">定制研发</a></li>
-              <li><a href="#">技术支持</a></li>
-              <li><a href="#">培训认证</a></li>
               <li><a href="#">售后保障</a></li>
-              <li><a href="#">现场演示</a></li>
+              <li><a href="#">技术支持</a></li>
+              <li><a href="#">建议与反馈</a></li>
+              <!-- <li><a href="#">售后保障</a></li>
+              <li><a href="#">现场演示</a></li> -->
             </ul>
           </div>
           <div class="footer-menu-col">
@@ -67,7 +69,7 @@
               <li><a href="#">加入我们</a></li>
             </ul>
           </div>
-          <div class="footer-menu-col">
+          <!-- <div class="footer-menu-col">
             <h4 class="footer-menu-title">服务支持</h4>
             <ul class="footer-menu-list">
               <li><a href="#">产品手册</a></li>
@@ -76,7 +78,7 @@
               <li><a href="#">常见问题</a></li>
               <li><a href="#">下载中心</a></li>
             </ul>
-          </div>
+          </div> -->
         </div>
 
         <!-- 右侧二维码 -->
