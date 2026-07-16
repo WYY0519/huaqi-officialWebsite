@@ -1,5 +1,5 @@
 <template>
-  <section id="solutions" class="solutions-section">
+  <section id="solutions" class="solutions-section" :style="{ backgroundImage: `url(${solutionBg})` }">
     <div class="container">
       <p class="section-title">核心行业解决方案</p>
       <p class="section-line"></p>
@@ -15,9 +15,7 @@
                   :alt="item.title + ' - 图片' + (imgIndex + 1)" />
               </div>
               <div class="sol-play-btn" :class="{ 'hidden': isPlaying[index] }" @mouseenter="startCarousel(index)">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                  <path d="M8 5.14v14l11-7-11-7z" fill="white" />
-                </svg>
+                <img :src="playBtnImg" alt="播放" />
               </div>
             </div>
           </div>
@@ -46,6 +44,12 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { solutionScenes } from '../../data/homeData'
+
+// 背景图片
+const solutionBg = new URL('../../assets/home/图标/解决方案背景.png', import.meta.url).href
+
+// 播放按钮图片
+const playBtnImg = new URL('../../assets/home/图标/69de26edf65928eb909425811569bdd0baee2cc04772-I3z7RP.png', import.meta.url).href
 
 // 使用 Vite 的 import.meta.glob 批量导入图片资源（支持png和jpg）
 // 滚动动画观察器
@@ -230,7 +234,10 @@ onUnmounted(() => {
 /* 解决方案区块 - 左右交替布局 */
 .solutions-section {
   padding: 80px 0 0;
-  background: #f4f8fd;
+  background-color: #f4f8fd;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .sol-list {
@@ -578,9 +585,9 @@ onUnmounted(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 150px;
+  /* width: 150px;
   height: 150px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4); */
   border-radius: 50%;
   display: flex;
   align-items: center;

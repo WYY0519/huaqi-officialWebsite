@@ -16,8 +16,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 // 图标路径
-const phoneIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
-const chatIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
+const phoneIcon = new URL('../assets/home/图标/m.png', import.meta.url).href
+const chatIcon = new URL('../assets/home/图标/l.png', import.meta.url).href
 const addressIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
 
 const emit = defineEmits<{
@@ -74,7 +74,6 @@ onUnmounted(() => {
   transition: all 0.3s;
   /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
   cursor: pointer;
-    border: 1px solid #252525;
   padding: 0;
 }
 

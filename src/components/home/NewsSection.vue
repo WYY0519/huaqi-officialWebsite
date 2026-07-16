@@ -1,5 +1,5 @@
 <template>
-  <section id="news" class="news-section" ref="newsSection">
+  <section id="news" class="news-section" ref="newsSection" :style="{ backgroundImage: `url(${newsBg})` }">
     <div class="container">
       <p class="section-title">新闻动态</p>
       <p class="section-line"></p>
@@ -43,6 +43,9 @@ const hotTagBg = new URL('../../assets/home/图标/z.png', import.meta.url).href
 const hotTagStyle = {
   backgroundImage: `url(${hotTagBg})`
 }
+
+// 导入新闻背景图片
+const newsBg = new URL('../../assets/home/图标/新闻背景.png', import.meta.url).href
 
 const newsSection = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver | null = null
@@ -97,7 +100,10 @@ onUnmounted(() => {
 /* 新闻动态区块 */
 .news-section {
   padding: 74px 0;
-  background: #f6f8f9;
+  background-color: #f6f8f9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .news-layout {

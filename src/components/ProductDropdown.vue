@@ -56,6 +56,7 @@ const panelStyle = computed(() => {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  transition: none;
 }
 
 .nav-link {
@@ -110,7 +111,6 @@ const panelStyle = computed(() => {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-15px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown-panel.is-visible {
@@ -128,7 +128,6 @@ const panelStyle = computed(() => {
   text-align: center;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown-panel.single-column.is-visible {
@@ -153,26 +152,8 @@ const panelStyle = computed(() => {
   font-size: 16.5px;
   flex: 1;
   max-width: 280px;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.3s ease forwards;
-}
-
-.dropdown-col:nth-child(1) { animation-delay: 0.1s; }
-.dropdown-col:nth-child(2) { animation-delay: 0.15s; }
-.dropdown-col:nth-child(3) { animation-delay: 0.2s; }
-.dropdown-col:nth-child(4) { animation-delay: 0.25s; }
-.dropdown-col:nth-child(5) { animation-delay: 0.3s; }
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .col-title {

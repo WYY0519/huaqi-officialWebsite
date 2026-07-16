@@ -39,16 +39,10 @@
         </div>
         <div class="carousel-arrows">
           <button class="product-arrow" @click="prevSlide">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+            <img :src="arrowLeft" alt="上一页" class="arrow-img" />
           </button>
           <button class="product-arrow" @click="nextSlide">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
+            <img :src="arrowRight" alt="下一页" class="arrow-img" />
           </button>
         </div>
       </div>
@@ -59,6 +53,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { products } from '../../data/homeData'
+
+// 导入自定义箭头图片
+const arrowLeft = new URL('../../assets/home/图标/左的副本.png', import.meta.url).href
+const arrowRight = new URL('../../assets/home/图标/右的副本.png', import.meta.url).href
 
 /*
  * 无限循环轮播原理：
@@ -392,9 +390,8 @@ onUnmounted(() => {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border: none;
   background: transparent;
-  color: #555;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -403,8 +400,13 @@ onUnmounted(() => {
 }
 
 .product-arrow:hover {
-  border-color: #00c4f0;
-  color: #00c4f0;
+  opacity: 0.8;
+}
+
+.arrow-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* ============================================================
@@ -512,11 +514,6 @@ onUnmounted(() => {
     width: 30px;
     height: 30px;
   }
-
-  .product-arrow svg {
-    width: 16px;
-    height: 16px;
-  }
 }
 
 /* iPad 竖屏 768px ~ 860px */
@@ -564,11 +561,6 @@ onUnmounted(() => {
   .product-arrow {
     width: 26px;
     height: 26px;
-  }
-
-  .product-arrow svg {
-    width: 12px;
-    height: 12px;
   }
 }
 
@@ -630,11 +622,6 @@ onUnmounted(() => {
     width: 22px;
     height: 22px;
   }
-
-  .product-arrow svg {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 /* 小手机 ≤375px */
@@ -677,11 +664,6 @@ onUnmounted(() => {
   .product-arrow {
     width: 22px;
     height: 22px;
-  }
-
-  .product-arrow svg {
-    width: 10px;
-    height: 10px;
   }
 }
 </style>
