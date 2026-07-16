@@ -1,5 +1,5 @@
 <template>
-  <div class="float-toolbar">
+  <div class="float-toolbar" :class="{ 'over-footer': isOverFooter }">
     <a href="tel:400-xxx-xxxx" class="float-btn" title="电话咨询">
       <img :src="phoneIcon" alt="">
     </a>
@@ -13,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
 // 图标路径
 const phoneIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
 const chatIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
@@ -21,6 +23,29 @@ const addressIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
 const emit = defineEmits<{
   (e: 'openChat'): void
 }>()
+
+// 检测是否滚动到 Footer 区域
+const isOverFooter = ref(false)
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  const footer = document.querySelector('footer')
+  if (footer) {
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isOverFooter.value = entry.isIntersecting
+        })
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(footer)
+  }
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 </script>
 
 <style scoped>
@@ -57,6 +82,20 @@ const emit = defineEmits<{
   background: rgba(0, 0, 0, 0.6);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* 在 Footer 区域时图标变白色 */
+.over-footer .float-btn {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.over-footer .float-btn img {
+  filter: invert(1);
+}
+
+.over-footer .float-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
 }
 
 .float-btn svg {

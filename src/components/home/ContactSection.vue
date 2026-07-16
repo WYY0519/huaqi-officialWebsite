@@ -71,15 +71,20 @@ const nameIcon = new URL('../../assets/home/图标/x.png', import.meta.url).href
 const phoneIcon = new URL('../../assets/home/图标/n.png', import.meta.url).href
 const companyIcon = new URL('../../assets/home/图标/v.png', import.meta.url).href
 
-const formData = ref({ company: '', contact: '', phone: '', email: '', message: '' })
+const formData = ref({ company: '', contact: '', phone: '', message: '' })
 const messageLength = computed(() => formData.value.message.length)
 
 const updateMessageLength = () => { }
 
 const submitForm = () => {
   console.log('表单提交:', formData.value)
-  alert('感谢您的提交，我们会尽快与您联系！')
-  formData.value = { company: '', contact: '', phone: '', email: '', message: '' }
+  if (formData.value.company || formData.value.contact || formData.value.message || formData.value.phone) {
+    alert('感谢您的提交，我们会尽快与您联系！')
+  } else {
+    alert('请输入您的信息')
+
+  }
+  formData.value = { company: '', contact: '', phone: '', message: '' }
 }
 </script>
 
