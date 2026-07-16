@@ -127,17 +127,18 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
 .footer-main {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  /* gap: 60px; */
-  padding-bottom: 40px;
+  grid-template-columns: 378px 1fr 261px;
+  gap: 0;
+  padding-bottom: 75px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   align-items: start;
-  padding: 121px 13.4% 75px 7%;
+  padding: 121px 120px 75px 121px;
 }
 
 /* 左侧品牌区 */
 .footer-brand {
-  min-width: 120px;
+  min-width: 378px;
+  max-width: 378px;
 }
 
 .footer-logo-wrap {
@@ -172,7 +173,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 .footer-social-icons {
   display: flex;
   gap: 10px;
-  margin-left: 86px
+  margin-left: 85px;
 }
 
 .footer-social-icon {
@@ -198,9 +199,24 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 .footer-menu-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  gap: 0;
+  width: 100%;
+}
+
+.footer-menu-grid .footer-menu-col:nth-child(1) {
+  padding-right: 132px;
+}
+
+.footer-menu-grid .footer-menu-col:nth-child(2) {
+  padding-right: 135px;
+}
+
+.footer-menu-grid .footer-menu-col:nth-child(3) {
+  padding-right: 129px;
+}
+
+.footer-menu-grid .footer-menu-col:nth-child(4) {
+  padding-right: 0;
 }
 
 .footer-menu-title {
@@ -234,7 +250,8 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 右侧二维码 */
 .footer-qrcode {
   text-align: center;
-  min-width: 120px;
+  min-width: 261px;
+  max-width: 261px;
 }
 
 .footer-qrcode-img {
@@ -256,8 +273,8 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
-  padding: 40px 0;
+  gap: 104px;
+  padding: 41px 0;
   font-size: 12.5px;
   font-weight: 600;
   color: #919598;
@@ -266,7 +283,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
 /* 版权信息 */
 .footer-bottom {
-  padding: 40px 0 0;
+  padding: 53px 0 0;
   text-align: center;
   font-size: 12.5px;
   font-weight: 600;
@@ -275,6 +292,40 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
 /* 响应式设计 */
 
+/* 大中等屏幕 (1400px ~ 1600px) */
+@media (max-width: 1600px) {
+  .footer-main {
+    grid-template-columns: 350px 1fr 240px;
+    padding: 100px 10% 60px;
+  }
+  
+  .footer-brand {
+    min-width: 350px;
+    max-width: 350px;
+  }
+  
+  .footer-qrcode {
+    min-width: 240px;
+    max-width: 240px;
+  }
+  
+  .footer-menu-grid {
+    min-width: 0;
+  }
+  
+  .footer-menu-grid .footer-menu-col:nth-child(1) {
+    padding-right: 60px;
+  }
+  
+  .footer-menu-grid .footer-menu-col:nth-child(2) {
+    padding-right: 70px;
+  }
+  
+  .footer-menu-grid .footer-menu-col:nth-child(3) {
+    padding-right: 60px;
+  }
+}
+
 /* 中等屏幕 (1200px ~ 1400px) */
 @media (max-width: 1400px) {
   .footer {
@@ -282,8 +333,9 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-main {
+    grid-template-columns: 378px 1fr 261px;
     gap: 40px;
-    padding: 70px 8% 40px
+    padding: 70px 8% 40px;
   }
 
   .footer-menu-grid {
@@ -303,6 +355,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-main {
+    grid-template-columns: 378px 1fr 261px;
     gap: 30px;
     padding: 60px 6% 35px;
   }
@@ -338,10 +391,11 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
     gap: 40px;
     text-align: center;
     padding: 60px 5% 30px;
-
   }
 
   .footer-brand {
+    min-width: auto;
+    max-width: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -355,8 +409,25 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   .footer-menu-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
-    max-width: 600px;
+    max-width: none;
     margin: 0 auto;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(1) {
+    padding-right: 0;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(2) {
+    padding-right: 0;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(3) {
+    padding-right: 0;
+  }
+
+  .footer-qrcode {
+    min-width: auto;
+    max-width: none;
   }
 
   .footer-info-bar {
@@ -376,8 +447,20 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   .footer-menu-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
-    max-width: 700px;
+    max-width: none;
     margin: 0 auto;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(1) {
+    padding-right: 0;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(2) {
+    padding-right: 0;
+  }
+
+  .footer-menu-grid .footer-menu-col:nth-child(3) {
+    padding-right: 0;
   }
 }
 
@@ -394,7 +477,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   .footer-menu-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    max-width: 400px;
+    max-width: none;
     margin: 0 auto;
   }
 
@@ -444,7 +527,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   .footer-menu-grid {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    max-width: 300px;
+    max-width: none;
     margin: 0 auto;
   }
 
