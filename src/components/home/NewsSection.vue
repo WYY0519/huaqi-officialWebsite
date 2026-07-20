@@ -97,9 +97,10 @@ onUnmounted(() => {
 </script>
 
 <style>
-/* 新闻动态区块 */
+/* 新闻动态区块 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放（1920 时还原当前尺寸） */
 .news-section {
-  padding: 74px 0;
+  /* 1920 时 = 74px */
+  padding: 3.85417vw 0;
   background-color: #f6f8f9;
   background-size: cover;
   background-position: center;
@@ -109,18 +110,21 @@ onUnmounted(() => {
 .news-layout {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  /* 1920 时 = 32px */
+  gap: 1.66667vw;
 }
 
 /* 大新闻卡片 */
 .news-main-card {
   display: flex;
   background: white;
-  border-radius: 16px;
+  /* 1920 时 = 16px */
+  border-radius: 0.83333vw;
   overflow: hidden;
   width: 100%;
   opacity: 0;
-  transform: translateY(1rem);
+  /* 1rem ≈ 16px → 0.83333vw */
+  transform: translateY(0.83333vw);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
@@ -161,7 +165,8 @@ onUnmounted(() => {
 }
 
 .news-main-content {
-  padding: 59px 72px;
+  /* 1920 时 = 59px 72px */
+  padding: 3.07292vw 3.75vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -174,60 +179,72 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 36px;
+  /* 1920 时 = 80px 36px */
+  width: 4.16667vw;
+  height: 1.875vw;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
   color: white;
-  font-size: 17px;
+  /* 1920 时 = 17px */
+  font-size: 0.88542vw;
   font-weight: 600;
-  margin-bottom: 30px;
+  /* 1920 时 = 30px */
+  margin-bottom: 1.5625vw;
   align-self: flex-start;
   border-radius: 0;
   padding: 0;
 }
 
 .news-main-title {
-  font-size: 40px;
+  /* 1920 时 = 40px */
+  font-size: 2.08333vw;
   font-weight: 900;
   color: #000;
-  margin-bottom: 30px;
+  /* 1920 时 = 30px */
+  margin-bottom: 1.5625vw;
 }
 
 .news-main-excerpt {
-  font-size: 31px;
+  /* 1920 时 = 31px */
+  font-size: 1.61458vw;
   color: #000;
-  margin-bottom: 30px;
+  /* 1920 时 = 30px */
+  margin-bottom: 1.5625vw;
 }
 
 .news-read-more {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  /* 1920 时 = 14px */
+  gap: 0.72917vw;
   color: #00D4ff;
-  font-size: 21px;
+  /* 1920 时 = 21px */
+  font-size: 1.09375vw;
   font-weight: 600;
   text-decoration: none;
   transition: gap 0.3s;
 }
 
 .news-read-more:hover {
-  gap: 12px;
+  /* 1920 时 = 12px */
+  gap: 0.625vw;
 }
 
 /* 三个小新闻卡片 */
 .news-small-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 70px;
+  /* 1920 时 = 70px */
+  gap: 3.64583vw;
 }
 
 .news-small-card {
-  border-radius: 12px;
+  /* 1920 时 = 12px */
+  border-radius: 0.625vw;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(1rem);
+  transform: translateY(0.83333vw);
   transition: opacity 1s ease-out, transform 1s ease-out, box-shadow 0.3s;
 }
 
@@ -241,7 +258,7 @@ onUnmounted(() => {
 .news-section .section-line,
 .news-section .section-subtitle {
   opacity: 0;
-  transform: translateY(1rem);
+  transform: translateY(0.83333vw);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
@@ -253,7 +270,7 @@ onUnmounted(() => {
 }
 
 .news-small-image {
-  border-radius: 12px;
+  border-radius: 0.625vw;
   overflow: hidden;
 }
 
@@ -263,30 +280,35 @@ onUnmounted(() => {
 }
 
 .news-small-content {
-  padding-top: 24px;
+  /* 1920 时 = 24px */
+  padding-top: 1.25vw;
 }
 
 .news-meta {
   display: flex;
   align-items: center;
-  gap: 19px;
-  margin-bottom: 13px;
-  font-size: 16px;
+  /* 1920 时 = 19px */
+  gap: 0.98958vw;
+  /* 1920 时 = 13px */
+  margin-bottom: 0.67708vw;
+  /* 1920 时 = 16px */
+  font-size: 0.83333vw;
 }
 
 .news-category {
   color: #00D4ff;
-  font-size: 16px;
+  font-size: 0.83333vw;
   font-weight: 600;
 }
 
 .news-date {
   color: #999;
-  font-size: 16px;
+  font-size: 0.83333vw;
 }
 
 .news-title {
-  font-size: 21px;
+  /* 1920 时 = 21px */
+  font-size: 1.09375vw;
   font-weight: 600;
   color: #000000;
   line-height: 1.5;
@@ -294,102 +316,5 @@ onUnmounted(() => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-/* 响应式 - iPad */
-@media (max-width: 1024px) {
-  .news-main-card {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-  }
-
-  .news-main-image {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 931 / 612;
-  }
-
-  .news-main-content {
-    padding: 30px;
-  }
-
-  .news-main-title {
-    font-size: 32px;
-  }
-
-  .news-small-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-}
-
-/* 响应式 - 手机 */
-@media (max-width: 768px) {
-  .news-main-card {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-  }
-
-  .news-main-image {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 931 / 612;
-  }
-
-  .news-main-content {
-    padding: 24px;
-  }
-
-  .news-main-title {
-    font-size: 27px;
-  }
-
-  .news-main-excerpt {
-    font-size: 19px;
-  }
-
-  .news-small-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
-
-/* 响应式 - 小屏手机 */
-@media (max-width: 480px) {
-  .news-main-content {
-    padding: 20px;
-  }
-
-  .news-main-title {
-    font-size: 21px;
-    margin-bottom: 12px;
-  }
-
-  .news-hot-tag {
-    margin-bottom: 20px;
-  }
-
-  .news-section {
-    padding: 30px 10px;
-  }
-
-  .news-main-excerpt {
-    font-size: 17px;
-    margin-bottom: 16px;
-  }
-
-  .news-read-more {
-    font-size: 19px;
-  }
-
-  .news-small-content {
-    padding: 16px;
-  }
-
-  .news-title {
-    font-size: 19px;
-  }
 }
 </style>
