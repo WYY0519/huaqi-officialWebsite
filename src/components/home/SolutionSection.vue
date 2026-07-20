@@ -250,7 +250,8 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  align-items: stretch;
+  /* 核心修改：取消全局拉伸，图片高度自适应自身尺寸 */
+  align-items: flex-start;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
@@ -272,42 +273,70 @@ onUnmounted(() => {
   direction: ltr;
 }
 
+/* 图片容器：高度由内部图片自适应 */
 .sol-media {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  /* 媒体单元格保持图片原始宽高比（8600/5400 ≈ 1.5926），确保图片铺满 */
-  aspect-ratio: 8600 / 5400;
+  width: 100%;
+  height: auto;
 }
 
 .sol-media .sol-video-box {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .sol-media .sol-image-container {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   background: #f5f5f5;
 }
 
-/* 大屏幕 (1920px+) - 按照图片原始尺寸展示 */
+/* 图片改为流式布局，撑开父容器高度 */
+.sol-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  z-index: 0;
+  transition: none;
+}
+
+/* 大屏幕 (1920px+) - 锁定原图43:27比例，严格按图片尺寸撑开 */
 @media (min-width: 1920px) {
-  .sol-row {
-    align-items: stretch;
+  .sol-media .sol-video-box {
+    aspect-ratio: 43 / 27;
+    /* 8600×5400 原图比例 */
+    height: auto;
+  }
+
+  .sol-image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  .sol-media .sol-image-container {
+    position: absolute;
+    inset: 0;
+    height: 100%;
   }
 }
 
+/* 文字模块：自动拉伸高度，与左侧图片等高（剩余空间填满） */
 .sol-text {
   padding: 80px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
+  /* 核心：自动拉伸高度，匹配图片高度 */
+  align-self: stretch;
 }
 
 .sol-scene-title {
@@ -420,6 +449,7 @@ onUnmounted(() => {
   .sol-row {
     grid-template-columns: 1fr;
     margin-bottom: 70px;
+    align-items: flex-start;
   }
 
   .sol-row.reverse {
@@ -428,6 +458,7 @@ onUnmounted(() => {
 
   .sol-text {
     padding: 32px 28px;
+    align-self: auto;
   }
 
   .sol-scene-title {
@@ -457,6 +488,7 @@ onUnmounted(() => {
   .sol-text {
     padding: 24px 20px;
     gap: 12px;
+    align-self: auto;
   }
 
   .sol-scene-title {
@@ -489,21 +521,6 @@ onUnmounted(() => {
   }
 }
 
-/* 图片容器 - 由 .sol-media .sol-image-container 控制 */
-
-/* 单张图片样式 - 按原始比例填满容器，不留白 */
-.sol-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  z-index: 0;
-  transition: none;
-}
-
 /* 当前显示的图片：立即完全显示，无任何过渡动画 */
 .sol-image.active {
   opacity: 1;
@@ -515,7 +532,7 @@ onUnmounted(() => {
 /* 单数模块(index 0,2,4...): 旧图片往上从左上角消失 */
 .sol-image-container.direction-left .sol-image:not(.active) {
   opacity: 0;
-  transform: translate(-80%, -150%) scale(0.85);
+  transform: translate(-80%, -30%) scale(0.85);
   z-index: 1;
   transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
@@ -523,15 +540,9 @@ onUnmounted(() => {
 /* 双数模块(index 1,3,5...): 旧图片往上从右上角消失 */
 .sol-image-container.direction-right .sol-image:not(.active) {
   opacity: 0;
-  transform: translate(80%, -150%) scale(0.85);
+  transform: translate(80%, -30%) scale(0.85);
   z-index: 1;
   transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-}
-
-/* 视频盒子 */
-.sol-video-box {
-  position: relative;
-  cursor: pointer;
 }
 
 /* 播放按钮 */
@@ -541,15 +552,14 @@ onUnmounted(() => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* width: 150px;
-  height: 150px;
-  background: rgba(0, 0, 0, 0.4); */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s;
+  width: 90px;
+  height: 91px;
 }
 
 .sol-play-btn:hover {

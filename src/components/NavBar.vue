@@ -352,18 +352,21 @@ onUnmounted(() => {
 .contact-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 9px;
   background: #00D4ff;
   color: black;
   border: none;
-  padding: 18px 30px;
   border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: bold;
   transition: all 0.3s ease;
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  height: 49px;
+  width: 153px;
 }
 
 .contact-btn::before {
