@@ -132,10 +132,11 @@ onMounted(() => {
 .coverage-tag {
   display: inline-block;
   padding: 0.3125vw 0.83333vw;
-  background: #e6f7ff;
-  color: #00D4ff;
+  background: #def5f9;
+  color: #04d3fc;
   border-radius: 1.04167vw;
   font-size: 0.67708vw;
   font-weight: 600;
+  border:1px solid #bdf5f9;
 }
 </style>
