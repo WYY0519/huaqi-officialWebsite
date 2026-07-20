@@ -24,7 +24,7 @@
             <p class="sol-scene-sub">{{ item.sub }}</p>
             <div class="sol-scene-desc">
               <template v-if="Array.isArray(item.desc)">
-                <p v-for="(paragraph, pi) in item.desc" :key="pi" style="margin-bottom: 10px;">{{ paragraph }}</p>
+                <p v-for="(paragraph, pi) in item.desc" :key="pi" style="margin-bottom: 0.52083vw;">{{ paragraph }}</p>
               </template>
               <template v-else>
                 <p>{{ item.desc }}</p>
@@ -33,7 +33,7 @@
             <div class="sol-tags">
               <span class="sol-tag" v-for="(tag, ti) in item.tags" :key="ti">{{ tag }}</span>
             </div>
-            <router-link :to="item.link" class="sol-more">了解更多 <span style="margin-left: 15px;">→</span></router-link>
+            <router-link :to="item.link" class="sol-more">了解更多 <span style="margin-left: 0.78125vw;">→</span></router-link>
           </div>
         </div>
       </div>
@@ -233,7 +233,7 @@ onUnmounted(() => {
 <style>
 /* 解决方案区块 - 左右交替布局 */
 .solutions-section {
-  padding: 80px 0 0;
+  padding: 4.16667vw 0 0;
   background-color: #f4f8fd;
   background-size: cover;
   background-position: center;
@@ -253,11 +253,11 @@ onUnmounted(() => {
   /* 核心修改：取消全局拉伸，图片高度自适应自身尺寸 */
   /* align-items: flex-start; */
   background: #fff;
-  border-radius: 12px;
+  border-radius: 0.625vw;
   overflow: hidden;
-  /* 整行高度锁定为图片原始高度 540 */
-  height: 540px;
-  margin-bottom: 109px;
+  /* 整行高度按 1920 设计等比缩放，1920 时=540px */
+  height: 28.125vw;
+  margin-bottom: 5.67708vw;
   box-shadow: 0 2px 20px rgba(0, 100, 200, 0.07);
   transition: box-shadow 0.3s;
 }
@@ -275,13 +275,13 @@ onUnmounted(() => {
   direction: ltr;
 }
 
-/* 图片容器：固定为图片原始尺寸 860×540，不随屏幕拉伸 */
+/* 图片容器：按 1920 设计等比缩放，1920 时=860×540，不随屏幕拉伸比例 */
 .sol-media {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-  flex: 0 0 860px;
-  width: 860px;
+  border-radius: 0.625vw;
+  flex: 0 0 44.79167vw;
+  width: 44.79167vw;
 }
 
 .sol-media .sol-video-box {
@@ -292,7 +292,7 @@ onUnmounted(() => {
 .sol-media .sol-image-container {
   position: relative;
   width: 100%;
-  height: 540px;
+  height: 28.125vw;
   background: #f5f5f5;
 }
 
@@ -317,49 +317,50 @@ onUnmounted(() => {
 /* 文字模块：占据图片模块右侧的剩余空间，高度与图片对齐 */
 .sol-text {
   flex: 1 1 auto;
-  padding: 80px 60px;
+  padding: 4.16667vw 3.125vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
+  gap: 0.83333vw;
   /* 核心：自动拉伸高度，匹配图片高度 */
   align-self: stretch;
 }
 
 .sol-scene-title {
-  font-size: 41px;
+  font-size: 2.13542vw;
   font-weight: 800;
   color: #1a1a2e;
   line-height: 1.2;
-  margin-bottom: 8px;
+  margin-bottom: 0.41667vw;
 }
 
 .sol-scene-sub {
-  font-size: 20px;
+  font-size: 1.04167vw;
   color: #9b9e9f;
   font-weight: 500;
   letter-spacing: 0.5px;
-  margin-bottom: 12px;
+  margin-bottom: 0.625vw;
 }
 
 .sol-scene-desc {
-  font-size: 20px;
-  color: #666;
-  line-height: 1.8;
+  font-size: 1.04167vw;
+  color: #9b9e9f;
+  /* line-height: 1.8; */
+  font-weight: bold;
 }
 
 .sol-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  padding: 24px 0;
+  gap: 0.625vw;
+  padding: 1.25vw 0;
 }
 
 .sol-tag {
-  padding: 8px 20px;
+  padding: 0.41667vw 1.04167vw;
   color: #555;
-  border-radius: 24px;
-  font-size: 15px;
+  border-radius: 1.25vw;
+  font-size: 0.78125vw;
   border: 1px solid #e0e0e0;
   background: #fafafa;
   transition: all 0.2s;
@@ -374,17 +375,17 @@ onUnmounted(() => {
 .sol-more {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.3125vw;
   color: #00D4ff;
-  font-size: 20px;
+  font-size: 1.04167vw;
   font-weight: 600;
   text-decoration: none;
-  margin-top: 8px;
+  margin-top: 0.41667vw;
   transition: gap 0.2s;
 }
 
 .sol-more:hover {
-  gap: 10px;
+  gap: 0.52083vw;
 }
 
 .sol-media,
@@ -425,100 +426,7 @@ onUnmounted(() => {
   }
 }
 
-@media (max-width: 1500px) {
-  .sol-row {
-    margin-bottom: 89px;
-  }
-}
-
-/* 响应式 - iPad */
-@media (max-width: 1024px) {
-  .sol-row {
-    grid-template-columns: 1fr;
-    margin-bottom: 70px;
-    align-items: flex-start;
-    /* 小屏取消固定高度，避免内容被裁剪 */
-    height: auto;
-  }
-
-  .sol-row.reverse {
-    direction: ltr;
-  }
-
-  /* 小屏下图片不再固定 860px，改为自适应铺满 */
-  .sol-media {
-    flex: none;
-    width: 100%;
-  }
-
-  .sol-media .sol-image-container {
-    height: auto;
-  }
-
-  .sol-text {
-    padding: 32px 28px;
-    align-self: auto;
-  }
-
-  .sol-scene-title {
-    font-size: 37px;
-  }
-
-  .sol-scene-sub {
-    font-size: 19px;
-  }
-
-  .sol-scene-desc {
-    font-size: 19px;
-  }
-
-  .sol-tags {
-    padding: 20px 0;
-  }
-
-  .sol-tag {
-    padding: 6px 16px;
-    font-size: 17px;
-  }
-}
-
-/* 响应式 - 手机 */
-@media (max-width: 768px) {
-  .sol-text {
-    padding: 24px 20px;
-    gap: 12px;
-    align-self: auto;
-  }
-
-  .sol-scene-title {
-    font-size: 29px;
-    margin-bottom: 6px;
-  }
-
-  .sol-scene-sub {
-    font-size: 17px;
-    margin-bottom: 8px;
-  }
-
-  .sol-scene-desc {
-    font-size: 17px;
-    line-height: 1.7;
-  }
-
-  .sol-tags {
-    padding: 16px 0;
-    gap: 8px;
-  }
-
-  .sol-tag {
-    padding: 5px 14px;
-    font-size: 16px;
-  }
-
-  .sol-more {
-    font-size: 19px;
-  }
-}
+/* 所有尺寸均按 1920 设计等比缩放（vw），不单独设置断点，保证比例一致 */
 
 /* 当前显示的图片：处于普通文档流，填满 860×540 容器 */
 .sol-image.active {
@@ -560,8 +468,8 @@ onUnmounted(() => {
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s;
-  width: 90px;
-  height: 91px;
+  width: 4.6875vw;
+  height: 4.73958vw;
 }
 
 .sol-play-btn:hover {
@@ -571,29 +479,5 @@ onUnmounted(() => {
 .sol-play-btn.hidden {
   opacity: 0;
   visibility: hidden;
-}
-
-/* 响应式：手机 */
-@media (max-width: 768px) {
-  .sol-play-btn {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-/* 响应式：小屏手机 */
-@media (max-width: 480px) {
-  .sol-play-btn {
-    width: 50px;
-    height: 50px;
-  }
-
-  .solutions-section {
-    padding: 30px 10px;
-  }
-
-  .sol-row {
-    margin-bottom: 40px;
-  }
 }
 </style>
