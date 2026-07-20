@@ -276,45 +276,29 @@ onUnmounted(() => {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  min-height: 100%;
+  /* 媒体单元格保持图片原始宽高比（8600/5400 ≈ 1.5926），确保图片铺满 */
+  aspect-ratio: 8600 / 5400;
 }
 
 .sol-media .sol-video-box {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
 
 .sol-media .sol-image-container {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  padding-top: 0;
   background: #f5f5f5;
 }
 
 /* 大屏幕 (1920px+) - 按照图片原始尺寸展示 */
 @media (min-width: 1920px) {
   .sol-row {
-    align-items: start;
-  }
-
-  .sol-media .sol-video-box {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .sol-media .sol-image-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding-top: 62.79%;
-    /* 5400/8600 = 0.6279 保持图片原始宽高比 */
+    align-items: stretch;
   }
 }
 
@@ -466,20 +450,6 @@ onUnmounted(() => {
     padding: 6px 16px;
     font-size: 17px;
   }
-
-  /* iPad下恢复padding-top样式 */
-  .sol-media .sol-video-box {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .sol-media .sol-image-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding-top: 62.79%;
-  }
 }
 
 /* 响应式 - 手机 */
@@ -516,20 +486,6 @@ onUnmounted(() => {
 
   .sol-more {
     font-size: 19px;
-  }
-
-  /* 手机下恢复padding-top样式 */
-  .sol-media .sol-video-box {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .sol-media .sol-image-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding-top: 62.79%;
   }
 }
 
