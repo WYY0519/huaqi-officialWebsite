@@ -247,14 +247,16 @@ onUnmounted(() => {
 }
 
 .sol-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  /* grid-template-columns: 1fr 1fr; */
   gap: 0;
   /* 核心修改：取消全局拉伸，图片高度自适应自身尺寸 */
-  align-items: flex-start;
+  /* align-items: flex-start; */
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
+  /* 整行高度锁定为图片原始高度 540 */
+  height: 540px;
   margin-bottom: 109px;
   box-shadow: 0 2px 20px rgba(0, 100, 200, 0.07);
   transition: box-shadow 0.3s;
@@ -273,63 +275,48 @@ onUnmounted(() => {
   direction: ltr;
 }
 
-/* 图片容器：高度由内部图片自适应 */
+/* 图片容器：固定为图片原始尺寸 860×540，不随屏幕拉伸 */
 .sol-media {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  width: 100%;
-  height: auto;
+  flex: 0 0 860px;
+  width: 860px;
 }
 
 .sol-media .sol-video-box {
   position: relative;
   width: 100%;
-  height: auto;
 }
 
 .sol-media .sol-image-container {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 540px;
   background: #f5f5f5;
 }
 
-/* 图片改为流式布局，撑开父容器高度 */
+/* 图片：非当前图绝对叠加（不影响高度），当前图处于文档流、按原始尺寸撑开容器 */
 .sol-image {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   opacity: 0;
   z-index: 0;
   transition: none;
 }
 
-/* 大屏幕 (1920px+) - 锁定原图43:27比例，严格按图片尺寸撑开 */
-@media (min-width: 1920px) {
-  .sol-media .sol-video-box {
-    aspect-ratio: 43 / 27;
-    /* 8600×5400 原图比例 */
-    height: auto;
-  }
-
-  .sol-image {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-  }
-
-  .sol-media .sol-image-container {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-  }
+/* 非当前显示的图片：绝对叠加在容器上，不撑开高度 */
+.sol-image:not(.active) {
+  position: absolute;
+  inset: 0;
 }
 
-/* 文字模块：自动拉伸高度，与左侧图片等高（剩余空间填满） */
+/* 文字模块：占据图片模块右侧的剩余空间，高度与图片对齐 */
 .sol-text {
+  flex: 1 1 auto;
   padding: 80px 60px;
   display: flex;
   flex-direction: column;
@@ -450,10 +437,22 @@ onUnmounted(() => {
     grid-template-columns: 1fr;
     margin-bottom: 70px;
     align-items: flex-start;
+    /* 小屏取消固定高度，避免内容被裁剪 */
+    height: auto;
   }
 
   .sol-row.reverse {
     direction: ltr;
+  }
+
+  /* 小屏下图片不再固定 860px，改为自适应铺满 */
+  .sol-media {
+    flex: none;
+    width: 100%;
+  }
+
+  .sol-media .sol-image-container {
+    height: auto;
   }
 
   .sol-text {
@@ -521,8 +520,11 @@ onUnmounted(() => {
   }
 }
 
-/* 当前显示的图片：立即完全显示，无任何过渡动画 */
+/* 当前显示的图片：处于普通文档流，填满 860×540 容器 */
 .sol-image.active {
+  position: relative;
+  width: 100%;
+  height: 100%;
   opacity: 1;
   transform: translate(0, 0) scale(1);
   z-index: 2;
