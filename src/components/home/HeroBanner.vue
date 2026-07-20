@@ -29,28 +29,28 @@ import { ref, computed, onMounted, onUnmounted, inject, watch } from 'vue'
 const slides = ref([
   {
     bgImage: new URL('../../assets/home/轮播图/消防车.png', import.meta.url).href,
-    title: '行业级无人机 <span class="highlight">消防车</span>',
+    title: '行业级无人机<span class="highlight">消防车</span>',
     subtitle: '重载无界，驰援未来',
     link: '/products/fire-truck',
     btnText: '了解更多'
   },
   {
     bgImage: new URL('../../assets/home/轮播图/固定翼.png', import.meta.url).href,
-    title: '行业级无人机 <span class="highlight">固定翼</span>',
+    title: '行业级无人机<span class="highlight">固定翼</span>',
     subtitle: '重载无界，驰援未来',
     link: '/products/fixed-wing',
     btnText: '了解更多'
   },
   {
     bgImage: new URL('../../assets/home/轮播图/系留.png', import.meta.url).href,
-    title: '行业级无人机 <span class="highlight">系留</span>',
+    title: '行业级无人机<span class="highlight">系留</span>',
     subtitle: '重载无界，驰援未来',
     link: '/products/tethered',
     btnText: '了解更多'
   },
   {
     bgImage: new URL('../../assets/home/轮播图/H400.png', import.meta.url).href,
-    title: '行业级无人机 <span class="highlight">H400</span>',
+    title: '行业级无人机<span class="highlight">H400</span>',
     subtitle: '重载无界，驰援未来',
     link: '/products/h400',
     btnText: '了解更多'
@@ -126,7 +126,7 @@ watch(() => carouselControl?.carouselIndex.value, (newIndex) => {
 })
 
 onMounted(() => {
-  startAutoplay() // 暂时禁用自动播放
+  // startAutoplay() // 暂时禁用自动播放
   // 同步初始状态
   if (carouselControl) {
     carouselControl.carouselIndex.value = currentSlide.value
@@ -275,7 +275,7 @@ onUnmounted(() => { stopAutoplay() })
   font-weight: 400;
   letter-spacing: 2px;
   padding-left: 6%;
-  font-family: 'Opposans', sans-serif;
+  font-family: 'OPPOSans', sans-serif;
   letter-spacing: 3px
 }
 
@@ -289,7 +289,7 @@ onUnmounted(() => { stopAutoplay() })
   text-decoration: none;
   font-size: 27px;
   font-weight: 400;
-  font-family: 'Opposans', sans-serif;
+  font-family: 'OPPOSans', sans-serif;
   transition: all 0.3s;
   background: transparent;
   margin-left: 6%;

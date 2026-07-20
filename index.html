@@ -9,39 +9,60 @@
     <!-- 国内稳定镜像（推荐，解决谷歌cdn访问慢） -->
     <link rel="preconnect" href="https://fonts.font.im" />
     <link rel="stylesheet" href="https://fonts.font.im/css?family=Noto+Sans+SC:100,300,400,500,700,900" />
-    <!-- 导入 Oppasans 字体 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Opposans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <!-- 导入阿里巴巴普惠体字体 -->
-    <link rel="preload" href="https://puhuiti.alicdn.com/puhuiti3/AlibabaPuHuiTi-4-85-Heavy/AlibabaPuHuiTi-4-85-Heavy.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="https://puhuiti.alicdn.com/puhuiti3/AlibabaPuHuiTi-4-55-Regular/AlibabaPuHuiTi-4-55-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/AlibabaPuHuiTi-4-85-Heavy.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/AlibabaPuHuiTi-4-55-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- 预加载 OPPOSans 字体 -->
+    <link rel="preload" href="/fonts/OPPOSans-Regular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/OPPOSans-Bold.woff" as="font" type="font/woff" crossorigin />
     <style>
       @font-face {
         font-family: 'Alibaba PuHuiTi';
-        src: url('https://puhuiti.alicdn.com/puhuiti3/AlibabaPuHuiTi-4-55-Regular/AlibabaPuHuiTi-4-55-Regular.woff2') format('woff2');
+        src: url('/fonts/AlibabaPuHuiTi-4-55-Regular.woff2') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
       }
       @font-face {
         font-family: 'Alibaba PuHuiTi';
-        src: url('https://puhuiti.alicdn.com/puhuiti3/AlibabaPuHuiTi-4-65-Medium/AlibabaPuHuiTi-4-65-Medium.woff2') format('woff2');
+        src: url('/fonts/AlibabaPuHuiTi-4-65-Medium.woff2') format('woff2');
         font-weight: 500;
         font-style: normal;
         font-display: swap;
       }
       @font-face {
         font-family: 'Alibaba PuHuiTi';
-        src: url('https://puhuiti.alicdn.com/puhuiti3/AlibabaPuHuiTi-4-75-Bold/AlibabaPuHuiTi-4-75-Bold.woff2') format('woff2');
+        src: url('/fonts/AlibabaPuHuiTi-4-75-Bold.woff2') format('woff2');
         font-weight: 700;
         font-style: normal;
         font-display: swap;
       }
       @font-face {
         font-family: 'Alibaba PuHuiTi';
-        src: url('https://puhuiti.alicdn.com/puhuiti3/AlibabaPuHuiTi-4-85-Heavy/AlibabaPuHuiTi-4-85-Heavy.woff2') format('woff2');
+        src: url('/fonts/AlibabaPuHuiTi-4-85-Heavy.woff2') format('woff2');
         font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      /* OPPOSans 字体 */
+      @font-face {
+        font-family: 'OPPOSans';
+        src: url('/fonts/OPPOSans-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'OPPOSans';
+        src: url('/fonts/OPPOSans-Medium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'OPPOSans';
+        src: url('/fonts/OPPOSans-Bold.woff') format('woff');
+        font-weight: 700;
         font-style: normal;
         font-display: swap;
       }
