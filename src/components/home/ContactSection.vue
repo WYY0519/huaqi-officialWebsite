@@ -178,9 +178,9 @@ const submitForm = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f6f8f9;
+  background: #f7f9fa;
   /* 边框宽度保持 1px（与参考页面一致） */
-  border: 1px solid #c1c6c8;
+  border: 1px solid #adb1b5;
   /* 1920 时 = 8px */
   border-radius: 0.41667vw;
   /* 1920 时 = 20px */
