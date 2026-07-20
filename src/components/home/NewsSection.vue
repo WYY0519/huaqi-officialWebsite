@@ -180,7 +180,7 @@ onUnmounted(() => {
   background-repeat: no-repeat;
   background-color: transparent;
   color: white;
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 600;
   margin-bottom: 30px;
   align-self: flex-start;
@@ -189,14 +189,14 @@ onUnmounted(() => {
 }
 
 .news-main-title {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 900;
   color: #000;
   margin-bottom: 30px;
 }
 
 .news-main-excerpt {
-  font-size: 23.5px;
+  font-size: 31px;
   color: #000;
   margin-bottom: 30px;
 }
@@ -206,7 +206,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 14px;
   color: #00D4ff;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 600;
   text-decoration: none;
   transition: gap 0.3s;
@@ -271,22 +271,22 @@ onUnmounted(() => {
   align-items: center;
   gap: 19px;
   margin-bottom: 13px;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .news-category {
   color: #00D4ff;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .news-date {
   color: #999;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .news-title {
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 600;
   color: #000000;
   line-height: 1.5;
@@ -315,7 +315,7 @@ onUnmounted(() => {
   }
 
   .news-main-title {
-    font-size: 24px;
+    font-size: 32px;
   }
 
   .news-small-grid {
@@ -343,11 +343,11 @@ onUnmounted(() => {
   }
 
   .news-main-title {
-    font-size: 20px;
+    font-size: 27px;
   }
 
   .news-main-excerpt {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .news-small-grid {
@@ -363,7 +363,7 @@ onUnmounted(() => {
   }
 
   .news-main-title {
-    font-size: 16px;
+    font-size: 21px;
     margin-bottom: 12px;
   }
 
@@ -376,12 +376,12 @@ onUnmounted(() => {
   }
 
   .news-main-excerpt {
-    font-size: 13px;
+    font-size: 17px;
     margin-bottom: 16px;
   }
 
   .news-read-more {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .news-small-content {
@@ -389,7 +389,7 @@ onUnmounted(() => {
   }
 
   .news-title {
-    font-size: 14px;
+    font-size: 19px;
   }
 }
 </style>

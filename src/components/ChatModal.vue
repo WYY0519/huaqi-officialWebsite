@@ -148,7 +148,7 @@ const sendChatMessage = () => {
 
 .chat-modal-header h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
 }
 
@@ -208,7 +208,7 @@ const sendChatMessage = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 24px;
   flex-shrink: 0;
 }
 
@@ -220,7 +220,7 @@ const sendChatMessage = () => {
 .chat-message-content {
   padding: 12px 16px;
   border-radius: 16px;
-  font-size: 14px;
+  font-size: 19px;
   line-height: 1.5;
 }
 
@@ -249,7 +249,7 @@ const sendChatMessage = () => {
   padding: 12px 16px;
   border: 1px solid #ddd;
   border-radius: 24px;
-  font-size: 14px;
+  font-size: 19px;
   outline: none;
   transition: border-color 0.2s;
 }
@@ -264,7 +264,7 @@ const sendChatMessage = () => {
   color: white;
   border: none;
   border-radius: 24px;
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
@@ -287,7 +287,7 @@ const sendChatMessage = () => {
   }
 
   .chat-modal-header h3 {
-    font-size: 16px;
+    font-size: 21px;
   }
 
   .chat-messages {
@@ -325,12 +325,12 @@ const sendChatMessage = () => {
 
   .chat-input {
     padding: 10px 14px;
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .chat-send-btn {
     padding: 10px 18px;
-    font-size: 13px;
+    font-size: 17px;
   }
 }
 </style>

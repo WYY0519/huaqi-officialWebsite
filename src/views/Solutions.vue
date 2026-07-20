@@ -25,14 +25,14 @@
 }
 
 .placeholder-title {
-  font-size: 48px;
+  font-size: 64px;
   font-weight: 900;
   color: #1a1a2e;
   margin-bottom: 20px;
 }
 
 .placeholder-desc {
-  font-size: 18px;
+  font-size: 24px;
   color: #999;
 }
 </style>

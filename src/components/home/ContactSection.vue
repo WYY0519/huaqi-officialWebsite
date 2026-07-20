@@ -120,25 +120,25 @@ const submitForm = () => {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 15px;
+  font-size: 20px;
   color: #adb1b5;
 }
 
 .contact-info-title {
-  font-size: 33px;
+  font-size: 44px;
   font-weight: 900;
   color: #000;
   margin-bottom: 48px;
 }
 
 .contact-info-desc {
-  font-size: 20px;
+  font-size: 27px;
   color: #adb1b5;
   margin-bottom: 42px;
 }
 
 .contact-trusted-label {
-  font-size: 20px;
+  font-size: 27px;
   color: #adb1b5;
   letter-spacing: 1px;
   margin-bottom: 69px;
@@ -159,7 +159,7 @@ const submitForm = () => {
   background: #f6f8f9;
   border: 1px solid #c1c6c8;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 20px;
   color: #adb1b5;
   text-align: center;
   white-space: nowrap;
@@ -205,7 +205,7 @@ const submitForm = () => {
   height: 85px;
   border: 1px solid #bbbfc3;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 20px;
   color: #bfc3c5;
   transition: border-color 0.3s;
   background: white;
@@ -247,7 +247,7 @@ const submitForm = () => {
   position: absolute;
   bottom: 8px;
   right: 12px;
-  font-size: 12px;
+  font-size: 16px;
   color: #ccc;
   pointer-events: none;
   z-index: 1;
@@ -267,7 +267,7 @@ const submitForm = () => {
   border: none;
   padding: 16px;
   border-radius: 12px;
-  font-size: 19px;
+  font-size: 25px;
   cursor: pointer;
   transition: background 0.3s;
   display: flex;
@@ -281,12 +281,12 @@ const submitForm = () => {
 }
 
 .submit-arrow {
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .form-privacy {
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
   color: #adb1b5;
   margin-top: 10px;
 }
@@ -299,17 +299,17 @@ const submitForm = () => {
   }
 
   .contact-info-title {
-    font-size: 28px;
+    font-size: 37px;
     margin-bottom: 40px;
   }
 
   .contact-info-desc {
-    font-size: 17px;
+    font-size: 23px;
     margin-bottom: 36px;
   }
 
   .contact-trusted-label {
-    font-size: 17px;
+    font-size: 23px;
     margin-bottom: 50px;
   }
 
@@ -327,7 +327,7 @@ const submitForm = () => {
   }
 
   .contact-feature-item {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .contact-form-wrapper {
@@ -340,7 +340,7 @@ const submitForm = () => {
 
   .submit-btn {
     height: 75px;
-    font-size: 18px;
+    font-size: 24px;
   }
 
   .form-row {
@@ -365,24 +365,24 @@ const submitForm = () => {
   }
 
   .contact-info-title {
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 32px;
   }
 
   .contact-info-desc {
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 28px;
   }
 
   .contact-trusted-label {
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 40px;
   }
 
   .trusted-item {
     width: 100%;
     height: 44px;
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .contact-trusted-grid {
@@ -394,7 +394,7 @@ const submitForm = () => {
   }
 
   .contact-feature-item {
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .contact-form-wrapper {
@@ -403,12 +403,12 @@ const submitForm = () => {
 
   .form-input {
     height: 75px;
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .submit-btn {
     height: 70px;
-    font-size: 17px;
+    font-size: 23px;
   }
 
   .form-row {
@@ -426,7 +426,7 @@ const submitForm = () => {
   }
 
   .form-privacy {
-    font-size: 11px;
+    font-size: 15px;
     margin-top: 8px;
   }
 }
@@ -444,7 +444,7 @@ const submitForm = () => {
   }
 
   .contact-feature-item {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .contact-trusted-grid {
@@ -460,17 +460,17 @@ const submitForm = () => {
   }
 
   .contact-info-title {
-    font-size: 28px;
+    font-size: 37px;
     margin-bottom: 36px;
   }
 
   .contact-info-desc {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 32px;
   }
 
   .contact-trusted-label {
-    font-size: 16px;
+    font-size: 21px;
     margin-bottom: 40px;
   }
 
@@ -499,16 +499,16 @@ const submitForm = () => {
   }
 
   .contact-feature-item {
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .contact-info-title {
-    font-size: 22px;
+    font-size: 29px;
     margin-bottom: 20px;
   }
 
   .contact-info-desc {
-    font-size: 14px;
+    font-size: 19px;
     margin-bottom: 20px;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -516,7 +516,7 @@ const submitForm = () => {
   }
 
   .contact-trusted-label {
-    font-size: 14px;
+    font-size: 19px;
     margin-bottom: 30px;
   }
 
@@ -528,7 +528,7 @@ const submitForm = () => {
   .trusted-item {
     width: 100%;
     height: 50px;
-    font-size: 13px;
+    font-size: 17px;
     padding: 0 8px;
   }
 
@@ -561,7 +561,7 @@ const submitForm = () => {
     width: 100%;
     height: 65px;
     padding: 12px 12px 12px 40px;
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .form-field-textarea .form-textarea {
@@ -572,7 +572,7 @@ const submitForm = () => {
     width: 100%;
     height: 50px;
     padding: 14px 20px;
-    font-size: 14px;
+    font-size: 19px;
     font-weight: 600;
   }
 
@@ -589,17 +589,17 @@ const submitForm = () => {
   }
 
   .contact-info-title {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 15px;
   }
 
   .contact-info-desc {
-    font-size: 13px;
+    font-size: 17px;
     margin-bottom: 15px;
   }
 
   .contact-trusted-label {
-    font-size: 12px;
+    font-size: 16px;
     margin-bottom: 20px;
   }
 
@@ -610,7 +610,7 @@ const submitForm = () => {
 
   .trusted-item {
     height: 40px;
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .contact-form-wrapper {
@@ -624,7 +624,7 @@ const submitForm = () => {
 
   .form-input {
     padding: 10px 10px 10px 36px;
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .form-field-textarea .form-textarea {
@@ -633,7 +633,7 @@ const submitForm = () => {
 
   .submit-btn {
     padding: 12px 16px;
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .form-textarea {

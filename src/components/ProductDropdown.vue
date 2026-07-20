@@ -62,7 +62,7 @@ const panelStyle = computed(() => {
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 27px;
   font-weight: 500;
   transition: color 0.3s;
   padding: 8px 0;
@@ -149,7 +149,7 @@ const panelStyle = computed(() => {
 
 .dropdown-col {
   color: #666;
-  font-size: 16.5px;
+  font-size: 22px;
   flex: 1;
   max-width: 280px;
   opacity: 1;
@@ -157,7 +157,7 @@ const panelStyle = computed(() => {
 }
 
 .col-title {
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 500;
   color: #666;
   margin-bottom: 12px;
@@ -178,7 +178,7 @@ const panelStyle = computed(() => {
 .col-item {
   color: #333;
   text-decoration: none;
-  font-size: 16.5px;
+  font-size: 22px;
   padding: 6px 0;
   transition: color 0.2s, transform 0.2s;
   display: inline-block;

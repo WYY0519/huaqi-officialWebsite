@@ -158,14 +158,14 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 }
 
 .footer-brand-name {
-  font-size: 21.5px;
+  font-size: 29px;
   font-weight: 600;
   color: white;
   margin-bottom: 10px
 }
 
 .footer-brand-sub {
-  font-size: 11px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.5);
   letter-spacing: 1px;
 }
@@ -224,7 +224,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 }
 
 .footer-menu-title {
-  font-size: 16.5px;
+  font-size: 22px;
   font-weight: 600;
   color: white;
   margin-bottom: 39px;
@@ -268,7 +268,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 }
 
 .footer-qrcode-text {
-  font-size: 16px;
+  font-size: 21px;
   color: #818587;
   /* margin: 2px 0; */
 }
@@ -280,7 +280,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   justify-content: center;
   gap: 104px;
   padding: 41px 0;
-  font-size: 12.5px;
+  font-size: 17px;
   font-weight: 600;
   color: #919598;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -290,7 +290,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 .footer-bottom {
   padding: 53px 0 0;
   text-align: center;
-  font-size: 12.5px;
+  font-size: 17px;
   font-weight: 600;
   color: #919598;
 }
@@ -414,7 +414,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-title {
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 25px;
     white-space: nowrap;
   }
@@ -424,7 +424,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-list a {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .footer-qrcode {
@@ -435,7 +435,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   .footer-info-bar {
     gap: 20px;
     padding: 30px 0;
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
@@ -446,7 +446,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-title {
-    font-size: 14px;
+    font-size: 19px;
     margin-bottom: 20px;
   }
 
@@ -455,14 +455,14 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-list a {
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .footer-info-bar {
     flex-direction: column;
     gap: 8px;
     padding: 25px 0;
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .footer-bottom {
@@ -491,7 +491,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-title {
-    font-size: 14px;
+    font-size: 19px;
     margin-bottom: 18px;
     white-space: nowrap;
   }
@@ -501,7 +501,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-list a {
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .footer-qrcode {
@@ -510,12 +510,12 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
   .footer-info-bar {
     padding: 20px 0;
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .footer-bottom {
     padding: 20px 0 0;
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
@@ -535,7 +535,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-brand-name {
-    font-size: 18px;
+    font-size: 24px;
   }
 
   .footer-menu-grid {
@@ -547,7 +547,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-title {
-    font-size: 13px;
+    font-size: 17px;
     margin-bottom: 15px;
     white-space: nowrap;
   }
@@ -557,21 +557,21 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   }
 
   .footer-menu-list a {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .footer-qrcode-text {
-    font-size: 13px;
+    font-size: 17px;
   }
 
   .footer-info-bar {
     padding: 15px 0;
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .footer-bottom {
     padding: 15px 0 0;
-    font-size: 11px;
+    font-size: 15px;
   }
 }
 </style>

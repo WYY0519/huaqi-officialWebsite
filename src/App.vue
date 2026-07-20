@@ -104,7 +104,7 @@ body {
 .section-title {
   font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
   text-align: center;
-  font-size: 41.5px;
+  font-size: 55px;
   font-weight: 900;
   color: #000;
   margin-bottom: 30px;
@@ -120,7 +120,7 @@ body {
 
 .section-subtitle {
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   color: #adb1b5;
   margin-top: 24px;
   margin-bottom: 52px;
@@ -140,14 +140,14 @@ body {
 }
 
 .about-title {
-  font-size: 32px;
+  font-size: 43px;
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
 }
 
 .about-desc {
-  font-size: 16px;
+  font-size: 21px;
   line-height: 1.8;
   color: #666;
   margin-bottom: 30px;
@@ -165,7 +165,7 @@ body {
 
 .stat-number {
   display: block;
-  font-size: 36px;
+  font-size: 48px;
   font-weight: bold;
   color: #00D4ff;
 }
@@ -197,7 +197,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 40px;
   color: #00D4ff;
   cursor: pointer;
   transition: transform 0.3s;
@@ -217,7 +217,7 @@ body {
 .solutions-block-title {
   font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
   text-align: center;
-  font-size: 34px;
+  font-size: 45px;
   font-weight: 900;
   color: #1a1a2e;
   margin-bottom: 10px;
@@ -225,7 +225,7 @@ body {
 
 .solutions-block-sub {
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   color: #b3b2b2;
   margin-bottom: 40px;
 }
@@ -272,13 +272,13 @@ body {
 }
 
 .sol-title {
-  font-size: 17px;
+  font-size: 23px;
   font-weight: 700;
   color: #1a1a2e;
 }
 
 .sol-desc {
-  font-size: 13px;
+  font-size: 17px;
   color: #888;
   line-height: 1.8;
 }
@@ -324,7 +324,7 @@ body {
   }
 
   .section-title {
-    font-size: 26px;
+    font-size: 35px;
   }
 
   .solutions-cards {
@@ -343,7 +343,7 @@ body {
   }
 
   .section-title {
-    font-size: 22px;
+    font-size: 29px;
   }
 
   .solutions-grid {

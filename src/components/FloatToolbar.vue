@@ -18,7 +18,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 // 图标路径
 const phoneIcon = new URL('../assets/home/图标/m.png', import.meta.url).href
 const chatIcon = new URL('../assets/home/图标/l.png', import.meta.url).href
-const addressIcon = new URL('../assets/home/图标/n.png', import.meta.url).href
+const addressIcon = new URL('../assets/home/图标/20260716155642_322_813.jpg', import.meta.url).href
 
 const emit = defineEmits<{
   (e: 'openChat'): void

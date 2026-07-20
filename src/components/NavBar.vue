@@ -281,7 +281,7 @@ onUnmounted(() => {
 }
 
 .logo-name {
-  font-size: 17.5px;
+  font-size: 23px;
   font-weight: 900;
   color: #fff;
   line-height: 1.2;
@@ -289,14 +289,14 @@ onUnmounted(() => {
 }
 
 .logo-sub {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 1px;
 }
 
 .nav-menu {
-  font-size: 16px;
+  font-size: 21px;
   display: flex;
   align-items: center;
   gap: 40px;
@@ -305,7 +305,7 @@ onUnmounted(() => {
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 27px;
   font-weight: 500;
   transition: color 0.3s;
   padding: 8px 0;
@@ -359,7 +359,7 @@ onUnmounted(() => {
   padding: 18px 30px;
   border-radius: 12px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
   transition: all 0.3s ease;
   text-decoration: none;
   position: relative;
@@ -472,7 +472,7 @@ onUnmounted(() => {
     width: 100%;
     text-align: center;
     padding: 16px 20px;
-    font-size: 17px;
+    font-size: 23px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.9);
   }
@@ -511,12 +511,12 @@ onUnmounted(() => {
   }
 
   .logo-name {
-    font-size: 15px;
+    font-size: 20px;
     letter-spacing: 1px;
   }
 
   .logo-sub {
-    font-size: 8px;
+    font-size: 11px;
   }
 }
 
@@ -631,7 +631,7 @@ onUnmounted(() => {
   padding: 8px 20px;
   border-radius: 4px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 19px;
   font-weight: 500;
   transition: all 0.3s ease;
 }
@@ -702,7 +702,7 @@ onUnmounted(() => {
   padding: 18px 20px;
   color: #1a1a1a;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
@@ -760,13 +760,13 @@ onUnmounted(() => {
 
 .mobile-nav-link-text {
   color: #1a1a1a;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 600;
 }
 
 .mobile-nav-expand-icon {
   color: #666;
-  font-size: 22px;
+  font-size: 29px;
   font-weight: 300;
   width: 24px;
   text-align: center;
@@ -799,7 +799,7 @@ onUnmounted(() => {
 
 .mobile-nav-submenu-category {
   color: #666;
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 600;
   padding: 8px 0 6px;
   grid-column: 1 / -1;
@@ -874,7 +874,7 @@ onUnmounted(() => {
 .mobile-nav-submenu-link {
   color: #333;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 17px;
   line-height: 1.6;
   transition: all 0.3s ease;
   display: inline-block;

@@ -327,7 +327,7 @@ onUnmounted(() => {
 }
 
 .sol-scene-title {
-  font-size: 36px;
+  font-size: 41px;
   font-weight: 800;
   color: #1a1a2e;
   line-height: 1.2;
@@ -335,7 +335,7 @@ onUnmounted(() => {
 }
 
 .sol-scene-sub {
-  font-size: 15px;
+  font-size: 20px;
   color: #9b9e9f;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -343,7 +343,7 @@ onUnmounted(() => {
 }
 
 .sol-scene-desc {
-  font-size: 15px;
+  font-size: 20px;
   color: #666;
   line-height: 1.8;
 }
@@ -359,7 +359,7 @@ onUnmounted(() => {
   padding: 8px 20px;
   color: #555;
   border-radius: 24px;
-  font-size: 14px;
+  font-size: 15px;
   border: 1px solid #e0e0e0;
   background: #fafafa;
   transition: all 0.2s;
@@ -376,7 +376,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   color: #00D4ff;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 600;
   text-decoration: none;
   margin-top: 8px;
@@ -447,15 +447,15 @@ onUnmounted(() => {
   }
 
   .sol-scene-title {
-    font-size: 28px;
+    font-size: 37px;
   }
 
   .sol-scene-sub {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .sol-scene-desc {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .sol-tags {
@@ -464,7 +464,7 @@ onUnmounted(() => {
 
   .sol-tag {
     padding: 6px 16px;
-    font-size: 13px;
+    font-size: 17px;
   }
 
   /* iPad下恢复padding-top样式 */
@@ -490,17 +490,17 @@ onUnmounted(() => {
   }
 
   .sol-scene-title {
-    font-size: 22px;
+    font-size: 29px;
     margin-bottom: 6px;
   }
 
   .sol-scene-sub {
-    font-size: 13px;
+    font-size: 17px;
     margin-bottom: 8px;
   }
 
   .sol-scene-desc {
-    font-size: 13px;
+    font-size: 17px;
     line-height: 1.7;
   }
 
@@ -511,11 +511,11 @@ onUnmounted(() => {
 
   .sol-tag {
     padding: 5px 14px;
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .sol-more {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   /* 手机下恢复padding-top样式 */

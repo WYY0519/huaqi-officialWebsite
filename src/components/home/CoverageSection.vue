@@ -116,14 +116,14 @@ onMounted(() => {
 }
 
 .coverage-label {
-  font-size: 20px;
+  font-size: 27px;
   font-weight: 600;
   color: #0f1419;
   margin-bottom: 19px;
 }
 
 .coverage-desc {
-  font-size: 14px;
+  font-size: 19px;
   color: #adb1b5;
   flex: 1;
 }
@@ -134,7 +134,7 @@ onMounted(() => {
   background: #e6f7ff;
   color: #00D4ff;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -159,11 +159,11 @@ onMounted(() => {
   }
 
   .coverage-label {
-    font-size: 16px;
+    font-size: 21px;
   }
 
   .coverage-desc {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
@@ -197,18 +197,18 @@ onMounted(() => {
   }
 
   .coverage-label {
-    font-size: 14px;
+    font-size: 19px;
     margin-bottom: 8px;
   }
 
   .coverage-desc {
-    font-size: 11px;
+    font-size: 15px;
     margin-bottom: 12px;
   }
 
   .coverage-tag {
     padding: 4px 12px;
-    font-size: 10px;
+    font-size: 13px;
   }
 }
 </style>

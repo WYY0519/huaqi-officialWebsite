@@ -295,7 +295,7 @@ onUnmounted(() => {
 }
 
 .product-name {
-  font-size: 30px;
+  font-size: 40px;
   /* font-weight: 700; */
   color: #000000;
   margin: 0 0 4px;
@@ -303,7 +303,7 @@ onUnmounted(() => {
 }
 
 .product-spec {
-  font-size: 10px;
+  font-size: 13px;
   color: rgba(0, 0, 0, 0.7);
   margin: 0 0 14px;
 }
@@ -316,7 +316,7 @@ onUnmounted(() => {
 .product-btn {
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
@@ -327,7 +327,7 @@ onUnmounted(() => {
 .product-btn-primary {
   background: #00d4ff;
   color: #fff;
-  font-size: 7px
+  font-size: 9px
 }
 
 .product-btn-primary:hover {
@@ -339,7 +339,7 @@ onUnmounted(() => {
   background: none;
   color: #000000;
   border: 1px solid rgba(0, 0, 0, 1);
-  font-size: 7px;
+  font-size: 9px;
   transition: all 0.3s ease;
 }
 
@@ -416,7 +416,7 @@ onUnmounted(() => {
 /* 大屏 1440px ~ 1950px */
 @media (max-width: 1440px) {
   .product-name {
-    font-size: 24px;
+    font-size: 32px;
   }
 
   .product-overlay {
@@ -431,11 +431,11 @@ onUnmounted(() => {
 /* iPad Pro 横屏 / 小桌面 1024px ~ 1440px */
 @media (max-width: 1024px) {
   .product-name {
-    font-size: 17px;
+    font-size: 23px;
   }
 
   .product-spec {
-    font-size: 12px;
+    font-size: 16px;
     margin-bottom: 12px;
   }
 
@@ -445,7 +445,7 @@ onUnmounted(() => {
 
   .product-btn {
     padding: 5px 14px;
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .carousel-controls {
@@ -475,11 +475,11 @@ onUnmounted(() => {
 /* 中等屏幕 860px ~ 1024px */
 @media (max-width: 860px) {
   .product-name {
-    font-size: 16px;
+    font-size: 21px;
   }
 
   .product-spec {
-    font-size: 11px;
+    font-size: 15px;
     margin-bottom: 12px;
   }
 
@@ -489,7 +489,7 @@ onUnmounted(() => {
 
   .product-btn {
     padding: 4px 13px;
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .carousel-controls {
@@ -519,11 +519,11 @@ onUnmounted(() => {
 /* iPad 竖屏 768px ~ 860px */
 @media (max-width: 768px) {
   .product-name {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .product-spec {
-    font-size: 10px;
+    font-size: 13px;
     margin-bottom: 8px;
   }
 
@@ -533,7 +533,7 @@ onUnmounted(() => {
 
   .product-btn {
     padding: 3px 10px;
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .product-buttons {
@@ -575,11 +575,11 @@ onUnmounted(() => {
   }
 
   .product-name {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .product-spec {
-    font-size: 8px;
+    font-size: 11px;
     margin-bottom: 5px;
   }
 
@@ -593,7 +593,7 @@ onUnmounted(() => {
 
   .product-btn {
     padding: 2px 7px;
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .carousel-controls {
@@ -627,11 +627,11 @@ onUnmounted(() => {
 /* 小手机 ≤375px */
 @media (max-width: 375px) {
   .product-name {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .product-spec {
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .product-overlay {
@@ -640,7 +640,7 @@ onUnmounted(() => {
 
   .product-btn {
     padding: 2px 6px;
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .carousel-controls {

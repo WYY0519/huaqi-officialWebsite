@@ -243,7 +243,7 @@ onUnmounted(() => { stopAutoplay() })
 
 .hero-title,
 .slide-title {
-  font-size: 45px;
+  font-size: 60px;
   font-weight: 900;
   color: #fff;
   margin-bottom: 23px;
@@ -269,7 +269,7 @@ onUnmounted(() => { stopAutoplay() })
 
 .hero-subtitle,
 .slide-subtitle {
-  font-size: 32px;
+  font-size: 43px;
   color: #fff;
   margin-bottom: 28px;
   font-weight: 400;
@@ -287,7 +287,7 @@ onUnmounted(() => { stopAutoplay() })
   border-radius: 30px;
   color: #fff;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 27px;
   font-weight: 400;
   font-family: 'Opposans', sans-serif;
   transition: all 0.3s;
@@ -368,7 +368,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 44px;
+    font-size: 59px;
     margin-bottom: 23px;
     letter-spacing: 3px;
   }
@@ -381,14 +381,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 32px;
+    font-size: 43px;
     margin-bottom: 28px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 24px 36px;
-    font-size: 19px;
+    font-size: 25px;
     border-radius: 30px;
   }
 
@@ -414,7 +414,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 44px;
+    font-size: 59px;
     margin-bottom: 23px;
     letter-spacing: 3px;
   }
@@ -427,14 +427,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 32px;
+    font-size: 43px;
     margin-bottom: 28px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 24px 36px;
-    font-size: 19px;
+    font-size: 25px;
     border-radius: 30px;
   }
 
@@ -460,7 +460,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 37px;
+    font-size: 49px;
     margin-bottom: 19px;
     letter-spacing: 3px;
   }
@@ -473,14 +473,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 26px;
+    font-size: 35px;
     margin-bottom: 23px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 20px 30px;
-    font-size: 16px;
+    font-size: 21px;
     border-radius: 25px;
   }
 
@@ -506,7 +506,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 33px;
+    font-size: 44px;
     margin-bottom: 17px;
     letter-spacing: 3px;
   }
@@ -519,14 +519,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 21px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 18px 27px;
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 22px;
   }
 
@@ -552,7 +552,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 30px;
+    font-size: 40px;
     margin-bottom: 15px;
     letter-spacing: 3px;
   }
@@ -565,14 +565,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 21px;
+    font-size: 28px;
     margin-bottom: 18px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 16px 24px;
-    font-size: 13px;
+    font-size: 17px;
     border-radius: 20px;
   }
 
@@ -603,7 +603,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 25px;
+    font-size: 33px;
     margin-bottom: 13px;
     letter-spacing: 2px;
   }
@@ -616,14 +616,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 16px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 14px 20px;
-    font-size: 11px;
+    font-size: 15px;
     border-radius: 17px;
   }
 
@@ -654,7 +654,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 12px;
     letter-spacing: 2px;
   }
@@ -667,14 +667,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 17px;
+    font-size: 23px;
     margin-bottom: 15px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 13px 19px;
-    font-size: 11px;
+    font-size: 15px;
     border-radius: 16px;
   }
 
@@ -705,7 +705,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 21px;
+    font-size: 28px;
     margin-bottom: 10px;
     letter-spacing: 2px;
   }
@@ -718,14 +718,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 13px;
     letter-spacing: 2px;
   }
 
   .hero-btn {
     padding: 11px 17px;
-    font-size: 10px;
+    font-size: 13px;
     border-radius: 14px;
   }
 
@@ -757,7 +757,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 19px;
+    font-size: 25px;
     margin-bottom: 9px;
     letter-spacing: 2px;
   }
@@ -770,14 +770,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 14px;
+    font-size: 19px;
     margin-bottom: 12px;
     letter-spacing: 1px;
   }
 
   .hero-btn {
     padding: 10px 15px;
-    font-size: 9px;
+    font-size: 12px;
     border-radius: 13px;
   }
 
@@ -813,7 +813,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 9px;
     letter-spacing: 2px;
   }
@@ -826,14 +826,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 13px;
+    font-size: 17px;
     margin-bottom: 11px;
     letter-spacing: 1px;
   }
 
   .hero-btn {
     padding: 10px 14px;
-    font-size: 8px;
+    font-size: 11px;
     border-radius: 12px;
   }
 
@@ -869,7 +869,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 8px;
     letter-spacing: 1px;
   }
@@ -882,14 +882,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 11px;
+    font-size: 15px;
     margin-bottom: 9px;
     letter-spacing: 1px;
   }
 
   .hero-btn {
     padding: 8px 12px;
-    font-size: 7px;
+    font-size: 9px;
     border-radius: 10px;
   }
 
@@ -924,7 +924,7 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-title,
   .slide-title {
-    font-size: 11px;
+    font-size: 15px;
     margin-bottom: 6px;
     letter-spacing: 1px;
   }
@@ -937,14 +937,14 @@ onUnmounted(() => { stopAutoplay() })
 
   .hero-subtitle,
   .slide-subtitle {
-    font-size: 8px;
+    font-size: 11px;
     margin-bottom: 7px;
     letter-spacing: 1px;
   }
 
   .hero-btn {
     padding: 6px 9px;
-    font-size: 5px;
+    font-size: 7px;
     border-radius: 7px;
   }
 

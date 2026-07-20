@@ -125,7 +125,7 @@ onUnmounted(() => {
 
 .stats-main-title {
   text-align: center;
-  font-size: 34px;
+  font-size: 45px;
   font-weight: 700;
   color: #1a1a2e;
   margin-bottom: 10px;
@@ -133,7 +133,7 @@ onUnmounted(() => {
 
 .stats-sub-title {
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   color: #888;
   margin-bottom: 48px;
 }
@@ -159,19 +159,19 @@ onUnmounted(() => {
 
 .stat-value {
   display: block;
-  font-size: 60px;
+  font-size: 80px;
   font-weight: 800;
   color: #00D4ff;
   margin-bottom: 22px;
 }
 
 .stat-unit {
-  font-size: 22px;
+  font-size: 29px;
   color: #6b7077;
 }
 
 .stat-label {
-  font-size: 27.5px;
+  font-size: 21px;
   color: #6b7077;
 }
 
@@ -240,14 +240,14 @@ onUnmounted(() => {
 }
 
 .tech-card-title {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 600;
   color: #000000;
   margin-bottom: 10px;
 }
 
 .tech-card-desc {
-  font-size: 21px;
+  font-size: 28px;
   color: #adb1b5;
   line-height: 1.5;
 }
@@ -259,7 +259,7 @@ onUnmounted(() => {
   background: #def5f9;
   color: #0cd7ff;
   border-radius: 20px;
-  font-size: 18.5px;
+  font-size: 25px;
   align-self: flex-end;
   border: 1px solid #b1eefa;
   white-space: nowrap;
@@ -276,16 +276,16 @@ onUnmounted(() => {
   }
 
   .stat-value {
-    font-size: 44px;
+    font-size: 59px;
     margin-bottom: 16px;
   }
 
   .stat-unit {
-    font-size: 16px;
+    font-size: 21px;
   }
 
   .stat-label {
-    font-size: 20px;
+    font-size: 27px;
   }
 
   .tech-cards-grid {
@@ -310,15 +310,15 @@ onUnmounted(() => {
   }
 
   .tech-card-title {
-    font-size: 22px;
+    font-size: 29px;
   }
 
   .tech-card-desc {
-    font-size: 15px;
+    font-size: 20px;
   }
 
   .tech-card-tag {
-    font-size: 14px;
+    font-size: 19px;
   }
 }
 
@@ -334,16 +334,16 @@ onUnmounted(() => {
   }
 
   .stat-value {
-    font-size: 31px;
+    font-size: 41px;
     margin-bottom: 12px;
   }
 
   .stat-unit {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .stat-label {
-    font-size: 14px;
+    font-size: 19px;
   }
 
   .tech-cards-grid {
@@ -368,15 +368,15 @@ onUnmounted(() => {
   }
 
   .tech-card-title {
-    font-size: 16px;
+    font-size: 21px;
   }
 
   .tech-card-desc {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .tech-card-tag {
-    font-size: 10px;
+    font-size: 13px;
   }
 }
 
@@ -397,16 +397,16 @@ onUnmounted(() => {
   }
 
   .stat-value {
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 10px;
   }
 
   .stat-unit {
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .stat-label {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .tech-cards-grid {
@@ -436,17 +436,17 @@ onUnmounted(() => {
   }
 
   .tech-card-title {
-    font-size: 14px;
+    font-size: 19px;
     margin-bottom: 6px;
   }
 
   .tech-card-desc {
-    font-size: 11px;
+    font-size: 15px;
     line-height: 1.5;
   }
 
   .tech-card-tag {
-    font-size: 9px;
+    font-size: 12px;
     padding: 4px 12px;
     margin: auto 0 0 0;
   }
@@ -469,16 +469,16 @@ onUnmounted(() => {
   }
 
   .stat-value {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 6px;
   }
 
   .stat-unit {
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .stat-label {
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .tech-cards-grid {
@@ -498,15 +498,15 @@ onUnmounted(() => {
   }
 
   .tech-card-title {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .tech-card-desc {
-    font-size: 9px;
+    font-size: 12px;
   }
 
   .tech-card-tag {
-    font-size: 8px;
+    font-size: 11px;
     padding: 3px 10px;
   }
 }
@@ -523,15 +523,15 @@ onUnmounted(() => {
   }
 
   .stat-value {
-    font-size: 15px;
+    font-size: 20px;
   }
 
   .stat-unit {
-    font-size: 6px;
+    font-size: 8px;
   }
 
   .stat-label {
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .tech-card {
@@ -547,15 +547,15 @@ onUnmounted(() => {
   }
 
   .tech-card-title {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .tech-card-desc {
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .tech-card-tag {
-    font-size: 7px;
+    font-size: 9px;
     padding: 2px 8px;
   }
 }
