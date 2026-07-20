@@ -117,25 +117,26 @@ onUnmounted(() => {
 </script>
 
 <style>
-/* 数据统计区块 */
+/* 数据统计区块 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放（1920 时还原当前尺寸） */
 .stats-section {
-  padding: 70px 0 80px;
+  padding: 3.64583vw 0 4.16667vw;
   background: linear-gradient(to bottom, #dbeefb 2%, #ffffff 100%);
 }
 
+/* 注：模板实际使用全局 .section-title / .section-subtitle，以下两条为本组件备用标题样式，同样按 vw 等比 */
 .stats-main-title {
   text-align: center;
-  font-size: 45px;
+  font-size: 2.34375vw;
   font-weight: 700;
   color: #1a1a2e;
-  margin-bottom: 10px;
+  margin-bottom: 0.52083vw;
 }
 
 .stats-sub-title {
   text-align: center;
-  font-size: 20px;
+  font-size: 1.04167vw;
   color: #888;
-  margin-bottom: 48px;
+  margin-bottom: 2.5vw;
 }
 
 .stats-grid {
@@ -143,15 +144,15 @@ onUnmounted(() => {
   grid-template-columns: repeat(5, 1fr);
   gap: 0;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 0.78125vw;
   background: #f5f8f9;
-  border-radius: 12px;
-  padding: 88px 0 80px 0px;
+  border-radius: 0.625vw;
+  padding: 4.58333vw 0 4.16667vw 0px;
   width: 100%;
 }
 
 .stat-card {
-  padding: 10px 20px 20px;
+  padding: 0.52083vw 1.04167vw 1.04167vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -159,19 +160,19 @@ onUnmounted(() => {
 
 .stat-value {
   display: block;
-  font-size: 80px;
+  font-size: 4.16667vw;
   font-weight: 800;
   color: #00D4ff;
-  margin-bottom: 22px;
+  margin-bottom: 1.14583vw;
 }
 
 .stat-unit {
-  font-size: 29px;
+  font-size: 1.51042vw;
   color: #6b7077;
 }
 
 .stat-label {
-  font-size: 21px;
+  font-size: 1.09375vw;
   color: #6b7077;
 }
 
@@ -179,41 +180,41 @@ onUnmounted(() => {
 .tech-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 17px;
+  gap: 0.88542vw;
   justify-content: center;
   width: 100%;
 }
 
 .tech-card {
   background: #f5f8f9;
-  border-radius: 12px;
+  border-radius: 0.625vw;
   display: flex;
   flex-direction: row;
-  box-shadow: 0 2px 16px rgba(0, 120, 200, 0.07);
+  box-shadow: 0 0.10417vw 0.83333vw rgba(0, 120, 200, 0.07);
   transition: box-shadow 0.3s, transform 0.3s;
   width: 100%;
-  min-height: 325px;
+  min-height: 16.92708vw;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .tech-card:hover {
-  box-shadow: 0 8px 28px rgba(0, 120, 200, 0.13);
-  transform: translateY(-3px);
+  box-shadow: 0 0.41667vw 1.45833vw rgba(0, 120, 200, 0.13);
+  transform: translateY(-0.15625vw);
 }
 
 .tech-icon {
-  width: 117px;
-  height: 123px;
-  min-width: 117px;
-  border-radius: 16px;
+  width: 6.09375vw;
+  height: 6.40625vw;
+  min-width: 6.09375vw;
+  border-radius: 0.83333vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   align-self: flex-start;
   overflow: hidden;
-  margin: 51px 59px 0 48px;
+  margin: 2.65625vw 3.07292vw 0 2.5vw;
 }
 
 .tech-icon img {
@@ -235,328 +236,33 @@ onUnmounted(() => {
   flex-direction: column;
   flex: 1;
   min-width: 0;
-  margin: 57px 40px 0 0;
-  padding-right: 20px;
+  margin: 2.96875vw 2.08333vw 0 0;
+  padding-right: 1.04167vw;
 }
 
 .tech-card-title {
-  font-size: 40px;
+  font-size: 2.08333vw;
   font-weight: 600;
   color: #000000;
-  margin-bottom: 10px;
+  margin-bottom: 0.52083vw;
 }
 
 .tech-card-desc {
-  font-size: 28px;
+  font-size: 1.45833vw;
   color: #adb1b5;
   line-height: 1.5;
 }
 
 .tech-card-tag {
   display: inline-block;
-  margin: auto 29px 26px 0;
-  padding: 5px 16px;
+  margin: auto 1.51042vw 1.35417vw 0;
+  padding: 0.26042vw 0.83333vw;
   background: #def5f9;
   color: #0cd7ff;
-  border-radius: 20px;
-  font-size: 25px;
+  border-radius: 1.04167vw;
+  font-size: 1.30208vw;
   align-self: flex-end;
-  border: 1px solid #b1eefa;
+  border: 0.05208vw solid #b1eefa;
   white-space: nowrap;
-}
-
-/* 响应式 - 桌面端 1440px */
-@media (max-width: 1440px) {
-  .stats-section {
-    padding: 52px 0 59px;
-  }
-
-  .stats-grid {
-    padding: 65px 0 59px 0px;
-  }
-
-  .stat-value {
-    font-size: 59px;
-    margin-bottom: 16px;
-  }
-
-  .stat-unit {
-    font-size: 21px;
-  }
-
-  .stat-label {
-    font-size: 27px;
-  }
-
-  .tech-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .tech-card {
-    width: 100%;
-    min-height: 280px;
-  }
-
-  .tech-icon {
-    width: 86px;
-    height: 91px;
-    min-width: 86px;
-    margin: 38px 44px 0 35px;
-  }
-
-  .tech-card-body {
-    margin: 42px 30px 0 0;
-  }
-
-  .tech-card-title {
-    font-size: 29px;
-  }
-
-  .tech-card-desc {
-    font-size: 20px;
-  }
-
-  .tech-card-tag {
-    font-size: 19px;
-  }
-}
-
-/* 响应式 - iPad Pro 横屏 1024px */
-@media (max-width: 1024px) {
-  .stats-section {
-    /* padding: 37px 0 42px; */
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    padding: 46px 0 42px 0px;
-  }
-
-  .stat-value {
-    font-size: 41px;
-    margin-bottom: 12px;
-  }
-
-  .stat-unit {
-    font-size: 16px;
-  }
-
-  .stat-label {
-    font-size: 19px;
-  }
-
-  .tech-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 9px;
-  }
-
-  .tech-card {
-    width: 100%;
-    min-height: 220px;
-  }
-
-  .tech-icon {
-    width: 61px;
-    height: 65px;
-    min-width: 61px;
-    margin: 27px 31px 0 25px;
-  }
-
-  .tech-card-body {
-    margin: 30px 20px 0 0;
-  }
-
-  .tech-card-title {
-    font-size: 21px;
-  }
-
-  .tech-card-desc {
-    font-size: 16px;
-  }
-
-  .tech-card-tag {
-    font-size: 13px;
-  }
-}
-
-/* 响应式 - iPad 竖屏 768px */
-@media (max-width: 768px) {
-  .stats-section {
-    /* padding: 28px 0 32px; */
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 35px 0 32px 0px;
-    gap: 10px;
-  }
-
-  .stat-card {
-    padding: 8px 6px 14px;
-  }
-
-  .stat-value {
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
-
-  .stat-unit {
-    font-size: 12px;
-  }
-
-  .stat-label {
-    font-size: 15px;
-  }
-
-  .tech-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .tech-card {
-    width: 100%;
-    min-height: 140px;
-    padding: 16px;
-  }
-
-  .tech-icon {
-    width: 50px;
-    height: 53px;
-    min-width: 50px;
-    margin: 0 16px 0 0;
-  }
-
-  .tech-card-content {
-    flex: 1;
-  }
-
-  .tech-card-body {
-    margin: 0;
-  }
-
-  .tech-card-title {
-    font-size: 19px;
-    margin-bottom: 6px;
-  }
-
-  .tech-card-desc {
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  .tech-card-tag {
-    font-size: 12px;
-    padding: 4px 12px;
-    margin: auto 0 0 0;
-  }
-}
-
-/* 响应式 - 手机 480px */
-@media (max-width: 480px) {
-  .stats-section {
-    /* padding: 20px 0 24px; */
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 25px 0 24px 0px;
-    gap: 8px;
-  }
-
-  .stat-card {
-    padding: 6px 4px 10px;
-  }
-
-  .stat-value {
-    font-size: 24px;
-    margin-bottom: 6px;
-  }
-
-  .stat-unit {
-    font-size: 9px;
-  }
-
-  .stat-label {
-    font-size: 11px;
-  }
-
-  .tech-cards-grid {
-    gap: 8px;
-  }
-
-  .tech-card {
-    min-height: 120px;
-    padding: 12px;
-  }
-
-  .tech-icon {
-    width: 40px;
-    height: 43px;
-    min-width: 40px;
-    margin: 0 12px 0 0;
-  }
-
-  .tech-card-title {
-    font-size: 16px;
-  }
-
-  .tech-card-desc {
-    font-size: 12px;
-  }
-
-  .tech-card-tag {
-    font-size: 11px;
-    padding: 3px 10px;
-  }
-}
-
-/* 响应式 - 小屏手机 375px */
-@media (max-width: 375px) {
-  .stats-section {
-    /* padding: 16px 0 20px; */
-  }
-
-  .stats-grid {
-    padding: 20px 0 20px 0px;
-    gap: 6px;
-  }
-
-  .stat-value {
-    font-size: 20px;
-  }
-
-  .stat-unit {
-    font-size: 8px;
-  }
-
-  .stat-label {
-    font-size: 9px;
-  }
-
-  .tech-card {
-    min-height: 100px;
-    padding: 10px;
-  }
-
-  .tech-icon {
-    width: 35px;
-    height: 38px;
-    min-width: 35px;
-    margin: 0 10px 0 0;
-  }
-
-  .tech-card-title {
-    font-size: 15px;
-  }
-
-  .tech-card-desc {
-    font-size: 11px;
-  }
-
-  .tech-card-tag {
-    font-size: 9px;
-    padding: 2px 8px;
-  }
 }
 </style>

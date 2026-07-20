@@ -62,10 +62,12 @@ const panelStyle = computed(() => {
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-size: 27px;
+  /* 1920 时 = 27px，与 NavBar 的 .nav-link 保持一致、等比缩放 */
+  font-size: 1.40625vw;
   font-weight: 500;
   transition: color 0.3s;
-  padding: 8px 0;
+  /* 1920 时 = 8px 0 */
+  padding: 0.41667vw 0;
   position: relative;
   white-space: nowrap;
   display: inline-block;
@@ -87,10 +89,12 @@ const panelStyle = computed(() => {
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  /* 1920 时 = -8px */
+  bottom: -0.41667vw;
   left: 50%;
   width: 0;
-  height: 2px;
+  /* 1920 时 = 2px */
+  height: 0.10417vw;
   background: currentColor;
   transition: width 0.3s ease, left 0.3s ease;
 }
