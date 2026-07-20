@@ -183,8 +183,10 @@ onUnmounted(() => {
 
 .header.scrolled {
   background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  /* 1920 时 = 10px */
+  backdrop-filter: blur(0.52083vw);
+  /* 1920 时 = 0 2px 20px */
+  box-shadow: 0 0.10417vw 1.04167vw rgba(0, 0, 0, 0.1);
 }
 
 .header.scrolled .logo-name {
@@ -211,8 +213,10 @@ onUnmounted(() => {
 /* 产品中心悬浮时导航栏变为白色背景 */
 .header.product-hovered {
   background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  /* 1920 时 = 10px */
+  backdrop-filter: blur(0.52083vw);
+  /* 1920 时 = 0 2px 20px */
+  box-shadow: 0 0.10417vw 1.04167vw rgba(0, 0, 0, 0.1);
 }
 
 .header.product-hovered .logo-name {
@@ -231,10 +235,12 @@ onUnmounted(() => {
 .header.product-hovered :deep(.product-dropdown .nav-link.active::after) {
   content: '';
   position: absolute;
-  bottom: -33px;
+  /* 1920 时 = -33px */
+  bottom: -1.71875vw;
   left: 0;
   width: 100%;
-  height: 1px;
+  /* 1920 时 = 1px */
+  height: 0.05208vw;
   background: #000000;
 }
 
@@ -252,7 +258,8 @@ onUnmounted(() => {
 .header-container {
   width: 100%;
   margin: 0 auto;
-  padding: 23px 92px 23px 74px;
+  /* 1920 时 = 23px 92px 23px 74px */
+  padding: 1.19792vw 4.79167vw 1.19792vw 3.85417vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -272,7 +279,8 @@ onUnmounted(() => {
 }
 
 .logo-icon {
-  margin-right: 15px;
+  /* 1920 时 = 15px */
+  margin-right: 0.78125vw;
 }
 
 .logo-text-group {
@@ -281,34 +289,42 @@ onUnmounted(() => {
 }
 
 .logo-name {
-  font-size: 23px;
+  /* 1920 时 = 23px */
+  font-size: 1.19792vw;
   font-weight: 900;
   color: #fff;
   line-height: 1.2;
-  letter-spacing: 2px;
+  /* 1920 时 = 2px */
+  letter-spacing: 0.10417vw;
 }
 
 .logo-sub {
-  font-size: 13px;
+  /* 1920 时 = 13px */
+  font-size: 0.67708vw;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 1px;
+  /* 1920 时 = 1px */
+  letter-spacing: 0.05208vw;
 }
 
 .nav-menu {
-  font-size: 21px;
+  /* 1920 时 = 21px */
+  font-size: 1.09375vw;
   display: flex;
   align-items: center;
-  gap: 40px;
+  /* 1920 时 = 40px */
+  gap: 2.08333vw;
 }
 
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-size: 27px;
+  /* 1920 时 = 27px */
+  font-size: 1.40625vw;
   font-weight: 500;
   transition: color 0.3s;
-  padding: 8px 0;
+  /* 1920 时 = 8px 0 */
+  padding: 0.41667vw 0;
   position: relative;
   white-space: nowrap;
 }
@@ -331,10 +347,12 @@ onUnmounted(() => {
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -8px;
+  /* 1920 时 = -8px */
+  bottom: -0.41667vw;
   left: 50%;
   width: 0;
-  height: 2px;
+  /* 1920 时 = 2px */
+  height: 0.10417vw;
   background: currentColor;
   transition: width 0.3s ease, left 0.3s ease;
 }
@@ -353,20 +371,31 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
+  /* 1920 时 = 9px */
+  gap: 0.46875vw;
   background: #00D4ff;
   color: black;
   border: none;
-  border-radius: 12px;
+  /* 1920 时 = 12px */
+  border-radius: 0.625vw;
   cursor: pointer;
-  font-size: 1rem;
+  /* 1920 时 = 16px (1rem) */
+  font-size: 0.83333vw;
   font-weight: bold;
   transition: all 0.3s ease;
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  height: 49px;
-  width: 153px;
+  /* 1920 时 = 49px */
+  height: 2.55208vw;
+  /* 1920 时 = 153px */
+  width: 7.96875vw;
+}
+
+.contact-btn svg {
+  /* 1920 时 = 10px */
+  width: 0.52083vw;
+  height: 0.52083vw;
 }
 
 .contact-btn::before {
@@ -382,8 +411,10 @@ onUnmounted(() => {
 
 .contact-btn:hover {
   background: #00D4ff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* 1920 时 = -2px */
+  transform: translateY(-0.10417vw);
+  /* 1920 时 = 0 4px 12px */
+  box-shadow: 0 0.20833vw 0.625vw rgba(0, 0, 0, 0.15);
 }
 
 .contact-btn:hover::before {
