@@ -47,33 +47,34 @@ onMounted(() => {
 </script>
 
 <style>
-/* 全流程服务保障体系区块 */
+/* 全流程服务保障体系区块 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放 */
 .coverage-section {
-  padding: 74px 0;
+  padding: 3.85417vw 0;
   background: #f8f9fa;
 }
 
 .coverage-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 276px);
-  gap: 24px;
+  /* 始终固定 5 列，每列宽度保持 1920 下的 276px（14.375vw），缩放时整体等比 */
+  grid-template-columns: repeat(5, 14.375vw);
+  gap: 1.25vw;
   justify-content: space-between;
 }
 
 .coverage-item {
   text-align: center;
-  padding: 47px 32px 40px 31px;
+  padding: 2.44792vw 1.66667vw 2.08333vw 1.61458vw;
   background: white;
-  border-radius: 8px;
-  width: 276px;
-  height: 434px;
+  border-radius: 0.41667vw;
+  width: 14.375vw;
+  height: 22.60417vw;
   box-sizing: border-box;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: 0;
-  transform: translateY(60px);
+  transform: translateY(3.125vw);
 }
 
 .coverage-item.animate-in {
@@ -83,7 +84,7 @@ onMounted(() => {
 @keyframes slideUpFadeIn {
   from {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(3.125vw);
   }
   to {
     opacity: 1;
@@ -92,19 +93,19 @@ onMounted(() => {
 }
 
 .coverage-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 30px rgba(0, 100, 200, 0.15);
+  transform: translateY(-0.41667vw);
+  box-shadow: 0 0.41667vw 1.5625vw rgba(0, 100, 200, 0.15);
 }
 
 .coverage-icon {
-  width: 96px;
-  height: 96px;
+  width: 5vw;
+  height: 5vw;
   flex-shrink: 0;
-  border-radius: 16px;
+  border-radius: 0.83333vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.04167vw;
   overflow: hidden;
 }
 
@@ -116,99 +117,25 @@ onMounted(() => {
 }
 
 .coverage-label {
-  font-size: 27px;
+  font-size: 1.40625vw;
   font-weight: 600;
   color: #0f1419;
-  margin-bottom: 19px;
+  margin-bottom: 0.98958vw;
 }
 
 .coverage-desc {
-  font-size: 19px;
+  font-size: 0.98958vw;
   color: #adb1b5;
   flex: 1;
 }
 
 .coverage-tag {
   display: inline-block;
-  padding: 6px 16px;
+  padding: 0.3125vw 0.83333vw;
   background: #e6f7ff;
   color: #00D4ff;
-  border-radius: 20px;
-  font-size: 13px;
+  border-radius: 1.04167vw;
+  font-size: 0.67708vw;
   font-weight: 600;
-}
-
-/* 响应式 - iPad */
-@media (max-width: 1024px) {
-  .coverage-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-  }
-
-  .coverage-item {
-    padding: 24px 16px;
-    min-height: auto;
-    width: auto;
-    height: auto;
-  }
-
-  .coverage-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 16px;
-  }
-
-  .coverage-label {
-    font-size: 21px;
-  }
-
-  .coverage-desc {
-    font-size: 16px;
-  }
-}
-
-/* 响应式 - 小屏手机 */
-@media (max-width: 480px) {
-  .coverage-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 16px;
-  }
-
-  .coverage-section {
-    padding: 30px 10px;
-  }
-
-  .coverage-item {
-    padding: 20px 12px;
-    min-height: auto;
-    width: auto;
-    height: auto;
-  }
-
-  .coverage-icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 12px;
-  }
-
-  .coverage-icon img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .coverage-label {
-    font-size: 19px;
-    margin-bottom: 8px;
-  }
-
-  .coverage-desc {
-    font-size: 15px;
-    margin-bottom: 12px;
-  }
-
-  .coverage-tag {
-    padding: 4px 12px;
-    font-size: 13px;
-  }
 }
 </style>
