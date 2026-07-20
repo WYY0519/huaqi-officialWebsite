@@ -302,7 +302,7 @@ onUnmounted(() => {
 }
 
 .news-date {
-  color: #999;
+  color: #adb1b5;
   font-size: 0.83333vw;
 }
 

@@ -162,7 +162,7 @@ onUnmounted(() => {
   display: block;
   font-size: 4.16667vw;
   font-weight: 800;
-  color: #00D4ff;
+  color: #0cd7ff;
   margin-bottom: 1.14583vw;
 }
 
@@ -258,8 +258,8 @@ onUnmounted(() => {
   margin: auto 1.51042vw 1.35417vw 0;
   padding: 0.26042vw 0.83333vw;
   background: #def5f9;
-  color: #0cd7ff;
-  border-radius: 1.04167vw;
+  color: #07b8dc;
+  border-radius: 2vw;
   font-size: 1.30208vw;
   align-self: flex-end;
   border: 0.05208vw solid #b1eefa;

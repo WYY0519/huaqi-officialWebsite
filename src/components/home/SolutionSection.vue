@@ -358,7 +358,7 @@ onUnmounted(() => {
 
 .sol-tag {
   padding: 0.41667vw 1.04167vw;
-  color: #555;
+  color: #9b9e9f;
   border-radius: 1.25vw;
   font-size: 0.78125vw;
   border: 1px solid #e0e0e0;
