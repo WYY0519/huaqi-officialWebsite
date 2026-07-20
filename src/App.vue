@@ -100,19 +100,22 @@ body {
   transition: box-shadow 0.3s, transform 0.3s;
 }
 
-/* 通用区块样式 */
+/* 通用区块样式 - 以 1920 为基准换算 vw，任意屏宽等比例缩放（1920 时还原当前尺寸） */
 .section-title {
   font-family: 'Noto Sans SC', 'Source Han Sans CN', sans-serif;
   text-align: center;
-  font-size: 55px;
+  /* 1920 时 = 55px */
+  font-size: 2.86458vw;
   font-weight: 900;
   color: #000;
-  margin-bottom: 30px;
+  /* 1920 时 = 30px */
+  margin-bottom: 1.5625vw;
   position: relative;
 }
 
 .section-line {
-  width: 161px;
+  /* 1920 时 = 161px */
+  width: 8.38542vw;
   height: 1px;
   background: #00D4ff;
   margin: 0 auto;
@@ -120,10 +123,12 @@ body {
 
 .section-subtitle {
   text-align: center;
-  font-size: 20px;
+  /* 1920 时 = 20px */
+  font-size: 1.04167vw;
   color: #adb1b5;
-  margin-top: 24px;
-  margin-bottom: 52px;
+  /* 1920 时 = 24px / 52px */
+  margin-top: 1.25vw;
+  margin-bottom: 2.70833vw;
   position: relative;
 }
 
@@ -323,29 +328,13 @@ body {
     padding: 0 46px;
   }
 
-  .section-title {
-    font-size: 35px;
-  }
-
   .solutions-cards {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .section-subtitle {
-    margin-bottom: 32px;
   }
 }
 
 /* 小屏手机 (≤480px) */
 @media (max-width: 480px) {
-  .container {
-    /* padding: 0 22px; */
-  }
-
-  .section-title {
-    font-size: 29px;
-  }
-
   .solutions-grid {
     grid-template-columns: 1fr;
   }
