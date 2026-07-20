@@ -193,27 +193,27 @@ onUnmounted(() => {
 
 <style scoped>
 /*
-  设计稿基准：1950px
-  卡片尺寸：499 × 423px
-  间距：28px
+  设计稿基准：1920px（与官网其它模块统一）
+  卡片：由 --card-width 决定，1920 时 ≈ 493 × 418px
   每屏显示：3张完整 + 右边半张
   左侧紧贴 padding-left，右侧被 overflow 裁剪
+  全站尺寸均以 1920 为基准换算为 vw，保证任意屏宽等比例缩放
 */
 
 .products-section {
-  /* 动态计算：保证任意宽度下至少显示3个完整卡片 + 右侧半张 */
-  --pl: clamp(27px, 7.2vw, 140px);
-  --card-gap: clamp(5px, 1.5vw, 28px);
-  --card-width: clamp(96px, calc((100vw - var(--pl) - 2 * var(--card-gap)) / 3.5), 499px);
+  /* 以 1920 为基准的 vw 变量，1920 时还原当前尺寸，其余屏宽等比缩放 */
+  --pl: 7.2vw;
+  --card-gap: 1.45833vw;
+  --card-width: calc((100vw - var(--pl) - 2 * var(--card-gap)) / 3.5);
   --card-height: calc(var(--card-width) * 423 / 499);
 
-  padding: clamp(60px, 4.1vw, 80px) 0 clamp(40px, 3.1vw, 60px) var(--pl);
+  padding: 4.1vw 0 3.1vw var(--pl);
   background: #f5f6f8;
   overflow: hidden;
 }
 
 .carousel-wrapper {
-  margin-top: 48px;
+  margin-top: 2.5vw;
   position: relative;
 }
 
@@ -236,7 +236,7 @@ onUnmounted(() => {
 /* ======= 卡片本体 ======= */
 .product-card {
   position: relative;
-  border-radius: 8px;
+  border-radius: 0.41667vw;
   overflow: hidden;
   background: #e8eaed;
   cursor: pointer;
@@ -268,7 +268,7 @@ onUnmounted(() => {
   background: rgba(252, 252, 252, 0.5);
   z-index: 2;
   pointer-events: none;
-  border-radius: 8px;
+  border-radius: 0.41667vw;
 }
 
 /* ======= 图片 ======= */
@@ -291,32 +291,32 @@ onUnmounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 38px 28px;
+  padding: 1.97917vw 1.45833vw;
 }
 
 .product-name {
-  font-size: 40px;
+  font-size: 2.08333vw;
   /* font-weight: 700; */
   color: #000000;
-  margin: 0 0 4px;
-  letter-spacing: 1px;
+  margin: 0 0 0.20833vw;
+  letter-spacing: 0.05208vw;
 }
 
 .product-spec {
-  font-size: 13px;
+  font-size: 0.67708vw;
   color: rgba(0, 0, 0, 0.7);
-  margin: 0 0 14px;
+  margin: 0 0 0.72917vw;
 }
 
 .product-buttons {
   display: flex;
-  gap: 10px;
+  gap: 0.52083vw;
 }
 
 .product-btn {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 16px;
+  padding: 0.3125vw 0.625vw;
+  border-radius: 1.04167vw;
+  font-size: 0.83333vw;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
@@ -327,7 +327,7 @@ onUnmounted(() => {
 .product-btn-primary {
   background: #00d4ff;
   color: #fff;
-  font-size: 9px
+  font-size: 0.46875vw
 }
 
 .product-btn-primary:hover {
@@ -339,7 +339,7 @@ onUnmounted(() => {
   background: none;
   color: #000000;
   border: 1px solid rgba(0, 0, 0, 1);
-  font-size: 9px;
+  font-size: 0.46875vw;
   transition: all 0.3s ease;
 }
 
@@ -354,8 +354,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  padding: 40px 0 0px 0;
+  gap: 2.08333vw;
+  padding: 2.08333vw 0 0px 0;
   white-space: nowrap;
   position: relative;
   z-index: 5;
@@ -363,14 +363,14 @@ onUnmounted(() => {
 
 .product-pagination {
   display: flex;
-  gap: 8px;
+  gap: 0.41667vw;
   align-items: center;
 }
 
 .product-pagination-dot {
-  width: 20px;
-  height: 3px;
-  border-radius: 2px;
+  width: 1.04167vw;
+  height: 0.15625vw;
+  border-radius: 0.10417vw;
   background: rgba(0, 0, 0, 1);
   cursor: pointer;
   transition: all 0.3s;
@@ -378,17 +378,17 @@ onUnmounted(() => {
 
 .product-pagination-dot.active {
   background: #00c4f0;
-  width: 28px;
+  width: 1.45833vw;
 }
 
 .carousel-arrows {
   display: flex;
-  gap: 8px;
+  gap: 0.41667vw;
 }
 
 .product-arrow {
-  width: 36px;
-  height: 36px;
+  width: 1.875vw;
+  height: 1.875vw;
   border-radius: 50%;
   border: none;
   background: transparent;
@@ -407,263 +407,5 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-/* ============================================================
-   响应式
-   ============================================================ */
-
-/* 大屏 1440px ~ 1950px */
-@media (max-width: 1440px) {
-  .product-name {
-    font-size: 32px;
-  }
-
-  .product-overlay {
-    padding: 20px 24px;
-  }
-
-  .carousel-controls {
-    padding: 20px 0 0px 0;
-  }
-}
-
-/* iPad Pro 横屏 / 小桌面 1024px ~ 1440px */
-@media (max-width: 1024px) {
-  .product-name {
-    font-size: 23px;
-  }
-
-  .product-spec {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-
-  .product-overlay {
-    padding: 16px 20px;
-  }
-
-  .product-btn {
-    padding: 5px 14px;
-    font-size: 15px;
-  }
-
-  .carousel-controls {
-    padding: 20px 0 0px 0;
-    gap: 32px;
-  }
-
-  .product-pagination {
-    gap: 6px;
-  }
-
-  .product-pagination-dot {
-    width: 24px;
-    height: 3px;
-  }
-
-  .product-pagination-dot.active {
-    width: 38px;
-  }
-
-  .product-arrow {
-    width: 34px;
-    height: 34px;
-  }
-}
-
-/* 中等屏幕 860px ~ 1024px */
-@media (max-width: 860px) {
-  .product-name {
-    font-size: 21px;
-  }
-
-  .product-spec {
-    font-size: 15px;
-    margin-bottom: 12px;
-  }
-
-  .product-overlay {
-    padding: 14px 18px;
-  }
-
-  .product-btn {
-    padding: 4px 13px;
-    font-size: 13px;
-  }
-
-  .carousel-controls {
-    padding: 16px 0 0px 0;
-    gap: 28px;
-  }
-
-  .product-pagination {
-    gap: 5px;
-  }
-
-  .product-pagination-dot {
-    width: 20px;
-    height: 2px;
-  }
-
-  .product-pagination-dot.active {
-    width: 32px;
-  }
-
-  .product-arrow {
-    width: 30px;
-    height: 30px;
-  }
-}
-
-/* iPad 竖屏 768px ~ 860px */
-@media (max-width: 768px) {
-  .product-name {
-    font-size: 19px;
-  }
-
-  .product-spec {
-    font-size: 13px;
-    margin-bottom: 8px;
-  }
-
-  .product-overlay {
-    padding: 12px 14px;
-  }
-
-  .product-btn {
-    padding: 3px 10px;
-    font-size: 12px;
-  }
-
-  .product-buttons {
-    gap: 6px;
-  }
-
-  .carousel-controls {
-    padding: 14px 0 0px 0;
-    gap: 20px;
-  }
-
-  .product-pagination {
-    gap: 3px;
-  }
-
-  .product-pagination-dot {
-    width: 16px;
-    height: 2px;
-  }
-
-  .product-pagination-dot.active {
-    width: 24px;
-  }
-
-  .product-arrow {
-    width: 26px;
-    height: 26px;
-  }
-}
-
-/* 手机 480px ~ 768px */
-@media (max-width: 480px) {
-  .carousel-wrapper {
-    margin-top: 32px;
-  }
-
-  .products-section {
-    /* padding: 30px 0 30px 10px; */
-  }
-
-  .product-name {
-    font-size: 15px;
-  }
-
-  .product-spec {
-    font-size: 11px;
-    margin-bottom: 5px;
-  }
-
-  .product-overlay {
-    padding: 8px 10px;
-  }
-
-  .product-buttons {
-    gap: 4px;
-  }
-
-  .product-btn {
-    padding: 2px 7px;
-    font-size: 9px;
-  }
-
-  .carousel-controls {
-    padding: 10px 0 0px 0;
-    gap: 16px;
-  }
-
-  .product-pagination {
-    gap: 2px;
-  }
-
-  .product-pagination-dot {
-    width: 12px;
-    height: 2px;
-  }
-
-  .product-pagination-dot.active {
-    width: 18px;
-  }
-
-  .carousel-arrows {
-    gap: 5px;
-  }
-
-  .product-arrow {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-/* 小手机 ≤375px */
-@media (max-width: 375px) {
-  .product-name {
-    font-size: 13px;
-  }
-
-  .product-spec {
-    font-size: 11px;
-  }
-
-  .product-overlay {
-    padding: 6px 8px;
-  }
-
-  .product-btn {
-    padding: 2px 6px;
-    font-size: 9px;
-  }
-
-  .carousel-controls {
-    padding: 8px 0 0px 0;
-    gap: 16px;
-  }
-
-  .product-pagination {
-    gap: 2px;
-  }
-
-  .product-pagination-dot {
-    width: 12px;
-    height: 2px;
-  }
-
-  .product-pagination-dot.active {
-    width: 18px;
-  }
-
-  .product-arrow {
-    width: 22px;
-    height: 22px;
-  }
 }
 </style>
