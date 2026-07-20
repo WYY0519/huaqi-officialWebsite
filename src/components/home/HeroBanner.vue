@@ -137,7 +137,7 @@ onUnmounted(() => { stopAutoplay() })
 </script>
 
 <style>
-/* 主视觉区域 */
+/* 主视觉区域 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放（1920 时还原当前尺寸） */
 .hero-section {
   position: relative;
   height: auto;
@@ -205,7 +205,8 @@ onUnmounted(() => { stopAutoplay() })
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-bottom: 120px;
+  /* 1920 时 = 215px（原 1601~1950 断块取值） */
+  padding-bottom: 11.19792vw;
 }
 
 .slide-logos {
@@ -214,11 +215,17 @@ onUnmounted(() => { stopAutoplay() })
   justify-content: space-between;
 }
 
+.slide-logos img {
+  /* 1920 时 = 105px（图标原始宽，按比例缩放） */
+  width: 5.46875vw;
+  height: auto;
+}
+
 /* 入场动画：从右侧滑入 */
 @keyframes slideInFromRight {
   0% {
     opacity: 0;
-    transform: translateX(80px);
+    transform: translateX(4.16667vw);
   }
 
   100% {
@@ -243,51 +250,59 @@ onUnmounted(() => { stopAutoplay() })
 
 .hero-title,
 .slide-title {
-  font-size: 60px;
+  /* 1920 时 = 59px */
+  font-size: 3.07292vw;
   font-weight: 900;
   color: #fff;
-  margin-bottom: 23px;
+  /* 1920 时 = 23px */
+  margin-bottom: 1.19792vw;
   line-height: normal;
   padding-left: 6%;
   font-family: 'Alibaba PuHuiTi', 'Noto Sans SC', sans-serif;
-  letter-spacing: 4px
+  /* 1920 时 = 3px */
+  letter-spacing: 0.15625vw;
 }
-
 
 .slide-title .highlight {
   color: #00D4ff !important;
 }
 
 .slide-line {
-  margin-bottom: 30px;
+  /* 1920 时 = 30px / 148px / 9px */
+  margin-bottom: 1.5625vw;
   margin-left: 6%;
-  width: 150px;
+  width: 7.70833vw;
   background: linear-gradient(270deg, transparent, #00D4ff);
-  height: 8px;
-
+  height: 0.46875vw;
 }
 
 .hero-subtitle,
 .slide-subtitle {
-  font-size: 43px;
+  /* 1920 时 = 43px */
+  font-size: 2.23958vw;
   color: #fff;
-  margin-bottom: 28px;
+  /* 1920 时 = 28px */
+  margin-bottom: 1.45833vw;
   font-weight: 400;
-  letter-spacing: 2px;
+  /* 1920 时 = 2px */
+  letter-spacing: 0.10417vw;
   padding-left: 6%;
   font-family: 'OPPOSans', sans-serif;
-  letter-spacing: 3px
 }
 
 .hero-btn {
   align-self: unset;
   display: inline-block;
-  padding: 24px 36px;
-  border: 2px solid rgba(255, 255, 255, 1);
-  border-radius: 30px;
+  /* 1920 时 = 24px 36px */
+  padding: 1.25vw 1.875vw;
+  /* 1920 时 = 2px */
+  border: 0.10417vw solid rgba(255, 255, 255, 1);
+  /* 1920 时 = 30px */
+  border-radius: 1.5625vw;
   color: #fff;
   text-decoration: none;
-  font-size: 27px;
+  /* 1920 时 = 25px */
+  font-size: 1.30208vw;
   font-weight: 400;
   font-family: 'OPPOSans', sans-serif;
   transition: all 0.3s;
@@ -306,8 +321,9 @@ onUnmounted(() => { stopAutoplay() })
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 50px;
-  height: 80px;
+  /* 1920 时 = 50px / 80px */
+  width: 2.60417vw;
+  height: 4.16667vw;
   background: rgba(0, 0, 0, 0.2);
   border: none;
   cursor: pointer;
@@ -315,7 +331,7 @@ onUnmounted(() => { stopAutoplay() })
   align-items: center;
   justify-content: center;
   transition: background 0.3s;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(0.20833vw);
 }
 
 .banner-arrow:hover {
@@ -324,30 +340,33 @@ onUnmounted(() => { stopAutoplay() })
 
 .banner-arrow-left {
   left: 0;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 0.20833vw 0.20833vw 0;
 }
 
 .banner-arrow-right {
   right: 0;
-  border-radius: 4px 0 0 4px;
+  border-radius: 0.20833vw 0 0 0.20833vw;
 }
 
 /* 轮播分页指示器 */
 .swiper-pagination {
   position: absolute;
-  bottom: 24px;
+  /* 1920 时 = 24px */
+  bottom: 1.25vw;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   display: flex;
-  gap: 10px;
+  /* 1920 时 = 10px */
+  gap: 0.52083vw;
   align-items: center;
 }
 
 .pagination-dot {
-  width: 32px;
-  height: 3px;
-  border-radius: 2px;
+  /* 1920 时 = 32px / 4px */
+  width: 1.66667vw;
+  height: 0.20833vw;
+  border-radius: 0.10417vw;
   background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: background 0.3s, width 0.3s;
@@ -355,632 +374,7 @@ onUnmounted(() => { stopAutoplay() })
 
 .pagination-dot.active {
   background: #00D4ff;
-  width: 48px;
-}
-
-/* ========== 响应式：严格按1950px基准等比例缩放 ========== */
-/* 内容通过 bottom:0 锚定在图片底部，无需margin-bottom定位 */
-/* 新增：1950px以上超大屏（4K/32寸大屏） 比例>1 */
-@media (min-width: 1951px) {
-  .slide-content {
-    padding-bottom: 340px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 59px;
-    margin-bottom: 23px;
-    letter-spacing: 3px;
-  }
-
-  .slide-line {
-    width: 148px;
-    height: 9px;
-    margin-bottom: 30px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 43px;
-    margin-bottom: 28px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 24px 36px;
-    font-size: 25px;
-    border-radius: 30px;
-  }
-
-  .swiper-pagination {
-    bottom: 24px;
-  }
-
-  .pagination-dot {
-    width: 32px;
-    height: 4px;
-  }
-
-  .pagination-dot.active {
-    width: 48px;
-  }
-}
-
-/* 新增：1601px ~ 1950px 区间（2K/1080P大屏，你设计稿基准1950）比例0.82~1 */
-@media (min-width: 1601px) and (max-width: 1950px) {
-  .slide-content {
-    padding-bottom: 215px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 59px;
-    margin-bottom: 23px;
-    letter-spacing: 3px;
-  }
-
-  .slide-line {
-    width: 148px;
-    height: 9px;
-    margin-bottom: 30px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 43px;
-    margin-bottom: 28px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 24px 36px;
-    font-size: 25px;
-    border-radius: 30px;
-  }
-
-  .swiper-pagination {
-    bottom: 24px;
-  }
-
-  .pagination-dot {
-    width: 32px;
-    height: 4px;
-  }
-
-  .pagination-dot.active {
-    width: 48px;
-  }
-}
-
-/* 响应式 - 1600px (比例 1600/1950 ≈ 0.82) */
-@media (max-width: 1600px) {
-  .slide-content {
-    padding-bottom: 176px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 49px;
-    margin-bottom: 19px;
-    letter-spacing: 3px;
-  }
-
-  .slide-line {
-    width: 123px;
-    height: 7px;
-    margin-bottom: 25px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 35px;
-    margin-bottom: 23px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 20px 30px;
-    font-size: 21px;
-    border-radius: 25px;
-  }
-
-  .swiper-pagination {
-    bottom: 20px;
-  }
-
-  .pagination-dot {
-    width: 26px;
-    height: 3px;
-  }
-
-  .pagination-dot.active {
-    width: 39px;
-  }
-}
-
-/* 响应式 - 1440px (比例 1440/1950 ≈ 0.74) */
-@media (max-width: 1440px) {
-  .slide-content {
-    padding-bottom: 157px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 44px;
-    margin-bottom: 17px;
-    letter-spacing: 3px;
-  }
-
-  .slide-line {
-    width: 111px;
-    height: 6px;
-    margin-bottom: 22px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 32px;
-    margin-bottom: 21px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 18px 27px;
-    font-size: 20px;
-    border-radius: 22px;
-  }
-
-  .swiper-pagination {
-    bottom: 18px;
-  }
-
-  .pagination-dot {
-    width: 24px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 35px;
-  }
-}
-
-/* 响应式 - 1280px (比例 1280/1950 ≈ 0.656) */
-@media (max-width: 1280px) {
-  .slide-content {
-    padding-bottom: 127px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 40px;
-    margin-bottom: 15px;
-    letter-spacing: 3px;
-  }
-
-  .slide-line {
-    width: 98px;
-    height: 5px;
-    margin-bottom: 20px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 28px;
-    margin-bottom: 18px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 16px 24px;
-    font-size: 17px;
-    border-radius: 20px;
-  }
-
-  .swiper-pagination {
-    bottom: 16px;
-    gap: 7px;
-  }
-
-  .pagination-dot {
-    width: 21px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 31px;
-  }
-}
-
-/* 响应式 - 1100px (比例 1100/1950 ≈ 0.564) */
-@media (max-width: 1100px) {
-  .slide-content {
-    padding-bottom: 111px;
-  }
-
-  .slide-logos img {
-    width: 90px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 33px;
-    margin-bottom: 13px;
-    letter-spacing: 2px;
-  }
-
-  .slide-line {
-    width: 85px;
-    height: 5px;
-    margin-bottom: 17px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 24px;
-    margin-bottom: 16px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 14px 20px;
-    font-size: 15px;
-    border-radius: 17px;
-  }
-
-  .swiper-pagination {
-    bottom: 14px;
-    gap: 6px;
-  }
-
-  .pagination-dot {
-    width: 18px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 27px;
-  }
-}
-
-/* 响应式 - 1024px (比例 1024/1950 ≈ 0.525) */
-@media (max-width: 1024px) {
-  .slide-content {
-    padding-bottom: 100px;
-  }
-
-  .slide-logos img {
-    width: 70px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 32px;
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-  }
-
-  .slide-line {
-    width: 79px;
-    height: 4px;
-    margin-bottom: 16px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 23px;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 13px 19px;
-    font-size: 15px;
-    border-radius: 16px;
-  }
-
-  .swiper-pagination {
-    bottom: 13px;
-    gap: 5px;
-  }
-
-  .pagination-dot {
-    width: 17px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 25px;
-  }
-}
-
-/* 响应式 - 900px 平板竖屏/折叠屏 */
-@media (max-width: 900px) {
-  .slide-content {
-    padding-bottom: 90px;
-  }
-
-  .slide-logos img {
-    width: 60px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 28px;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
-  }
-
-  .slide-line {
-    width: 70px;
-    height: 4px;
-    margin-bottom: 14px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 20px;
-    margin-bottom: 13px;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 11px 17px;
-    font-size: 13px;
-    border-radius: 14px;
-  }
-
-  .swiper-pagination {
-    bottom: 12px;
-    gap: 5px;
-  }
-
-  .pagination-dot {
-    width: 15px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 22px;
-  }
-}
-
-/* 响应式 - 800px 平板竖屏/大屏手机 */
-@media (max-width: 800px) {
-  .slide-content {
-    padding-bottom: 120px;
-    align-items: flex-start;
-  }
-
-  .slide-logos img {
-    width: 50px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 25px;
-    margin-bottom: 9px;
-    letter-spacing: 2px;
-  }
-
-  .slide-line {
-    width: 63px;
-    height: 3px;
-    margin-bottom: 13px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 19px;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
-  }
-
-  .hero-btn {
-    padding: 10px 15px;
-    font-size: 12px;
-    border-radius: 13px;
-  }
-
-  .swiper-pagination {
-    bottom: 11px;
-    gap: 4px;
-  }
-
-  .pagination-dot {
-    width: 14px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 20px;
-  }
-
-  .banner-arrow {
-    display: none;
-  }
-
-  .slide-logos {
-    display: none;
-  }
-}
-
-/* 响应式 - 768px (比例 768/1950 ≈ 0.394) */
-@media (max-width: 768px) {
-  .slide-content {
-    padding-bottom: 127px;
-    align-items: flex-start;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 24px;
-    margin-bottom: 9px;
-    letter-spacing: 2px;
-  }
-
-  .slide-line {
-    width: 59px;
-    height: 3px;
-    margin-bottom: 12px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 17px;
-    margin-bottom: 11px;
-    letter-spacing: 1px;
-  }
-
-  .hero-btn {
-    padding: 10px 14px;
-    font-size: 11px;
-    border-radius: 12px;
-  }
-
-  .swiper-pagination {
-    bottom: 10px;
-    gap: 4px;
-  }
-
-  .pagination-dot {
-    width: 13px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 19px;
-  }
-
-  .banner-arrow {
-    display: none;
-  }
-
-  .slide-logos {
-    display: none;
-  }
-}
-
-/* 响应式 - 640px 标准手机大屏 */
-@media (max-width: 640px) {
-  .slide-content {
-    padding-bottom: 80px;
-    align-items: flex-start;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 20px;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-  }
-
-  .slide-line {
-    width: 48px;
-    height: 3px;
-    margin-bottom: 10px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 15px;
-    margin-bottom: 9px;
-    letter-spacing: 1px;
-  }
-
-  .hero-btn {
-    padding: 8px 12px;
-    font-size: 9px;
-    border-radius: 10px;
-  }
-
-  .swiper-pagination {
-    bottom: 8px;
-    gap: 3px;
-  }
-
-  .pagination-dot {
-    width: 11px;
-    height: 2px;
-  }
-
-  .pagination-dot.active {
-    width: 16px;
-  }
-
-  .banner-arrow {
-    display: none;
-  }
-
-  .slide-logos {
-    display: none;
-  }
-}
-
-/* 响应式 - 480px (比例 480/1950 ≈ 0.246) */
-@media (max-width: 480px) {
-  .slide-content {
-    padding-bottom: 50px;
-  }
-
-  .hero-title,
-  .slide-title {
-    font-size: 15px;
-    margin-bottom: 6px;
-    letter-spacing: 1px;
-  }
-
-  .slide-line {
-    width: 37px;
-    height: 2px;
-    margin-bottom: 7px;
-  }
-
-  .hero-subtitle,
-  .slide-subtitle {
-    font-size: 11px;
-    margin-bottom: 7px;
-    letter-spacing: 1px;
-  }
-
-  .hero-btn {
-    padding: 6px 9px;
-    font-size: 7px;
-    border-radius: 7px;
-  }
-
-  .swiper-pagination {
-    bottom: 6px;
-    gap: 2px;
-  }
-
-  .pagination-dot {
-    width: 8px;
-    height: 1px;
-  }
-
-  .pagination-dot.active {
-    width: 12px;
-  }
-}
-
-/* 响应式 - 360px 超小屏手机 / iPhone SE /迷你安卓 */
-@media (max-width: 360px) {
-  .slide-content {
-    display: none;
-  }
-
-  .swiper-pagination {
-    bottom: 10px;
-    gap: 1px;
-  }
-
-  .pagination-dot {
-    width: 6px;
-    height: 1px;
-  }
-
-  .pagination-dot.active {
-    width: 9px;
-  }
+  /* 1920 时 = 48px */
+  width: 2.5vw;
 }
 </style>
