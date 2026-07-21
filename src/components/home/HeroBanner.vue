@@ -31,22 +31,22 @@ import { ref, computed, onMounted, onUnmounted, inject, watch } from 'vue'
 const slides = ref([
   {
     bgImage: new URL('../../assets/home/轮播图/消防车.png', import.meta.url).href,
-    title: '行业级无人机<span class="highlight">消防车</span>',
-    subtitle: '重载无界，驰援未来',
+    title: '无人机<span class="highlight">消防车</span>解决方案',
+    subtitle: '空地协同，守护安全',
     link: '/products/fire-truck',
     btnText: '了解更多'
   },
   {
     bgImage: new URL('../../assets/home/轮播图/固定翼.png', import.meta.url).href,
-    title: '行业级无人机<span class="highlight">固定翼</span>',
-    subtitle: '重载无界，驰援未来',
+    title: '固定翼机场<span class="highlight">WRCQ-32A</span>',
+    subtitle: '智能机场，智慧飞行',
     link: '/products/fixed-wing',
     btnText: '了解更多'
   },
   {
     bgImage: new URL('../../assets/home/轮播图/系留.png', import.meta.url).href,
-    title: '行业级无人机<span class="highlight">系留</span>',
-    subtitle: '重载无界，驰援未来',
+    title: '一体式<span class="highlight">系留</span>无人机',
+    subtitle: '全域布防，快速响应',
     link: '/products/tethered',
     btnText: '了解更多'
   },
