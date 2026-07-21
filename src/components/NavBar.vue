@@ -1,5 +1,5 @@
 <template>
-  <header class="header"
+  <header ref="headerRef" class="header"
     :class="{ scrolled: isSolid, 'menu-open': isMobileMenuOpen, 'product-hovered': isProductHovered }">
     <div class="header-container">
       <div class="logo">
@@ -12,7 +12,8 @@
         <template v-for="(item, i) in navItems" :key="i">
           <ProductDropdown v-if="item.children" :label="item.label" :href="item.href" :categories="item.children"
             :is-active="hoveredItem ? hoveredItem === item.id : activeSection === item.id" :width="item.width"
-            @click="handleNavClick(item.id)" @mouseenter="isProductHovered = true; hoveredItem = item.id"
+            :header-bottom="headerBottom" @click="handleNavClick(item.id)"
+            @mouseenter="isProductHovered = true; hoveredItem = item.id"
             @mouseleave="isProductHovered = false; hoveredItem = ''" />
           <router-link v-else :to="item.href" class="nav-link"
             :class="{ active: (hoveredItem ? hoveredItem === item.id : activeSection === item.id) && item.id !== 'home' }"
@@ -94,12 +95,15 @@ const logoIcon = new URL('../assets/home/图标/logo.png', import.meta.url).href
 const router = useRouter()
 const route = useRoute()
 
+const headerRef = ref<HTMLElement>()
 const isMobileMenuOpen = ref(false)
 const isScrolled = ref(false)
 const activeSection = ref('')
 const isProductHovered = ref(false)
 const openMobileSubmenu = ref('')
 const hoveredItem = ref('')
+/* header 实际底部位置（px），供下拉面板对齐用 */
+const headerBottom = ref(0)
 
 // 非首页路由：页面顶部是浅色背景，强制导航栏使用实心白底深字样式（否则白字不可见）
 const isSolid = computed(() => isScrolled.value || route.path !== '/')
@@ -121,12 +125,12 @@ const navItems = [
     ]
   },
   {
-    id: 'support', label: '服务支持', href: '/support', width: '138px', children: [
+    id: 'support', label: '服务支持', href: '/support', width: '7.1875vw', children: [
       { items: ['售后保障', '技术支持', '建议与反馈'] }
     ]
   },
   {
-    id: 'about', label: '关于我们', href: '/about', width: '127px', children: [
+    id: 'about', label: '关于我们', href: '/about', width: '6.61458vw', children: [
       { items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
     ]
   }
@@ -150,6 +154,13 @@ const toggleMobileMenu = () => {
 const handleScroll = () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
   isScrolled.value = scrollTop > 50
+  updateHeaderBottom()
+}
+
+const updateHeaderBottom = () => {
+  if (headerRef.value) {
+    headerBottom.value = headerRef.value.getBoundingClientRect().bottom
+  }
 }
 
 const handleNavClick = (id: string) => {
@@ -161,14 +172,25 @@ const handleNavClick = (id: string) => {
   }
 }
 
+let resizeObserver: ResizeObserver | null = null
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
   handleScroll()
+  updateHeaderBottom()
+  if (headerRef.value) {
+    resizeObserver = new ResizeObserver(() => updateHeaderBottom())
+    resizeObserver.observe(headerRef.value)
+  }
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
   document.body.style.overflow = ''
+  if (resizeObserver) {
+    resizeObserver.disconnect()
+    resizeObserver = null
+  }
 })
 </script>
 
@@ -190,7 +212,7 @@ onUnmounted(() => {
   /* 1920 时 = 10px */
   backdrop-filter: blur(0.52083vw);
   /* 1920 时 = 0 2px 20px */
-  box-shadow: 0 0.10417vw 1.04167vw rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 0.10417vw 1.04167vw rgba(0, 0, 0, 0.1); */
 }
 
 .header.scrolled .logo-name {
@@ -220,7 +242,7 @@ onUnmounted(() => {
   /* 1920 时 = 10px */
   backdrop-filter: blur(0.52083vw);
   /* 1920 时 = 0 2px 20px */
-  box-shadow: 0 0.10417vw 1.04167vw rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 0.10417vw 1.04167vw rgba(0, 0, 0, 0.1); */
 }
 
 .header.product-hovered .logo-name {

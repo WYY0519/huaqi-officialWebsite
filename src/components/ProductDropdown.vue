@@ -1,5 +1,5 @@
 <template>
-  <div class="product-dropdown" @mouseenter="showPanel = true" @mouseleave="showPanel = false">
+  <div ref="triggerRef" class="product-dropdown" @mouseenter="showPanel = true" @mouseleave="showPanel = false">
     <router-link :to="href" class="nav-link" :class="{ active: isActive }">
       {{ label }}
     </router-link>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 interface Category {
   category?: string
@@ -32,31 +32,73 @@ const props = defineProps<{
   categories: Category[]
   isActive?: boolean
   width?: string
+  headerBottom?: number
 }>()
 
 const showPanel = ref(false)
+const triggerRef = ref<HTMLElement>()
+const triggerCenterX = ref(0)
 
 const isSingleColumn = computed(() => props.categories.length === 1)
 
+const updateTriggerPosition = () => {
+  if (!triggerRef.value) return
+  const rect = triggerRef.value.getBoundingClientRect()
+  triggerCenterX.value = rect.left + rect.width / 2
+}
+
 const panelStyle = computed(() => {
-  if (props.width) return { width: props.width }
-  if (isSingleColumn.value) return { width: '200px' }
-  return {}
+  const base: Record<string, string> = {}
+  if (props.headerBottom) {
+    base.top = `${props.headerBottom}px`
+  }
+  if (isSingleColumn.value) {
+    base.left = `${triggerCenterX.value}px`
+  }
+  if (props.width) {
+    base.minWidth = props.width
+  } else if (isSingleColumn.value) {
+    /* 1920 时 = 200px */
+    base.minWidth = '10.41667vw'
+  }
+  return base
+})
+
+watch(() => props.headerBottom, updateTriggerPosition)
+
+onMounted(() => {
+  updateTriggerPosition()
+  window.addEventListener('scroll', updateTriggerPosition, { passive: true })
+  window.addEventListener('resize', updateTriggerPosition, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateTriggerPosition)
+  window.removeEventListener('resize', updateTriggerPosition)
 })
 </script>
 
 <style scoped>
 .product-dropdown {
   position: relative;
-  padding-bottom: 20px;
-  margin-bottom: -20px;
+  /* 1920 时 = 20px */
+  padding-bottom: 1.04167vw;
+  margin-bottom: -1.04167vw;
 }
 
 .product-dropdown:hover .dropdown-panel {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
   transition: none;
+}
+
+/* 非单列面板恢复垂直位移动画；单列面板保持 translateX(-50%) 水平居中 */
+.product-dropdown:hover .dropdown-panel:not(.single-column) {
+  transform: translateY(0);
+}
+
+.product-dropdown:hover .dropdown-panel.single-column {
+  transform: translateX(-50%);
 }
 
 .nav-link {
@@ -106,15 +148,16 @@ const panelStyle = computed(() => {
 
 .dropdown-panel {
   position: fixed;
-  top: 110px;
   left: 0;
   right: 0;
   background: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  /* 1920 时 = 0 8px 24px */
+  box-shadow: 0 0.41667vw 1.25vw rgba(0, 0, 0, 0.08);
   z-index: 1001;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-15px);
+  /* 1920 时 = -15px */
+  transform: translateY(-0.78125vw);
 }
 
 .dropdown-panel.is-visible {
@@ -123,51 +166,57 @@ const panelStyle = computed(() => {
   transform: translateY(0);
 }
 
+/* 单列面板：fixed 定位，top/left 由 JS 根据触发元素和 header 底部动态计算 */
 .dropdown-panel.single-column {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(-15px);
-  top: 117%;
-  border-radius: 8px;
+  transform: translateX(-50%) translateY(-0.78125vw);
+  /* 1920 时 = 8px */
+  border-radius: 0 0 0.41667vw 0.41667vw;
   text-align: center;
-  opacity: 0;
-  visibility: hidden;
+  /* 覆盖全宽多列的 right: 0，避免面板被拉伸 */
+  right: auto;
 }
 
 .dropdown-panel.single-column.is-visible {
   transform: translateX(-50%) translateY(0);
-  opacity: 1;
-  visibility: visible;
 }
 
 .dropdown-grid {
   display: flex;
   justify-content: center;
-  padding: 28px 0 37px 313px
+  /* 1920 时 = 28px 0 37px 313px */
+  padding: 1.45833vw 0 1.92708vw 16.30208vw
 }
 
 .dropdown-grid.single-grid {
   display: block;
-  padding: 20px 24px;
+  /* 1920 时 = 20px 24px */
+  padding: 1.04167vw 1.25vw;
 }
 
 .dropdown-col {
   color: #666;
-  font-size: 22px;
+  /* 1920 时 = 22px */
+  font-size: 1.14583vw;
   flex: 1;
-  max-width: 280px;
+  /* 1920 时 = 280px */
+  max-width: 14.58333vw;
   opacity: 1;
   transform: translateY(0);
 }
 
 .col-title {
-  font-size: 20px;
+  /* 1920 时 = 20px */
+  font-size: 1.04167vw;
   font-weight: 500;
   color: #666;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #f0f0f0;
+  /* 1920 时 = 12px */
+  margin-bottom: 0.625vw;
+  /* 1920 时 = 8px */
+  padding-bottom: 0.41667vw;
+  /* 1920 时 = 1px */
+  border-bottom: 0.05208vw solid #f0f0f0;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .col-title:hover {
@@ -182,15 +231,19 @@ const panelStyle = computed(() => {
 .col-item {
   color: #333;
   text-decoration: none;
-  font-size: 22px;
-  padding: 6px 0;
+  /* 1920 时 = 22px */
+  font-size: 1.14583vw;
+  /* 1920 时 = 6px 0 */
+  padding: 0.3125vw 0;
   transition: color 0.2s, transform 0.2s;
   display: inline-block;
+  white-space: nowrap;
 }
 
 .col-item:hover {
   color: #00D4ff;
-  transform: translateX(5px);
+  /* 1920 时 = 5px */
+  transform: translateX(0.26042vw);
 }
 
 @media (max-width: 1024px) {
