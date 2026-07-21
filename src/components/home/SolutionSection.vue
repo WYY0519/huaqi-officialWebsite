@@ -33,7 +33,8 @@
             <div class="sol-tags">
               <span class="sol-tag" v-for="(tag, ti) in item.tags" :key="ti">{{ tag }}</span>
             </div>
-            <router-link :to="item.link" class="sol-more">了解更多 <span style="margin-left: 0.78125vw;">→</span></router-link>
+            <router-link :to="item.link" class="sol-more">了解更多 <span
+                style="margin-left: 0.78125vw;">→</span></router-link>
           </div>
         </div>
       </div>
@@ -233,7 +234,7 @@ onUnmounted(() => {
 <style>
 /* 解决方案区块 - 左右交替布局 */
 .solutions-section {
-  padding: 4.16667vw 0 0;
+  padding: 3.645833vw 0;
   background-color: #f4f8fd;
   background-size: cover;
   background-position: center;
@@ -260,6 +261,11 @@ onUnmounted(() => {
   margin-bottom: 5.67708vw;
   box-shadow: 0 2px 20px rgba(0, 100, 200, 0.07);
   transition: box-shadow 0.3s;
+}
+
+/* 本模块是页面最后一个，最后一行不再需要底部留白 */
+.sol-row:last-child {
+  margin-bottom: 0;
 }
 
 .sol-row:hover {
@@ -316,14 +322,9 @@ onUnmounted(() => {
 
 /* 文字模块：占据图片模块右侧的剩余空间，高度与图片对齐 */
 .sol-text {
-  flex: 1 1 auto;
-  padding: 4.16667vw 3.125vw;
+  padding: 5.104167vw 2.708333vw 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.83333vw;
-  /* 核心：自动拉伸高度，匹配图片高度 */
-  align-self: stretch;
 }
 
 .sol-scene-title {
@@ -331,7 +332,7 @@ onUnmounted(() => {
   font-weight: 800;
   color: #1a1a2e;
   line-height: 1.2;
-  margin-bottom: 0.41667vw;
+  margin-bottom: 0.7vw;
 }
 
 .sol-scene-sub {
@@ -339,7 +340,7 @@ onUnmounted(() => {
   color: #9b9e9f;
   font-weight: 500;
   letter-spacing: 0.5px;
-  margin-bottom: 0.625vw;
+  margin-bottom: 1.3vw;
 }
 
 .sol-scene-desc {
@@ -353,11 +354,11 @@ onUnmounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 0.625vw;
-  padding: 1.25vw 0;
+  padding: 1.9vw 0 1.2vw 0;
 }
 
 .sol-tag {
-  padding: 0.41667vw 1.04167vw;
+  padding: 0.19vw 1.04167vw;
   color: #9b9e9f;
   border-radius: 1.25vw;
   font-size: 0.78125vw;

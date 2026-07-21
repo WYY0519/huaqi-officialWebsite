@@ -208,7 +208,7 @@ onUnmounted(() => {
   --card-height: calc(var(--card-width) * 423 / 499);
 
   padding: 4.1vw 0 3.1vw var(--pl);
-  background: #f5f6f8;
+  /* background: #f5f6f8; */
   overflow: hidden;
 }
 

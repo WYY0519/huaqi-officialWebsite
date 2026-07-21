@@ -132,8 +132,8 @@ const submitForm = () => {
 
 .contact-feature-item img {
   /* 1920 时 = 24px */
-  width: 1.25vw;
-  height: 1.25vw;
+  width: 1.875vw;
+  height: 1.875vw;
   object-fit: contain;
 }
 
@@ -230,8 +230,8 @@ const submitForm = () => {
   transform: translateY(-50%);
   pointer-events: none;
   /* 1920 时 = 24px */
-  width: 1.25vw;
-  height: 1.25vw;
+  width: 2.1354vw;
+  height: 1.875vw;
 }
 
 .form-input {

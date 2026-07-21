@@ -65,8 +65,8 @@ preloadLink.href = slides.value[0].bgImage
 document.head.appendChild(preloadLink)
 
 // 图标路径
-const prevIcon = new URL('../../assets/home/图标/左.png', import.meta.url).href
-const nextIcon = new URL('../../assets/home/图标/右.png', import.meta.url).href
+const prevIcon = new URL('../../assets/home/图标/lb-left.png', import.meta.url).href
+const nextIcon = new URL('../../assets/home/图标/lb-right.png', import.meta.url).href
 const currentSlide = ref(0)
 const totalSlides = computed(() => slides.value.length)
 let autoplayTimer: ReturnType<typeof setInterval> | null = null
@@ -206,7 +206,7 @@ onUnmounted(() => { stopAutoplay() })
   flex-direction: column;
   align-items: flex-start;
   /* 1920 时 = 215px（原 1601~1950 断块取值） */
-  padding-bottom: 11.19792vw;
+  padding-bottom: 10.4167vw;
 }
 
 .slide-logos {
@@ -219,7 +219,14 @@ onUnmounted(() => { stopAutoplay() })
   /* 1920 时 = 105px（图标原始宽，按比例缩放） */
   width: 5.46875vw;
   height: auto;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
 }
+
+/* .slide-logos img:hover {
+  background-color: #00D4ff;
+} */
 
 /* 入场动画：从右侧滑入 */
 @keyframes slideInFromRight {
@@ -294,20 +301,21 @@ onUnmounted(() => { stopAutoplay() })
   align-self: unset;
   display: inline-block;
   /* 1920 时 = 24px 36px */
-  padding: 1.25vw 1.875vw;
+  padding: 1.25vw 1.1vw 1.25vw 1.1vw;
   /* 1920 时 = 2px */
-  border: 0.10417vw solid rgba(255, 255, 255, 1);
+  border: 0.23417vw solid rgba(255, 255, 255, 1);
   /* 1920 时 = 30px */
   border-radius: 1.5625vw;
   color: #fff;
   text-decoration: none;
   /* 1920 时 = 25px */
   font-size: 1.30208vw;
-  font-weight: 400;
+  font-weight: bold;
   font-family: 'OPPOSans', sans-serif;
   transition: all 0.3s;
   background: transparent;
   margin-left: 6%;
+  letter-spacing: 0.263vw;
 }
 
 .hero-btn:hover {

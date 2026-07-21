@@ -1,6 +1,6 @@
 <template>
   <header class="header"
-    :class="{ scrolled: isScrolled, 'menu-open': isMobileMenuOpen, 'product-hovered': isProductHovered }">
+    :class="{ scrolled: isSolid, 'menu-open': isMobileMenuOpen, 'product-hovered': isProductHovered }">
     <div class="header-container">
       <div class="logo">
         <img class="logo-icon" :src="logoIcon" alt="华启天成" />
@@ -21,13 +21,13 @@
         </template>
       </nav>
       <div class="header-actions">
-        <a href="/contact" class="contact-btn">
+        <router-link to="/contact" class="contact-btn">
           联系我们
           <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
             <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
               stroke-linejoin="round" />
           </svg>
-        </a>
+        </router-link>
       </div>
       <button class="mobile-menu-btn" :class="{ open: isMobileMenuOpen }" @click="toggleMobileMenu">
         <span></span><span></span><span></span>
@@ -84,14 +84,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import ProductDropdown from './ProductDropdown.vue'
 
 // 图标路径
 const logoIcon = new URL('../assets/home/图标/logo.png', import.meta.url).href
 
 const router = useRouter()
+const route = useRoute()
 
 const isMobileMenuOpen = ref(false)
 const isScrolled = ref(false)
@@ -100,10 +101,13 @@ const isProductHovered = ref(false)
 const openMobileSubmenu = ref('')
 const hoveredItem = ref('')
 
+// 非首页路由：页面顶部是浅色背景，强制导航栏使用实心白底深字样式（否则白字不可见）
+const isSolid = computed(() => isScrolled.value || route.path !== '/')
+
 const navItems = [
   { id: 'home', label: '首页', href: '/' },
   {
-    id: 'products', label: '产品中心', children: [
+    id: 'products', label: '产品中心', href: '/products', children: [
       { category: '多旋翼飞行平台', items: ['H400', 'H200', 'TF100', 'F140', 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
       { category: '固定翼飞行平台', items: ['WRCQ-32A', 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
       { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '影视照明系留10公斤级', '2公斤级系留'] },
@@ -112,17 +116,17 @@ const navItems = [
     ]
   },
   {
-    id: 'solutions', label: '行业解决方案', children: [
+    id: 'solutions', label: '行业解决方案', href: '/solutions', children: [
       { items: ['城市消防', '森林消防', '清洗系列', '挂载系列适配', '固定翼巡检系列', '系留系列', '科研定制服务'] }
     ]
   },
   {
-    id: 'support', label: '服务支持', width: '138px', children: [
+    id: 'support', label: '服务支持', href: '/support', width: '138px', children: [
       { items: ['售后保障', '技术支持', '建议与反馈'] }
     ]
   },
   {
-    id: 'about', label: '关于我们', width: '127px', children: [
+    id: 'about', label: '关于我们', href: '/about', width: '127px', children: [
       { items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
     ]
   }
@@ -262,7 +266,7 @@ onUnmounted(() => {
   padding: 1.19792vw 4.79167vw 1.19792vw 3.85417vw;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   box-sizing: border-box;
 }
 
@@ -314,13 +318,14 @@ onUnmounted(() => {
   align-items: center;
   /* 1920 时 = 40px */
   gap: 2.08333vw;
+  padding: 0 22.0833vw 0 21.875vw;
 }
 
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  /* 1920 时 = 27px */
-  font-size: 1.40625vw;
+  /* 1920 时 = 21px */
+  font-size: 1.09375vw;
   font-weight: 500;
   transition: color 0.3s;
   /* 1920 时 = 8px 0 */

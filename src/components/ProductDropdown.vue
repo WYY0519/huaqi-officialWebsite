@@ -62,8 +62,8 @@ const panelStyle = computed(() => {
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  /* 1920 时 = 27px，与 NavBar 的 .nav-link 保持一致、等比缩放 */
-  font-size: 1.40625vw;
+  /* 1920 时 = 21px，与 NavBar 的 .nav-link 保持一致、等比缩放 */
+  font-size: 1.09375vw;
   font-weight: 500;
   transition: color 0.3s;
   /* 1920 时 = 8px 0 */

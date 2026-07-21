@@ -54,7 +54,7 @@ body {
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 140px 0 151px;
+  padding: 0 7.291667vw 0 7.864583vw;
   box-sizing: border-box;
 }
 
@@ -108,8 +108,8 @@ body {
   font-size: 2.86458vw;
   font-weight: 900;
   color: #000;
-  /* 1920 时 = 30px */
-  margin-bottom: 1.5625vw;
+  /* 1920 时 = 24px */
+  margin-bottom: 1.25vw;
   position: relative;
 }
 
@@ -325,7 +325,7 @@ body {
 /* 手机 (≤768px) */
 @media (max-width: 768px) {
   .container {
-    padding: 0 46px;
+    padding: 0 26px;
   }
 
   .solutions-cards {

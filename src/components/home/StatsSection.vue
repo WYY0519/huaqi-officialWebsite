@@ -119,7 +119,7 @@ onUnmounted(() => {
 <style>
 /* 数据统计区块 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放（1920 时还原当前尺寸） */
 .stats-section {
-  padding: 3.64583vw 0 4.16667vw;
+  padding: 2.552083vw 0 0;
   background: linear-gradient(to bottom, #dbeefb 2%, #ffffff 100%);
 }
 
@@ -147,12 +147,12 @@ onUnmounted(() => {
   margin-bottom: 0.78125vw;
   background: #f5f8f9;
   border-radius: 0.625vw;
-  padding: 4.58333vw 0 4.16667vw 0px;
+  padding: 2.3vw 7.239583vw 2.16667vw 6.458333vw;
   width: 100%;
 }
 
 .stat-card {
-  padding: 0.52083vw 1.04167vw 1.04167vw;
+  /* padding: 0.52083vw 1.04167vw 1.04167vw; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,7 +163,7 @@ onUnmounted(() => {
   font-size: 4.16667vw;
   font-weight: 800;
   color: #0cd7ff;
-  margin-bottom: 1.14583vw;
+  /* margin-bottom: 1.14583vw; */
 }
 
 .stat-unit {

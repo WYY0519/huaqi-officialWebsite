@@ -27,7 +27,7 @@
         <!-- 中间链接菜单 -->
         <div class="footer-menu-grid">
           <div class="footer-menu-col">
-            <h4 class="footer-menu-title">产品中心</h4>
+            <p class="footer-menu-title">产品中心</p>
             <ul class="footer-menu-list">
               <li><a href="#">多旋翼飞行平台</a></li>
               <li><a href="#">固定翼飞行平台</a></li>
@@ -37,7 +37,7 @@
             </ul>
           </div>
           <div class="footer-menu-col">
-            <h4 class="footer-menu-title">解决方案</h4>
+            <p class="footer-menu-title">解决方案</p>
             <ul class="footer-menu-list">
               <li><a href="#">城市消防</a></li>
               <li><a href="#">森林消防</a></li>
@@ -49,7 +49,7 @@
             </ul>
           </div>
           <div class="footer-menu-col">
-            <h4 class="footer-menu-title">服务支持</h4>
+            <p class="footer-menu-title">服务支持</p>
             <ul class="footer-menu-list">
               <li><a href="#">售后保障</a></li>
               <li><a href="#">技术支持</a></li>
@@ -59,7 +59,7 @@
             </ul>
           </div>
           <div class="footer-menu-col">
-            <h4 class="footer-menu-title">关于我们</h4>
+            <p class="footer-menu-title">关于我们</p>
             <ul class="footer-menu-list">
               <li><a href="#">企业简介</a></li>
               <li><a href="#">资质荣誉</a></li>
@@ -68,7 +68,7 @@
             </ul>
           </div>
           <!-- <div class="footer-menu-col">
-            <h4 class="footer-menu-title">服务支持</h4>
+            <p class="footer-menu-title">服务支持</p>
             <ul class="footer-menu-list">
               <li><a href="#">产品手册</a></li>
               <li><a href="#">技术白皮书</a></li>
@@ -113,11 +113,12 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 </script>
 
 <style scoped>
-/* 页脚样式 */
+/* 页脚样式 - 按 1920 设计等比缩放（vw），与解决方案等页面缩放方式一致，不单独设置断点 */
 .footer {
   background: #272727;
   color: rgba(255, 255, 255, 0.7);
-  padding-bottom: 53px;
+  /* 1920 时 = 53px */
+  padding-bottom: 2.76042vw;
 }
 
 /* 确保所有子元素使用思源黑体CN字体 */
@@ -127,28 +128,37 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
 .footer-main {
   display: grid;
-  grid-template-columns: 378px 1fr 261px;
+  /* 1920 时 = 378px 1fr 261px */
+  grid-template-columns: 19.6875vw 1fr 13.59375vw;
   gap: 0;
-  padding-bottom: 75px;
+  /* 1920 时 = 75px */
+  padding-bottom: 3.90625vw;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   align-items: start;
-  padding: 121px 120px 75px 121px;
+  /* 1920 时 = 121px 120px 75px 121px */
+  padding: 6.30208vw 6.25vw 3.90625vw 6.30208vw;
 }
 
 /* 左侧品牌区 */
 .footer-brand {
-  min-width: 378px;
-  max-width: 378px;
+  /* 1920 时 = 378px */
+  min-width: 19.6875vw;
+  max-width: 19.6875vw;
 }
 
 .footer-logo-wrap {
   display: flex;
   align-items: center;
-  gap: 23px;
-  margin-bottom: 12px;
+  /* 1920 时 = 23px */
+  gap: 1.19792vw;
+  /* 1920 时 = 12px */
+  margin-bottom: 0.625vw;
 }
 
 .footer-logo-icon {
+  /* 1920 时 = 50px */
+  width: 3.23vw;
+  height: 3.49vw;
   object-fit: contain;
 }
 
@@ -158,27 +168,38 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 }
 
 .footer-brand-name {
-  font-size: 29px;
+  /* 1920 时 = 29px */
+  font-size: 1.51042vw;
   font-weight: 600;
   color: white;
-  margin-bottom: 10px
+  /* 1920 时 = 10px */
+  margin-bottom: 0.52083vw;
+  /* 随字号等比（无单位，自动缩放） */
+  line-height: 1.3;
 }
 
 .footer-brand-sub {
-  font-size: 15px;
+  /* 1920 时 = 15px */
+  font-size: 0.78125vw;
   color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 1px;
+  /* 1920 时 = 1px */
+  letter-spacing: 0.05208vw;
 }
 
 .footer-social-icons {
   display: flex;
-  gap: 10px;
-  margin-left: 85px;
+  /* 1920 时 = 10px */
+  gap: 0.52083vw;
+  /* 1920 时 = 85px */
+  margin-left: 4.42708vw;
 }
 
 .footer-social-icon {
+  /* 1920 时 = 40px */
+  /* width: 2.08333vw;
+  height: 2.08333vw; */
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,42 +213,32 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 }
 
 .footer-social-icon img {
+  /* 1920 时 = 20px */
+  width: 1.825vw;
+  height: 1.825vw;
   object-fit: contain;
 }
 
 /* 中间链接菜单 */
 .footer-menu-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  width: 100%;
+  /* 按内容自适应宽度，不再等分撑满整行 */
+  grid-template-columns: repeat(4, auto);
+  /* 1920 时列间距 ≈ 29px */
+  gap: 1.5vw;
 }
 
 .footer-menu-grid .footer-menu-col {
   white-space: nowrap;
 }
 
-.footer-menu-grid .footer-menu-col:nth-child(1) {
-  padding-right: 5%;
-}
-
-.footer-menu-grid .footer-menu-col:nth-child(2) {
-  padding-right: 5%;
-}
-
-.footer-menu-grid .footer-menu-col:nth-child(3) {
-  padding-right: 5%;
-}
-
-.footer-menu-grid .footer-menu-col:nth-child(4) {
-  padding-right: 0;
-}
-
 .footer-menu-title {
-  font-size: 22px;
+  /* 1920 时 = 22px */
+  font-size: 1.14583vw;
   font-weight: 600;
   color: white;
-  margin-bottom: 39px;
+  /* 1920 时 = 39px */
+  margin-bottom: 2.03125vw;
   white-space: nowrap;
 }
 
@@ -238,14 +249,19 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 }
 
 .footer-menu-list li {
-  margin-bottom: 26px;
+  /* 1920 时 = 26px */
+  margin-bottom: 1.35417vw;
 }
 
 .footer-menu-list a {
+  /* 1920 时 = 16px（原继承默认字号，统一为 vw 等比） */
+  font-size: 1.14583vw;
   color: #929598;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.3s;
+  /* 随字号等比 */
+  line-height: 1.6;
 }
 
 .footer-menu-list a:hover {
@@ -255,22 +271,33 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 右侧二维码 */
 .footer-qrcode {
   text-align: center;
-  min-width: 261px;
-  max-width: 261px;
+  /* 1920 时 = 261px */
+  min-width: 13.59375vw;
+  max-width: 13.59375vw;
 }
 
 .footer-qrcode-img {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  /* 1920 时 = 16px */
+  margin-bottom: 0.83333vw;
   overflow: hidden;
 }
 
+.footer-qrcode-img img {
+  /* 1920 时 = 130px */
+  width: 7.7604vw;
+  height: 7.8646vw;
+  object-fit: contain;
+}
+
 .footer-qrcode-text {
-  font-size: 21px;
+  /* 1920 时 = 21px */
+  font-size: 1.09375vw;
   color: #818587;
-  /* margin: 2px 0; */
+  /* 随字号等比 */
+  line-height: 1.5;
 }
 
 /* 底部信息栏 */
@@ -278,300 +305,29 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 104px;
-  padding: 41px 0;
-  font-size: 17px;
+  /* 1920 时 = 104px */
+  gap: 5.41667vw;
+  /* 1920 时 = 41px 0 */
+  padding: 2.13542vw 0;
+  /* 1920 时 = 17px */
+  font-size: 0.88542vw;
   font-weight: 600;
   color: #919598;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* 随字号等比 */
+  line-height: 1.6;
 }
 
 /* 版权信息 */
 .footer-bottom {
-  padding: 53px 0 0;
+  /* 1920 时 = 53px 0 0 */
+  padding: 2.76042vw 0 0;
   text-align: center;
-  font-size: 17px;
+  /* 1920 时 = 17px */
+  font-size: 0.88542vw;
   font-weight: 600;
   color: #919598;
-}
-
-/* 响应式设计 */
-
-/* 大中等屏幕 (1400px ~ 1600px) */
-@media (max-width: 1600px) {
-  .footer-main {
-    grid-template-columns: 320px 1fr 220px;
-    padding: 100px 8% 60px;
-  }
-
-  .footer-brand {
-    min-width: 320px;
-    max-width: 320px;
-  }
-
-  .footer-qrcode {
-    min-width: 220px;
-    max-width: 220px;
-  }
-
-  .footer-menu-grid {
-    min-width: 0;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(1) {
-    padding-right: 4%;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(2) {
-    padding-right: 4%;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(3) {
-    padding-right: 4%;
-  }
-}
-
-/* 中等屏幕 (1200px ~ 1400px) */
-@media (max-width: 1400px) {
-  .footer {
-    padding-bottom: 40px;
-  }
-
-  .footer-main {
-    grid-template-columns: 300px 1fr 200px;
-    gap: 20px;
-    padding: 70px 6% 40px;
-  }
-
-  .footer-brand {
-    min-width: 300px;
-    max-width: 300px;
-  }
-
-  .footer-qrcode {
-    min-width: 200px;
-    max-width: 200px;
-  }
-
-  .footer-menu-grid {
-    gap: 10px;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(1) {
-    padding-right: 4%;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(2) {
-    padding-right: 4%;
-  }
-
-  .footer-menu-grid .footer-menu-col:nth-child(3) {
-    padding-right: 4%;
-  }
-
-  .footer-info-bar {
-    gap: 25px;
-    padding: 35px 0;
-  }
-}
-
-/* 较小中等屏幕 (1024px ~ 1200px) */
-@media (max-width: 1280px) {
-  .footer {
-    padding-bottom: 35px;
-  }
-
-  .footer-main {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
-    padding: 60px 5% 35px;
-  }
-
-  .footer-brand {
-    min-width: auto;
-    max-width: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-social-icons {
-    margin-left: 0;
-    margin-top: 20px;
-  }
-
-  .footer-menu-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px 15px;
-    max-width: none;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .footer-menu-grid .footer-menu-col {
-    white-space: nowrap;
-  }
-
-  .footer-menu-title {
-    font-size: 20px;
-    margin-bottom: 25px;
-    white-space: nowrap;
-  }
-
-  .footer-menu-list li {
-    margin-bottom: 18px;
-  }
-
-  .footer-menu-list a {
-    font-size: 19px;
-  }
-
-  .footer-qrcode {
-    min-width: auto;
-    max-width: none;
-  }
-
-  .footer-info-bar {
-    gap: 20px;
-    padding: 30px 0;
-    font-size: 16px;
-  }
-}
-
-/* iPad / 平板 (768px ~ 1024px) */
-@media (max-width: 1024px) {
-  .footer-main {
-    padding: 50px 5% 30px;
-  }
-
-  .footer-menu-title {
-    font-size: 19px;
-    margin-bottom: 20px;
-  }
-
-  .footer-menu-list li {
-    margin-bottom: 14px;
-  }
-
-  .footer-menu-list a {
-    font-size: 17px;
-  }
-
-  .footer-info-bar {
-    flex-direction: column;
-    gap: 8px;
-    padding: 25px 0;
-    font-size: 15px;
-  }
-
-  .footer-bottom {
-    padding: 20px 0 0;
-  }
-}
-
-/* 大iPad / 平板 (900px ~ 1024px) - removed, covered by 1024px query */
-
-@media (max-width: 768px) {
-  .footer {
-    padding-bottom: 25px;
-  }
-
-  .footer-main {
-    gap: 25px;
-    padding: 40px 4% 25px;
-  }
-
-  .footer-menu-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px 10px;
-    max-width: none;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .footer-menu-title {
-    font-size: 19px;
-    margin-bottom: 18px;
-    white-space: nowrap;
-  }
-
-  .footer-menu-list li {
-    margin-bottom: 14px;
-  }
-
-  .footer-menu-list a {
-    font-size: 17px;
-  }
-
-  .footer-qrcode {
-    margin-top: 10px;
-  }
-
-  .footer-info-bar {
-    padding: 20px 0;
-    font-size: 15px;
-  }
-
-  .footer-bottom {
-    padding: 20px 0 0;
-    font-size: 16px;
-  }
-}
-
-/* 小屏手机 (≤480px) */
-@media (max-width: 480px) {
-  .footer {
-    padding-bottom: 20px;
-  }
-
-  .footer-main {
-    gap: 20px;
-    padding: 30px 3% 20px;
-  }
-
-  .footer-logo-wrap {
-    gap: 15px;
-  }
-
-  .footer-brand-name {
-    font-size: 24px;
-  }
-
-  .footer-menu-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 8px;
-    max-width: none;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .footer-menu-title {
-    font-size: 17px;
-    margin-bottom: 15px;
-    white-space: nowrap;
-  }
-
-  .footer-menu-list li {
-    margin-bottom: 12px;
-  }
-
-  .footer-menu-list a {
-    font-size: 16px;
-  }
-
-  .footer-qrcode-text {
-    font-size: 17px;
-  }
-
-  .footer-info-bar {
-    padding: 15px 0;
-    font-size: 13px;
-  }
-
-  .footer-bottom {
-    padding: 15px 0 0;
-    font-size: 15px;
-  }
+  /* 随字号等比 */
+  line-height: 1.6;
 }
 </style>
