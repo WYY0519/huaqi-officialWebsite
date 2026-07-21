@@ -153,7 +153,7 @@ onUnmounted(() => {
   right: 0;
   background: #fff;
   /* 1920 时 = 0 8px 24px */
-  box-shadow: 0 0.41667vw 1.25vw rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0 0.41667vw 1.25vw rgba(0, 0, 0, 0.08); */
   z-index: 1001;
   opacity: 0;
   visibility: hidden;
@@ -171,7 +171,7 @@ onUnmounted(() => {
 .dropdown-panel.single-column {
   transform: translateX(-50%) translateY(-0.78125vw);
   /* 1920 时 = 8px */
-  border-radius: 0 0 0.41667vw 0.41667vw;
+  border-radius: 0.41667vw;
   text-align: center;
   /* 覆盖全宽多列的 right: 0，避免面板被拉伸 */
   right: auto;
@@ -210,12 +210,6 @@ onUnmounted(() => {
   font-size: 1.04167vw;
   font-weight: 500;
   color: #666;
-  /* 1920 时 = 12px */
-  margin-bottom: 0.625vw;
-  /* 1920 时 = 8px */
-  padding-bottom: 0.41667vw;
-  /* 1920 时 = 1px */
-  border-bottom: 0.05208vw solid #f0f0f0;
   transition: color 0.3s ease;
   white-space: nowrap;
 }
