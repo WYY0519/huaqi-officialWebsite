@@ -160,6 +160,12 @@ const handleScroll = () => {
 const updateHeaderBottom = () => {
   if (headerRef.value) {
     headerBottom.value = headerRef.value.getBoundingClientRect().bottom
+    /* 计算下划线偏移：使其紧贴 header-container 底部 */
+    const navLink = headerRef.value.querySelector('.nav-link') as HTMLElement | null
+    if (navLink) {
+      const navLinkBottom = navLink.getBoundingClientRect().bottom
+      headerRef.value.style.setProperty('--underline-offset', `${-(headerBottom.value - navLinkBottom)}px`)
+    }
   }
 }
 
@@ -261,8 +267,8 @@ onUnmounted(() => {
 .header.product-hovered :deep(.product-dropdown .nav-link.active::after) {
   content: '';
   position: absolute;
-  /* 1920 时 = -33px */
-  bottom: -1.71875vw;
+  /* 由 JS 动态计算，紧贴 header-container 底部；vw 作为降级兜底 */
+  bottom: var(--underline-offset, -1.71875vw);
   left: 0;
   width: 100%;
   /* 1920 时 = 1px */
@@ -374,8 +380,8 @@ onUnmounted(() => {
 .nav-link::after {
   content: '';
   position: absolute;
-  /* 1920 时 = -8px */
-  bottom: -0.41667vw;
+  /* 由 JS 动态计算，紧贴 header-container 底部；vw 作为降级兜底 */
+  bottom: var(--underline-offset, -0.41667vw);
   left: 50%;
   width: 0;
   /* 1920 时 = 2px */

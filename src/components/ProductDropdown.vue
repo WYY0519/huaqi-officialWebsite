@@ -3,7 +3,8 @@
     <router-link :to="href" class="nav-link" :class="{ active: isActive }">
       {{ label }}
     </router-link>
-    <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn, 'is-visible': showPanel }" :style="panelStyle">
+    <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn, 'is-visible': showPanel }"
+      :style="panelStyle">
       <div class="dropdown-grid" :class="{ 'single-grid': isSingleColumn }">
         <div v-for="(category, index) in categories" :key="index" class="dropdown-col">
           <div class="col-title">{{ category.category }}</div>
@@ -131,8 +132,8 @@ onUnmounted(() => {
 .nav-link::after {
   content: '';
   position: absolute;
-  /* 1920 时 = -8px */
-  bottom: -0.41667vw;
+  /* 由 JS 动态计算，紧贴 header-container 底部；vw 作为降级兜底 */
+  bottom: var(--underline-offset, -0.41667vw);
   left: 50%;
   width: 0;
   /* 1920 时 = 2px */
