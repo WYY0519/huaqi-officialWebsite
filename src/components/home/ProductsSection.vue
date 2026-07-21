@@ -17,11 +17,11 @@
                 <p class="product-spec">{{ item.spec }}</p>
                 <div class="product-buttons">
                   <template v-if="isHighlightedCard(idx)">
-                    <button class="product-btn product-btn-primary">立即购买</button>
-                    <button class="product-btn product-btn-secondary">了解更多</button>
+                    <!-- <button class="product-btn product-btn-primary">立即购买</button> -->
+                    <button class="product-btn product-btn-primary">了解更多</button>
                   </template>
                   <template v-else>
-                    <button class="product-btn product-btn-primary">了解更多</button>
+                    <button class="product-btn product-btn-secondary">了解更多</button>
                   </template>
                 </div>
               </div>

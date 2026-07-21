@@ -112,7 +112,7 @@ const solutionImageMap: Record<string, string[]> = {
     getImageUrl('../../assets/home/系留系列/a5.jpg')
   ],
   '科研定制服务': [
-    getImageUrl('../../assets/home/科研定制服务/a1.jpg'),
+    getImageUrl('../../assets/home/科研定制服务/a1.png'),
     getImageUrl('../../assets/home/科研定制服务/a2.jpg'),
     getImageUrl('../../assets/home/科研定制服务/a3.jpg'),
     getImageUrl('../../assets/home/科研定制服务/a4.jpg'),

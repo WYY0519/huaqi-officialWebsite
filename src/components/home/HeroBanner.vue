@@ -11,8 +11,10 @@
           <div class="slide-line"> </div>
           <div class="slide-subtitle">{{ slide.subtitle }}</div>
           <div class="slide-logos">
-            <img class="logo-icon" @click="prevSlide" :src="prevIcon" alt="华启天成" />
-            <img class="logo-icon" @click="nextSlide" :src="nextIcon" alt="华启天成" />
+            <img class="logo-icon" @click="prevSlide" :src="isPrevHovered ? prevIconHover : prevIcon"
+              @mouseenter="isPrevHovered = true" @mouseleave="isPrevHovered = false" alt="华启天成" />
+            <img class="logo-icon" @click="nextSlide" :src="isNextHovered ? nextIconHover : nextIcon"
+              @mouseenter="isNextHovered = true" @mouseleave="isNextHovered = false" alt="华启天成" />
           </div>
           <a :href="slide.link" class="hero-btn">{{ slide.btnText }}</a>
         </div>
@@ -67,6 +69,10 @@ document.head.appendChild(preloadLink)
 // 图标路径
 const prevIcon = new URL('../../assets/home/图标/lb-left.png', import.meta.url).href
 const nextIcon = new URL('../../assets/home/图标/lb-right.png', import.meta.url).href
+const prevIconHover = new URL('../../assets/home/图标/左-2.png', import.meta.url).href
+const nextIconHover = new URL('../../assets/home/图标/右-2.png', import.meta.url).href
+const isPrevHovered = ref(false)
+const isNextHovered = ref(false)
 const currentSlide = ref(0)
 const totalSlides = computed(() => slides.value.length)
 let autoplayTimer: ReturnType<typeof setInterval> | null = null
@@ -272,6 +278,7 @@ onUnmounted(() => { stopAutoplay() })
 
 .slide-title .highlight {
   color: #00D4ff !important;
+  font-family: 'OPPoSans', sans-serif;
 }
 
 .slide-line {

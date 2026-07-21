@@ -159,7 +159,7 @@ const submitForm = () => {
   font-size: 1.40625vw;
   color: #adb1b5;
   /* 1920 时 = 1px */
-  letter-spacing: 0.05208vw;
+  /* letter-spacing: 0.05208vw; */
   /* 1920 时 = 69px */
   margin-bottom: 3.59375vw;
 }
@@ -220,6 +220,8 @@ const submitForm = () => {
 
 .form-field {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .form-field-icon {
@@ -327,6 +329,7 @@ const submitForm = () => {
   justify-content: center;
   /* 1920 时 = 8px */
   gap: 0.41667vw;
+  font-weight: 900;
 }
 
 .submit-btn:hover {
