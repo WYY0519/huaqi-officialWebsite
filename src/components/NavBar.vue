@@ -312,8 +312,8 @@ onUnmounted(() => {
 
 .logo-icon {
   /* 1920 时 = 30px */
-    width: 3.23vw;
-      height: 3.49vw;
+  width: 3.23vw;
+  height: 3.49vw;
   object-fit: contain;
   /* 1920 时 = 15px */
   margin-right: 0.78125vw;
@@ -330,6 +330,7 @@ onUnmounted(() => {
   font-weight: 900;
   color: #fff;
   line-height: 1.2;
+  white-space: nowrap;
   /* 1920 时 = 2px */
   letter-spacing: 0.10417vw;
 }
@@ -516,6 +517,7 @@ onUnmounted(() => {
 @media (max-width: 1024px) {
   .header-container {
     padding: 24px;
+    justify-content: space-between;
   }
 
   .nav-menu {
@@ -575,14 +577,16 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .header-container {
     padding: 16px;
+    justify-content: space-between;
   }
 
   .logo-icon {
-    width: 20%;
+    width: 32px;
+    height: 32px;
   }
 
   .logo-name {
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 1px;
   }
 
