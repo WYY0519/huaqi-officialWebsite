@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 // 首页同步导入，刷新优先渲染
 import Home from '../views/Home.vue';
 
 const router = createRouter({
-  history: createWebHistory(),
+  // 使用 hash 模式：静态空间（对象存储/虚拟主机等）无需任何服务端 rewrite 配置，
+  // 直链或刷新 /#/products 等子页面都不会 404，菜单与其它页面均能正常显示
+  history: createWebHashHistory(),
   routes: [
     // 首页只保留一条，同步加载
     {
@@ -31,13 +33,18 @@ const router = createRouter({
       name: 'About',
       component: () => import('../views/About.vue'),
     },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: () => import('../views/Contact.vue'),
+    },
     // 可选：404兜底路由，放最后
     {
       path: '/:pathMatch(.*)*',
       redirect: '/',
     },
   ],
-  scrollBehavior(to, _from, savedPosition) {
+  scrollBehavior(to, _from, _savedPosition) {
     if (to.hash) {
       return { el: to.hash, behavior: 'smooth' };
     }
