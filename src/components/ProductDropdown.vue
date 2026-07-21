@@ -96,6 +96,8 @@ onUnmounted(() => {
 /* 非单列面板恢复垂直位移动画；单列面板保持 translateX(-50%) 水平居中 */
 .product-dropdown:hover .dropdown-panel:not(.single-column) {
   transform: translateY(0);
+  /* 产品中心：hover 时面板顶部出现分隔阴影 */
+  box-shadow: 0 0.20833vw 0.41667vw rgba(0, 0, 0, 0.08);
 }
 
 .product-dropdown:hover .dropdown-panel.single-column {
@@ -136,8 +138,8 @@ onUnmounted(() => {
   bottom: var(--underline-offset, -0.41667vw);
   left: 50%;
   width: 0;
-  /* 1920 时 = 2px */
-  height: 0.10417vw;
+  /* 1920 时 = 3px */
+  height: 0.15625vw;
   background: currentColor;
   transition: width 0.3s ease, left 0.3s ease;
 }

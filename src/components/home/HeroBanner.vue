@@ -280,7 +280,7 @@ onUnmounted(() => { stopAutoplay() })
   margin-left: 6%;
   width: 7.70833vw;
   background: linear-gradient(270deg, transparent, #00D4ff);
-  height: 0.46875vw;
+  height: 0.30875vw;
 }
 
 .hero-subtitle,

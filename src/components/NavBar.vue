@@ -271,8 +271,8 @@ onUnmounted(() => {
   bottom: var(--underline-offset, -1.71875vw);
   left: 0;
   width: 100%;
-  /* 1920 时 = 1px */
-  height: 0.05208vw;
+  /* 1920 时 = 2px */
+  height: 0.10417vw;
   background: #000000;
 }
 
@@ -311,6 +311,10 @@ onUnmounted(() => {
 }
 
 .logo-icon {
+  /* 1920 时 = 30px */
+    width: 3.23vw;
+      height: 3.49vw;
+  object-fit: contain;
   /* 1920 时 = 15px */
   margin-right: 0.78125vw;
 }
@@ -384,8 +388,8 @@ onUnmounted(() => {
   bottom: var(--underline-offset, -0.41667vw);
   left: 50%;
   width: 0;
-  /* 1920 时 = 2px */
-  height: 0.10417vw;
+  /* 1920 时 = 3px */
+  height: 0.15625vw;
   background: currentColor;
   transition: width 0.3s ease, left 0.3s ease;
 }
