@@ -105,8 +105,23 @@ const hoveredItem = ref('')
 /* header 实际底部位置（px），供下拉面板对齐用 */
 const headerBottom = ref(0)
 
-// 非首页路由：页面顶部是浅色背景，强制导航栏使用实心白底深字样式（否则白字不可见）
-const isSolid = computed(() => isScrolled.value || route.path !== '/')
+// 需要透明导航栏的路由列表（初始透明，滚动后变白）
+const transparentNavRoutes = ['/', '/homeCoreIndustries']
+
+// 判断当前路由是否需要透明导航栏
+const shouldHaveTransparentNav = computed(() => {
+  return transparentNavRoutes.includes(route.path)
+})
+
+// 导航栏是否应该为实心白底
+const isSolid = computed(() => {
+  // 如果是需要透明导航栏的路由，则根据滚动位置决定
+  if (shouldHaveTransparentNav.value) {
+    return isScrolled.value
+  }
+  // 其他路由强制实心白底
+  return true
+})
 
 const navItems = [
   { id: 'home', label: '首页', href: '/' },

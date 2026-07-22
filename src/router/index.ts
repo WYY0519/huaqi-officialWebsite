@@ -38,6 +38,16 @@ const router = createRouter({
       name: 'Contact',
       component: () => import('../views/Contact.vue'),
     },
+    {
+      path: '/solution/:slug',
+      name: 'SolutionDetail',
+      component: () => import('../views/SolutionDetail.vue'),
+    },
+    {
+      path: '/homeCoreIndustries',
+      name: 'homeCoreIndustries',
+      component: () => import('../views/homeCoreIndustries/index.vue'),
+    },
     // 可选：404兜底路由，放最后
     {
       path: '/:pathMatch(.*)*',
