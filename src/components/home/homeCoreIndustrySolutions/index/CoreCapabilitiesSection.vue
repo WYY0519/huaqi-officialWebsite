@@ -46,7 +46,7 @@ const capabilities = [
 
 <style scoped>
 .core-capabilities-section {
-  padding: 4.16667vw 0;
+  padding: 5vw 0 0;
   background: #fff;
 }
 
@@ -55,34 +55,35 @@ const capabilities = [
   font-weight: bold;
   color: #1a1a2e;
   text-align: center;
-  margin-bottom: 0.83333vw;
+  margin-bottom: 0.3vw;
 }
 
 .section-divider {
-  width: 13vw;
-  height: 0.10833vw;
+  width: 14vw;
+  height: 0.1vw;
   background: linear-gradient(to right, transparent 0%, #00D4ff 10%, #00D4ff 90%, transparent 100%);
-  margin: 0 auto 0.83333vw;
+  margin: 0 auto 0.63333vw;
 }
 
 .section-desc {
   text-align: center;
   font-size: 1.04167vw;
   color: #adb1b5;
-  margin-bottom: 3.125vw;
+  margin-bottom: 5vw;
 }
 
 .capabilities-list {
   display: flex;
   flex-direction: column;
-  gap: 2.08333vw;
+  gap: 2.8333vw;
 }
 
 .capability-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2.60417vw;
-  align-items: center;
+  /* align-items: center; */
+  background: #f8f9fa;
+  border-radius: 0.625vw;
 }
 
 .capability-row.reverse {
@@ -96,11 +97,13 @@ const capabilities = [
 .capability-image {
   border-radius: 0.625vw;
   overflow: hidden;
+  width: 44.583333vw;
+  height: 27.8125vw;
 }
 
 .capability-image img {
   width: 100%;
-  height: 16.66667vw;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.5s;
@@ -111,19 +114,19 @@ const capabilities = [
 }
 
 .capability-text {
-  padding: 1.04167vw 0;
+  padding: 4.75vw 3.333333vw 3.020833vw 4.583333vw
 }
 
 .capability-title {
-  font-size: 1.30208vw;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 1.04167vw;
+  font-size: 2.147396vw;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 0.55vw;
 }
 
 .capability-desc {
-  font-size: 0.9375vw;
-  color: #666;
+  font-size: 1.039063vw;
+  color: #9b9e9f;
   line-height: 1.9;
 }
 

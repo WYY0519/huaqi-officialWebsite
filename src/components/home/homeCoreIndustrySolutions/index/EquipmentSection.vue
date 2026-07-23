@@ -43,8 +43,7 @@ const equipment = [
 
 <style scoped>
 .equipment-section {
-  padding: 4.16667vw 0;
-  background: #f8f9fa;
+  padding: 4.16667vw 0 0;
 }
 
 .section-title-dark {
@@ -52,21 +51,21 @@ const equipment = [
   font-weight: bold;
   color: #1a1a2e;
   text-align: center;
-  margin-bottom: 0.83333vw;
+  margin-bottom: 0.3vw;
 }
 
 .section-divider {
-  width: 13vw;
+  width: 14vw;
   height: 0.10833vw;
   background: linear-gradient(to right, transparent 0%, #00D4ff 10%, #00D4ff 90%, transparent 100%);
-  margin: 0 auto 0.83333vw;
+  margin: 0 auto 0.63333vw;
 }
 
 .section-desc {
   text-align: center;
   font-size: 1.04167vw;
   color: #adb1b5;
-  margin-bottom: 3.125vw;
+  margin-bottom: 4.08vw;
 }
 
 .equipment-grid {
@@ -76,11 +75,13 @@ const equipment = [
 }
 
 .equipment-card {
-  background: #fff;
+  background: #f6f8f9;
   border-radius: 0.625vw;
-  padding: 2.08333vw 1.5625vw;
+  /* padding: 2.08333vw 1.5625vw; */
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  width: 26.875vw;
+  height: 37.291667vw;
 }
 
 .equipment-card:hover {
@@ -89,9 +90,9 @@ const equipment = [
 }
 
 .equipment-icon {
-  width: 4.16667vw;
-  height: 4.16667vw;
-  margin: 0 auto 1.25vw;
+  width: 20.416667vw;
+  height: 15vw;
+  margin: 3.9vw 3.229167vw 0.5vw;
 }
 
 .equipment-icon img {
@@ -101,16 +102,18 @@ const equipment = [
 }
 
 .equipment-title {
-  font-size: 1.30208vw;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 0.83333vw;
+  font-size: 2.078125vw;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1.4vw;
 }
 
 .equipment-desc {
-  font-size: 0.9375vw;
-  color: #666;
+  font-size: 1.177604vw;
+  color: #9b9e9f;
   line-height: 1.7;
+  padding: 0 2.84vw;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {

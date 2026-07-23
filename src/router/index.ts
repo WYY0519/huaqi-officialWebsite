@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 // 首页同步导入，刷新优先渲染
 import Home from '../views/Home.vue';
+// 行业解决方案页面同步导入，刷新优先渲染
+import HomeCoreIndustries from '../views/homeCoreIndustries/index.vue';
 
 const router = createRouter({
   // 使用 hash 模式：静态空间（对象存储/虚拟主机等）无需任何服务端 rewrite 配置，
@@ -46,7 +48,7 @@ const router = createRouter({
     {
       path: '/homeCoreIndustries',
       name: 'homeCoreIndustries',
-      component: () => import('../views/homeCoreIndustries/index.vue'),
+      component: HomeCoreIndustries,
     },
     // 可选：404兜底路由，放最后
     {

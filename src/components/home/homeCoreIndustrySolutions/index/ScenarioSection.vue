@@ -52,7 +52,7 @@ const scenarios = [
 
 <style scoped>
 .scenario-section {
-  padding: 4.16667vw 0;
+  padding: 4.89vw 0;
   background: #fff;
 }
 
@@ -61,34 +61,35 @@ const scenarios = [
   font-weight: bold;
   color: #1a1a2e;
   text-align: center;
-  margin-bottom: 0.83333vw;
+  margin-bottom: 0.3vw;
 }
 
 .section-divider {
-  width: 13vw;
+  width: 14vw;
   height: 0.10833vw;
   background: linear-gradient(to right, transparent 0%, #00D4ff 10%, #00D4ff 90%, transparent 100%);
-  margin: 0 auto 0.83333vw;
+  margin: 0 auto 0.63333vw;
 }
 
 .section-desc {
   text-align: center;
   font-size: 1.04167vw;
   color: #adb1b5;
-  margin-bottom: 3.125vw;
+  margin-bottom: 5.25vw;
 }
 
 .scenario-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25vw;
+  gap: 3.2vw;
 }
 
 .scenario-card {
   position: relative;
   border-radius: 0.625vw;
   overflow: hidden;
-  height: 14.58333vw;
+  width: 41.09375vw;
+  height: 16.302083vw;
   cursor: pointer;
 }
 
@@ -119,19 +120,18 @@ const scenarios = [
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 1.5625vw;
+  padding: 1.875vw 0 1.8vw 2.083333vw;
   z-index: 2;
 }
 
 .scenario-title {
-  font-size: 1.30208vw;
-  font-weight: 700;
+  font-size: 1.385417vw;
+  font-weight: bold;
   color: #fff;
-  margin-bottom: 0.41667vw;
 }
 
 .scenario-desc {
-  font-size: 0.9375vw;
+  font-size: 1.073646vw;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
 }

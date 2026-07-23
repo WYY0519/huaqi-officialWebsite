@@ -3,7 +3,7 @@
     <div class="container">
       <p class="cta-title">获取专属解决方案</p>
       <div class="section-divider"></div>
-      <p class="cta-desc">留下您的联系方式，我们的行业专家将在2小时内与您取得联系，为您定制专属解决方案。</p>
+      <p class="cta-desc">留下您的联系方式,我们的行业专家将在2小时内与您取得联系,为您定制专属解决方案。</p>
       <a href="/contact" class="cta-btn">立即咨询 <span style="margin-left: .3vw;font-weight: 900;">→</span></a>
     </div>
   </section>
@@ -24,14 +24,13 @@
   font-size: 2.87474vw;
   font-weight: bold;
   color: #1a1a2e;
-  margin-bottom: 0.25vw;
+  margin-bottom: 0.625vw;
 }
 
 .cta-desc {
   font-size: 2.078125vw;
   color: #adb1b5;
-  padding: 0 4.895833vw;
-
+  padding: 0 6vw
 }
 
 .cta-btn {
@@ -54,9 +53,9 @@
 }
 
 .section-divider {
-  width: 13vw;
+  width: 14vw;
   height: 0.10833vw;
   background: linear-gradient(to right, transparent 0%, #00D4ff 10%, #00D4ff 90%, transparent 100%);
-  margin: 0 auto 1.15vw
+  margin: 0 auto .75vw
 }
 </style>

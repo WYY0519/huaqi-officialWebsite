@@ -44,7 +44,7 @@ const painPoints = [
 
 <style scoped>
 .pain-points-section {
-  padding: 5.989583vw 0 6.40625vw;
+  padding: 5vw 0 6.40625vw;
   background: #f8f9fa;
 }
 
@@ -53,14 +53,14 @@ const painPoints = [
   font-weight: bold;
   color: #1a1a2e;
   text-align: center;
-  margin-bottom: 0.83333vw;
+  margin-bottom: 0.3vw;
 }
 
 .section-divider {
-  width: 13vw;
+  width: 14vw;
   height: 0.10833vw;
   background: linear-gradient(to right, transparent 0%, #00D4ff 10%, #00D4ff 90%, transparent 100%);
-  margin: 0 auto 0.83333vw;
+  margin: 0 auto 0.63333vw;
 }
 
 .section-desc {
@@ -74,14 +74,15 @@ const painPoints = [
 .pain-points-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25vw;
+  gap: 1.7vw;
 }
 
 .pain-point-card {
   position: relative;
   border-radius: 0.625vw;
   overflow: hidden;
-  height: 20.83333vw;
+  height: 12.5vw;
+  width: 27.34375vw;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -107,15 +108,15 @@ const painPoints = [
 .pain-point-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
 }
 
 .pain-point-content {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  /* to: 0;
+  left: 0; */
   width: 100%;
-  padding: 1.5625vw;
+  padding: 3.33vw 2.34375vw 1.041667vw 1.875vw;
   z-index: 2;
 }
 
