@@ -11,13 +11,15 @@
       </div>
     </section>
     <!-- 传统城市消防行业痛点 -->
-    <PainPointsSection />
+    <PainPointsSection :module="module" />
     <!-- 全场景消防救援核心能力 - 图文交替 -->
-    <CoreCapabilitiesSection />
+    <CoreCapabilitiesSection :module="module" />
+    <!-- 全系列标准化挂载硬件 -->
+    <HardwareSection :module="module" />
     <!-- 多元化挂载适配多元救援任务 -->
-    <EquipmentSection />
+    <EquipmentSection :module="module" />
     <!-- 全场景消防救援核心能力 - 场景卡片 -->
-    <ScenarioSection />
+    <ScenarioSection :module="module" />
     <!-- 获取专属解决方案 -->
     <CTASection />
   </div>
@@ -29,10 +31,14 @@ import { useRoute } from 'vue-router'
 import PainPointsSection from '../../components/home/homeCoreIndustrySolutions/index/PainPointsSection.vue'
 import CoreCapabilitiesSection from '../../components/home/homeCoreIndustrySolutions/index/CoreCapabilitiesSection.vue'
 import EquipmentSection from '../../components/home/homeCoreIndustrySolutions/index/EquipmentSection.vue'
+import HardwareSection from '../../components/home/homeCoreIndustrySolutions/index/HardwareSection.vue'
 import ScenarioSection from '../../components/home/homeCoreIndustrySolutions/index/ScenarioSection.vue'
 import CTASection from '../../components/home/homeCoreIndustrySolutions/index/CTASection.vue'
 
 const route = useRoute()
+
+// 当前模块标识
+const module = computed(() => (route.query.module as string) || 'city-fire')
 
 // 模块标识符到中文标题的映射
 const moduleTitleMap: Record<string, string> = {
@@ -54,9 +60,17 @@ const currentModule = computed(() => {
 // 根据模块动态加载对应的英雄图片
 const heroImage = computed(() => {
   const moduleParam = route.query.module as string
-  // 目前只有城市消防有图片，其他模块可以后续添加
+  // 城市消防图片
   if (moduleParam === 'city-fire' || !moduleParam) {
     return new URL('../../assets/home/行业解决方案/城市消防/首页.png', import.meta.url).href
+  }
+  // 森林消防图片
+  if (moduleParam === 'forest-fire') {
+    return new URL('../../assets/home/行业解决方案/森林消防/首页.jpg', import.meta.url).href
+  }
+  // 挂载系列适配图片
+  if (moduleParam === 'mount-adapt') {
+    return new URL('../../assets/home/行业解决方案/挂载系列适配/首页.png', import.meta.url).href
   }
   // 其他模块可以返回默认图片或各自的图片
   return new URL('../../assets/home/行业解决方案/城市消防/首页.png', import.meta.url).href
@@ -96,7 +110,6 @@ const heroImage = computed(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
   z-index: 1;
 }
 

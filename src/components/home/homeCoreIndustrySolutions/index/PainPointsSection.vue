@@ -1,9 +1,9 @@
 <template>
   <section class="pain-points-section">
     <div class="container">
-      <h2 class="section-title-dark">传统城市消防行业痛点</h2>
+      <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>
-      <p class="section-desc">城市越建越高，传统消防方式面临严峻挑战</p>
+      <p class="section-desc">{{ sectionDesc }}</p>
       <div class="pain-points-grid">
         <div class="pain-point-card" v-for="(item, index) in painPoints" :key="index">
           <img class="pain-point-bg" :src="item.image" :alt="item.title" />
@@ -19,27 +19,81 @@
 </template>
 
 <script setup lang="ts">
-const image1 = new URL('../../../../assets/home/行业解决方案/城市消防/痛点1.png', import.meta.url).href
-const image2 = new URL('../../../../assets/home/行业解决方案/城市消防/痛点2.png', import.meta.url).href
-const image3 = new URL('../../../../assets/home/行业解决方案/城市消防/痛点3.png', import.meta.url).href
+import { computed } from 'vue'
 
-const painPoints = [
-  {
-    image: image1,
-    title: '高度受限，覆盖不足',
-    desc: '常规消防车作业高度多在50-80米，难以覆盖100米以上超高层建筑。楼梯拥堵、电梯停运，救援人员步行上行耗时久，极易错失最佳灭火时机。',
-  },
-  {
-    image: image2,
-    title: '环境危险，难以靠近',
-    desc: '化工火灾、浓烟密闭空间、易燃易爆环境下，救援人员直接进入风险极高。传统侦察手段无法快速掌握内部火情与被困人员位置，决策效率低。',
-  },
-  {
-    image: image3,
-    title: '响应滞后，通行受阻',
-    desc: '城市道路拥堵、老旧小区车道狭窄，大型消防车辆难以快速抵达现场。火情初期无法快速干预，易导致小火演变为重大灾情，损失扩大。',
-  },
-]
+const props = defineProps<{
+  module?: string
+}>()
+
+const sectionTitle = computed(() => {
+  if (props.module === 'forest-fire') return '传统森林消防核心痛点'
+  if (props.module === 'mount-adapt') return '传统无人机挂载适配痛点'
+  return '传统城市消防行业痛点'
+})
+
+const sectionDesc = computed(() => {
+  if (props.module === 'forest-fire') return '林区地形复杂，传统防控模式遭遇多重瓶颈'
+  if (props.module === 'mount-adapt') return '机型接口不统一、改装成本高、切换部署慢，限制多场景作业效率'
+  return '城市发展升级，传统消防模式遇瓶颈'
+})
+
+const painPoints = computed(() => {
+  if (props.module === 'forest-fire') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/森林消防/痛点1.png', import.meta.url).href,
+        title: '地形复杂，救援难抵达',
+        desc: '山区与原始林区道路闭塞，地形险峻，地面救援力量机动耗时长、进驻难，极易错失初期火情处置黄金窗口，小火演变成重大灾情。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/森林消防/痛点2.png', import.meta.url).href,
+        title: '火情隐蔽，发现不及时',
+        desc: '人工巡护覆盖范围有限，初起火点易被林木植被遮蔽；夜间、雨雾等恶劣天气下排查难度大，监测盲区多，漏检火险报率高。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/森林消防/痛点3.png', import.meta.url).href,
+        title: '蔓延迅速，管控难度大',
+        desc: '山火受风力、地形驱动蔓延极快，传统方式难以及时掌握火情动态与蔓延趋势，防火隔离方案制定滞后，处置全程被动。',
+      }
+    ]
+  }
+  if (props.module === 'mount-adapt') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/挂载系列适配/痛点1.png', import.meta.url).href,
+        title: '跨平台适配难',
+        desc: '大疆与自研平台接口不通用，挂载无法通用，跨平台部署要定制改装，成本高、周期长。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/挂载系列适配/痛点2.png', import.meta.url).href,
+        title: '任务切换低效',
+        desc: '拆装载载需拆机架、重调试，单次切换超半小时，应急场景响应慢，作业模式无法高速转换。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/挂载系列适配/痛点3.png', import.meta.url).href,
+        title: '场景覆盖有限',
+        desc: '单挂载仅支撑单一场景，无法兼顾侦察、灭火、搜救等多任务，设备闲置率高，价值难以最大化。',
+      }
+    ]
+  }
+  return [
+    {
+      image: new URL('../../../../assets/home/行业解决方案/城市消防/痛点1.png', import.meta.url).href,
+      title: '高度受限，覆盖不足',
+      desc: '常规举高消防车作业高度多在50-80米，难以覆盖100米以上超高层建筑;楼梯拥堵、电梯停运，人员装备上行耗时久，极易错失最佳灭火时机。',
+    },
+    {
+      image: new URL('../../../../assets/home/行业解决方案/城市消防/痛点2.png', import.meta.url).href,
+      title: '环境危险，难以靠近',
+      desc: '化工火灾、浓烟密闭空间、易燃易爆场景下，救援人员直接进入风险极高;传统侦察手段无法快速掌握内部火情与被困人员位置，决策效率低。',
+    },
+    {
+      image: new URL('../../../../assets/home/行业解决方案/城市消防/痛点3.png', import.meta.url).href,
+      title: '响应滞后，通行受阻',
+      desc: '城市道路拥堵、老旧小区车道狭窄，大型消防车辆难以快速抵达现场;火情初期无法快速干预，易导致小火演变为重大灾情，损失扩大。',
+    }
+  ]
+})
 </script>
 
 <style scoped>
@@ -108,7 +162,6 @@ const painPoints = [
 .pain-point-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
 }
 
 .pain-point-content {

@@ -1,9 +1,9 @@
 <template>
-  <section class="scenario-section">
+  <section class="scenario-section" v-if="module !== 'mount-adapt'">
     <div class="container">
-      <h2 class="section-title-dark">全场景消防救援核心能力</h2>
+      <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>
-      <p class="section-desc">面向不同火灾场景下的多样化救援需求，覆盖城市消防全域应急救援场景</p>
+      <p class="section-desc">{{ sectionDesc }}</p>
       <div class="scenario-grid">
         <div class="scenario-card" v-for="(item, index) in scenarios" :key="index">
           <div class="scenario-image">
@@ -21,33 +21,96 @@
 </template>
 
 <script setup lang="ts">
-const image1 = new URL('../../../../assets/home/行业解决方案/城市消防/场景1.jpg', import.meta.url).href
-const image2 = new URL('../../../../assets/home/行业解决方案/城市消防/场景2.jpg', import.meta.url).href
-const image3 = new URL('../../../../assets/home/行业解决方案/城市消防/场景3.jpg', import.meta.url).href
-const image4 = new URL('../../../../assets/home/行业解决方案/城市消防/场景4.jpg', import.meta.url).href
+import { computed } from 'vue'
 
-const scenarios = [
-  {
-    image: image1,
-    title: '超高层建筑灭火',
-    desc: '突破150米高度限制，精准投送灭火剂',
-  },
-  {
-    image: image2,
-    title: '危化品远距离处置',
-    desc: '远程操控灭火，规避危化品爆炸风险',
-  },
-  {
-    image: image3,
-    title: '旧城中村/老旧小区',
-    desc: '"空中消防通道"，道路狭窄区域快速抵达',
-  },
-  {
-    image: image4,
-    title: '应急生命搜救',
-    desc: '热成像穿透浓烟锁定被困人员，开辟紧急救援通道',
-  },
-]
+const props = defineProps<{
+  module?: string
+}>()
+
+const sectionTitle = computed(() => {
+  if (props.module === 'forest-fire') return '全场景森林消防作业方案'
+  if (props.module === 'mount-adapt') return '多元化挂载适配作业方案'
+  return '全场景消防救援核心能力'
+})
+
+const sectionDesc = computed(() => {
+  if (props.module === 'forest-fire') return '针对林区不同阶段防火需求，提供定制化无人机作业方案'
+  if (props.module === 'mount-adapt') return '针对不同救援任务需求，提供定制化挂载适配无人机作业方案'
+  return '面向不同火灾场景下的多样化救援需求，覆盖城市消防全域应急救援场景'
+})
+
+const scenarios = computed(() => {
+  if (props.module === 'forest-fire') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/森林消防/场景1 .jpg', import.meta.url).href,
+        title: '全域林区巡护',
+        desc: '长续航覆盖广阔林区，突破山地地形限制，常态化排查火情隐患',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/森林消防/场景2.jpg', import.meta.url).href,
+        title: '早期火情预警',
+        desc: '红外热成像穿透植被烟雾，全天候值守，精准识别隐蔽暗火',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/森林消防/场景3.jpg', import.meta.url).href,
+        title: '精准灭火投送',
+        desc: '多类灭火载荷适配，远距离精准投送，无人化抢抓处置黄金期',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/森林消防/场景4.jpg', import.meta.url).href,
+        title: '灾后余火排查',
+        desc: '全域扫描过火区域，精准定位残留暗火，有效防范复燃风险',
+      }
+    ]
+  }
+  if (props.module === 'mount-adapt') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/城市消防/场景1.jpg', import.meta.url).href,
+        title: '城市超高层灭火适配',
+        desc: '突破150米高度限制，精准投送灭火剂',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/城市消防/场景2.jpg', import.meta.url).href,
+        title: '危化品远距离处置适配',
+        desc: '远程操控灭火，规避危化品爆炸风险',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/城市消防/场景3.jpg', import.meta.url).href,
+        title: '森林消防灭火作业适配',
+        desc: '多类灭火载荷适配，远距离精准投送',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/城市消防/场景4.jpg', import.meta.url).href,
+        title: '应急生命搜救适配',
+        desc: '热成像穿透浓烟锁定被困人员，开辟紧急救援通道',
+      }
+    ]
+  }
+  return [
+    {
+      image: new URL('../../../../assets/home/行业解决方案/城市消防/场景1.jpg', import.meta.url).href,
+      title: '超高层建筑灭火',
+      desc: '突破150米高度限制，精准投送灭火剂',
+    },
+    {
+      image: new URL('../../../../assets/home/行业解决方案/城市消防/场景2.jpg', import.meta.url).href,
+      title: '危化品远距离处置',
+      desc: '远程操控灭火，规避危化品爆炸风险',
+    },
+    {
+      image: new URL('../../../../assets/home/行业解决方案/城市消防/场景3.jpg', import.meta.url).href,
+      title: '旧城中村/老旧小区',
+      desc: '"空中消防通道"，道路狭窄区域快速抵达',
+    },
+    {
+      image: new URL('../../../../assets/home/行业解决方案/城市消防/场景4.jpg', import.meta.url).href,
+      title: '应急生命搜救',
+      desc: '热成像穿透浓烟锁定被困人员，开辟紧急救援通道',
+    }
+  ]
+})
 </script>
 
 <style scoped>
@@ -107,12 +170,6 @@ const scenarios = [
 
 .scenario-card:hover .scenario-image img {
   transform: scale(1.08);
-}
-
-.scenario-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
 }
 
 .scenario-info {
