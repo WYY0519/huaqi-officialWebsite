@@ -194,16 +194,45 @@ const scenarios = computed(() => {
 }
 
 @media (max-width: 768px) {
+  .scenario-section {
+    padding: 6vw 4vw ;
+  }
+
+  .section-title-dark {
+    font-size: 5.3vw;
+  }
+
+  .section-divider {
+     width: 23vw;
+    height: 0.3vw !important;
+  }
+
+  .section-desc {
+    font-size: 3vw;
+    margin-bottom: 4vw;
+  }
+
   .scenario-grid {
     grid-template-columns: 1fr;
+    gap: 2vw;
   }
 
   .scenario-card {
-    height: 45.83333vw;
+    width: 100%;
+    height: 60vw;
   }
 
   .scenario-info {
-    padding: 1.04167vw;
+    padding: 2vw;
+  }
+
+  .scenario-title {
+    font-size: 3.5vw;
+  }
+
+  .scenario-desc {
+    font-size: 2.8vw;
+    line-height: 1.6;
   }
 }
 </style>

@@ -336,6 +336,11 @@ const auxiliaryEquipment = computed(() => {
   height: 12.2vw;
 }
 
+.fire-card .hardware-image {
+  margin: 2.65vw 0 2.9vw;
+  height: 11.1vw;
+}
+
 .hardware-image {
   width: 100%;
   height: 10vw;
@@ -395,13 +400,82 @@ const auxiliaryEquipment = computed(() => {
 }
 
 @media (max-width: 768px) {
-  .hardware-grid {
-    grid-template-columns: 1fr;
-    gap: 0.83333vw;
+  .hardware-section {
+    padding: 6vw 4vw 4vw;
   }
 
+  .container {
+    padding: 0;
+  }
+
+  .section-title-dark {
+    font-size: 5.3vw;
+  }
+
+  .section-divider {
+       width: 23vw;
+    height: 0.3vw !important;
+  }
+
+  .section-desc {
+    font-size: 3vw;
+    margin-bottom: 5vw;
+  }
+
+  .hardware-category {
+    margin-bottom: 6vw;
+  }
+
+  .category-title {
+    font-size: 4.5vw;
+    padding-left: 2vw;
+    border-left-width: 1vw;
+    margin-bottom: 3vw;
+  }
+
+  .hardware-grid,
+  .hardware-grid.grid-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2.5vw;
+  }
+
+  .hardware-card {
+    height: auto;
+    border-radius: 2vw;
+  }
+
+  .projectile-card .hardware-image,
+  .fire-card .hardware-image,
+  .auxiliary-card .hardware-image,
   .hardware-image {
-    height: 30vw;
+    height: 24vw;
+    margin: 3vw 0 2vw;
+  }
+
+  .hardware-title {
+    font-size: 3.2vw;
+    margin-bottom: 1.5vw;
+    padding: 0 2vw;
+  }
+
+  .hardware-specs {
+    font-size: 2.4vw;
+    padding: 0 2.5vw 2.5vw;
+  }
+
+  .spec-row {
+    padding: 1.2vw 0;
+    gap: 1vw;
+  }
+
+  .spec-label {
+    font-size: 2.3vw;
+    flex-shrink: 0;
+  }
+
+  .spec-value {
+    font-size: 2.3vw;
+    text-align: right;
   }
 }
 </style>

@@ -187,17 +187,50 @@ const painPoints = computed(() => {
 }
 
 @media (max-width: 768px) {
+  .pain-points-section {
+    padding: 6vw 4vw;
+  }
+
+  .section-title-dark {
+    font-size: 5.3vw;
+  }
+
+  .section-divider {
+   width: 23vw;
+    height: 0.3vw !important;
+  }
+
+  .section-desc {
+    font-size: 3vw;
+    margin-bottom: 5vw;
+  }
+
   .pain-points-grid {
     grid-template-columns: 1fr;
-    gap: 0.83333vw;
+    gap: 3vw;
   }
 
   .pain-point-card {
-    height: 50vw;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    border-radius: 2vw;
   }
 
   .pain-point-content {
-    padding: 1.04167vw;
+    padding: 3vw;
+    top: 0;
+    left: 0;
+  }
+
+  .pain-point-title {
+    font-size: 4vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .pain-point-desc {
+    font-size: 2.6vw;
+    line-height: 1.6;
   }
 }
 </style>

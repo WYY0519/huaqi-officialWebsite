@@ -190,16 +190,51 @@ const capabilities = computed(() => {
 }
 
 @media (max-width: 768px) {
+  .core-capabilities-section {
+    padding: 6vw 0 0;
+  }
+
+  .section-title-dark {
+    font-size: 5.3vw;
+  }
+
+  .section-divider {
+      width: 23vw;
+    height: 0.3vw !important;
+  }
+
+  .section-desc {
+    font-size: 3vw;
+    margin-bottom: 4vw;
+  }
 
   .capability-row,
   .capability-row.reverse {
     grid-template-columns: 1fr;
     direction: ltr;
-    gap: 1.04167vw;
+    gap: 0;
+  }
+
+  .capability-image {
+    width: 100%;
+    height: 56.25vw;
   }
 
   .capability-image img {
-    height: 45.83333vw;
+    height: 100%;
+  }
+
+  .capability-text {
+    padding: 4vw 3vw;
+  }
+
+  .capability-title {
+    font-size: 4.5vw;
+  }
+
+  .capability-desc {
+    font-size: 2.8vw;
+    line-height: 1.8;
   }
 }
 </style>

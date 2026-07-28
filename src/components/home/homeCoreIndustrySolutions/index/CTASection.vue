@@ -58,4 +58,31 @@
   background: linear-gradient(to right, transparent 0%, #00D4ff 10%, #00D4ff 90%, transparent 100%);
   margin: 0 auto .75vw
 }
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 4vw 2vw 5vw;
+  }
+
+  .cta-title {
+    font-size: 4.5vw;
+  }
+
+  .cta-desc {
+    font-size: 3.2vw;
+    padding: 0 2vw;
+    line-height: 1.6;
+  }
+
+  .cta-btn {
+    padding: 2.5vw 4vw;
+    font-size: 3.5vw;
+    border-radius: 1.5vw;
+  }
+
+  .section-divider {
+    width: 23vw;
+    height: 0.3vw !important;
+  }
+}
 </style>
