@@ -6,7 +6,7 @@
       <p class="section-desc">{{ sectionDesc }}</p>
       <div class="capabilities-list">
         <div class="capability-row" v-for="(item, index) in capabilities" :key="index"
-          :class="{ reverse: index % 2 !== 0 }">
+          :class="{ reverse: index % 2 !== 0 }" ref="rowRefs">
           <div class="capability-image">
             <img :src="item.image" :alt="item.title" />
           </div>
@@ -21,21 +21,45 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   module?: string
 }>()
 
+const rowRefs = ref<HTMLElement[]>([])
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        observer?.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.15 })
+
+  rowRefs.value.forEach((el) => {
+    if (el) observer?.observe(el)
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
+
 const sectionTitle = computed(() => {
   if (props.module === 'forest-fire') return '全场景森林消防救援核心能力'
   if (props.module === 'mount-adapt') return '挂载系统三大核心适配能力'
+  if (props.module === 'high-cleaning') return '全场景清洁核心能力'
   return '全场景消防救援核心能力'
 })
 
 const sectionDesc = computed(() => {
   if (props.module === 'forest-fire') return '集巡查、识别、处置、保障于一体，构建空地一体化森林防火灭火体系'
   if (props.module === 'mount-adapt') return '统一标准接口，打通多品牌机型，模块化快拆实现全场景作业'
+  if (props.module === 'high-cleaning') return '替代传统高空人工作业，实现安全、高效、无死角建筑立面清洁'
   return '集灭火、侦察、搜救、处置于一体，构建空地协同的现代化消防作战能力'
 })
 
@@ -75,6 +99,25 @@ const capabilities = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/挂载系列适配/核心能力3.jpg', import.meta.url).href,
         title: '多元化载荷，覆盖全行业作业',
         desc: '覆盖消防灭火、破窗攻坚、生命搜救、物资运输、应急指挥全场景；包含水系灭火、干粉灭火、破窗抛投、照明喊话、索降投送全品类载荷，一套基座自由搭配组合，真正实现一机多用。',
+      }
+    ]
+  }
+  if (props.module === 'high-cleaning') {
+    return [
+      {
+        image: new URL('../../../../assets/home/清洗系列/无人机替换4.jpg', import.meta.url).href,
+        title: '高压精准冲洗 适配多类立面',
+        desc: '搭载高压直喷系统，水压无级可调，可针对玻璃幕墙、石材立面、涂料墙面、铝单板等不同材质匹配出水模式；多自由度电动喷杆，灵活适配立面角度，无死角清除污渍、浮尘与附着物。',
+      },
+      {
+        image: new URL('../../../../assets/home/清洗系列/无人机替换.jpg', import.meta.url).href,
+        title: '百米高空作业 全程安全可控',
+        desc: '支持百米级超高空作业，人员全程地面操控，无需登高作业，从根源规避高空坠落风险；全向避障系统实时感知建筑结构，飞行姿态稳定，复杂楼体环境下作业安全可控。',
+      },
+      {
+        image: new URL('../../../../assets/home/清洗系列/无人机替换2.jpg', import.meta.url).href,
+        title: '全地形适配，突破空间限制',
+        desc: '不受山地、水面、道路限制，覆盖山地光伏、渔光互补、超高层幕墙、异形建筑等人员难以抵达的场景；百米级作业高度，轻松应对城市超高层、大型工业设施的清洁需求。',
       }
     ]
   }
@@ -142,6 +185,14 @@ const capabilities = computed(() => {
   /* align-items: center; */
   background: #f8f9fa;
   border-radius: 0.625vw;
+  opacity: 0;
+  transform: translateY(3vw);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.capability-row.animate-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .capability-row.reverse {
@@ -199,7 +250,7 @@ const capabilities = computed(() => {
   }
 
   .section-divider {
-      width: 23vw;
+    width: 23vw;
     height: 0.3vw !important;
   }
 

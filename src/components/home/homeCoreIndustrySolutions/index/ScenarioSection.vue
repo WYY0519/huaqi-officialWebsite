@@ -5,7 +5,8 @@
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
       <div class="scenario-grid">
-        <div class="scenario-card" v-for="(item, index) in scenarios" :key="index">
+        <div class="scenario-card" v-for="(item, index) in scenarios" :key="index"
+          ref="cardRefs" :style="{ animationDelay: index * 0.25 + 's' }">
           <div class="scenario-image">
             <img :src="item.image" :alt="item.title" />
             <div class="scenario-overlay"></div>
@@ -21,21 +22,45 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   module?: string
 }>()
 
+const cardRefs = ref<HTMLElement[]>([])
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        observer?.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.15 })
+
+  cardRefs.value.forEach((el) => {
+    if (el) observer?.observe(el)
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
+
 const sectionTitle = computed(() => {
   if (props.module === 'forest-fire') return '全场景森林消防作业方案'
   if (props.module === 'mount-adapt') return '多元化挂载适配作业方案'
+  if (props.module === 'high-cleaning') return '多元应用场景覆盖'
   return '全场景消防救援核心能力'
 })
 
 const sectionDesc = computed(() => {
   if (props.module === 'forest-fire') return '针对林区不同阶段防火需求，提供定制化无人机作业方案'
   if (props.module === 'mount-adapt') return '针对不同救援任务需求，提供定制化挂载适配无人机作业方案'
+  if (props.module === 'high-cleaning') return '覆盖新能源运维与城市高空清洁两大领域'
   return '面向不同火灾场景下的多样化救援需求，覆盖城市消防全域应急救援场景'
 })
 
@@ -86,6 +111,30 @@ const scenarios = computed(() => {
         title: '应急生命搜救适配',
         desc: '热成像穿透浓烟锁定被困人员，开辟紧急救援通道',
       }
+    ]
+  }
+  if (props.module === 'high-cleaning') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/场景1.jpg', import.meta.url).href,
+        title: '山地/戈壁集中式光伏电站',
+        desc: '全自动航线巡航清洗，大幅降低运维成本，提升发电效率',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/场景2.jpg', import.meta.url).href,
+        title: '工商业屋顶分布式光伏',
+        desc: '无需登高作业，安全高效完成屋顶光伏面板定期清洁运维',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/场景3.jpg', import.meta.url).href,
+        title: '超高层玻璃幕墙清洁',
+        desc: '替代蜘蛛人高空作业，百米高空高效清洁，降低安全风险',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/场景4.jpg', import.meta.url).href,
+        title: '高墩桥梁墩柱与梁底清洗',
+        desc: '无需搭设吊篮脚手架，不占道封路，高效清除积灰油污与锈蚀附着物',
+      },
     ]
   }
   return [
@@ -154,6 +203,23 @@ const scenarios = computed(() => {
   width: 41.09375vw;
   height: 16.302083vw;
   cursor: pointer;
+  opacity: 0;
+  transform: translateY(3vw);
+}
+
+.scenario-card.animate-in {
+  animation: slideUpScenario 0.8s ease-out forwards;
+}
+
+@keyframes slideUpScenario {
+  from {
+    opacity: 0;
+    transform: translateY(3vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .scenario-image {

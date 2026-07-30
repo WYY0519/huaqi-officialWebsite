@@ -1,15 +1,36 @@
-<template>
+ <template>
   <section class="cta-section">
     <div class="container">
-      <p class="cta-title">获取专属解决方案</p>
-      <div class="section-divider"></div>
-      <p class="cta-desc">留下您的联系方式,我们的行业专家将在2小时内与您取得联系,为您定制专属解决方案。</p>
-      <a href="/contact" class="cta-btn">立即咨询 <span style="margin-left: .3vw;font-weight: 900;">→</span></a>
+      <p class="cta-title animate-item">获取专属解决方案</p>
+      <div class="section-divider animate-item"></div>
+      <p class="cta-desc animate-item">留下您的联系方式,我们的行业专家将在2小时内与您取得联系,为您定制专属解决方案。</p>
+      <a href="/contact" class="cta-btn animate-item">立即咨询 <span style="margin-left: .3vw;font-weight: 900;">→</span></a>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
+
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        observer?.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.2 })
+
+  const items = document.querySelectorAll('.cta-section .animate-item')
+  items.forEach((el) => observer?.observe(el))
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 </script>
 
 <style scoped>
@@ -58,6 +79,31 @@
   background: linear-gradient(to right, transparent 0%, #00D4ff 10%, #00D4ff 90%, transparent 100%);
   margin: 0 auto .75vw
 }
+
+.animate-item {
+  opacity: 0;
+  transform: translateY(2vw);
+}
+
+.animate-item.animate-in {
+  animation: slideUpCta 0.8s ease-out forwards;
+}
+
+@keyframes slideUpCta {
+  from {
+    opacity: 0;
+    transform: translateY(2vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-item:nth-child(1).animate-in { animation-delay: 0s; }
+.animate-item:nth-child(2).animate-in { animation-delay: 0.15s; }
+.animate-item:nth-child(3).animate-in { animation-delay: 0.3s; }
+.animate-item:nth-child(4).animate-in { animation-delay: 0.45s; }
 
 @media (max-width: 768px) {
   .cta-section {

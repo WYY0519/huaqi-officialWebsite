@@ -72,6 +72,10 @@ const heroImage = computed(() => {
   if (moduleParam === 'mount-adapt') {
     return new URL('../../assets/home/行业解决方案/挂载系列适配/首页.png', import.meta.url).href
   }
+  // 清洗系列图片
+  if (moduleParam === 'high-cleaning') {
+    return new URL('../../assets/home/行业解决方案/清洗系列/首页.jpg', import.meta.url).href
+  }
   // 其他模块可以返回默认图片或各自的图片
   return new URL('../../assets/home/行业解决方案/城市消防/首页.png', import.meta.url).href
 })
@@ -127,6 +131,18 @@ const heroImage = computed(() => {
   font-weight: bold;
   color: #fff;
   /* padding-left: 6%; */
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(2vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-subtitle {

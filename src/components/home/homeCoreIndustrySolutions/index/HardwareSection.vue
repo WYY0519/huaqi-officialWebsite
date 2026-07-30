@@ -1,20 +1,21 @@
 <template>
-  <section class="hardware-section" v-if="module === 'mount-adapt'">
+  <section class="hardware-section" v-if="module === 'mount-adapt' || module === 'high-cleaning'">
     <div class="container">
       <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
 
-      <!-- 灭火作业挂载 -->
-      <div class="hardware-category" v-if="fireFightingEquipment.length > 0">
-        <h3 class="category-title">灭火作业挂载</h3>
-        <div class="hardware-grid">
-          <div class="hardware-card fire-card" v-for="(item, index) in fireFightingEquipment" :key="'fire-' + index">
+      <!-- 清洗无人机产品矩阵 -->
+      <div class="hardware-category" v-if="module === 'high-cleaning'">
+        <div class="hardware-grid grid-3">
+          <div class="hardware-card cleaning-card" v-for="(item, index) in cleaningDrones" :key="'cleaning-' + index"
+            :style="{ animationDelay: index * 0.25 + 's' }">
             <div class="hardware-image">
               <img :src="item.image" :alt="item.title" />
             </div>
             <div class="hardware-content">
-              <h4 class="hardware-title">{{ item.title }}</h4>
+              <p class="hardware-title">{{ item.title }}</p>
+              <p class="hardware-model">型号：{{ item.model }}</p>
               <div class="hardware-specs">
                 <div class="spec-row" v-for="(spec, specIndex) in item.specs" :key="specIndex">
                   <span class="spec-label">{{ spec.label }}</span>
@@ -26,17 +27,38 @@
         </div>
       </div>
 
-      <!-- 灭火弹与抛投挂载 -->
-      <div class="hardware-category" v-if="projectileEquipment.length > 0">
-        <h3 class="category-title">灭火弹与抛投挂载</h3>
-        <div class="hardware-grid grid-3">
-          <div class="hardware-card projectile-card" v-for="(item, index) in projectileEquipment"
-            :key="'projectile-' + index">
+      <!-- 灭火作业挂载 -->
+      <div class="hardware-category" v-if="module === 'mount-adapt' && fireFightingEquipment.length > 0">
+        <h3 class="category-title">灭火作业挂载</h3>
+        <div class="hardware-grid">
+          <div class="hardware-card fire-card" v-for="(item, index) in fireFightingEquipment" :key="'fire-' + index"
+            :style="{ animationDelay: index * 0.25 + 's' }">
             <div class="hardware-image">
               <img :src="item.image" :alt="item.title" />
             </div>
             <div class="hardware-content">
-              <h4 class="hardware-title">{{ item.title }}</h4>
+              <p class="hardware-title">{{ item.title }}</p>
+              <div class="hardware-specs">
+                <div class="spec-row" v-for="(spec, specIndex) in item.specs" :key="specIndex">
+                  <span class="spec-label">{{ spec.label }}</span>
+                  <span class="spec-value">{{ spec.value }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 灭火弹与抛投挂载 -->
+      <div class="hardware-category" v-if="module === 'mount-adapt' && projectileEquipment.length > 0">
+        <h3 class="category-title">灭火弹与抛投挂载</h3>
+        <div class="hardware-grid grid-3">
+          <div class="hardware-card projectile-card" v-for="(item, index) in projectileEquipment"
+            :key="'projectile-' + index" :style="{ animationDelay: index * 0.25 + 's' }">
+            <div class="hardware-image">
+              <img :src="item.image" :alt="item.title" />
+            </div>
+            <div class="hardware-content">
+              <p class="hardware-title">{{ item.title }}</p>
               <div class="hardware-specs">
                 <div class="spec-row" v-for="(spec, specIndex) in item.specs" :key="specIndex">
                   <span class="spec-label">{{ spec.label }}</span>
@@ -49,16 +71,16 @@
       </div>
 
       <!-- 辅助作业挂载 -->
-      <div class="hardware-category" v-if="auxiliaryEquipment.length > 0">
+      <div class="hardware-category" v-if="module === 'mount-adapt' && auxiliaryEquipment.length > 0">
         <h3 class="category-title">辅助作业挂载（支持大疆）</h3>
         <div class="hardware-grid">
           <div class="hardware-card auxiliary-card" v-for="(item, index) in auxiliaryEquipment"
-            :key="'auxiliary-' + index">
+            :key="'auxiliary-' + index" :style="{ animationDelay: index * 0.25 + 's' }">
             <div class="hardware-image">
               <img :src="item.image" :alt="item.title" />
             </div>
             <div class="hardware-content">
-              <h4 class="hardware-title">{{ item.title }}</h4>
+              <p class="hardware-title">{{ item.title }}</p>
               <div class="hardware-specs">
                 <div class="spec-row" v-for="(spec, specIndex) in item.specs" :key="specIndex">
                   <span class="spec-label">{{ spec.label }}</span>
@@ -74,7 +96,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
+
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        observer?.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.15 })
+
+  const cards = document.querySelectorAll('.hardware-section .hardware-card')
+  cards.forEach((el) => observer?.observe(el))
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 
 const props = defineProps<{
   module?: string
@@ -82,12 +124,61 @@ const props = defineProps<{
 
 const sectionTitle = computed(() => {
   if (props.module === 'mount-adapt') return '全系列标准化挂载硬件'
+  if (props.module === 'high-cleaning') return '清洗无人机产品矩阵'
   return ''
 })
 
 const sectionDesc = computed(() => {
   if (props.module === 'mount-adapt') return '模块化快拆设计，统一接口适配全平台，按需自由组合，满足多元作业需求'
+  if (props.module === 'high-cleaning') return '覆盖光伏清洗、高空清洗两大方向，适配不同作业场景与负载需求'
   return ''
+})
+
+const cleaningDrones = computed(() => {
+  if (props.module === 'high-cleaning') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/F100-QX-D.png', import.meta.url).href,
+        title: '光伏清洗无人机',
+        model: 'F100-QX-D',
+        specs: [
+          { label: '产品材质', value: '高强度碳纤维+航空铝' },
+          { label: '旋翼配置', value: '6轴6桨 43寸折叠桨' },
+          { label: '标准载重', value: '50L水箱' },
+          { label: '抗风等级', value: '7级' },
+          { label: '工作温度', value: '-20°C~60°C' },
+          { label: '定位精度', value: '±0.05m (RTK)' }
+        ]
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/QX-1-1.png', import.meta.url).href,
+        title: '高空清洗无人机',
+        model: 'QX-1',
+        specs: [
+          { label: '起飞重量', value: '44kg' },
+          { label: '续航时间', value: '50min' },
+          { label: '抗风速度', value: '12m/s' },
+          { label: '清洗效率', value: '1200m²/h' },
+          { label: '清洗流量', value: '16L/min' },
+          { label: '清洗角度', value: '俯仰±15° 左右±30°' }
+        ]
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/F60-QX-F.png', import.meta.url).href,
+        title: '绝缘子清洗无人机',
+        model: 'F60-QX-F',
+        specs: [
+          { label: '产品材质', value: '高强度碳纤维+航空铝' },
+          { label: '旋翼配置', value: '6轴6桨 34寸折叠桨' },
+          { label: '标准载重', value: '30L水箱' },
+          { label: '续航时间', value: '37min' },
+          { label: '抗风等级', value: '7级' },
+          { label: '定位精度', value: 'GPS/北斗/伽利略/格洛纳斯' }
+        ]
+      }
+    ]
+  }
+  return []
 })
 
 const fireFightingEquipment = computed(() => {
@@ -261,7 +352,7 @@ const auxiliaryEquipment = computed(() => {
 
 <style scoped>
 .hardware-section {
-  padding: 5vw 0 3vw;
+  padding: 5vw 0 0vw;
   background: #fff;
 }
 
@@ -292,7 +383,7 @@ const auxiliaryEquipment = computed(() => {
 }
 
 .hardware-category {
-  margin-bottom: 3.8vw;
+  /* margin-bottom: 3.8vw; */
 }
 
 .category-title {
@@ -302,6 +393,13 @@ const auxiliaryEquipment = computed(() => {
   margin-bottom: 1.3vw;
   padding-left: 1vw;
   border-left: 0.45vw solid #27dbff;
+}
+
+.category-desc {
+  font-size: 1.04167vw;
+  color: #999;
+  margin-bottom: 2vw;
+  padding-left: 1.8vw;
 }
 
 .hardware-grid {
@@ -319,11 +417,32 @@ const auxiliaryEquipment = computed(() => {
   background: #f8f9fa;
   border-radius: 0.625vw;
   transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(3vw);
+}
+
+.hardware-card.animate-in {
+  animation: slideUpHardware 0.8s ease-out forwards;
+}
+
+@keyframes slideUpHardware {
+  from {
+    opacity: 0;
+    transform: translateY(3vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hardware-card:hover {
   transform: translateY(-0.3125vw);
   box-shadow: 0 0.625vw 1.875vw rgba(0, 100, 200, 0.1);
+}
+
+.cleaning-card {
+  height: 37.34375vw;
 }
 
 .projectile-card .hardware-image {
@@ -343,8 +462,9 @@ const auxiliaryEquipment = computed(() => {
 
 .hardware-image {
   width: 100%;
-  height: 10vw;
-  margin: 1.3vw 0 2vw;
+  /* height: 10vw;  */
+  height: 14.7vw;
+  margin: 1.1vw 0 0vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,6 +490,12 @@ const auxiliaryEquipment = computed(() => {
   text-align: center;
 }
 
+.cleaning-card .hardware-title {
+  text-align: left;
+  padding: 0 1.5vw;
+  margin-bottom: 0
+}
+
 .hardware-specs {
   font-size: 1.177604vw;
   color: #666;
@@ -379,7 +505,7 @@ const auxiliaryEquipment = computed(() => {
 .spec-row {
   display: flex;
   justify-content: space-between;
-  padding: 0.42vw 0;
+  padding: 0.35vw 0;
   border-bottom: 1px dashed #9b9e9f;
 }
 
@@ -399,6 +525,15 @@ const auxiliaryEquipment = computed(() => {
   text-align: right;
 }
 
+.hardware-model {
+  margin: 0 1.5vw;
+  padding-bottom: 0.7vw;
+  font-size: 1.031771vw;
+  color: #9b9e9f;
+  border-bottom: 0.104167vw solid rgba(155, 158, 159, .4);
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .hardware-section {
     padding: 6vw 4vw 4vw;
@@ -413,7 +548,7 @@ const auxiliaryEquipment = computed(() => {
   }
 
   .section-divider {
-       width: 23vw;
+    width: 23vw;
     height: 0.3vw !important;
   }
 
@@ -456,7 +591,14 @@ const auxiliaryEquipment = computed(() => {
     font-size: 3.2vw;
     margin-bottom: 1.5vw;
     padding: 0 2vw;
+    text-align: center;
   }
+
+  .cleaning-card .hardware-title {
+    text-align: left;
+  }
+
+
 
   .hardware-specs {
     font-size: 2.4vw;

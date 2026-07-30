@@ -33,8 +33,8 @@
             <div class="sol-tags">
               <span class="sol-tag" v-for="(tag, ti) in item.tags" :key="ti">{{ tag }}</span>
             </div>
-            <router-link :to="item.link" class="sol-more">了解更多 <span
-                style="margin-left: 0.78125vw;">→</span></router-link>
+            <a :href="'/#' + item.link" target="_blank" rel="noopener noreferrer" class="sol-more">了解更多 <span
+                style="margin-left: 0.78125vw;">→</span></a>
           </div>
         </div>
       </div>

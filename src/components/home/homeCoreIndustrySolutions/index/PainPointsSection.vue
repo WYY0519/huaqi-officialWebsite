@@ -5,7 +5,8 @@
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
       <div class="pain-points-grid">
-        <div class="pain-point-card" v-for="(item, index) in painPoints" :key="index">
+        <div class="pain-point-card" v-for="(item, index) in painPoints" :key="index"
+          ref="cardRefs" :style="{ animationDelay: index * 0.25 + 's' }">
           <img class="pain-point-bg" :src="item.image" :alt="item.title" />
           <div class="pain-point-overlay"></div>
           <div class="pain-point-content">
@@ -19,21 +20,45 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   module?: string
 }>()
 
+const cardRefs = ref<HTMLElement[]>([])
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        observer?.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.15 })
+
+  cardRefs.value.forEach((el) => {
+    if (el) observer?.observe(el)
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
+
 const sectionTitle = computed(() => {
   if (props.module === 'forest-fire') return '传统森林消防核心痛点'
   if (props.module === 'mount-adapt') return '传统无人机挂载适配痛点'
+  if (props.module === 'high-cleaning') return '传统清洁作业行业痛点'
   return '传统城市消防行业痛点'
 })
 
 const sectionDesc = computed(() => {
   if (props.module === 'forest-fire') return '林区地形复杂，传统防控模式遭遇多重瓶颈'
   if (props.module === 'mount-adapt') return '机型接口不统一、改装成本高、切换部署慢，限制多场景作业效率'
+  if (props.module === 'high-cleaning') return '高空作业风险高、人工效率低、复杂场景覆盖难，无人机清洁重构作业模式'
   return '城市发展升级，传统消防模式遇瓶颈'
 })
 
@@ -73,6 +98,25 @@ const painPoints = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/挂载系列适配/痛点3.png', import.meta.url).href,
         title: '场景覆盖有限',
         desc: '单挂载仅支撑单一场景，无法兼顾侦察、灭火、搜救等多任务，设备闲置率高，价值难以最大化。',
+      }
+    ]
+  }
+  if (props.module === 'high-cleaning') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/痛点1.png', import.meta.url).href,
+        title: '登高作业安全隐患突出',
+        desc: '山地、屋顶光伏运维需人员登高作业，雨季、冬季湿滑环境易引发坠落风险，人工清洁作业安全管理成本高，事故风险大。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/痛点2.png', import.meta.url).href,
+        title: '复杂地形运维效率低下',
+        desc: '山地、水面、戈壁等特殊地形电站，车辆与人员通行困难，人工清洗覆盖面窄、周期长，大面积电站难以实现高频次清洁。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/清洗系列/痛点3.png', import.meta.url).href,
+        title: '积污持续损耗发电收益',
+        desc: '沙尘、鸟粪、扬尘长期覆盖光伏面板，透光率下降最高可发电量损耗20%以上，人工清洗频次不足直接造成电站收益持续流失。',
       }
     ]
   }
@@ -139,6 +183,23 @@ const painPoints = computed(() => {
   width: 27.34375vw;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(3vw);
+}
+
+.pain-point-card.animate-in {
+  animation: slideUpCard 0.8s ease-out forwards;
+}
+
+@keyframes slideUpCard {
+  from {
+    opacity: 0;
+    transform: translateY(3vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .pain-point-card:hover {

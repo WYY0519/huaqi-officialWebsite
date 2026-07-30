@@ -1,11 +1,12 @@
 <template>
-  <section class="equipment-section" v-if="module !== 'mount-adapt'">
+  <section class="equipment-section" v-if="module !== 'mount-adapt' && module !== 'high-cleaning'">
     <div class="container">
       <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
       <div class="equipment-grid">
-        <div class="equipment-card" v-for="(item, index) in equipment" :key="index">
+        <div class="equipment-card" v-for="(item, index) in equipment" :key="index"
+          ref="cardRefs" :style="{ animationDelay: index * 0.25 + 's' }">
           <div class="equipment-icon">
             <img :src="item.icon" :alt="item.title" />
           </div>
@@ -18,11 +19,33 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{
   module?: string
 }>()
+
+const cardRefs = ref<HTMLElement[]>([])
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in')
+        observer?.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.15 })
+
+  cardRefs.value.forEach((el) => {
+    if (el) observer?.observe(el)
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 
 const sectionTitle = computed(() => {
   if (props.module === 'forest-fire') return '多元化挂载适配多元救援任务'
@@ -136,6 +159,23 @@ const equipment = computed(() => {
   transition: transform 0.3s, box-shadow 0.3s;
   width: 26.875vw;
   height: 37.291667vw;
+  opacity: 0;
+  transform: translateY(3vw);
+}
+
+.equipment-card.animate-in {
+  animation: slideUpEquip 0.8s ease-out forwards;
+}
+
+@keyframes slideUpEquip {
+  from {
+    opacity: 0;
+    transform: translateY(3vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .equipment-card:hover {
