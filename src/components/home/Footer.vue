@@ -133,10 +133,10 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   gap: 0;
   /* 1920 时 = 75px */
   padding-bottom: 3.90625vw;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   align-items: start;
   /* 1920 时 = 121px 120px 75px 121px */
-  padding: 6.30208vw 6.25vw 3.90625vw 6.30208vw;
+  padding: 5.95vw 9.9vw 2.8vw 6.30208vw;
 }
 
 /* 左侧品牌区 */
@@ -225,7 +225,9 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   /* 按内容自适应宽度，不再等分撑满整行 */
   grid-template-columns: repeat(4, auto);
   /* 1920 时列间距 ≈ 29px */
-  gap: 1.5vw;
+  /* gap: 1.5vw; */
+  padding-left: 4.8vw;
+  padding-right: 2.2vw;
 }
 
 .footer-menu-grid .footer-menu-col {
@@ -238,7 +240,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   font-weight: 600;
   color: white;
   /* 1920 时 = 39px */
-  margin-bottom: 2.03125vw;
+  margin-bottom: 1.36vw;
   white-space: nowrap;
 }
 
@@ -250,7 +252,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 
 .footer-menu-list li {
   /* 1920 时 = 26px */
-  margin-bottom: 1.35417vw;
+  margin-bottom: .6vw;
 }
 
 .footer-menu-list a {
@@ -308,12 +310,12 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   /* 1920 时 = 104px */
   gap: 5.41667vw;
   /* 1920 时 = 41px 0 */
-  padding: 2.13542vw 0;
+  padding: 1.78vw 0;
   /* 1920 时 = 17px */
   font-size: 0.88542vw;
   font-weight: 600;
   color: #919598;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   /* 随字号等比 */
   line-height: 1.6;
 }
@@ -321,7 +323,7 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
 /* 版权信息 */
 .footer-bottom {
   /* 1920 时 = 53px 0 0 */
-  padding: 2.76042vw 0 0;
+  padding: 2.8vw 0 0;
   text-align: center;
   /* 1920 时 = 17px */
   font-size: 0.88542vw;
