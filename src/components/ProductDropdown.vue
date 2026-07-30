@@ -1,17 +1,21 @@
 <template>
-  <div ref="triggerRef" class="product-dropdown" @mouseenter="showPanel = true" @mouseleave="showPanel = false">
-    <router-link :to="href" class="nav-link" :class="{ active: isActive }">
+  <div ref="triggerRef" class="product-dropdown" @mouseenter="onEnter" @mouseleave="onLeave">
+    <a :href="'/#' + href" target="_blank" rel="noopener noreferrer" class="nav-link" :class="{ active: isActive }">
       {{ label }}
-    </router-link>
+    </a>
+    <!-- 透明桥接区域：覆盖 trigger 底部到 panel 顶部之间的间隙 -->
+    <div v-show="showPanel" class="hover-bridge" :style="bridgeStyle"
+      @mouseenter="onEnter" @mouseleave="onLeave"></div>
     <div class="dropdown-panel" :class="{ 'single-column': isSingleColumn, 'is-visible': showPanel }"
-      :style="panelStyle">
+      :style="panelStyle" @mouseenter="onEnter" @mouseleave="onLeave">
       <div class="dropdown-grid" :class="{ 'single-grid': isSingleColumn }">
         <div v-for="(category, index) in categories" :key="index" class="dropdown-col">
           <div class="col-title">{{ category.category }}</div>
           <div class="col-list">
-            <a v-for="(item, i) in category.items" :key="i" :href="href + '?type=' + encodeURIComponent(item)"
-              class="col-item">{{ item
-              }}</a>
+            <template v-for="(item, i) in category.items" :key="i">
+              <a v-if="typeof item === 'object'" :href="'/#' + item.href" target="_blank" rel="noopener noreferrer" class="col-item">{{ item.label }}</a>
+              <a v-else :href="href + '?type=' + encodeURIComponent(item)" class="col-item">{{ item }}</a>
+            </template>
           </div>
         </div>
       </div>
@@ -22,9 +26,14 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
+interface CategoryItem {
+  label: string
+  href: string
+}
+
 interface Category {
   category?: string
-  items: string[]
+  items: (string | CategoryItem)[]
 }
 
 const props = defineProps<{
@@ -39,6 +48,8 @@ const props = defineProps<{
 const showPanel = ref(false)
 const triggerRef = ref<HTMLElement>()
 const triggerCenterX = ref(0)
+const triggerBottom = ref(0)
+let hideTimer: ReturnType<typeof setTimeout> | null = null
 
 const isSingleColumn = computed(() => props.categories.length === 1)
 
@@ -46,7 +57,40 @@ const updateTriggerPosition = () => {
   if (!triggerRef.value) return
   const rect = triggerRef.value.getBoundingClientRect()
   triggerCenterX.value = rect.left + rect.width / 2
+  triggerBottom.value = rect.bottom
 }
+
+const clearHideTimer = () => {
+  if (hideTimer) {
+    clearTimeout(hideTimer)
+    hideTimer = null
+  }
+}
+
+const onEnter = () => {
+  clearHideTimer()
+  showPanel.value = true
+}
+
+const onLeave = () => {
+  hideTimer = setTimeout(() => {
+    showPanel.value = false
+  }, 150)
+}
+
+/** 桥接区域样式：fixed 定位，从 trigger 底部延伸到 header 底部（panel 顶部） */
+const bridgeStyle = computed(() => {
+  const base: Record<string, string> = {}
+  if (!props.headerBottom || !triggerBottom.value) return base
+  const height = props.headerBottom - triggerBottom.value
+  if (height <= 0) return base
+  base.position = 'fixed'
+  base.top = `${triggerBottom.value}px`
+  base.left = '0'
+  base.right = '0'
+  base.height = `${height}px`
+  return base
+})
 
 const panelStyle = computed(() => {
   const base: Record<string, string> = {}
@@ -76,6 +120,7 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', updateTriggerPosition)
   window.removeEventListener('resize', updateTriggerPosition)
+  clearHideTimer()
 })
 </script>
 
@@ -85,23 +130,6 @@ onUnmounted(() => {
   /* 1920 时 = 20px */
   padding-bottom: 1.04167vw;
   margin-bottom: -1.04167vw;
-}
-
-.product-dropdown:hover .dropdown-panel {
-  opacity: 1;
-  visibility: visible;
-  transition: none;
-}
-
-/* 非单列面板恢复垂直位移动画；单列面板保持 translateX(-50%) 水平居中 */
-.product-dropdown:hover .dropdown-panel:not(.single-column) {
-  transform: translateY(0);
-  /* 产品中心：hover 时面板顶部出现分隔阴影 */
-  box-shadow: 0 0.20833vw 0.41667vw rgba(0, 0, 0, 0.08);
-}
-
-.product-dropdown:hover .dropdown-panel.single-column {
-  transform: translateX(-50%);
 }
 
 .nav-link {
@@ -147,6 +175,14 @@ onUnmounted(() => {
 .nav-link.active::after {
   width: 100%;
   left: 0;
+}
+
+.hover-bridge {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  pointer-events: auto;
 }
 
 .dropdown-panel {

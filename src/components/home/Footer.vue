@@ -37,15 +37,15 @@
             </ul>
           </div>
           <div class="footer-menu-col">
-            <p class="footer-menu-title">解决方案</p>
+            <a href="/#/homeCoreIndustries" target="_blank" rel="noopener noreferrer" class="footer-menu-title-link">解决方案</a>
             <ul class="footer-menu-list">
-              <li><a href="#">城市消防</a></li>
-              <li><a href="#">森林消防</a></li>
-              <li><a href="#">清洗系列</a></li>
-              <li><a href="#">挂载系列适配</a></li>
-              <li><a href="#">固定翼巡检系列</a></li>
-              <li><a href="#">系留系列</a></li>
-              <li><a href="#">科研定制服务</a></li>
+              <li><a href="/#/homeCoreIndustries?module=city-fire" target="_blank" rel="noopener noreferrer">城市消防</a></li>
+              <li><a href="/#/homeCoreIndustries?module=forest-fire" target="_blank" rel="noopener noreferrer">森林消防</a></li>
+              <li><a href="/#/homeCoreIndustries?module=high-cleaning" target="_blank" rel="noopener noreferrer">清洗系列</a></li>
+              <li><a href="/#/homeCoreIndustries?module=mount-adapt" target="_blank" rel="noopener noreferrer">挂载系列适配</a></li>
+              <li><a href="/#/homeCoreIndustries?module=fixed-wing" target="_blank" rel="noopener noreferrer">固定翼巡检系列</a></li>
+              <li><a href="/#/homeCoreIndustries?module=tethered" target="_blank" rel="noopener noreferrer">系留系列</a></li>
+              <li><a href="/#/homeCoreIndustries?module=research" target="_blank" rel="noopener noreferrer">科研定制服务</a></li>
             </ul>
           </div>
           <div class="footer-menu-col">
@@ -242,6 +242,24 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   /* 1920 时 = 39px */
   margin-bottom: 1.36vw;
   white-space: nowrap;
+}
+
+.footer-menu-title-link {
+  /* 1920 时 = 22px */
+  font-size: 1.14583vw;
+  font-weight: 600;
+  color: white;
+  /* 1920 时 = 39px */
+  margin-bottom: 1.36vw;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-menu-title-link:hover {
+  color: #0066cc;
 }
 
 .footer-menu-list {

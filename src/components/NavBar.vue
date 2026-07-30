@@ -71,8 +71,10 @@
             <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{
               category.category }}</div>
             <div v-for="(subItem, si) in category.items" :key="si" class="mobile-nav-submenu-item">
-              <router-link :to="item.href + '?type=' + encodeURIComponent(subItem)" class="mobile-nav-submenu-link"
-                @click="handleNavClick(item.id)">{{ subItem }}</router-link>
+              <a v-if="typeof subItem === 'object'" :href="'/#' + subItem.href" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
+                @click="handleNavClick(item.id)">{{ subItem.label }}</a>
+              <a v-else :href="item.href + '?type=' + encodeURIComponent(subItem)" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
+                @click="handleNavClick(item.id)">{{ subItem }}</a>
             </div>
           </div>
         </div>
@@ -135,8 +137,16 @@ const navItems = [
     ]
   },
   {
-    id: 'solutions', label: '行业解决方案', href: '/solutions', children: [
-      { items: ['城市消防', '森林消防', '清洗系列', '挂载系列适配', '固定翼巡检系列', '系留系列', '科研定制服务'] }
+    id: 'solutions', label: '行业解决方案', href: '/homeCoreIndustries', children: [
+      { items: [
+        { label: '城市消防', href: '/homeCoreIndustries?module=city-fire' },
+        { label: '森林消防', href: '/homeCoreIndustries?module=forest-fire' },
+        { label: '清洗系列', href: '/homeCoreIndustries?module=high-cleaning' },
+        { label: '挂载系列适配', href: '/homeCoreIndustries?module=mount-adapt' },
+        { label: '固定翼巡检系列', href: '/homeCoreIndustries?module=fixed-wing' },
+        { label: '系留系列', href: '/homeCoreIndustries?module=tethered' },
+        { label: '科研定制服务', href: '/homeCoreIndustries?module=research' }
+      ] }
     ]
   },
   {
