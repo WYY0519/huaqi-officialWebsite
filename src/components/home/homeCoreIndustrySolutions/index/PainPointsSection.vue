@@ -52,6 +52,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'forest-fire') return '传统森林消防核心痛点'
   if (props.module === 'mount-adapt') return '传统无人机挂载适配痛点'
   if (props.module === 'high-cleaning') return '传统清洁作业行业痛点'
+  if (props.module === 'fixed-wing') return '传统巡检行业核心痛点'
   return '传统城市消防行业痛点'
 })
 
@@ -59,6 +60,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'forest-fire') return '林区地形复杂，传统防控模式遭遇多重瓶颈'
   if (props.module === 'mount-adapt') return '机型接口不统一、改装成本高、切换部署慢，限制多场景作业效率'
   if (props.module === 'high-cleaning') return '高空作业风险高、人工效率低、复杂场景覆盖难，无人机清洁重构作业模式'
+  if (props.module === 'fixed-wing') return '大范围、长距离线路与区域巡检，传统人工模式存在效率低、风险高、覆盖不全等行业难题'
   return '城市发展升级，传统消防模式遇瓶颈'
 })
 
@@ -117,6 +119,25 @@ const painPoints = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/清洗系列/痛点3.png', import.meta.url).href,
         title: '积污持续损耗发电收益',
         desc: '沙尘、鸟粪、扬尘长期覆盖光伏面板，透光率下降最高可发电量损耗20%以上，人工清洗频次不足直接造成电站收益持续流失。',
+      }
+    ]
+  }
+  if (props.module === 'fixed-wing') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/痛点1.png', import.meta.url).href,
+        title: '地形复杂，人员难以抵达',
+        desc: '高山峡谷、无人矿区、偏远输电通道及深山林区车辆无法通行,人工徒步巡检耗时久、作业强度大，大量偏远区域长期存在巡检盲区。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/痛点2.png', import.meta.url).href,
+        title: '覆盖有限，巡检效率低下',
+        desc: '单人单日徒步巡检仅覆盖数平方公里，百公里线路需数人数天完成；大面积林区、管网运维人力成本居高不下。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/痛点3.png', import.meta.url).href,
+        title: '周期过长，隐患发现滞后',
+        desc: '人工巡山周期长、频率低，山体滑坡、火情、线路破损、管道渗漏等隐患无法第一时间发现，易演变为重大事故。',
       }
     ]
   }

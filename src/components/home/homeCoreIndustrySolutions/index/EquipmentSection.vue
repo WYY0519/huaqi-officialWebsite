@@ -1,5 +1,5 @@
 <template>
-  <section class="equipment-section" v-if="module !== 'mount-adapt' && module !== 'high-cleaning'">
+  <section class="equipment-section" v-if="module !== 'mount-adapt' && module !== 'high-cleaning' && module !== 'fixed-wing'">
     <div class="container">
       <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>

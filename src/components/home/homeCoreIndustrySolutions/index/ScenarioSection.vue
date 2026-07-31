@@ -5,8 +5,8 @@
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
       <div class="scenario-grid">
-        <div class="scenario-card" v-for="(item, index) in scenarios" :key="index"
-          ref="cardRefs" :style="{ animationDelay: index * 0.25 + 's' }">
+        <div class="scenario-card" v-for="(item, index) in scenarios" :key="index" ref="cardRefs"
+          :style="{ animationDelay: index * 0.25 + 's' }">
           <div class="scenario-image">
             <img :src="item.image" :alt="item.title" />
             <div class="scenario-overlay"></div>
@@ -54,6 +54,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'forest-fire') return '全场景森林消防作业方案'
   if (props.module === 'mount-adapt') return '多元化挂载适配作业方案'
   if (props.module === 'high-cleaning') return '多元应用场景覆盖'
+  if (props.module === 'fixed-wing') return '多元应用场景覆盖'
   return '全场景消防救援核心能力'
 })
 
@@ -61,6 +62,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'forest-fire') return '针对林区不同阶段防火需求，提供定制化无人机作业方案'
   if (props.module === 'mount-adapt') return '针对不同救援任务需求，提供定制化挂载适配无人机作业方案'
   if (props.module === 'high-cleaning') return '覆盖新能源运维与城市高空清洁两大领域'
+  if (props.module === 'fixed-wing') return '面向电力、林业、国土、水利等多行业，提供标准化巡检解决方案'
   return '面向不同火灾场景下的多样化救援需求，覆盖城市消防全域应急救援场景'
 })
 
@@ -137,6 +139,30 @@ const scenarios = computed(() => {
       },
     ]
   }
+  if (props.module === 'fixed-wing') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/场景1.jpg', import.meta.url).href,
+        title: '电力廊道全线巡检',
+        desc: '长航时覆盖跨区输电线路，快速识别通道隐患与外力破坏风险',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/场景2.jpg', import.meta.url).href,
+        title: '林业资源全域巡护',
+        desc: '大范围覆盖林区全域，同步完成火情预警与资源动态监测',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/场景3.jpg', import.meta.url).href,
+        title: '国土测绘与地类监测',
+        desc: '全自动航线航测作业，高效产出正射影像与土地利用数据成果',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/场景4.jpg', import.meta.url).href,
+        title: '水利流域生态巡检',
+        desc: '长距离巡航河道库区，常态化开展汛情排查与水生态动态监测',
+      },
+    ]
+  }
   return [
     {
       image: new URL('../../../../assets/home/行业解决方案/城市消防/场景1.jpg', import.meta.url).href,
@@ -164,7 +190,7 @@ const scenarios = computed(() => {
 
 <style scoped>
 .scenario-section {
-  padding: 4.89vw 0;
+  padding: 4.89vw 0 8.25vw;
   background: #fff;
 }
 
@@ -216,6 +242,7 @@ const scenarios = computed(() => {
     opacity: 0;
     transform: translateY(3vw);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -261,7 +288,7 @@ const scenarios = computed(() => {
 
 @media (max-width: 768px) {
   .scenario-section {
-    padding: 6vw 4vw ;
+    padding: 6vw 4vw;
   }
 
   .section-title-dark {
@@ -269,7 +296,7 @@ const scenarios = computed(() => {
   }
 
   .section-divider {
-     width: 23vw;
+    width: 23vw;
     height: 0.3vw !important;
   }
 

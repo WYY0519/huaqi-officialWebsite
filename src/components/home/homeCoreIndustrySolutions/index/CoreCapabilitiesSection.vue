@@ -53,6 +53,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'forest-fire') return '全场景森林消防救援核心能力'
   if (props.module === 'mount-adapt') return '挂载系统三大核心适配能力'
   if (props.module === 'high-cleaning') return '全场景清洁核心能力'
+  if (props.module === 'fixed-wing') return '全场景巡检核心能力'
   return '全场景消防救援核心能力'
 })
 
@@ -60,6 +61,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'forest-fire') return '集巡查、识别、处置、保障于一体，构建空地一体化森林防火灭火体系'
   if (props.module === 'mount-adapt') return '统一标准接口，打通多品牌机型，模块化快拆实现全场景作业'
   if (props.module === 'high-cleaning') return '替代传统高空人工作业，实现安全、高效、无死角建筑立面清洁'
+  if (props.module === 'fixed-wing') return '长航时、大覆盖、高精度，重构大范围巡检作业模式'
   return '集灭火、侦察、搜救、处置于一体，构建空地协同的现代化消防作战能力'
 })
 
@@ -118,6 +120,25 @@ const capabilities = computed(() => {
         image: new URL('../../../../assets/home/清洗系列/无人机替换2.jpg', import.meta.url).href,
         title: '全地形适配，突破空间限制',
         desc: '不受山地、水面、道路限制，覆盖山地光伏、渔光互补、超高层幕墙、异形建筑等人员难以抵达的场景；百米级作业高度，轻松应对城市超高层、大型工业设施的清洁需求。',
+      }
+    ]
+  }
+  if (props.module === 'fixed-wing') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/核心能力1.jpg', import.meta.url).href,
+        title: '长航时大航程，单次覆盖百公里',
+        desc: '电动款单次续航3小时，燃油款最长续航8小时，航程超千公里；单架次可完成百公里线路或上百平方公里区域巡检，作业效率是人工与多旋翼的数十倍，大幅缩短巡检周期。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/核心能力2.jpg', import.meta.url).href,
+        title: '全自动航线作业，无人值守常态化',
+        desc: '支持线路/区域坐标导入，一键生成巡航航线，无人机自主起降、自主采集数据、自主飞行；搭配全自动机巢可实现7×24小时无人值守巡检，远程下达任务即可完成全流程作业。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/核心能力3.jpg', import.meta.url).href,
+        title: '模块化载荷，多维度数据采集',
+        desc: '支持可见光吊舱、红外热成像、正射测绘相机、激光雷达等多种任务载荷快速更换；可输出高清影像、温度数据、三维点云等多类型成果，满足巡检、测绘、监测等多元需求。',
       }
     ]
   }

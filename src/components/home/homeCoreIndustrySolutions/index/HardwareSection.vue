@@ -1,13 +1,37 @@
 <template>
-  <section class="hardware-section" v-if="module === 'mount-adapt' || module === 'high-cleaning'">
+  <section class="hardware-section"
+    v-if="module === 'mount-adapt' || module === 'high-cleaning' || module === 'fixed-wing'">
     <div class="container">
       <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
 
+      <!-- 固定翼巡检产品矩阵 -->
+      <div class="hardware-category" v-if="module === 'fixed-wing'">
+        <div class="hardware-grid grid-3" style="    gap: 2.5vw;">
+          <div class="hardware-card fixed-wing-card" style="height: 37.34375vw;"
+            v-for="(item, index) in fixedWingDrones" :key="'fixed-wing-' + index"
+            :style="{ animationDelay: index * 0.25 + 's' }">
+            <div class="hardware-image" style="height: 16vw;margin:0">
+              <img :src="item.image" :alt="item.title" />
+            </div>
+            <div class="hardware-content">
+              <p class="hardware-title" style="margin: 0 1.5vw;text-align: left;">{{ item.title }}</p>
+              <p class="hardware-model">型号：{{ item.model }}</p>
+              <div class="hardware-specs">
+                <div class="spec-row" v-for="(spec, specIndex) in item.specs" :key="specIndex">
+                  <span class="spec-label">{{ spec.label }}</span>
+                  <span class="spec-value">{{ spec.value }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 清洗无人机产品矩阵 -->
       <div class="hardware-category" v-if="module === 'high-cleaning'">
-        <div class="hardware-grid grid-3">
+        <div class="hardware-grid grid-3" style="    gap: 2.5vw;">
           <div class="hardware-card cleaning-card" v-for="(item, index) in cleaningDrones" :key="'cleaning-' + index"
             :style="{ animationDelay: index * 0.25 + 's' }">
             <div class="hardware-image">
@@ -30,7 +54,7 @@
       <!-- 灭火作业挂载 -->
       <div class="hardware-category" v-if="module === 'mount-adapt' && fireFightingEquipment.length > 0">
         <h3 class="category-title">灭火作业挂载</h3>
-        <div class="hardware-grid">
+        <div class="hardware-grid" style="gap: 1.271vw;">
           <div class="hardware-card fire-card" v-for="(item, index) in fireFightingEquipment" :key="'fire-' + index"
             :style="{ animationDelay: index * 0.25 + 's' }">
             <div class="hardware-image">
@@ -71,9 +95,10 @@
       </div>
 
       <!-- 辅助作业挂载 -->
-      <div class="hardware-category" v-if="module === 'mount-adapt' && auxiliaryEquipment.length > 0">
+      <div class="hardware-category" style="margin-bottom:6.85vw"
+        v-if="module === 'mount-adapt' && auxiliaryEquipment.length > 0">
         <h3 class="category-title">辅助作业挂载（支持大疆）</h3>
-        <div class="hardware-grid">
+        <div class="hardware-grid" style="gap: 1.271vw;">
           <div class="hardware-card auxiliary-card" v-for="(item, index) in auxiliaryEquipment"
             :key="'auxiliary-' + index" :style="{ animationDelay: index * 0.25 + 's' }">
             <div class="hardware-image">
@@ -125,12 +150,14 @@ const props = defineProps<{
 const sectionTitle = computed(() => {
   if (props.module === 'mount-adapt') return '全系列标准化挂载硬件'
   if (props.module === 'high-cleaning') return '清洗无人机产品矩阵'
+  if (props.module === 'fixed-wing') return '固定翼巡检产品矩阵'
   return ''
 })
 
 const sectionDesc = computed(() => {
   if (props.module === 'mount-adapt') return '模块化快拆设计，统一接口适配全平台，按需自由组合，满足多元作业需求'
   if (props.module === 'high-cleaning') return '覆盖光伏清洗、高空清洗两大方向，适配不同作业场景与负载需求'
+  if (props.module === 'fixed-wing') return '精选3款主力机型，覆盖短途精细化、中距离常态化、超远距大范围三类核心巡检需求'
   return ''
 })
 
@@ -301,6 +328,53 @@ const projectileEquipment = computed(() => {
   return []
 })
 
+const fixedWingDrones = computed(() => {
+  if (props.module === 'fixed-wing') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/Q32 W30 (2).png', import.meta.url).href,
+        title: '标准电动垂起',
+        model: 'Q32',
+        specs: [
+          { label: '翼展', value: '4.0m' },
+          { label: '最大起飞重量', value: '30kg' },
+          { label: '标准有效载荷', value: '5kg' },
+          { label: '空机续航', value: '3h' },
+          { label: '巡航速度', value: '22-36m/s' },
+          { label: '抗风能力', value: '6级' }
+        ]
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/Q50 W50pro (2).png', import.meta.url).href,
+        title: '燃油长航垂起',
+        model: 'Q50',
+        specs: [
+          { label: '翼展', value: '4.8m' },
+          { label: '最大起飞重量', value: '55kg' },
+          { label: '标准有效载荷', value: '15kg' },
+          { label: '空机续航', value: '8h' },
+          { label: '控制半径', value: '50km（可选100km)' },
+          { label: '动力类型', value: '95#汽油(混合机油)' }
+        ]
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/Q150 W300 (2).png', import.meta.url).href,
+        title: '超远航程测绘',
+        model: 'Q150',
+        specs: [
+          { label: '翼展', value: '8.5m' },
+          { label: '最大起飞重量', value: '280kg' },
+          { label: '标准有效载荷', value: '80kg' },
+          { label: '空机续航', value: '12h' },
+          { label: '巡航速度', value: '140-160km/h' },
+          { label: '抗风能力', value: '6级' }
+        ]
+      }
+    ]
+  }
+  return []
+})
+
 const auxiliaryEquipment = computed(() => {
   if (props.module === 'mount-adapt') {
     return [
@@ -390,7 +464,7 @@ const auxiliaryEquipment = computed(() => {
   font-size: 2.078125vw;
   font-weight: bold;
   color: #000;
-  margin-bottom: 1.3vw;
+  margin: 3.3vw 0 1.2vw;
   padding-left: 1vw;
   border-left: 0.45vw solid #27dbff;
 }
@@ -430,6 +504,7 @@ const auxiliaryEquipment = computed(() => {
     opacity: 0;
     transform: translateY(3vw);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -443,6 +518,67 @@ const auxiliaryEquipment = computed(() => {
 
 .cleaning-card {
   height: 37.34375vw;
+}
+
+.fixed-wing-hardware-card {
+  height: 33.59375vw;
+  background: #fff;
+  border: 0.05vw solid #eee;
+  border-radius: 0.625vw;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(3vw);
+}
+
+.fixed-wing-hardware-card.animate-in {
+  animation: slideUpHardware 0.8s ease-out forwards;
+}
+
+.fixed-wing-hardware-card:hover {
+  transform: translateY(-0.3125vw);
+  box-shadow: 0 0.625vw 1.875vw rgba(0, 100, 200, 0.1);
+}
+
+.fixed-wing-hardware-card .hardware-image {
+  height: 14.7vw;
+  margin: 1.5vw 0 0;
+}
+
+.fixed-wing-hardware-card .hardware-content {
+  padding: 0 1.5vw;
+}
+
+.fixed-wing-hardware-card .hardware-title {
+  font-size: 1.2vw;
+  text-align: center;
+  margin: 0.5vw 0;
+}
+
+.fixed-wing-hardware-card .hardware-model {
+  font-size: 1vw;
+  text-align: center;
+  margin-bottom: 0.5vw;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.fixed-wing-hardware-card .hardware-specs {
+  font-size: 0.9vw;
+  line-height: 1.6;
+}
+
+.fixed-wing-hardware-card .spec-row {
+  border-bottom: 1px dashed #e0e0e0;
+  padding: 0.3vw 0;
+}
+
+.fixed-wing-hardware-card .spec-label {
+  color: #666;
+}
+
+.fixed-wing-hardware-card .spec-value {
+  color: #333;
+  font-weight: 500;
 }
 
 .projectile-card .hardware-image {
@@ -575,6 +711,11 @@ const auxiliaryEquipment = computed(() => {
   }
 
   .hardware-card {
+    height: auto;
+    border-radius: 2vw;
+  }
+
+  .fixed-wing-hardware-card {
     height: auto;
     border-radius: 2vw;
   }

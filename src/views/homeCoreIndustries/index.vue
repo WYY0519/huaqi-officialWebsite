@@ -76,6 +76,10 @@ const heroImage = computed(() => {
   if (moduleParam === 'high-cleaning') {
     return new URL('../../assets/home/行业解决方案/清洗系列/首页.jpg', import.meta.url).href
   }
+  // 固定翼巡检图片
+  if (moduleParam === 'fixed-wing') {
+    return new URL('../../assets/home/行业解决方案/固定翼巡检/首页.jpg', import.meta.url).href
+  }
   // 其他模块可以返回默认图片或各自的图片
   return new URL('../../assets/home/行业解决方案/城市消防/首页.png', import.meta.url).href
 })
