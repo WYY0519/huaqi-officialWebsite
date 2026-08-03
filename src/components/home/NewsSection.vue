@@ -96,7 +96,7 @@ onUnmounted(() => {
 })
 </script>
 
-<style>
+<style scoped>
 /* 新闻动态区块 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放（1920 时还原当前尺寸） */
 .news-section {
   /* 1920 时 = 74px */

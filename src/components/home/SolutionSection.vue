@@ -231,7 +231,7 @@ onUnmounted(() => {
 })
 </script>
 
-<style>
+<style scoped>
 /* 解决方案区块 - 左右交替布局 */
 .solutions-section {
   padding: 3.645833vw 0;

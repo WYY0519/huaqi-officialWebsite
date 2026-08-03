@@ -88,7 +88,7 @@ const submitForm = () => {
 }
 </script>
 
-<style>
+<style scoped>
 /* 联系区块 - 按 1920 设计等比缩放（vw），与解决方案等页面缩放方式一致，不单独设置断点 */
 .contact-section {
   /* 1920 时 = 112px 0 118px */

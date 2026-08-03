@@ -116,7 +116,7 @@ onUnmounted(() => {
 })
 </script>
 
-<style>
+<style scoped>
 /* 数据统计区块 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放（1920 时还原当前尺寸） */
 .stats-section {
   padding: 2.552083vw 0 0;

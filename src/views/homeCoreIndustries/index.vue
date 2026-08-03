@@ -85,7 +85,7 @@ const heroImage = computed(() => {
 })
 </script>
 
-<style>
+<style scoped>
 .solution-detail {
   min-height: 100vh;
 }

@@ -46,7 +46,7 @@ onMounted(() => {
 })
 </script>
 
-<style>
+<style scoped>
 /* 全流程服务保障体系区块 - 全站以 1920 为基准换算 vw，任意屏宽等比例缩放 */
 .coverage-section {
   padding: 3.85417vw 0;
