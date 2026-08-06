@@ -31,6 +31,12 @@ onMounted(() => {
           items.forEach((item, index) => {
             setTimeout(() => {
               item.classList.add('animate-in')
+              // 动画结束后移除 animate-in，用 animate-done 保持最终状态
+              // 这样 hover 的 transform 就不会被 animation 覆盖
+              item.addEventListener('animationend', () => {
+                item.classList.remove('animate-in')
+                item.classList.add('animate-done')
+              }, { once: true })
             }, index * 100)
           })
           observer.unobserve(entry.target)
@@ -81,6 +87,12 @@ onMounted(() => {
   animation: slideUpFadeIn 0.6s ease-out forwards;
 }
 
+/* 动画结束后用普通属性保持最终状态，不阻挡 hover 的 transform */
+.coverage-item.animate-done {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes slideUpFadeIn {
   from {
     opacity: 0;
@@ -92,9 +104,8 @@ onMounted(() => {
   }
 }
 
-.coverage-item:hover {
-  transform: translateY(-0.41667vw);
-  box-shadow: 0 0.41667vw 1.5625vw rgba(0, 100, 200, 0.15);
+.coverage-grid .coverage-item:hover {
+  transform: translateY(-0.83333vw);
 }
 
 .coverage-icon {
