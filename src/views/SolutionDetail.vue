@@ -102,12 +102,18 @@ const solutionImageMap: Record<string, string[]> = {
     imageModules['../assets/home/科研定制服务/a4.jpg']?.default,
     imageModules['../assets/home/科研定制服务/a5.jpg']?.default,
   ],
-  '光伏清洗': [
-    imageModules['../assets/home/系留系列/a1.jpg']?.default,
-    imageModules['../assets/home/系留系列/a2.jpg']?.default,
-    imageModules['../assets/home/系留系列/a3.jpg']?.default,
-    imageModules['../assets/home/系留系列/a4 拷贝.jpg']?.default,
-    imageModules['../assets/home/系留系列/a5.jpg']?.default,
+  '系留系列': [
+    imageModules['../assets/home/行业解决方案/系留系列/首页.jpg']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/核心能力2.jpg']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/核心能力3.jpg']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/痛点1.png']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/痛点2.png']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/痛点3.png']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/场景1.jpg']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/场景2.jpg']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/场景3.jpg']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/场景4.jpg']?.default,
+    imageModules['../assets/home/行业解决方案/系留系列/a5.jpg']?.default,
   ],
 }
 
@@ -125,14 +131,14 @@ const images = computed(() => (solutionImageMap[currentSolution.value.title] || 
 
 .info-title,
 .gallery-title {
-  font-size: 18.95833vw;
+  font-size: 1.895833vw;
   font-weight: 700;
   color: #1a1a2e;
   margin-bottom: 1.04167vw;
 }
 
 .info-desc {
-  font-size: 10.57292vw;
+  font-size: 1.057292vw;
   color: #666;
   line-height: 1.8;
   margin-bottom: 1.25vw;
@@ -150,7 +156,7 @@ const images = computed(() => (solutionImageMap[currentSolution.value.title] || 
   background: #e6f7ff;
   color: #00D4ff;
   border-radius: 1.04167vw;
-  font-size: 9.53125vw;
+  font-size: 0.953125vw;
   font-weight: 600;
 }
 
@@ -190,7 +196,7 @@ const images = computed(() => (solutionImageMap[currentSolution.value.title] || 
   background: #00D4ff;
   color: #fff;
   border-radius: 1.5625vw;
-  font-size: 10.57292vw;
+  font-size: 1.057292vw;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s;

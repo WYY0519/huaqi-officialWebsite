@@ -1,5 +1,5 @@
 <template>
-  <section class="equipment-section" v-if="module !== 'mount-adapt' && module !== 'high-cleaning' && module !== 'fixed-wing'">
+  <section class="equipment-section" v-if="module !== 'mount-adapt' && module !== 'high-cleaning' && module !== 'fixed-wing' && module !== 'tethered'">
     <div class="container">
       <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>
@@ -39,7 +39,13 @@ onMounted(() => {
   }, { threshold: 0.15 })
 
   cardRefs.value.forEach((el) => {
-    if (el) observer?.observe(el)
+    if (el) {
+      observer?.observe(el)
+      el.addEventListener('animationend', () => {
+        el.classList.remove('animate-in')
+        el.classList.add('animate-done')
+      }, { once: true })
+    }
   })
 })
 
@@ -167,6 +173,11 @@ const equipment = computed(() => {
   animation: slideUpEquip 0.8s ease-out forwards;
 }
 
+.equipment-card.animate-done {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes slideUpEquip {
   from {
     opacity: 0;
@@ -179,8 +190,7 @@ const equipment = computed(() => {
 }
 
 .equipment-card:hover {
-  transform: translateY(-0.3125vw);
-  box-shadow: 0 0.625vw 1.875vw rgba(0, 100, 200, 0.1);
+  transform: translateY(-0.65vw);
 }
 
 .equipment-icon {

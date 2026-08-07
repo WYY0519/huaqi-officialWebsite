@@ -55,6 +55,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'mount-adapt') return '多元化挂载适配作业方案'
   if (props.module === 'high-cleaning') return '多元应用场景覆盖'
   if (props.module === 'fixed-wing') return '多元应用场景覆盖'
+  if (props.module === 'tethered') return '多元应用场景覆盖'
   return '全场景消防救援核心能力'
 })
 
@@ -63,6 +64,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'mount-adapt') return '针对不同救援任务需求，提供定制化挂载适配无人机作业方案'
   if (props.module === 'high-cleaning') return '覆盖新能源运维与城市高空清洁两大领域'
   if (props.module === 'fixed-wing') return '面向电力、林业、国土、水利等多行业，提供标准化巡检解决方案'
+  if (props.module === 'tethered') return '面向电力、林业、国土、水利等多行业，提供标准化巡检解决方案'
   return '面向不同火灾场景下的多样化救援需求，覆盖城市消防全域应急救援场景'
 })
 
@@ -160,6 +162,30 @@ const scenarios = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/场景4.jpg', import.meta.url).href,
         title: '水利流域生态巡检',
         desc: '长距离巡航河道库区，常态化开展汛情排查与水生态动态监测',
+      },
+    ]
+  }
+  if (props.module === 'tethered') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/场景1.jpg', import.meta.url).href,
+        title: '影视外景与夜间照明',
+        desc: '代传统高空升降车，悬停大功率矩阵补光灯，提供无死角柔和光场',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/场景2.jpg', import.meta.url).href,
+        title: '应急抢险夜间照明',
+        desc: '灾害现场快速升空部署，长时间高空照明与实时画面回传，提升夜间搜救效率',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/场景3.jpg', import.meta.url).href,
+        title: '夜间工程施工与采矿',
+        desc: '替代琐碎地面灯塔，快速部署无死角高空补光，大幅提升夜间施工安全性与效率',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/场景4.jpg', import.meta.url).href,
+        title: '森林防火与灾害监视',
+        desc: '长时滞空，结合双光热成像精准识别隐蔽火点，实况无延时回传指挥中心',
       },
     ]
   }

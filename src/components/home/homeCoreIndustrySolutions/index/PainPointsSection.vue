@@ -53,6 +53,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'mount-adapt') return '传统无人机挂载适配痛点'
   if (props.module === 'high-cleaning') return '传统清洁作业行业痛点'
   if (props.module === 'fixed-wing') return '传统巡检行业核心痛点'
+  if (props.module === 'tethered') return '传统高空照明核心痛点'
   return '传统城市消防行业痛点'
 })
 
@@ -61,6 +62,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'mount-adapt') return '机型接口不统一、改装成本高、切换部署慢，限制多场景作业效率'
   if (props.module === 'high-cleaning') return '高空作业风险高、人工效率低、复杂场景覆盖难，无人机清洁重构作业模式'
   if (props.module === 'fixed-wing') return '大范围、长距离线路与区域巡检，传统人工模式存在效率低、风险高、覆盖不全等行业难题'
+  if (props.module === 'tethered') return '夜间抢险、厂区值守、大型活动通宵照明场景下，传统照明设备存在照明局限、续航不足、功能割裂三大难题'
   return '城市发展升级，传统消防模式遇瓶颈'
 })
 
@@ -138,6 +140,25 @@ const painPoints = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/痛点3.png', import.meta.url).href,
         title: '周期过长，隐患发现滞后',
         desc: '人工巡山周期长、频率低，山体滑坡、火情、线路破损、管道渗漏等隐患无法第一时间发现，易演变为重大事故。',
+      }
+    ]
+  }
+  if (props.module === 'tethered') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/痛点1.png', import.meta.url).href,
+        title: '地面照明高度不足',
+        desc: '工程车灯、落地投光灯最大举升不足12米，山体、建筑、林木极易遮挡光线；高层火场、峡谷盲区、灾害现场存在大面积照明死角，无法高空俯视整片区域，搜救与现场观测效率极低。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/痛点2.png', import.meta.url).href,
+        title: '续航太短',
+        desc: '普通锂电照明无人机单次仅能续航十几分钟，通宵作业需频繁起降换电池；柴油照明灯持续耗柴油、噪音污染大，野外补给困难，抢险、林区夜间值守作业断断续续。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/痛点3.png', import.meta.url).href,
+        title: '功能单一，多设备部署繁琐',
+        desc: '传统照明设备多数只具备补光功能，夜间同时调拍、持线广播、应急监控照明需单独配备多套设备，分散架设，部署繁琐，整体投入成本翻倍，突发应急场景作业效率差。',
       }
     ]
   }

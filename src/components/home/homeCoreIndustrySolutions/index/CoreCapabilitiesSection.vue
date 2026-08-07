@@ -54,6 +54,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'mount-adapt') return '挂载系统三大核心适配能力'
   if (props.module === 'high-cleaning') return '全场景清洁核心能力'
   if (props.module === 'fixed-wing') return '全场景巡检核心能力'
+  if (props.module === 'tethered') return '系留无人机全场景核心能力'
   return '全场景消防救援核心能力'
 })
 
@@ -62,6 +63,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'mount-adapt') return '统一标准接口，打通多品牌机型，模块化快拆实现全场景作业'
   if (props.module === 'high-cleaning') return '替代传统高空人工作业，实现安全、高效、无死角建筑立面清洁'
   if (props.module === 'fixed-wing') return '长航时、大覆盖、高精度，重构大范围巡检作业模式'
+  if (props.module === 'tethered') return '地面线缆持续供电，突破电池续航限制，支持7×24小时不间断空中作业，适配多类重载任务载荷'
   return '集灭火、侦察、搜救、处置于一体，构建空地协同的现代化消防作战能力'
 })
 
@@ -139,6 +141,25 @@ const capabilities = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/固定翼巡检/核心能力3.jpg', import.meta.url).href,
         title: '模块化载荷，多维度数据采集',
         desc: '支持可见光吊舱、红外热成像、正射测绘相机、激光雷达等多种任务载荷快速更换；可输出高清影像、温度数据、三维点云等多类型成果，满足巡检、测绘、监测等多元需求。',
+      }
+    ]
+  }
+  if (props.module === 'tethered') {
+    return [
+      {
+        image: new URL('../../../../assets/home/系留系列/a5.jpg', import.meta.url).href,
+        title: '全天候长时供电系统',
+        desc: '摒弃传统锂电池短时供电局限，依托地面专用电源箱搭配高强度抗拉复合线缆持续输电，整机支持全天候空中不间断定点悬停，彻底解决普通无人机续航短板。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/核心能力2.jpg', import.meta.url).href,
+        title: '双重备降，断电智能防护',
+        desc: '机身搭载机载备用高倍率电池，当地面供电突发异常、线缆断电时，系统无缝切换至备用电源；自动降低载荷功率，同步灯光告警，执行平稳自动降落指令，全方位规避高空坠机安全隐患。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/核心能力3.jpg', import.meta.url).href,
+        title: '工业级一体化地面站',
+        desc: '机身底部配备标准化快拆挂载接口，可快速更换任务载荷，一台无人机适配多行业作业需求。可搭载大功率影视补光灯、夜间应急强探照灯、高清光电吊舱、远距离通信中继基站、多光谱环境监测设备等任务设备；配套一体化地面控制台，集成数传、图传、遥控控制链路，最远支持5km远距离实时可视化操控。',
       }
     ]
   }

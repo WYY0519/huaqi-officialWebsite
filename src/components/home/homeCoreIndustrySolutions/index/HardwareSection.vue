@@ -1,10 +1,33 @@
 <template>
   <section class="hardware-section"
-    v-if="module === 'mount-adapt' || module === 'high-cleaning' || module === 'fixed-wing'">
+    v-if="module === 'mount-adapt' || module === 'high-cleaning' || module === 'fixed-wing' || module === 'tethered'">
     <div class="container">
       <h2 class="section-title-dark">{{ sectionTitle }}</h2>
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
+
+      <!-- 系留系列产品矩阵 -->
+      <div class="hardware-category" v-if="module === 'tethered'">
+        <div class="hardware-grid grid-3" style="    gap: 2.5vw;">
+          <div class="hardware-card fixed-wing-card" style="height: 37.34375vw;"
+            v-for="(item, index) in tetheredDrones" :key="'tethered-' + index"
+            :style="{ animationDelay: index * 0.25 + 's' }">
+            <div class="hardware-image" style="height: 16vw;margin:0">
+              <img :src="item.image" :alt="item.title" />
+            </div>
+            <div class="hardware-content">
+              <p class="hardware-title" style="margin: 0 1.5vw;text-align: left;">{{ item.title }}</p>
+              <p class="hardware-model">型号：{{ item.model }}</p>
+              <div class="hardware-specs">
+                <div class="spec-row" v-for="(spec, specIndex) in item.specs" :key="specIndex">
+                  <span class="spec-label">{{ spec.label }}</span>
+                  <span class="spec-value">{{ spec.value }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- 固定翼巡检产品矩阵 -->
       <div class="hardware-category" v-if="module === 'fixed-wing'">
@@ -136,7 +159,13 @@ onMounted(() => {
   }, { threshold: 0.15 })
 
   const cards = document.querySelectorAll('.hardware-section .hardware-card')
-  cards.forEach((el) => observer?.observe(el))
+  cards.forEach((el) => {
+    observer?.observe(el)
+    el.addEventListener('animationend', () => {
+      el.classList.remove('animate-in')
+      el.classList.add('animate-done')
+    }, { once: true })
+  })
 })
 
 onUnmounted(() => {
@@ -151,6 +180,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'mount-adapt') return '全系列标准化挂载硬件'
   if (props.module === 'high-cleaning') return '清洗无人机产品矩阵'
   if (props.module === 'fixed-wing') return '固定翼巡检产品矩阵'
+  if (props.module === 'tethered') return '系留无人机产品矩阵'
   return ''
 })
 
@@ -158,6 +188,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'mount-adapt') return '模块化快拆设计，统一接口适配全平台，按需自由组合，满足多元作业需求'
   if (props.module === 'high-cleaning') return '覆盖光伏清洗、高空清洗两大方向，适配不同作业场景与负载需求'
   if (props.module === 'fixed-wing') return '精选3款主力机型，覆盖短途精细化、中距离常态化、超远距大范围三类核心巡检需求'
+  if (props.module === 'tethered') return '载重规格全覆盖，轻量化、影视专用、重载机型按需选型'
   return ''
 })
 
@@ -323,6 +354,53 @@ const projectileEquipment = computed(() => {
           { label: '控制信号', value: 'PWM、SBUS' }
         ]
       }
+    ]
+  }
+  return []
+})
+
+const tetheredDrones = computed(() => {
+  if (props.module === 'tethered') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/a5.jpg', import.meta.url).href,
+        title: '2公斤级系留',
+        model: '轻量化系留无人机',
+        specs: [
+          { label: '轴数', value: '4轴' },
+          { label: '整机重量', value: '约3.2kg' },
+          { label: '轴距', value: '650mm' },
+          { label: '备降电池', value: '6s 2200mah' },
+          { label: '抗风等级', value: '7级' },
+          { label: '定位精度', value: '+0.05m (RTK)' },
+        ],
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/a5.jpg', import.meta.url).href,
+        title: '10公斤级影视照明系留',
+        model: '影视照明专用系留无人机',
+        specs: [
+          { label: '轴数', value: '4轴' },
+          { label: '整机重量', value: '10kg' },
+          { label: '轴距', value: '1000mm' },
+          { label: '备降电池', value: '12s 5000mah' },
+          { label: '定位精度', value: '+0.05m (RTK)' },
+          { label: '抗风等级', value: '7级' },
+        ],
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/a5.jpg', import.meta.url).href,
+        title: '20公斤级系留',
+        model: '重载型系留无人机',
+        specs: [
+          { label: '轴数', value: '6轴6桨' },
+          { label: '标准载重', value: '20kg' },
+          { label: '整机轴距', value: '1820mm' },
+          { label: '展开尺寸', value: '1940*1700*750mm' },
+          { label: '系留悬停高度', value: '300m（可定制）' },
+          { label: '抗风等级', value: '7级' },
+        ],
+      },
     ]
   }
   return []
@@ -511,9 +589,13 @@ const auxiliaryEquipment = computed(() => {
   }
 }
 
+.hardware-card.animate-done {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .hardware-card:hover {
-  transform: translateY(-0.3125vw);
-  box-shadow: 0 0.625vw 1.875vw rgba(0, 100, 200, 0.1);
+  transform: translateY(-0.65vw);
 }
 
 .cleaning-card {
