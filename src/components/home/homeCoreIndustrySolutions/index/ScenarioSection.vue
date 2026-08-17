@@ -56,6 +56,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'high-cleaning') return '多元应用场景覆盖'
   if (props.module === 'fixed-wing') return '多元应用场景覆盖'
   if (props.module === 'tethered') return '多元应用场景覆盖'
+  if (props.module === 'research') return '典型科研定制应用场景'
   return '全场景消防救援核心能力'
 })
 
@@ -65,6 +66,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'high-cleaning') return '覆盖新能源运维与城市高空清洁两大领域'
   if (props.module === 'fixed-wing') return '面向电力、林业、国土、水利等多行业，提供标准化巡检解决方案'
   if (props.module === 'tethered') return '面向电力、林业、国土、水利等多行业，提供标准化巡检解决方案'
+  if (props.module === 'research') return '覆盖消防，巡检，清洗，地质、气象、生态环境主流科研方向，提供整套空中观测解决方案'
   return '面向不同火灾场景下的多样化救援需求，覆盖城市消防全域应急救援场景'
 })
 
@@ -186,6 +188,30 @@ const scenarios = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/系留系列/场景4.jpg', import.meta.url).href,
         title: '森林防火与灾害监视',
         desc: '长时滞空，结合双光热成像精准识别隐蔽火点，实况无延时回传指挥中心',
+      },
+    ]
+  }
+  if (props.module === 'research') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/场景1 .jpg', import.meta.url).href,
+        title: '载荷集成研发',
+        desc: '传感载荷机载适配改造，实现科研设备数据同步采集。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/场景2.jpg', import.meta.url).href,
+        title: '特种飞行平台研发',
+        desc: '定制特种试验无人机，支持动力、飞控个性化改造。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/场景3.jpg', import.meta.url).href,
+        title: '地质与大气环境科研',
+        desc: '搭载激光雷达与大气传感器，开展地形气象观测科研。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/场景4.jpg', import.meta.url).href,
+        title: '模拟导弹雷达对抗测试',
+        desc: '搭载雷达模拟源与红外靶标，支撑部队战术训练与装备效能测试。',
       },
     ]
   }

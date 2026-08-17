@@ -12,12 +12,12 @@
         <template v-for="(item, i) in navItems" :key="i">
           <ProductDropdown v-if="item.children" :label="item.label" :href="item.href" :categories="item.children"
             :is-active="hoveredItem ? hoveredItem === item.id : activeSection === item.id" :width="item.width"
-            :header-bottom="headerBottom" @click="handleNavClick(item.id)"
+            :header-bottom="headerBottom" @click="(event: Event) => handleNavClick(item.id, event)"
             @mouseenter="isProductHovered = true; hoveredItem = item.id"
             @mouseleave="isProductHovered = false; hoveredItem = ''" />
           <router-link v-else :to="item.href" class="nav-link"
             :class="{ active: (hoveredItem ? hoveredItem === item.id : activeSection === item.id) && item.id !== 'home' }"
-            @click="handleNavClick(item.id)">{{
+            @click="(event: Event) => handleNavClick(item.id, event)">{{
               item.label }}</router-link>
         </template>
       </nav>
@@ -71,16 +71,16 @@
             <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{
               category.category }}</div>
             <div v-for="(subItem, si) in category.items" :key="si" class="mobile-nav-submenu-item">
-              <a v-if="typeof subItem === 'object'" :href="'/#' + subItem.href" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
-                @click="handleNavClick(item.id)">{{ subItem.label }}</a>
-              <a v-else :href="item.href + '?type=' + encodeURIComponent(subItem)" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
-                @click="handleNavClick(item.id)">{{ subItem }}</a>
+              <a v-if="typeof subItem === 'object'" :href="'/#' + subItem.href" class="mobile-nav-submenu-link"
+                @click="(event: Event) => handleNavClick(item.id, event)">{{ subItem.label }}</a>
+              <a v-else :href="item.href + '?type=' + encodeURIComponent(subItem)" class="mobile-nav-submenu-link"
+                @click="(event: Event) => handleNavClick(item.id, event)">{{ subItem }}</a>
             </div>
           </div>
         </div>
       </div>
       <div class="mobile-nav-item">
-        <router-link to="/contact" class="mobile-nav-link" @click="handleNavClick('contact')">联系我们</router-link>
+        <a class="mobile-nav-link" @click="(event: Event) => handleNavClick('contact', event)">联系我们</a>
       </div>
     </div>
   </div>
@@ -194,12 +194,18 @@ const updateHeaderBottom = () => {
   }
 }
 
-const handleNavClick = (id: string) => {
+const handleNavClick = (id: string, event?: Event) => {
   activeSection.value = id
   isMobileMenuOpen.value = false
   document.body.style.overflow = ''
   if (id === 'home') {
     router.push('/')
+  } else {
+    // 阻止其他菜单的默认跳转行为
+    if (event) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
   }
 }
 

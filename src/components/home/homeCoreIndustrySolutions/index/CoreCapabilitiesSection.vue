@@ -55,6 +55,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'high-cleaning') return '全场景清洁核心能力'
   if (props.module === 'fixed-wing') return '全场景巡检核心能力'
   if (props.module === 'tethered') return '系留无人机全场景核心能力'
+  if (props.module === 'research') return '核心定制能力'
   return '全场景消防救援核心能力'
 })
 
@@ -64,6 +65,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'high-cleaning') return '替代传统高空人工作业，实现安全、高效、无死角建筑立面清洁'
   if (props.module === 'fixed-wing') return '长航时、大覆盖、高精度，重构大范围巡检作业模式'
   if (props.module === 'tethered') return '地面线缆持续供电，突破电池续航限制，支持7×24小时不间断空中作业，适配多类重载任务载荷'
+  if (props.module === 'research') return '面向高校、科研院所、地质气象机构，提供无人机整机与载荷一体化定制开发服务'
   return '集灭火、侦察、搜救、处置于一体，构建空地协同的现代化消防作战能力'
 })
 
@@ -160,6 +162,25 @@ const capabilities = computed(() => {
         image: new URL('../../../../assets/home/行业解决方案/系留系列/核心能力3.jpg', import.meta.url).href,
         title: '工业级一体化地面站',
         desc: '机身底部配备标准化快拆挂载接口，可快速更换任务载荷，一台无人机适配多行业作业需求。可搭载大功率影视补光灯、夜间应急强探照灯、高清光电吊舱、远距离通信中继基站、多光谱环境监测设备等任务设备；配套一体化地面控制台，集成数传、图传、遥控控制链路，最远支持5km远距离实时可视化操控。',
+      }
+    ]
+  }
+  if (props.module === 'research') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/核心能力1.jpg', import.meta.url).href,
+        title: '全系列飞行平台开放式定制',
+        desc: '覆盖2kg-200kg 全系列无人机硬件平台，支持机身、动力系统深度改造；开放飞控原始数据接口，自定义试验航线。多基地快速完成样机试验迭代，适配各类野外科试验。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/核心能力2.jpg', import.meta.url).href,
+        title: '全品类科研载荷集成开发',
+        desc: '覆盖城市消防、森林消防、安防巡检、应急照明、高空清洗及科研领域；兼容大气探测、遥感测绘、生态监测等各类作业与科研传感设备，完成机械结构、供电系统、数据通信一体化集成；实现无人机飞行作业与传感器数据采集同步触发，精准绑定试验数据与地理坐标，面向政企单位、科研院所提供定制化无人机平台开发服务。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/核心能力3.jpg', import.meta.url).href,
+        title: '产学研联合深度协同',
+        desc: '依托低空经济研究院开展课题联合研发，协同申报科研项目、共建专利成果；提供试验样机配套、野外技术驻场，全流程支撑科研项目落地。',
       }
     ]
   }

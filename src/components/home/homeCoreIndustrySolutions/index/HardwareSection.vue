@@ -363,7 +363,7 @@ const tetheredDrones = computed(() => {
   if (props.module === 'tethered') {
     return [
       {
-        image: new URL('../../../../assets/home/行业解决方案/系留系列/a5.jpg', import.meta.url).href,
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/XL-650.png', import.meta.url).href,
         title: '2公斤级系留',
         model: '轻量化系留无人机',
         specs: [
@@ -376,7 +376,7 @@ const tetheredDrones = computed(() => {
         ],
       },
       {
-        image: new URL('../../../../assets/home/行业解决方案/系留系列/a5.jpg', import.meta.url).href,
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/超清图片.png', import.meta.url).href,
         title: '10公斤级影视照明系留',
         model: '影视照明专用系留无人机',
         specs: [
@@ -389,7 +389,7 @@ const tetheredDrones = computed(() => {
         ],
       },
       {
-        image: new URL('../../../../assets/home/行业解决方案/系留系列/a5.jpg', import.meta.url).href,
+        image: new URL('../../../../assets/home/行业解决方案/系留系列/系留20公斤.png', import.meta.url).href,
         title: '20公斤级系留',
         model: '重载型系留无人机',
         specs: [
@@ -690,9 +690,10 @@ const auxiliaryEquipment = computed(() => {
 }
 
 .hardware-image img {
-  max-width: 80%;
-  max-height: 100%;
-  object-fit: contain;
+    width: 22vw;
+      height: 14vw;
+      object-fit: contain;
+      margin-top: 1.3vw;
 }
 
 .hardware-content {

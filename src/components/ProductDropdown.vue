@@ -1,6 +1,6 @@
 <template>
   <div ref="triggerRef" class="product-dropdown" @mouseenter="onEnter" @mouseleave="onLeave">
-    <a :href="'/#' + href" target="_blank" rel="noopener noreferrer" class="nav-link" :class="{ active: isActive }">
+    <a :href="'/#' + href" class="nav-link" :class="{ active: isActive }" @click="handleClick">
       {{ label }}
     </a>
     <!-- 透明桥接区域：覆盖 trigger 底部到 panel 顶部之间的间隙 -->
@@ -45,6 +45,10 @@ const props = defineProps<{
   headerBottom?: number
 }>()
 
+const emit = defineEmits<{
+  (e: 'click', event: Event): void
+}>()
+
 const showPanel = ref(false)
 const triggerRef = ref<HTMLElement>()
 const triggerCenterX = ref(0)
@@ -76,6 +80,10 @@ const onLeave = () => {
   hideTimer = setTimeout(() => {
     showPanel.value = false
   }, 150)
+}
+
+const handleClick = (event: Event) => {
+  emit('click', event)
 }
 
 /** 桥接区域样式：fixed 定位，从 trigger 底部延伸到 header 底部（panel 顶部） */

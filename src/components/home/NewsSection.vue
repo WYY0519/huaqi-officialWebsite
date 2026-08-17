@@ -162,6 +162,11 @@ onUnmounted(() => {
   padding: 0;
   border: none;
   display: block;
+  transition: transform 0.5s ease;
+}
+
+.news-main-image:hover img {
+  transform: scale(1.1);
 }
 
 .news-main-content {
@@ -277,6 +282,11 @@ onUnmounted(() => {
 .news-small-image img {
   display: block;
   max-width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.news-small-image:hover img {
+  transform: scale(1.1);
 }
 
 .news-small-content {

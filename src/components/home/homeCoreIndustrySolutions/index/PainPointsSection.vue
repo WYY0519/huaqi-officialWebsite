@@ -5,8 +5,8 @@
       <div class="section-divider"></div>
       <p class="section-desc">{{ sectionDesc }}</p>
       <div class="pain-points-grid">
-        <div class="pain-point-card" v-for="(item, index) in painPoints" :key="index"
-          ref="cardRefs" :style="{ animationDelay: index * 0.25 + 's' }">
+        <div class="pain-point-card" v-for="(item, index) in painPoints" :key="index" ref="cardRefs"
+          :style="{ animationDelay: index * 0.25 + 's' }">
           <img class="pain-point-bg" :src="item.image" :alt="item.title" />
           <div class="pain-point-overlay"></div>
           <div class="pain-point-content">
@@ -54,6 +54,7 @@ const sectionTitle = computed(() => {
   if (props.module === 'high-cleaning') return '传统清洁作业行业痛点'
   if (props.module === 'fixed-wing') return '传统巡检行业核心痛点'
   if (props.module === 'tethered') return '传统高空照明核心痛点'
+  if (props.module === 'research') return '传统科研作业痛点模块文案'
   return '传统城市消防行业痛点'
 })
 
@@ -63,6 +64,7 @@ const sectionDesc = computed(() => {
   if (props.module === 'high-cleaning') return '高空作业风险高、人工效率低、复杂场景覆盖难，无人机清洁重构作业模式'
   if (props.module === 'fixed-wing') return '大范围、长距离线路与区域巡检，传统人工模式存在效率低、风险高、覆盖不全等行业难题'
   if (props.module === 'tethered') return '夜间抢险、厂区值守、大型活动通宵照明场景下，传统照明设备存在照明局限、续航不足、功能割裂三大难题'
+  if (props.module === 'research') return '野外环境复杂、载荷集成难度高、标准无人机难以匹配专项科研试验需求'
   return '城市发展升级，传统消防模式遇瓶颈'
 })
 
@@ -162,6 +164,25 @@ const painPoints = computed(() => {
       }
     ]
   }
+  if (props.module === 'research') {
+    return [
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/痛点1.png', import.meta.url).href,
+        title: '硬件封闭固化，科研拓展受限',
+        desc: '市面量产工业无人机飞控、供电、通信链路高度封闭，无法搭载光谱仪、气体传感器、低空采样设备等自研科研载荷，数据无法同步采集，难以匹配专项科学试验的数据时序匹配需求。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/痛点2.png', import.meta.url).href,
+        title: '科研项目缺少整机级配套开发能力',
+        desc: '多数设备厂商仅提供单一载荷，无无人机整机结构、动力、飞控一体化改造能力；高校课题、国家级科研项目样机迭代、野外试验、数据对接落地周期漫长。',
+      },
+      {
+        image: new URL('../../../../assets/home/行业解决方案/科研定制服务/痛点3.png', import.meta.url).href,
+        title: '数据链路断层，无一体化配套',
+        desc: '普通无人机仅能输出航拍影像，无法同步传感原始数据、时序坐标，缺少科研专用地面站存储、导出、对接第三方分析平台的配套系统。',
+      }
+    ]
+  }
   return [
     {
       image: new URL('../../../../assets/home/行业解决方案/城市消防/痛点1.png', import.meta.url).href,
@@ -238,6 +259,7 @@ const painPoints = computed(() => {
     opacity: 0;
     transform: translateY(3vw);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -299,7 +321,7 @@ const painPoints = computed(() => {
   }
 
   .section-divider {
-   width: 23vw;
+    width: 23vw;
     height: 0.3vw !important;
   }
 
