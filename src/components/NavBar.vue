@@ -71,10 +71,10 @@
             <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{
               category.category }}</div>
             <div v-for="(subItem, si) in category.items" :key="si" class="mobile-nav-submenu-item">
-              <a v-if="typeof subItem === 'object'" :href="'/#' + subItem.href" class="mobile-nav-submenu-link"
-                @click="(event: Event) => handleNavClick(item.id, event)">{{ subItem.label }}</a>
-              <a v-else :href="item.href + '?type=' + encodeURIComponent(subItem)" class="mobile-nav-submenu-link"
-                @click="(event: Event) => handleNavClick(item.id, event)">{{ subItem }}</a>
+              <a v-if="typeof subItem === 'object'" :href="'/#/' + subItem.href.replace(/^\//, '')" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
+                @click="closeMobileNav">{{ subItem.label }}</a>
+              <a v-else :href="'/#/' + item.href.replace(/^\//, '') + '?type=' + encodeURIComponent(subItem)" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
+                @click="closeMobileNav">{{ subItem }}</a>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@ const hoveredItem = ref('')
 const headerBottom = ref(0)
 
 // 需要透明导航栏的路由列表（初始透明，滚动后变白）
-const transparentNavRoutes = ['/', '/homeCoreIndustries']
+const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales']
 
 // 判断当前路由是否需要透明导航栏
 const shouldHaveTransparentNav = computed(() => {
@@ -151,7 +151,7 @@ const navItems = [
   },
   {
     id: 'support', label: '服务支持', href: '/support', width: '7.1875vw', children: [
-      { items: ['售后保障', '技术支持', '建议与反馈'] }
+      { items: [{ label: '售后保障', href: '/after-sales' }, '技术支持', '建议与反馈'] }
     ]
   },
   {
@@ -207,6 +207,11 @@ const handleNavClick = (id: string, event?: Event) => {
       event.stopPropagation()
     }
   }
+}
+
+const closeMobileNav = () => {
+  isMobileMenuOpen.value = false
+  document.body.style.overflow = ''
 }
 
 let resizeObserver: ResizeObserver | null = null

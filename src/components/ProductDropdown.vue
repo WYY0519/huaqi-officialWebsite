@@ -13,8 +13,8 @@
           <div class="col-title">{{ category.category }}</div>
           <div class="col-list">
             <template v-for="(item, i) in category.items" :key="i">
-              <a v-if="typeof item === 'object'" :href="'/#' + item.href" target="_blank" rel="noopener noreferrer" class="col-item">{{ item.label }}</a>
-              <a v-else :href="href + '?type=' + encodeURIComponent(item)" class="col-item">{{ item }}</a>
+              <a v-if="typeof item === 'object'" :href="'/#/' + item.href.replace(/^\//, '')" target="_blank" rel="noopener noreferrer" class="col-item">{{ item.label }}</a>
+              <a v-else :href="'/#/' + href.replace(/^\//, '') + '?type=' + encodeURIComponent(item)" target="_blank" rel="noopener noreferrer" class="col-item">{{ item }}</a>
             </template>
           </div>
         </div>
