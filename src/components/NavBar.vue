@@ -108,7 +108,7 @@ const hoveredItem = ref('')
 const headerBottom = ref(0)
 
 // 需要透明导航栏的路由列表（初始透明，滚动后变白）
-const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support']
+const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support', '/feedback']
 
 // 判断当前路由是否需要透明导航栏
 const shouldHaveTransparentNav = computed(() => {
@@ -151,12 +151,12 @@ const navItems = [
   },
   {
     id: 'support', label: '服务支持', href: '/support', width: '7.1875vw', children: [
-      { items: [{ label: '售后保障', href: '/after-sales' }, { label: '技术支持', href: '/technical-support' }, '建议与反馈'] }
+      { items: [{ label: '售后保障', href: '/after-sales' }, { label: '技术支持', href: '/technical-support' }, { label: '建议与反馈', href: '/feedback' }] }
     ]
   },
   {
     id: 'about', label: '关于我们', href: '/about', width: '6.61458vw', children: [
-      { items: ['企业简介', '资质荣誉', '新闻动态', '加入我们'] }
+      { items: ['企业简介', '资质荣誉', '新闻动态', ] }//加入我们 -- 暂时不需要
     ]
   }
 ]

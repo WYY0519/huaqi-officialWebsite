@@ -64,7 +64,7 @@
               <li><a href="#">企业简介</a></li>
               <li><a href="#">资质荣誉</a></li>
               <li><a href="#">新闻动态</a></li>
-              <li><a href="#">加入我们</a></li>
+              <!-- <li><a href="#">加入我们</a></li> 暂时不需要 -->
             </ul>
           </div>
           <!-- <div class="footer-menu-col">
