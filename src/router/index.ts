@@ -11,6 +11,8 @@ import TechnicalSupport from '../views/TechnicalSupport.vue';
 import Feedback from '../views/Feedback.vue';
 // 企业简介页面同步导入，刷新优先渲染
 import About from '../views/About.vue';
+// 新闻动态页面同步导入，刷新优先渲染
+import News from '../views/News.vue';
 
 const router = createRouter({
   // 使用 hash 模式：静态空间（对象存储/虚拟主机等）无需任何服务端 rewrite 配置，
@@ -42,6 +44,11 @@ const router = createRouter({
       path: '/about',
       name: 'About',
       component: About,
+    },
+    {
+      path: '/news',
+      name: 'News',
+      component: News,
     },
     {
       path: '/contact',
