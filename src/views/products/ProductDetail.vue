@@ -7,7 +7,7 @@
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title"><span class="highlight">{{ product.name }}</span> 行业级无人机</h1>
+                <h1 class="hero-title"><span class="highlight">{{ product.name }}</span> {{ product.heroType || '行业级无人机' }}</h1>
             </div>
         </section>
 
@@ -179,6 +179,7 @@ const product = computed(() => getProduct(slug.value))
  position: absolute;
     top: 33.1vw;
     width: 100%;
+    letter-spacing: 0.05vw;
 }
 
 .hero-title {
@@ -606,6 +607,59 @@ const product = computed(() => getProduct(slug.value))
     .specs-table td {
         padding: 1.563vw 1.953vw;
         font-size: 1.693vw;
+        
+       
     }
 }
+</style>
+
+<style>
+/* 
+
+zero 
+one 
+tow 
+three
+four
+five
+six 
+seven
+eight
+nine
+ten
+eleven
+twelve
+thirteen
+fourteen
+fifteen
+sixteen
+seventeen
+eighteen
+nineteen
+twenty
+thirty
+forty
+fifty
+sixty
+seventy
+eighty
+ninety
+hundred
+thousand
+first
+second
+third
+last
+many 许多
+math 许多（不可数）
+few  少量
+little 一点 
+some 一些
+all   全部
+half 一半 
+pair 一对
+dozen 一打
+day 天
+night 晚上
+*/
 </style>

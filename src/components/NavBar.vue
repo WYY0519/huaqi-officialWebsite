@@ -108,11 +108,12 @@ const hoveredItem = ref('')
 const headerBottom = ref(0)
 
 // 需要透明导航栏的路由列表（初始透明，滚动后变白）
-const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support', '/feedback', '/about', '/news', '/products/H200', '/products/H400', '/products/F140']
+const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support', '/feedback', '/about', '/news']
 
 // 判断当前路由是否需要透明导航栏
+// 所有产品详情页（/products/xxx）顶部均为深色 Hero 大图，统一使用透明导航（新增产品无需再改这里）
 const shouldHaveTransparentNav = computed(() => {
-  return transparentNavRoutes.includes(route.path)
+  return transparentNavRoutes.includes(route.path) || route.path.startsWith('/products/')
 })
 
 // 导航栏是否应该为实心白底
@@ -129,8 +130,8 @@ const navItems = [
   { id: 'home', label: '首页', href: '/' },
   {
     id: 'products', label: '产品中心', href: '/products', children: [
-      { category: '多旋翼飞行平台', items: [{ label: 'H400', href: '/products/H400' }, { label: 'H200', href: '/products/H200' }, 'TF100', { label: 'F140', href: '/products/F140' }, 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
-      { category: '固定翼飞行平台', items: ['WRCQ-32A', 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
+      { category: '多旋翼飞行平台', items: [{ label: 'H400', href: '/products/H400' }, { label: 'H200', href: '/products/H200' }, { label: 'TF100', href: '/products/TF100' }, { label: 'F140', href: '/products/F140' }, { label: 'F100', href: '/products/F100' }, { label: 'F60', href: '/products/F60' }, { label: 'RT100', href: '/products/RT100' }, { label: 'X6-10', href: '/products/X6-10' }, { label: 'X4-10', href: '/products/X4-10' }] },
+      { category: '固定翼飞行平台', items: [{ label: 'WRCQ-32A', href: '/products/WRCQ-32A' }, 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
       { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '10公斤级影视照明系留', '2公斤级系留'] },
       { category: '无人机消防车', items: ['无人机消防车'] },
       { category: '载荷配件', items: ['消防水枪', '消防水桶', '索降器', '灭火弹抛投器', '干粉水基灭火弹', '森林灭火弹', '喊话器', '探照灯'] }
