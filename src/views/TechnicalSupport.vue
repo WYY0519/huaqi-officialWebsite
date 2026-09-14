@@ -31,11 +31,11 @@
     </section>
 
     <!-- 现场实操培训指导核心 -->
-    <section class="section process-section">
+    <section class="section process-section" style="    padding-bottom: 6vw">
       <div class="container">
         <h2 class="section-title-dark">现场实操培训指导核心</h2>
         <div class="section-divider"></div>
-        <p class="section-desc">一对一现场指导，确保操作人员熟练掌握全套运维能力</p>
+        <p class="section-desc" style="    margin-bottom: 3.8vw;">一对一现场指导，确保操作人员熟练掌握全套运维能力</p>
 
         <div class="process-flow">
           <template v-for="(step, index) in processSteps" :key="index">
@@ -53,11 +53,11 @@
     </section>
 
     <!-- 完整交付全套设备配套资料 -->
-    <section class="section materials-section">
-      <div class="container">
-        <h2 class="section-title-dark">完整交付全套设备配套资料</h2>
+    <section class="section materials-section" style="padding-bottom: 9.55vw;">
+      <div class="container" style="    padding-left: 6.4vw;"> 
+        <h2 class="section-title-dark" >完整交付全套设备配套资料</h2>
         <div class="section-divider"></div>
-        <p class="section-desc">助力客户全方位掌握设备运维知识，实现专业化资产管理</p>
+        <p class="section-desc" style="    margin-bottom: 3.45vw;">助力客户全方位掌握设备运维知识，实现专业化资产管理</p>
 
         <div class="materials-cards">
           <div class="materials-card" v-for="(item, index) in materialItems" :key="index">
@@ -262,7 +262,7 @@ const materialItems = [
   text-align: center;
   font-size: 1.04167vw;
   color: #adb1b5;
-  margin-bottom: 3.7vw;
+  margin-bottom: 3.1vw;
   margin-top: 0;
 }
 
@@ -275,7 +275,7 @@ const materialItems = [
   display: grid;
   /* 与「售后保障」页 4 列布局的单卡等宽：容器宽减去 3 个 gap 后除以 4，再整体居中 */
   grid-template-columns: repeat(3, calc((100% - 3.3vw) / 4));
-  gap: 1.1vw;
+  gap: 1.6vw;
   justify-content: center;
 }
 
@@ -283,7 +283,7 @@ const materialItems = [
   background: #fbfdfe;
   border: 1px solid #d6d7d8;
   border-radius: 0.41667vw;
-  padding: 1.89583vw 2vw 0.45vw;
+  padding: 1.89583vw 2vw 1.8vw;
   text-align: center;
   box-shadow: 0 0.10417vw 0.52083vw rgba(0, 0, 0, 0.04);
   transition: all 0.3s ease;
@@ -389,7 +389,7 @@ const materialItems = [
   color: #88929f;
   margin: 0;
   line-height: 1.4;
-  padding: 0 0.3vw;
+  padding: 0 1.0vw;
 }
 
 .step-arrow {

@@ -76,6 +76,11 @@ const router = createRouter({
       component: () => import('../views/SolutionDetail.vue'),
     },
     {
+      path: '/products/:slug',
+      name: 'ProductDetail',
+      component: () => import('../views/products/ProductDetail.vue'),
+    },
+    {
       path: '/homeCoreIndustries',
       name: 'homeCoreIndustries',
       component: HomeCoreIndustries,

@@ -108,7 +108,7 @@ const hoveredItem = ref('')
 const headerBottom = ref(0)
 
 // 需要透明导航栏的路由列表（初始透明，滚动后变白）
-const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support', '/feedback', '/about', '/news']
+const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support', '/feedback', '/about', '/news', '/products/H200', '/products/H400', '/products/F140']
 
 // 判断当前路由是否需要透明导航栏
 const shouldHaveTransparentNav = computed(() => {
@@ -129,7 +129,7 @@ const navItems = [
   { id: 'home', label: '首页', href: '/' },
   {
     id: 'products', label: '产品中心', href: '/products', children: [
-      { category: '多旋翼飞行平台', items: ['H400', 'H200', 'TF100', 'F140', 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
+      { category: '多旋翼飞行平台', items: [{ label: 'H400', href: '/products/H400' }, { label: 'H200', href: '/products/H200' }, 'TF100', { label: 'F140', href: '/products/F140' }, 'F100', 'F60', 'RT100', 'X6-10', 'X4-10'] },
       { category: '固定翼飞行平台', items: ['WRCQ-32A', 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
       { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '10公斤级影视照明系留', '2公斤级系留'] },
       { category: '无人机消防车', items: ['无人机消防车'] },

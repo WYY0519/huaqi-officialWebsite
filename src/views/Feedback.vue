@@ -644,6 +644,7 @@ const handleSubmit = async () => {
 }
 
 .submit-btn {
+  width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -654,7 +655,7 @@ const handleSubmit = async () => {
   padding: 1.25vw 3.125vw;
   font-size: 1.039063vw;
   font-weight: 700;
-  border-radius: 0.5vw;
+  border-radius: 0.7vw;
   cursor: pointer;
   letter-spacing: 0.10417vw;
   transition: all 0.3s ease;

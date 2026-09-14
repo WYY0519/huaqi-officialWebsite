@@ -54,7 +54,7 @@ const slides = ref([
     bgImage: new URL('../../assets/home/轮播图/H400.png', import.meta.url).href,
     title: '行业级无人机<span class="highlight">H400</span>',
     subtitle: '重载无界，驰援未来',
-    link: '/products/h400',
+    link: '/products/H400',
     btnText: '了解更多'
   }
 ])

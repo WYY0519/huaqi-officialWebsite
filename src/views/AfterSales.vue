@@ -134,7 +134,7 @@
     </section>
 
     <!-- 服务政策 -->
-    <section class="section policy-section">
+    <section class="section policy-section" style="padding-bottom: 3.1vw;">
       <div class="container">
         <h2 class="section-title-dark left-align">服务政策</h2>
         <div class="section-divider left"></div>

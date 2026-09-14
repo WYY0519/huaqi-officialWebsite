@@ -61,7 +61,7 @@
 
     <!-- 公司地址 -->
     <section class="section address-section" style="padding-top:.2vw;padding-bottom:0">
-      <div class="container">
+      <div class="container" style="    padding-left: 7.7vw;">
         <div class="address-content">
           <div class="address-info">
             <h3 class="address-title">公司地址</h3>
@@ -294,7 +294,7 @@ const qualificationImages = {
 
 .company-bg {
   position: absolute;
-  top: 6.5vw;
+  top: 8.5vw;
   /* bottom: 5.5vw; */
 
   left: 0;
@@ -429,19 +429,21 @@ const qualificationImages = {
 
 .address-info {
   flex: 1;
+  height: 100%;
 }
 
 .address-title {
   font-size: 2.147396vw;
   font-weight: bold;
   color: #000;
-  margin-bottom: 2.083333vw;
+    margin-top: 2.7vw;
+        margin-bottom: 2.1vw;
 }
 
 .address-list {
   display: flex;
   flex-direction: column;
-  gap: 2.21vw;
+  gap: 2.1vw;
 }
 
 .address-item {
@@ -477,7 +479,7 @@ const qualificationImages = {
   font-size: 1.385417vw;
   font-weight: bold;
   color: #00a5e1;
-  margin-bottom: 0.3125vw;
+  /* margin-bottom: 0.3125vw; */
 }
 
 .address-detail {
