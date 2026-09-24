@@ -4,7 +4,7 @@
       <p class="cta-title animate-item">获取专属解决方案</p>
       <div class="section-divider animate-item"></div>
       <p class="cta-desc animate-item">留下您的联系方式,我们的行业专家将在2小时内与您取得联系,为您定制专属解决方案。</p>
-      <a href="/contact" class="cta-btn animate-item">立即咨询 <span style="margin-left: .3vw;font-weight: 900;">→</span></a>
+      <a href="/#/contact" class="cta-btn animate-item">立即咨询 <span style="margin-left: .3vw;font-weight: 900;">→</span></a>
     </div>
   </section>
 </template>
