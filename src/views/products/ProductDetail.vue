@@ -1,5 +1,5 @@
 <template>
-    <div class="product-page" v-if="product">
+    <div class="product-page" :class="{ 'fire-truck-page': slug === 'fire-truck' }" v-if="product">
         <!-- Hero 区域 -->
         <section class="hero-section">
             <div class="hero-bg">
@@ -7,7 +7,8 @@
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title"><span class="highlight">{{ product.name }}</span> {{ product.heroType || '行业级无人机' }}</h1>
+                <h1 v-if="heroTypeSuffix" :key="`typed-${product.name}`" class="hero-title"><span class="highlight">{{ product.name }}</span> {{ heroTypeSuffix }}</h1>
+                <h1 v-else :key="`plain-${product.name}`" class="hero-title">{{ product.name }}</h1>
             </div>
         </section>
 
@@ -26,7 +27,7 @@
             <div class="container">
                 <h2 class="section-title">{{ product.introTitle }}</h2>
                 <p class="intro-text">{{ product.introText }}</p>
-                <div class="intro-image">
+                <div class="intro-image" :style="{ '--intro-ar': product.introAspect || '1229/687' }">
                     <img :src="product.introImage" :alt="`${product.name} 作业场景`" />
                 </div>
             </div>
@@ -67,6 +68,33 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 两款飞行平台可选 -->
+        <section class="platforms-section" v-if="product.platforms && product.platforms.length">
+            <div class="container">
+                <h2 class="section-title">两款飞行平台可选</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">多款飞行平台灵活选配，满足不同载重与作业需求</p>
+                <div class="platforms-grid">
+                    <div class="platform-card" v-for="(item, index) in product.platforms" :key="index">
+                        <div class="platform-photo">
+                            <img :src="item.image" :alt="item.name" />
+                        </div>
+                        <div class="platform-head">
+                            <h3 class="platform-name">{{ item.name }}</h3>
+                            <span class="platform-badge">{{ item.badge }}</span>
+                        </div>
+                        <div class="platform-rows">
+                            <div class="platform-row" v-for="(row, i) in item.rows" :key="i">
+                                <span class="row-label">{{ row.label }}</span>
+                                <span class="row-value">{{ row.value }}</span>
+                            </div>
+                        </div>
+                        <p class="platform-desc">{{ item.desc }}</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -126,6 +154,12 @@ import '@fontsource/noto-sans-sc/900.css'
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 const product = computed(() => getProduct(slug.value))
+
+// Hero 标题后缀：未配置时缺省「行业级无人机」；显式传空字符串 '' 表示仅显示产品名（纯白、无高亮）
+const heroTypeSuffix = computed(() => {
+  if (!product.value) return ''
+  return product.value.heroType === undefined ? '行业级无人机' : product.value.heroType
+})
 </script>
 
 <style scoped>
@@ -189,6 +223,20 @@ const product = computed(() => getProduct(slug.value))
     text-align: center;
     margin-bottom: 0;
     text-shadow: 0 0.104vw 0.521vw rgba(0, 0, 0, 0.3);
+    /* 与载荷配件页一致：标题从下方滑入 */
+    animation: hero-title-up 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes hero-title-up {
+    from {
+        opacity: 0;
+        transform: translateY(3.2vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-title .highlight {
@@ -289,8 +337,9 @@ const product = computed(() => getProduct(slug.value))
 .intro-image img {
     width: 100%;
     height: auto;
-    /* 锁定原图比例 1229:687，预留空间避免加载时布局抖动 */
-    aspect-ratio: 1229 / 687;
+    /* 锁定图片比例（默认 1229:687，可通过产品数据的 introAspect 配置），预留空间避免加载时布局抖动 */
+    aspect-ratio: var(--intro-ar, 1229 / 687);
+    object-fit: cover;
     display: block;
 }
 
@@ -419,6 +468,125 @@ const product = computed(() => getProduct(slug.value))
     width: 25%; /* 四列等宽（原 margin-right 对 td 无效，已移除） */
 }
 
+/* 无人机消防车技术参数：按设计稿 1571px 表宽校准
+   列文字起点距表左 20 / 368 / 775 / 1131px，竖直分隔线在 760px 处
+   → 四列宽 348 / 412 / 351 / 460px，单元格左内距 20px（label2 与分隔线间距 15px） */
+.fire-truck-page .specs-table td:nth-child(1) { width: 22.15%; }
+.fire-truck-page .specs-table td:nth-child(2) { width: 26.23%; }
+.fire-truck-page .specs-table td:nth-child(3) { width: 22.34%; }
+.fire-truck-page .specs-table td:nth-child(4) { width: 29.28%; }
+.fire-truck-page .specs-table td {
+    padding: 0 0.5vw 0 1.042vw;
+}
+.fire-truck-page .specs-table td.border-left {
+    padding-left: 0.78vw;
+}
+.fire-truck-page .specs-table tr:nth-child(even) {
+    background: #f5f7fa;
+}
+
+/* 两款飞行平台可选 */
+.platforms-section {
+    padding: 3.85vw 0 5vw;
+    background: #fff;
+}
+
+.platforms-grid {
+    display: grid;
+    /* 设计稿：卡片宽 666px、卡间距 60px @1920 */
+    grid-template-columns: repeat(2, 34.69vw);
+    gap: 3.125vw;
+    justify-content: center;
+}
+
+.platform-card {
+    background: #fff;
+    border: 0.156vw solid #dddddd;
+    border-radius: 0.31vw;
+    overflow: hidden;
+}
+
+/* 照片区：通栏浅灰底(#f3f6f9)，高 260px；无人机渲染图宽约卡片 50%，水平居中、偏下(上留 72px 下留 37px @666 卡宽) */
+.platform-photo {
+    height: 13.542vw;
+    background: #f3f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.platform-photo img {
+    width: 18.03vw;
+    height: auto;
+    margin-top: 3.42vw;
+    display: block;
+}
+
+/* 名字行：高 65.5，底部接第一条虚线分隔 */
+.platform-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2.8vw;
+    padding: 0 1.823vw;
+        margin-bottom: .5vw;
+}
+
+.platform-name {
+    font-size: 1.719vw;
+    font-weight: 600;
+    color: #000;
+}
+
+.platform-badge {
+    background: #e3f5fd;
+    color: #0ccefb;
+    font-size: 1.094vw;
+    font-weight: 400;
+    height: 1.979vw;
+    line-height: 1.979vw;
+    padding: 0 0.55vw;
+    border-radius: 0.21vw;
+    white-space: nowrap;
+}
+
+.platform-rows {
+    padding: 0 1.823vw;
+}
+
+.platform-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* 设计稿行高 43.2px，行间虚线分隔 */
+    height: 2.25vw;
+    border-bottom: 0.052vw dashed #c9c9c9;
+}
+
+.platform-row:last-child {
+    border-bottom: none;
+}
+
+.platform-row .row-label {
+    color: #9b9e9f;
+    font-size: 1.15vw;
+    font-weight: 500;
+}
+
+.platform-row .row-value {
+    color: #000;
+    font-size: 1.1vw;
+    text-align: right;
+}
+
+.platform-desc {
+    margin: 0.55vw 1.823vw 1.07vw;
+    color: #333;
+    font-size: 1.146vw;
+    line-height: 1.39vw;
+}
+
 /* 场景应用 */
 .scenarios-section {
     padding: 3.85vw 0 5vw;
@@ -508,6 +676,12 @@ const product = computed(() => getProduct(slug.value))
     height: 100%;
     object-fit: cover;
     display: block;
+    /* 悬浮放大动效，配合 .case-card 的 overflow: hidden 裁掉溢出部分 */
+    transition: transform 0.5s ease;
+}
+
+.case-card:hover img {
+    transform: scale(1.08);
 }
 
 /* 产品不存在 */
@@ -599,6 +773,27 @@ const product = computed(() => getProduct(slug.value))
     .scenarios-grid {
         grid-template-columns: 1fr;
     }
+
+    .platforms-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .platform-name {
+        font-size: 3vw;
+    }
+
+    .platform-badge {
+        font-size: 2.4vw;
+    }
+
+    .platform-row .row-label,
+    .platform-row .row-value {
+        font-size: 2.6vw;
+    }
+
+    .platform-desc {
+        font-size: 2.4vw;
+    }
     
     .cases-grid {
         grid-template-columns: 1fr;
@@ -615,6 +810,7 @@ const product = computed(() => getProduct(slug.value))
 
 <style>
 /* 
+
 
 zero 
 one 
@@ -661,5 +857,30 @@ pair 一对
 dozen 一打
 day 天
 night 晚上
+morning 早上
+hour 小时 
+minute 分钟 
+late 晚
+early 早
+now 现在
+soon 很快 
+yesterday 昨天 
+tomorrow 明天
+today 今天 
+year 年 
+month 月
+week 周 
+evening 傍晚
+afternoon 下午 
 */
+/* 
+
+
+
+
+
+
+*/
+
+
 </style>

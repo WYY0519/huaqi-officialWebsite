@@ -112,7 +112,7 @@
     </section>
 
     <!-- 资质与荣誉 -->
-    <section class="section qualifications-section" style="padding-bottom: 0;" >
+    <section id="qualifications" class="section qualifications-section" style="padding-bottom: 0;" >
       <div class="container">
         <h2 class="section-title">资质与荣誉</h2>
         <div class="section-divider"></div>

@@ -2,8 +2,8 @@
   <section id="home" class="hero-section" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
     <div class="slider-wrapper">
       <div v-for="(slide, index) in slides" :key="index" class="slide" :class="{ active: currentSlide === index }">
-        <!-- 第一张图片直接加载，其他轮播图懒加载 -->
-        <div class="slide-bg"><img :src="slide.bgImage" alt="" class="slide-bg-img"></div>
+        <!-- 第一张图片直接加载，其他轮播图懒加载（4 张合计约 3MB，全部立即加载会抢占首屏带宽导致卡顿） -->
+        <div class="slide-bg"><img :src="slide.bgImage" alt="" class="slide-bg-img" :loading="index === 0 ? 'eager' : 'lazy'" :fetchpriority="index === 0 ? 'high' : undefined"></div>
         <div class="slide-overlay"></div>
         <div class="slide-content">
           <div class="slide-title" v-html="slide.title">

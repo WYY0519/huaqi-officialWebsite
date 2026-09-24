@@ -690,10 +690,13 @@ const auxiliaryEquipment = computed(() => {
 }
 
 .hardware-image img {
-    width: 22vw;
-      height: 14vw;
-      object-fit: contain;
-      margin-top: 1.3vw;
+  /* 按原始比例完整显示，不裁切不变形，居中于图片容器 */
+  max-width: 92%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .hardware-content {

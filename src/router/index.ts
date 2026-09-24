@@ -13,6 +13,10 @@ import Feedback from '../views/Feedback.vue';
 import About from '../views/About.vue';
 // 新闻动态页面同步导入，刷新优先渲染
 import News from '../views/News.vue';
+// 产品详情页同步导入：点击产品中心子菜单时避免路由块异步加载导致页面中间空白
+import ProductDetail from '../views/products/ProductDetail.vue';
+// 载荷配件页面同步导入，刷新优先渲染
+import PayloadAccessories from '../views/products/PayloadAccessories.vue';
 
 const router = createRouter({
   // 使用 hash 模式：静态空间（对象存储/虚拟主机等）无需任何服务端 rewrite 配置，
@@ -78,7 +82,12 @@ const router = createRouter({
     {
       path: '/products/:slug',
       name: 'ProductDetail',
-      component: () => import('../views/products/ProductDetail.vue'),
+      component: ProductDetail,
+    },
+    {
+      path: '/payload',
+      name: 'PayloadAccessories',
+      component: PayloadAccessories,
     },
     {
       path: '/homeCoreIndustries',
@@ -93,7 +102,8 @@ const router = createRouter({
   ],
   scrollBehavior(to, _from, _savedPosition) {
     if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' };
+      // top：预留固定导航栏的高度（约 113px @1920），避免锚点模块顶部被导航遮挡
+      return { el: to.hash, top: 113, behavior: 'smooth' };
     }
     return { top: 0 };
   },

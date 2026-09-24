@@ -108,7 +108,7 @@ const hoveredItem = ref('')
 const headerBottom = ref(0)
 
 // 需要透明导航栏的路由列表（初始透明，滚动后变白）
-const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support', '/feedback', '/about', '/news']
+const transparentNavRoutes = ['/', '/homeCoreIndustries', '/after-sales', '/technical-support', '/feedback', '/about', '/news', '/payload']
 
 // 判断当前路由是否需要透明导航栏
 // 所有产品详情页（/products/xxx）顶部均为深色 Hero 大图，统一使用透明导航（新增产品无需再改这里）
@@ -131,10 +131,10 @@ const navItems = [
   {
     id: 'products', label: '产品中心', href: '/products', children: [
       { category: '多旋翼飞行平台', items: [{ label: 'H400', href: '/products/H400' }, { label: 'H200', href: '/products/H200' }, { label: 'TF100', href: '/products/TF100' }, { label: 'F140', href: '/products/F140' }, { label: 'F100', href: '/products/F100' }, { label: 'F60', href: '/products/F60' }, { label: 'RT100', href: '/products/RT100' }, { label: 'X6-10', href: '/products/X6-10' }, { label: 'X4-10', href: '/products/X4-10' }] },
-      { category: '固定翼飞行平台', items: [{ label: 'WRCQ-32A', href: '/products/WRCQ-32A' }, 'HQ-600', 'XF-200', 'Q150', 'Q80', 'Q50', 'Q40', 'Q32', 'Q20', 'Q13'] },
-      { category: '系留无人机', items: ['20公斤级系留', '10公斤级系留', '5公斤级系留', '10公斤级影视照明系留', '2公斤级系留'] },
-      { category: '无人机消防车', items: ['无人机消防车'] },
-      { category: '载荷配件', items: ['消防水枪', '消防水桶', '索降器', '灭火弹抛投器', '干粉水基灭火弹', '森林灭火弹', '喊话器', '探照灯'] }
+      { category: '固定翼飞行平台', items: [{ label: 'WRCQ-32A', href: '/products/WRCQ-32A' }, { label: 'HQ-600', href: '/products/HQ-600' }, { label: 'Q150', href: '/products/Q150' }, { label: 'Q80', href: '/products/Q80' }, { label: 'Q50', href: '/products/Q50' }, { label: 'Q40', href: '/products/Q40' }, { label: 'Q32', href: '/products/Q32' }, { label: 'Q20', href: '/products/Q20' }, { label: 'Q13', href: '/products/Q13' }] },
+      { category: '系留无人机', items: [{ label: '20公斤级系留', href: '/products/20kg' }, { label: '10公斤级系留', href: '/products/10kg' }, { label: '5公斤级系留', href: '/products/5kg' }, { label: '10公斤级影视照明系留', href: '/products/10kg-film' }, { label: '2公斤级系留', href: '/products/2kg' }] },
+      { category: '无人机消防车', items: [{ label: '无人机消防车', href: '/products/fire-truck' }] },
+      { category: '载荷配件', items: [{ label: '消防水枪', href: '/payload?type=fire-water-gun' }, { label: '消防水桶', href: '/payload?type=hard-bucket' }, { label: '索降器', href: '/payload?type=descender' }, { label: '灭火弹抛投器', href: '/payload?type=bomb-thrower' }, { label: '干粉水基灭火弹', href: '/payload?type=dry-powder-bomb' }, { label: '森林灭火弹', href: '/payload?type=forest-bomb' }, { label: '喊话器', href: '/payload?type=speaker' }, { label: '探照灯', href: '/payload?type=searchlight' }] }
     ]
   },
   {
@@ -159,7 +159,7 @@ const navItems = [
     id: 'about', label: '关于我们', href: '/about', width: '6.61458vw', children: [
       { items: [
         { label: '企业简介', href: '/about' },
-        { label: '资质荣誉', href: '/about?type=资质荣誉' },
+        { label: '资质荣誉', href: '/about#qualifications' },
         { label: '新闻动态', href: '/news' }
       ] }
     ]
@@ -184,7 +184,8 @@ const toggleMobileMenu = () => {
 const handleScroll = () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
   isScrolled.value = scrollTop > 50
-  updateHeaderBottom()
+  // 注意：这里不再每次滚动都调 updateHeaderBottom（内部 getBoundingClientRect 会强制同步重排，导致滚动卡顿）。
+  // header 尺寸变化已由下方 ResizeObserver 监听，滚动本身不改变 header 尺寸。
 }
 
 const updateHeaderBottom = () => {
