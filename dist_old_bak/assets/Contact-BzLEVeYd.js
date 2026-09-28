@@ -1,1 +1,0 @@
-import{Bc as e,Fc as t,Hc as n,Vc as r,t as i,zc as a}from"./index-F-AFRkjZ.js";var o={class:`contact-page`},s=t(r({__name:`Contact`,setup(t){return(t,r)=>(n(),a(`div`,o,[e(i)]))}}),[[`__scopeId`,`data-v-1301ec72`]]);export{s as default};
