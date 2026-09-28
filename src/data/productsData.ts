@@ -806,7 +806,7 @@ export const productsData: Record<string, ProductData> = {
     heroTitle: '20kg 级系留照明无人机',
     introTitle: '20kg 级系留照明无人机',
     introText: '专为长时间夜间作业打造的六轴系留无人机平台，采用高强度碳纤维+航空铝机身，34寸折叠桨设计。系留供电模式实现≥12小时不间断悬停作业，支持300m系留悬停高度（可定制），标准载重20kg，可搭载大功率照明设备。RTK厘米级定位，7级强风稳定飞行，广泛适配夜间照明、应急抢险、长时间监控等作业场景。',
-    heroImage: new URL('../assets/home/产品中心/系留无人机/20kg/首页 拷贝.jpg', import.meta.url).href,
+    heroImage: new URL('../assets/home/产品中心/系留无人机/20系留.jpg', import.meta.url).href,
     introImage: new URL('../assets/home/产品中心/系留无人机/20kg/ChatGPT Image 2026年9月10日 17_57_22 拷贝.jpg', import.meta.url).href,
     stats: [
       { value: '20', unit: 'kg', label: '标准有效载荷' },
@@ -892,7 +892,7 @@ export const productsData: Record<string, ProductData> = {
     heroTitle: '5kg 级系留照明无人机',
     introTitle: '5kg 级系留照明无人机',
     introText: '叠桨设计。系留供电模式实现≥12小时不间断悬停作业，空机仅4.5kg，折叠后机身小巧便携。7级强风稳定飞行，5000m高海拔适配，可搭载照明、监控、喊话等轻量任务设备，广泛适配夜间照明、安防巡检、应急侦察等作业场景。',
-    heroImage: new URL('../assets/home/产品中心/系留无人机/5kg 级系留照明无人机/首页 拷贝.jpg', import.meta.url).href,
+    heroImage: new URL('../assets/home/产品中心/系留无人机/5kg系留.jpg', import.meta.url).href,
     introImage: new URL('../assets/home/产品中心/系留无人机/5kg 级系留照明无人机/A 拷贝.jpg', import.meta.url).href,
     stats: [
       { value: '5', unit: 'kg', label: '标准有效载荷' },
@@ -935,7 +935,7 @@ export const productsData: Record<string, ProductData> = {
     heroTitle: '10kg 级影视照明系留',
     introTitle: '10kg 级影视照明系留',
     introText: '专为影视拍摄、夜间活动打造的专业系留照明无人机，4轴稳定架构，系留供电实现≥12小时不间断照明作业。配备备降电池与多重断电保护机制，RTK精准定位，7级强风稳定飞行，4500m高海拔适配。防水电机设计，支持5km一体链路控制，满足专业影视级高空照明与长时间作业需求。',
-    heroImage: new URL('../assets/home/产品中心/系留无人机/10公斤级  影视照明系留/首页.jpg', import.meta.url).href,
+    heroImage: new URL('../assets/home/产品中心/系留无人机/首页 拷贝10影视.jpg', import.meta.url).href,
     introImage: new URL('../assets/home/产品中心/系留无人机/10公斤级  影视照明系留/A.jpg', import.meta.url).href,
     stats: [
       { value: '5', unit: 'kg', label: '标准有效载荷' },
@@ -978,7 +978,7 @@ export const productsData: Record<string, ProductData> = {
     heroTitle: '10kg 级系留照明无人机',
     introTitle: '10kg 级系留照明无人机',
     introText: '采用高强度碳纤维+航空铝机身，6轴6桨稳定架构，搭配24寸折叠桨设计。系留供电模式实现≥12小时不间断悬停作业，支持100m系留悬停高度（可定制），标准载重10kg，可搭载照明、监控、喊话等多类任务设备。折叠后机身小巧便携，7级强风稳定飞行，广泛适配夜间照明、安防监控、应急抢险等作业场景。',
-    heroImage: new URL('../assets/home/产品中心/系留无人机/10kg级系留照明无人机/首页 拷贝.jpg', import.meta.url).href,
+    heroImage: new URL('../assets/home/产品中心/系留无人机/10系留.jpg', import.meta.url).href,
     introImage: new URL('../assets/home/产品中心/系留无人机/10kg级系留照明无人机/ChatGPT Image 2026年9月11日 14_37_05 拷贝.jpg', import.meta.url).href,
     stats: [
       { value: '10', unit: 'kg', label: '标准有效载荷' },
