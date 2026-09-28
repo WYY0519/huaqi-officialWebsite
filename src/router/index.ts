@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 // 首页同步导入，刷新优先渲染
 import Home from '../views/Home.vue';
 // 行业解决方案页面同步导入，刷新优先渲染
@@ -19,9 +19,10 @@ import ProductDetail from '../views/products/ProductDetail.vue';
 import PayloadAccessories from '../views/products/PayloadAccessories.vue';
 
 const router = createRouter({
-  // 使用 hash 模式：静态空间（对象存储/虚拟主机等）无需任何服务端 rewrite 配置，
-  // 直链或刷新 /#/products 等子页面都不会 404，菜单与其它页面均能正常显示
-  history: createWebHashHistory(),
+  // 使用 history 模式：URL 不带 #，子页面直链、刷新、分享均可打开。
+  // 注意：服务器 nginx 必须配置 SPA 回退，否则刷新子页面会 404：
+  //   location / { try_files $uri $uri/ /index.html; }
+  history: createWebHistory(),
   routes: [
     // 首页只保留一条，同步加载
     {
@@ -93,6 +94,11 @@ const router = createRouter({
       path: '/homeCoreIndustries',
       name: 'homeCoreIndustries',
       component: HomeCoreIndustries,
+    },
+    // 兼容旧版链接（如 /solutions?type=城市消防）→ 行业解决方案页，保留查询参数
+    {
+      path: '/solutions',
+      redirect: (to) => ({ path: '/homeCoreIndustries', query: to.query }),
     },
     // 可选：404兜底路由，放最后
     {

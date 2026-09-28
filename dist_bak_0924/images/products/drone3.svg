@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e9"/>
+      <stop offset="100%" style="stop-color:#c8e6c9"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg3)"/>
+  <!-- 大型六旋翼 -->
+  <ellipse cx="300" cy="210" rx="50" ry="18" fill="#2e7d32"/>
+  <!-- 六个臂 -->
+  <line x1="300" y1="200" x2="200" y2="160" stroke="#388e3c" stroke-width="5"/>
+  <line x1="300" y1="200" x2="400" y2="160" stroke="#388e3c" stroke-width="5"/>
+  <line x1="300" y1="220" x2="200" y2="260" stroke="#388e3c" stroke-width="5"/>
+  <line x1="300" y1="220" x2="400" y2="260" stroke="#388e3c" stroke-width="5"/>
+  <line x1="300" y1="210" x2="230" y2="130" stroke="#388e3c" stroke-width="4"/>
+  <line x1="300" y1="210" x2="370" y2="130" stroke="#388e3c" stroke-width="4"/>
+  <!-- 旋翼 -->
+  <ellipse cx="200" cy="158" rx="40" ry="7" fill="#4caf50" opacity="0.6"/>
+  <ellipse cx="400" cy="158" rx="40" ry="7" fill="#4caf50" opacity="0.6"/>
+  <ellipse cx="200" cy="262" rx="40" ry="7" fill="#4caf50" opacity="0.6"/>
+  <ellipse cx="400" cy="262" rx="40" ry="7" fill="#4caf50" opacity="0.6"/>
+  <ellipse cx="230" cy="128" rx="35" ry="6" fill="#4caf50" opacity="0.6"/>
+  <ellipse cx="370" cy="128" rx="35" ry="6" fill="#4caf50" opacity="0.6"/>
+  <!-- 起落架 -->
+  <line x1="275" y1="228" x2="260" y2="270" stroke="#2e7d32" stroke-width="3"/>
+  <line x1="325" y1="228" x2="340" y2="270" stroke="#2e7d32" stroke-width="3"/>
+  <line x1="250" y1="270" x2="350" y2="270" stroke="#2e7d32" stroke-width="3"/>
+</svg>

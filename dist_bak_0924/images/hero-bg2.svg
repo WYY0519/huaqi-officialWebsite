@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="700" viewBox="0 0 1920 700">
+  <defs>
+    <linearGradient id="sky2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B9DC2;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#8BB5D0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A8C8E0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="mountain2a" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A6E7F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3A5A6A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="700" fill="url(#sky2)"/>
+  <polygon points="0,500 200,380 400,440 600,350 800,420 1000,340 1200,400 1400,330 1600,390 1800,320 1920,380 1920,700 0,700" fill="#5A8A9F" opacity="0.6"/>
+  <polygon points="0,550 300,450 600,500 900,420 1200,480 1500,400 1800,460 1920,430 1920,700 0,700" fill="url(#mountain2a)"/>
+  <ellipse cx="400" cy="550" rx="350" ry="35" fill="#fff" opacity="0.5"/>
+  <ellipse cx="900" cy="560" rx="300" ry="30" fill="#fff" opacity="0.4"/>
+  <ellipse cx="1400" cy="545" rx="280" ry="28" fill="#fff" opacity="0.45"/>
+  <rect x="0" y="600" width="1920" height="100" fill="#fff" opacity="0.3"/>
+  <circle cx="300" cy="120" r="45" fill="#FFE082" opacity="0.7"/>
+  <circle cx="300" cy="120" r="25" fill="#FFF3C4" opacity="0.9"/>
+</svg>

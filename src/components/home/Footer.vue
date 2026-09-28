@@ -29,31 +29,31 @@
           <div class="footer-menu-col">
             <p class="footer-menu-title">产品中心</p>
             <ul class="footer-menu-list">
-              <li><a href="/#/products/H400">多旋翼飞行平台</a></li>
-              <li><a href="/#/products/WRCQ-32A">固定翼飞行平台</a></li>
-              <li><a href="/#/products/20kg">系留无人机</a></li>
-              <li><a href="/#/products/fire-truck">无人机消防车</a></li>
-              <li><a href="/#/payload">载荷配件</a></li>
+              <li><a href="/products/H400">多旋翼飞行平台</a></li>
+              <li><a href="/products/WRCQ-32A">固定翼飞行平台</a></li>
+              <li><a href="/products/20kg">系留无人机</a></li>
+              <li><a href="/products/fire-truck">无人机消防车</a></li>
+              <li><a href="/payload">载荷配件</a></li>
             </ul>
           </div>
           <div class="footer-menu-col">
             <p class="footer-menu-title">解决方案</p>
             <ul class="footer-menu-list">
-              <li><a href="/#/homeCoreIndustries?module=city-fire" target="_blank" rel="noopener noreferrer">城市消防</a></li>
-              <li><a href="/#/homeCoreIndustries?module=forest-fire" target="_blank" rel="noopener noreferrer">森林消防</a></li>
-              <li><a href="/#/homeCoreIndustries?module=high-cleaning" target="_blank" rel="noopener noreferrer">清洗系列</a></li>
-              <li><a href="/#/homeCoreIndustries?module=mount-adapt" target="_blank" rel="noopener noreferrer">挂载系列适配</a></li>
-              <li><a href="/#/homeCoreIndustries?module=fixed-wing" target="_blank" rel="noopener noreferrer">固定翼巡检系列</a></li>
-              <li><a href="/#/homeCoreIndustries?module=tethered" target="_blank" rel="noopener noreferrer">系留系列</a></li>
-              <li><a href="/#/homeCoreIndustries?module=research" target="_blank" rel="noopener noreferrer">科研定制服务</a></li>
+              <li><a href="/homeCoreIndustries?module=city-fire" target="_blank" rel="noopener noreferrer">城市消防</a></li>
+              <li><a href="/homeCoreIndustries?module=forest-fire" target="_blank" rel="noopener noreferrer">森林消防</a></li>
+              <li><a href="/homeCoreIndustries?module=high-cleaning" target="_blank" rel="noopener noreferrer">清洗系列</a></li>
+              <li><a href="/homeCoreIndustries?module=mount-adapt" target="_blank" rel="noopener noreferrer">挂载系列适配</a></li>
+              <li><a href="/homeCoreIndustries?module=fixed-wing" target="_blank" rel="noopener noreferrer">固定翼巡检系列</a></li>
+              <li><a href="/homeCoreIndustries?module=tethered" target="_blank" rel="noopener noreferrer">系留系列</a></li>
+              <li><a href="/homeCoreIndustries?module=research" target="_blank" rel="noopener noreferrer">科研定制服务</a></li>
             </ul>
           </div>
           <div class="footer-menu-col">
             <p class="footer-menu-title">服务支持</p>
             <ul class="footer-menu-list">
-              <li><a href="/#/after-sales" target="_blank" rel="noopener noreferrer">售后保障</a></li>
-              <li><a href="/#/technical-support" target="_blank" rel="noopener noreferrer">技术支持</a></li>
-              <li><a href="/#/feedback" target="_blank" rel="noopener noreferrer">建议与反馈</a></li>
+              <li><a href="/after-sales" target="_blank" rel="noopener noreferrer">售后保障</a></li>
+              <li><a href="/technical-support" target="_blank" rel="noopener noreferrer">技术支持</a></li>
+              <li><a href="/feedback" target="_blank" rel="noopener noreferrer">建议与反馈</a></li>
               <!-- <li><a href="#">售后保障</a></li>
               <li><a href="#">现场演示</a></li> -->
             </ul>
@@ -61,9 +61,9 @@
           <div class="footer-menu-col">
             <p class="footer-menu-title">关于我们</p>
             <ul class="footer-menu-list">
-              <li><a href="/#/about" target="_blank" rel="noopener noreferrer">企业简介</a></li>
-              <li><a href="/#/about#qualifications" target="_blank" rel="noopener noreferrer">资质荣誉</a></li>
-              <li><a href="/#/news" target="_blank" rel="noopener noreferrer">新闻动态</a></li>
+              <li><a href="/about" target="_blank" rel="noopener noreferrer">企业简介</a></li>
+              <li><a href="/about#qualifications" target="_blank" rel="noopener noreferrer">资质荣誉</a></li>
+              <li><a href="/news" target="_blank" rel="noopener noreferrer">新闻动态</a></li>
               <!-- <li><a href="#">加入我们</a></li> 暂时不需要 -->
             </ul>
           </div>
