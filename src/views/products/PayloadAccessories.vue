@@ -221,7 +221,7 @@ watch(() => route.query.type, () => scrollToProduct(true))
     background: #f6f7f9;
     border-radius: 0.21vw;
     overflow: hidden;
-    cursor: zoom-in; /* 鼠标移到图片上提示可放大 */
+    cursor: zoom-in; /* 鼠标移到图片框上提示可放大 */
 }
 
 .payload-photo img {
@@ -231,7 +231,7 @@ watch(() => route.query.type, () => scrollToProduct(true))
     transition: transform 0.4s ease; /* 悬停放大动画 */
 }
 
-/* 仅当鼠标悬停在图片本身时才放大 */
+/* 只有鼠标悬停在图片框（左侧照片区域）时才放大，右侧参数区不触发 */
 .payload-photo:hover img {
     transform: scale(1.08);
 }
