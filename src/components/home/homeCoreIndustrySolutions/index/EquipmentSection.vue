@@ -91,12 +91,12 @@ const equipment = computed(() => {
   if (props.module === 'mount-adapt') {
     return [
       {
-        icon: new URL('../../../../assets/home/行业解决方案/挂载系列适配/挂载1.png', import.meta.url).href,
+        icon: new URL('../../../../assets/home/产品中心/载荷配件/消防水枪.png', import.meta.url).href,
         title: '消防水枪挂载系统',
         desc: '适用于高层建筑消防灭火，可配高压水枪或泡沫灭火剂喷射装置，无人机载水枪可精准指向火源，配合远程遥控系统，可在复杂环境中高效灭火。',
       },
       {
-        icon: new URL('../../../../assets/home/行业解决方案/挂载系列适配/挂载2.png', import.meta.url).href,
+        icon: new URL('../../../../assets/home/产品中心/载荷配件/抛投器.png', import.meta.url).href,
         title: '灭火弹投送模块',
         desc: '机载消防灭火弹涵盖干粉、水基多规格选型，采用凌空定高爆破抛洒技术，响应快、覆盖广，可高效压制火情、铺设防火隔离带。',
       },

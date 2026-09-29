@@ -18,8 +18,8 @@
         </div>
       </div>
       <div class="solution-cta">
-        <a href="/contact" class="cta-btn">咨询方案</a>
-        <a href="/homeCoreIndustries" class="cta-btn cta-btn-outline">返回解决方案</a>
+        <router-link to="/contact" class="cta-btn">咨询方案</router-link>
+        <router-link to="/homeCoreIndustries" class="cta-btn cta-btn-outline">返回解决方案</router-link>
       </div>
     </div>
   </div>

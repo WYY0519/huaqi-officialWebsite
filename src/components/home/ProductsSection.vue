@@ -18,10 +18,12 @@
                 <div class="product-buttons">
                   <template v-if="isHighlightedCard(idx)">
                     <!-- <button class="product-btn product-btn-primary">立即购买</button> -->
-                    <button class="product-btn product-btn-primary">了解更多</button>
+                    <a v-if="item.link" :href="item.link" target="_blank" rel="noopener" class="product-btn product-btn-primary">了解更多</a>
+                    <span v-else class="product-btn product-btn-primary">了解更多</span>
                   </template>
                   <template v-else>
-                    <button class="product-btn product-btn-secondary">了解更多</button>
+                    <a v-if="item.link" :href="item.link" target="_blank" rel="noopener" class="product-btn product-btn-secondary">了解更多</a>
+                    <span v-else class="product-btn product-btn-secondary">了解更多</span>
                   </template>
                 </div>
               </div>
@@ -320,6 +322,8 @@ onUnmounted(() => {
 }
 
 .product-btn {
+  display: inline-block;
+  text-decoration: none;
   padding: 0.3125vw 0.625vw;
   border-radius: 1.04167vw;
   font-size: 0.83333vw;

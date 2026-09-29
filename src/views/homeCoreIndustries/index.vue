@@ -15,7 +15,7 @@
     <!-- 全场景消防救援核心能力 - 图文交替 -->
     <CoreCapabilitiesSection :module="module" />
     <!-- 全系列标准化挂载硬件 -->
-    <HardwareSection :module="module" />
+    <HardwareSection :module="module" id="hardware-section" />
     <!-- 多元化挂载适配多元救援任务 -->
     <EquipmentSection :module="module" />
     <!-- 全场景消防救援核心能力 - 场景卡片 -->
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import PainPointsSection from '../../components/home/homeCoreIndustrySolutions/index/PainPointsSection.vue'
 import CoreCapabilitiesSection from '../../components/home/homeCoreIndustrySolutions/index/CoreCapabilitiesSection.vue'
@@ -90,6 +90,30 @@ const heroImage = computed(() => {
   }
   // 其他模块可以返回默认图片或各自的图片
   return new URL('../../assets/home/行业解决方案/城市消防/首页.png', import.meta.url).href
+})
+
+// 支持 ?scroll=hardware 等锚点参数：挂载后滚动到对应区块（如「清洗无人机产品矩阵」）
+onMounted(() => {
+  const target = route.query.scroll as string
+  if (!target) return
+  const start = Date.now()
+  const doScroll = () => {
+    const el = document.getElementById(target)
+    if (el) {
+      // 113px 为固定导航栏高度，避免目标区块顶部被遮挡
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 113, behavior: 'smooth' })
+    } else if (Date.now() - start < 8000) {
+      setTimeout(doScroll, 100)
+    }
+  }
+  // 图片全部加载完（页面高度稳定）后再滚动，辅以定时兜底：
+  // 单次过早滚动会在页面尚矮时超出最大滚动距离而失效
+  if (document.readyState === 'complete') {
+    setTimeout(doScroll, 300)
+  } else {
+    window.addEventListener('load', () => setTimeout(doScroll, 300), { once: true })
+  }
+  ;[1500, 3500, 6000].forEach((delay) => setTimeout(doScroll, delay))
 })
 </script>
 

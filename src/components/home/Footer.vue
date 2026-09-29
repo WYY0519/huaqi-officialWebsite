@@ -29,11 +29,11 @@
           <div class="footer-menu-col">
             <p class="footer-menu-title">产品中心</p>
             <ul class="footer-menu-list">
-              <li><a href="/products/H400">多旋翼飞行平台</a></li>
-              <li><a href="/products/WRCQ-32A">固定翼飞行平台</a></li>
-              <li><a href="/products/20kg">系留无人机</a></li>
-              <li><a href="/products/fire-truck">无人机消防车</a></li>
-              <li><a href="/payload">载荷配件</a></li>
+              <li><a href="/products/H400" target="_blank" rel="noopener noreferrer">多旋翼飞行平台</a></li>
+              <li><a href="/products/WRCQ-32A" target="_blank" rel="noopener noreferrer">固定翼飞行平台</a></li>
+              <li><a href="/products/20kg" target="_blank" rel="noopener noreferrer">系留无人机</a></li>
+              <li><a href="/products/fire-truck" target="_blank" rel="noopener noreferrer">无人机消防车</a></li>
+              <li><a href="/payload" target="_blank" rel="noopener noreferrer">载荷配件</a></li>
             </ul>
           </div>
           <div class="footer-menu-col">

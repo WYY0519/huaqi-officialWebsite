@@ -4,7 +4,16 @@
     <NavBar />
 
     <!-- 页面内容 -->
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <Suspense>
+        <component :is="Component" />
+        <template #fallback>
+          <div class="page-loading">
+            <div class="page-loading-spinner"></div>
+          </div>
+        </template>
+      </Suspense>
+    </router-view>
 
     <!-- 页脚 -->
     <Footer />
@@ -115,10 +124,10 @@ body {
 
 .section-line {
   /* 1920 时 = 161px */
-  width: 8.38542vw;
-  height: 1px;
-  background: #00D4ff;
-  margin: 0 auto;
+background: linear-gradient(90deg, #0000 0%, #00d4ff 10% 90%, #0000 100%);
+    width: 14vw;
+    height: .10833vw;
+    margin: 0 auto .63333vw;
 }
 
 .section-subtitle {
@@ -338,5 +347,53 @@ body {
   .solutions-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* 关闭首页/行业解决方案页卡片入场动画：直接显示，不再从下往上滑入 */
+.solution-card,
+.news-card,
+.news-main-card,
+.news-small-card,
+.coverage-item,
+.pain-point-card,
+.equipment-card,
+.hardware-card,
+.scenario-card,
+.capability-row,
+.animate-item,
+.news-section .section-title,
+.news-section .section-line,
+.news-section .section-subtitle,
+/* HeroBanner 轮播文字与分页 */
+.slide.active .slide-title,
+.slide.active .slide-line,
+.slide.active .slide-subtitle,
+.hero-pagination,
+/* SolutionSection 文字与背景 */
+.solution-bg,
+.sol-text,
+.animate-slide-down,
+.animate-slide-up {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 路由懒加载切换时的 loading 占位，避免中间空白 */
+.page-loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  z-index: 9998;
+}
+.page-loading-spinner {
+  width: 42px;
+  height: 42px;
+  border: 3px solid #e6e9ed;
+  border-top-color: #00D4ff;
+  border-radius: 50%;
+  animation: app-spin 0.8s linear infinite;
 }
 </style>

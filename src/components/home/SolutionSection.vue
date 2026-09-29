@@ -33,7 +33,7 @@
             <div class="sol-tags">
               <span class="sol-tag" v-for="(tag, ti) in item.tags" :key="ti">{{ tag }}</span>
             </div>
-            <a :href="'/#' + item.link" target="_blank" rel="noopener noreferrer" class="sol-more">了解更多 <span
+            <a :href="item.link" target="_blank" rel="noopener noreferrer" class="sol-more">了解更多 <span
                 style="margin-left: 0.78125vw;">→</span></a>
           </div>
         </div>
@@ -59,7 +59,9 @@ let observer: IntersectionObserver | null = null
 // sol-row 元素引用
 const solRowRefs = ref<Record<number, any>>({})
 
-const imageModules = import.meta.glob('../../assets/home/**/*.{png,jpg}', { eager: true }) as Record<string, { default: string }>
+// 仅批量导入本组件实际使用的 7 个目录的图片：
+// 全量 glob 会处理 assets 下所有图片（含未引用的），大幅拖慢构建并触发 Rolldown 长中文路径截断 bug
+const imageModules = import.meta.glob('../../assets/home/{城市消防,森林消防,挂载系列适配,清洗系列,固定翼巡检系列,系留系列,科研定制服务}/*.{png,jpg}', { eager: true }) as Record<string, { default: string }>
 
 // 根据文件路径获取图片URL
 const getImageUrl = (path: string) => {

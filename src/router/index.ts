@@ -1,22 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
-// 首页同步导入，刷新优先渲染
+// 首页同步导入：首屏优先渲染，避免首页空白
 import Home from '../views/Home.vue';
-// 行业解决方案页面同步导入，刷新优先渲染
-import HomeCoreIndustries from '../views/homeCoreIndustries/index.vue';
-// 售后保障页面同步导入，刷新优先渲染
-import AfterSales from '../views/AfterSales.vue';
-// 技术支持页面同步导入，刷新优先渲染
-import TechnicalSupport from '../views/TechnicalSupport.vue';
-// 建议与反馈页面同步导入，刷新优先渲染
-import Feedback from '../views/Feedback.vue';
-// 企业简介页面同步导入，刷新优先渲染
-import About from '../views/About.vue';
-// 新闻动态页面同步导入，刷新优先渲染
-import News from '../views/News.vue';
-// 产品详情页同步导入：点击产品中心子菜单时避免路由块异步加载导致页面中间空白
-import ProductDetail from '../views/products/ProductDetail.vue';
-// 载荷配件页面同步导入，刷新优先渲染
-import PayloadAccessories from '../views/products/PayloadAccessories.vue';
+// 其他页面懒加载：减小首屏 bundle 体积，新标签页/刷新加载更快；切换时由 App.vue 的 Suspense 显示 loading
+const HomeCoreIndustries = () => import('../views/homeCoreIndustries/index.vue');
+const AfterSales = () => import('../views/AfterSales.vue');
+const TechnicalSupport = () => import('../views/TechnicalSupport.vue');
+const Feedback = () => import('../views/Feedback.vue');
+const About = () => import('../views/About.vue');
+const News = () => import('../views/News.vue');
+const ProductDetail = () => import('../views/products/ProductDetail.vue');
+const PayloadAccessories = () => import('../views/products/PayloadAccessories.vue');
 
 const router = createRouter({
   // 使用 history 模式：URL 不带 #，子页面直链、刷新、分享均可打开。
@@ -107,6 +100,11 @@ const router = createRouter({
     },
   ],
   scrollBehavior(to, _from, _savedPosition) {
+    // ?scroll=xxx 查询参数：导航阶段不滚动（懒加载页面此时尚未渲染），
+    // 交由页面组件挂载后自行滚动到目标区块
+    if (to.query.scroll) {
+      return false;
+    }
     if (to.hash) {
       // top：预留固定导航栏的高度（约 113px @1920），避免锚点模块顶部被导航遮挡
       return { el: to.hash, top: 113, behavior: 'smooth' };

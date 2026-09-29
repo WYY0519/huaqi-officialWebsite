@@ -10,4 +10,5 @@ if (window.location.hash.startsWith('#/')) {
 
 const app = createApp(App)
 app.use(router)
-app.mount('#app')
+// 等路由初始导航完成后再挂载，避免新标签页打开子页面时先闪一下首页（NavBar+Footer+空白）再切换到目标页
+router.isReady().then(() => app.mount('#app'))

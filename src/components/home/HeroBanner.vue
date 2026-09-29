@@ -16,7 +16,7 @@
             <img class="logo-icon" @click="nextSlide" :src="isNextHovered ? nextIconHover : nextIcon"
               @mouseenter="isNextHovered = true" @mouseleave="isNextHovered = false" alt="华启天成" />
           </div>
-          <a :href="slide.link" class="hero-btn">{{ slide.btnText }}</a>
+          <a v-if="slide.link" :href="slide.link" target="_blank" rel="noopener" class="hero-btn">{{ slide.btnText }}</a>
         </div>
       </div>
     </div>
@@ -40,14 +40,14 @@ const slides = ref([
     bgImage: new URL('../../assets/home/轮播图/固定翼.png', import.meta.url).href,
     title: '固定翼机场<span class="highlight">WRCQ-32A</span>',
     subtitle: '智能机场，智慧飞行',
-    link: '/products/fixed-wing',
+    link: '/products/WRCQ-32A',
     btnText: '了解更多'
   },
   {
     bgImage: new URL('../../assets/home/轮播图/系留.png', import.meta.url).href,
     title: '一体式<span class="highlight">系留</span>无人机',
     subtitle: '全域布防，快速响应',
-    link: '/products/tethered',
+    link: '/products/10kg-film',
     btnText: '了解更多'
   },
   {
@@ -278,7 +278,15 @@ onUnmounted(() => { stopAutoplay() })
 
 .slide-title .highlight {
   color: #00D4ff !important;
-  font-family: 'OPPoSans', sans-serif;
+  /* 继承 PuHuiTi 900，粗细与白色文字一致 */
+  /* font-family: 'OPPoSans', sans-serif; */
+}
+
+/* 标题是 v-html 渲染的，span 不带 scoped 属性，需 :deep 穿透才能命中 */
+.slide-title :deep(.highlight) {
+  color: #00D4ff !important;
+  /* 继承 PuHuiTi 900，粗细与白色文字一致 */
+  /* font-family: 'OPPosans', sans-serif; */
 }
 
 .slide-line {

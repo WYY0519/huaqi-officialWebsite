@@ -1,8 +1,8 @@
 <template>
   <div ref="triggerRef" class="product-dropdown" @mouseenter="onEnter" @mouseleave="onLeave">
-    <a :href="'/#' + href" class="nav-link" :class="{ active: isActive }" @click="handleClick">
+    <router-link :to="href" class="nav-link" :class="{ active: isActive }" @click="handleClick">
       {{ label }}
-    </a>
+    </router-link>
     <!-- 透明桥接区域：覆盖 trigger 底部到 panel 顶部之间的间隙 -->
     <div v-show="showPanel" class="hover-bridge" :style="bridgeStyle"
       @mouseenter="onEnter" @mouseleave="onLeave"></div>
@@ -13,8 +13,8 @@
           <div class="col-title">{{ category.category }}</div>
           <div class="col-list">
             <template v-for="(item, i) in category.items" :key="i">
-              <a v-if="typeof item === 'object'" :href="'/#/' + item.href.replace(/^\//, '')" target="_blank" rel="noopener noreferrer" class="col-item">{{ item.label }}</a>
-              <a v-else :href="'/#/' + href.replace(/^\//, '') + '?type=' + encodeURIComponent(item)" target="_blank" rel="noopener noreferrer" class="col-item">{{ item }}</a>
+              <a v-if="typeof item === 'object'" :href="item.href" target="_blank" rel="noopener noreferrer" class="col-item">{{ item.label }}</a>
+              <a v-else :href="href + '?type=' + encodeURIComponent(item)" target="_blank" rel="noopener noreferrer" class="col-item">{{ item }}</a>
             </template>
           </div>
         </div>

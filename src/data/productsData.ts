@@ -1029,7 +1029,7 @@ export const productsData: Record<string, ProductData> = {
       { value: '200', unit: 'kg', label: '最大无人机载重' },
       { value: '16', unit: 't', label: '车辆总质量' },
       { value: '5000', unit: 'm', label: '最大飞行海拔' },
-      { value: '275', unit: 'kw', label: '发动机功率' },
+      { value: '257', unit: 'kw', label: '发动机功率' },
     ],
     advantages: [
       { icon: new URL('../assets/home/产品中心/无人机消防车/图标1.png', import.meta.url).href, title: '高空精准灭火', desc: '通过无人机喷射高效灭火剂，对建筑物初期火灾全方位实施精准扑救和压制，突破高层灭火作业高度限制。' },

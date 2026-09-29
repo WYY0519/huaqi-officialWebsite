@@ -71,9 +71,9 @@
             <div v-if="'category' in category && category.category" class="mobile-nav-submenu-category">{{
               category.category }}</div>
             <div v-for="(subItem, si) in category.items" :key="si" class="mobile-nav-submenu-item">
-              <a v-if="typeof subItem === 'object'" :href="'/#/' + subItem.href.replace(/^\//, '')" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
+              <a v-if="typeof subItem === 'object'" :href="subItem.href" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
                 @click="closeMobileNav">{{ subItem.label }}</a>
-              <a v-else :href="'/#/' + item.href.replace(/^\//, '') + '?type=' + encodeURIComponent(subItem)" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
+              <a v-else :href="item.href + '?type=' + encodeURIComponent(subItem)" target="_blank" rel="noopener noreferrer" class="mobile-nav-submenu-link"
                 @click="closeMobileNav">{{ subItem }}</a>
             </div>
           </div>
