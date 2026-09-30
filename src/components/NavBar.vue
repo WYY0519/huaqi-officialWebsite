@@ -206,13 +206,10 @@ const handleNavClick = (id: string, event?: Event) => {
   document.body.style.overflow = ''
   if (id === 'home') {
     router.push('/')
-  } else {
-    // 阻止其他菜单的默认跳转行为
-    if (event) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+  } else if (id === 'contact') {
+    router.push('/contact')
   }
+  // 其他菜单项为 router-link，正常导航到各自页面（不再阻止默认行为）
 }
 
 const closeMobileNav = () => {

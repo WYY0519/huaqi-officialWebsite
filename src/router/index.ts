@@ -93,6 +93,9 @@ const router = createRouter({
       path: '/solutions',
       redirect: (to) => ({ path: '/homeCoreIndustries', query: to.query }),
     },
+    // 主菜单「产品中心」「服务支持」无独立页面，点击跳转到对应首个子页面
+    { path: '/products', redirect: '/products/H400' },
+    { path: '/support', redirect: '/after-sales' },
     // 可选：404兜底路由，放最后
     {
       path: '/:pathMatch(.*)*',
