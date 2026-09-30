@@ -3,9 +3,9 @@
     <div class="slider-wrapper">
       <div v-for="(slide, index) in slides" :key="index" class="slide" :class="{ active: currentSlide === index }">
         <!-- 第一张图片直接加载，其他轮播图懒加载（4 张合计约 3MB，全部立即加载会抢占首屏带宽导致卡顿） -->
-        <div class="slide-bg"><img :src="slide.bgImage" alt="" class="slide-bg-img" :loading="index === 0 ? 'eager' : 'lazy'" :fetchpriority="index === 0 ? 'high' : undefined"></div>
+        <div class="slide-bg"><img :src="slide.bgImage" alt="" class="slide-bg-img" :loading="index === 0 ? 'eager' : 'lazy'" :fetchpriority="index === 0 ? 'high' : undefined" @load="onBgLoad(index)" @error="onBgLoad(index)"></div>
         <div class="slide-overlay"></div>
-        <div class="slide-content">
+        <div v-show="loadedImages[index]" class="slide-content">
           <div class="slide-title" v-html="slide.title">
           </div>
           <div class="slide-line"> </div>
@@ -58,6 +58,12 @@ const slides = ref([
     btnText: '了解更多'
   }
 ])
+
+// 轮播背景图加载状态：图未加载完成前隐藏该帧文字，避免文字先出现在空白背景上
+const loadedImages = ref<Record<number, boolean>>({})
+const onBgLoad = (index: number) => {
+  loadedImages.value[index] = true
+}
 
 // 动态添加preload，让浏览器尽早开始下载首屏轮播图
 const preloadLink = document.createElement('link')
@@ -170,6 +176,8 @@ onUnmounted(() => { stopAutoplay() })
 }
 
 .slide.active {
+  /* 图片加载前保持占位高度（1920 设计稿轮播图比例），避免 Hero 区域塌陷导致下方模块顶到导航栏 */
+  min-height: 40.73vw;
   position: relative;
   height: auto;
   opacity: 1;

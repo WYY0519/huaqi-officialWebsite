@@ -112,6 +112,10 @@ const router = createRouter({
       // top：预留固定导航栏的高度（约 113px @1920），避免锚点模块顶部被导航遮挡
       return { el: to.hash, top: 113, behavior: 'smooth' };
     }
+    if (to.path === '/') {
+      // 切回首页：同步立即归零滚动，避免渲染帧残留旧滚动位置（页面先显示中间模块再跳顶）
+      window.scrollTo(0, 0);
+    }
     return { top: 0 };
   },
 });

@@ -205,7 +205,9 @@ const handleNavClick = (id: string, event?: Event) => {
   isMobileMenuOpen.value = false
   document.body.style.overflow = ''
   if (id === 'home') {
-    router.push('/')
+    // 整页刷新回首页：避免 SPA 切换时滚动位置残留造成的"从下滑上来"观感
+    event?.preventDefault()
+    window.location.href = '/'
   } else if (id === 'contact') {
     router.push('/contact')
   }
