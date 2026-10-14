@@ -114,9 +114,11 @@ const router = createRouter({
     }
     if (to.path === '/') {
       // 切回首页：同步立即归零滚动，避免渲染帧残留旧滚动位置（页面先显示中间模块再跳顶）
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
-    return { top: 0 };
+    // behavior:'instant' 显式即时滚动，覆盖全局 scroll-behavior:smooth，
+    // 避免回首页时整页从下往上平滑滑入
+    return { top: 0, behavior: 'instant' };
   },
 });
 

@@ -358,7 +358,7 @@ const heroTypeSuffix = computed(() => {
 .advantage-card {
     background: #fff;
     border-radius: 0.625vw;
-    padding: 1.6vw 1vw 3.75vw;
+    padding: 1.6vw 1vw 1.5vw;
     text-align: center;
     transition: all 0.3s ease;
     border: 0.052vw solid #d9d9d9;

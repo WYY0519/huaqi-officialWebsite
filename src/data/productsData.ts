@@ -1093,6 +1093,49 @@ export const productsData: Record<string, ProductData> = {
       { title: '车辆交付', image: new URL('../assets/home/产品中心/无人机消防车/交付3.png', import.meta.url).href },
     ],
   },
+  'F100-QX-D': {
+    name: 'F100-QX-D',
+    heroTitle: 'F100-QX-D 光伏清洗无人机',
+    heroType: '光伏清洗无人机',
+    introTitle: 'F100-QX-D',
+    introText: '专为光伏电站清洗打造的六轴作业无人机，采用高强度碳纤维+航空铝机身，43寸折叠桨设计。搭载50L大容量水箱，FOC高效动力系统，RTK厘米级精准定位，支持断点续飞。7级强风稳定作业，5000m高海拔适配，失控返航、低电量降落等多重安全保护，高效完成各类光伏电站清洗作业。',
+    heroImage: new URL('../assets/home/旗舰矩阵/F100-QX-D/首页 .jpg', import.meta.url).href,
+    introImage: new URL('../assets/home/旗舰矩阵/F100-QX-D/A.jpg', import.meta.url).href,
+    stats: [
+      { value: '50', unit: 'L', label: '最大有效载重' },
+      { value: '42', unit: 'kg', label: '空机质量' },
+      { value: '7', unit: '级', label: '抗风能力' },
+      { value: '5000', unit: 'm', label: '最大飞行海拔' },
+    ],
+    advantages: [
+      { icon: icons.icon1, title: '大容量高效清洗', desc: '50L大容量水箱，搭载专业清洗机，单架次覆盖更多光伏板，减少起降频次，大幅提升电站清洗作业效率。' },
+      { icon: new URL('../assets/home/旗舰矩阵/F100-QX-D/图标2.png', import.meta.url).href, title: 'FOC高效动力', desc: 'FOC高效动力系统，动力充沛，作业稳定。单组电池可完成2-3架次清洗作业，持续作业能力强。' },
+      { icon: icons.icon3, title: '折叠收纳设计', desc: '43寸可折叠桨结构，折叠尺寸1390×1230×1200mm，快速折叠展开，适配狭窄环境作业与转场携带，节省储运空间，作业转移高效。' },
+      { icon: icons.icon4, title: '多重安全保护', desc: '失控返航、低电量自动返航降落、断点续飞多重保护，7级强风稳定作业，复杂环境下可靠作业，守护行业安全。' },
+    ],
+    specsData: [
+      { label1: '产品材质', value1: '高强度碳纤维+航空铝', label2: '最大飞行速度', value2: '20m/s' },
+      { label1: '旋翼布局', value1: '6轴6桨', label2: '最大飞行海拔', value2: '5000m' },
+      { label1: '螺旋桨规格', value1: '43寸折叠桨', label2: '可抗风等级', value2: '7级' },
+      { label1: '整机轴距', value1: '2300mm', label2: '工作温度', value2: '-20℃ ~ 60℃' },
+      { label1: '展开尺寸', value1: '2150×1470×1200mm', label2: '定位系统', value2: 'GPS/北斗/伽利略/格洛纳斯' },
+      { label1: '折叠尺寸', value1: '1390×1230×1200mm', label2: '定位精度', value2: '±0.05m（RTK）' },
+      { label1: '空机质量', value1: '42kg', label2: '动力系统', value2: 'FOC高效动力系统' },
+      { label1: '标准载重', value1: '50L水箱', label2: '安全保护', value2: '失控返航、低电量返航降落、断点续飞' },
+      { label1: '单组电池可适合作业', value1: '2-3架次', label2: '', value2: '' },
+    ],
+    scenarios: [
+      { title: '集中式光伏电站', image: new URL('../assets/home/旗舰矩阵/F100-QX-D/场景应用1.png', import.meta.url).href },
+      { title: '山地光伏电站', image: new URL('../assets/home/旗舰矩阵/F100-QX-D/场景应用2.png', import.meta.url).href },
+      { title: '水面光伏电站', image: new URL('../assets/home/旗舰矩阵/F100-QX-D/场景应用3.png', import.meta.url).href },
+      { title: '分布式光伏电站', image: new URL('../assets/home/旗舰矩阵/F100-QX-D/场景应用4.png', import.meta.url).href },
+    ],
+    cases: [
+      { title: '水面光伏电站清洗', image: new URL('../assets/home/旗舰矩阵/F100-QX-D/交付1.png', import.meta.url).href },
+      { title: '光伏电站实地作业', image: new URL('../assets/home/旗舰矩阵/F100-QX-D/交付2.png', import.meta.url).href },
+      { title: '农光互补电站巡检', image: new URL('../assets/home/旗舰矩阵/F100-QX-D/交付3.png', import.meta.url).href },
+    ],
+  },
 }
 
 // 获取产品数据

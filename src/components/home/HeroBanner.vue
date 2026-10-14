@@ -30,28 +30,28 @@ import { ref, computed, onMounted, onUnmounted, inject, watch } from 'vue'
 
 const slides = ref([
   {
-    bgImage: new URL('../../assets/home/轮播图/消防车.png', import.meta.url).href,
+    bgImage: new URL('../../assets/home/轮播图/消防车.jpg', import.meta.url).href,
     title: '无人机<span class="highlight">消防车</span>解决方案',
     subtitle: '空地协同，守护安全',
     link: '/products/fire-truck',
     btnText: '了解更多'
   },
   {
-    bgImage: new URL('../../assets/home/轮播图/固定翼.png', import.meta.url).href,
+    bgImage: new URL('../../assets/home/轮播图/固定翼.jpg', import.meta.url).href,
     title: '固定翼机场<span class="highlight">WRCQ-32A</span>',
     subtitle: '智能机场，智慧飞行',
     link: '/products/WRCQ-32A',
     btnText: '了解更多'
   },
   {
-    bgImage: new URL('../../assets/home/轮播图/系留.png', import.meta.url).href,
+    bgImage: new URL('../../assets/home/轮播图/系留.jpg', import.meta.url).href,
     title: '一体式<span class="highlight">系留</span>无人机',
     subtitle: '全域布防，快速响应',
     link: '/products/10kg-film',
     btnText: '了解更多'
   },
   {
-    bgImage: new URL('../../assets/home/轮播图/H400.png', import.meta.url).href,
+    bgImage: new URL('../../assets/home/轮播图/H400.jpg', import.meta.url).href,
     title: '行业级无人机<span class="highlight">H400</span>',
     subtitle: '重载无界，驰援未来',
     link: '/products/H400',
@@ -144,6 +144,15 @@ onMounted(() => {
     carouselControl.carouselIndex.value = currentSlide.value
     carouselControl.totalSlides.value = totalSlides.value
   }
+  // 首屏稳定后预加载其余轮播帧，切帧时无需等待
+  setTimeout(() => {
+    slides.value.forEach((s, i) => {
+      if (i !== currentSlide.value) {
+        const img = new Image()
+        img.src = s.bgImage
+      }
+    })
+  }, 2500)
 })
 onUnmounted(() => { stopAutoplay() })
 </script>

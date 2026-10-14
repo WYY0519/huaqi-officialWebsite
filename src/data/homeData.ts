@@ -136,7 +136,7 @@ export const products = ref([
     name: 'F100-QX-D',
     spec: '光伏清洗无人机',
     image: new URL('../assets/home/旗舰矩阵/6.png', import.meta.url).href,
-    link: '/homeCoreIndustries?module=high-cleaning&scroll=hardware-section',
+    link: '/products/F100-QX-D',
   },
   {
     id: 7,
