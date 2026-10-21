@@ -1,0 +1,272 @@
+/* ============================================================
+   产品详情页 手机端适配 (≤768px)
+   与首页移动端体系一致（城市消防页 vw 方案）
+   全部规则以 html .product-page 前缀限定作用域：
+   1. 只作用于产品详情页（/products/*），不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖组件内桌面样式
+   ============================================================ */
+@media (max-width: 768px) {
+    /* 容器边距与首页统一 */
+    html .product-page .container {
+        padding: 0 7vw;
+    }
+
+    /* 各模块放宽桌面端的限宽 */
+    html .product-page .intro-section .container,
+    html .product-page .specs-section .container,
+    html .product-page .scenarios-section .container,
+    html .product-page .cases-section .container {
+        max-width: none;
+    }
+
+    /* Hero 区域 */
+    html .product-page .hero-title {
+        font-size: 5.3vw;
+    }
+
+    /* 标题位置上移，避免压到图片底边 */
+    html .product-page .hero-content {
+        top: 22vw;
+    }
+
+    /* 参数统计栏：2 列网格 */
+    html .product-page .hero-stats-wrapper {
+        padding: 0 4vw;
+    }
+
+    html .product-page .hero-stats {
+        flex-wrap: wrap;
+        gap: 2vw 0;
+        padding: 2vw 0;
+    }
+
+    html .product-page .stat-item {
+        width: 50%;
+        border-right: none;
+        padding: 2vw 0;
+    }
+
+    html .product-page .stat-item:nth-child(odd) {
+        border-right: 2px solid #f3f6f9;
+    }
+
+    html .product-page .stat-value {
+        font-size: 6vw;
+    }
+
+    html .product-page .stat-value span {
+        font-size: 3vw !important;
+    }
+
+    html .product-page .stat-label {
+        font-size: 2.8vw;
+    }
+
+    /* 区块标题（城市消防页体系：5.3vw / 23vw / 3vw） */
+    html .product-page .section-title {
+        font-size: 5.3vw;
+        margin-bottom: 1vw;
+    }
+
+    html .product-page .section-divider {
+        width: 23vw;
+        height: 0.3vw;
+        margin-bottom: 2vw;
+    }
+
+    html .product-page .section-subtitle {
+        font-size: 3vw;
+        margin-bottom: 5vw;
+    }
+
+    /* 产品介绍 */
+    html .product-page .intro-section {
+        padding: 6vw 0;
+    }
+
+    html .product-page .intro-text {
+        font-size: 3.2vw;
+        margin-bottom: 4vw;
+    }
+
+    html .product-page .intro-image {
+        max-width: 100%;
+        border-radius: 2vw;
+    }
+
+    /* 核心优势 */
+    html .product-page .advantages-section {
+        padding: 6vw 0;
+    }
+
+    html .product-page .advantages-grid,
+    html .product-page .scenarios-grid {
+        grid-template-columns: 1fr;
+        gap: 3vw;
+        padding: 0;
+    }
+
+    html .product-page .advantage-card {
+        padding: 4vw 3vw;
+        border-radius: 2vw;
+    }
+
+    html .product-page .advantage-icon {
+        width: 12vw;
+        height: 12vw;
+        margin: 0 auto 2vw;
+        border-radius: 3vw;
+    }
+
+    html .product-page .advantage-icon img {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    html .product-page .advantage-title {
+        font-size: 4vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .product-page .advantage-desc {
+        font-size: 3vw;
+        line-height: 1.6;
+    }
+
+    /* 技术参数：保持 4 列（一行两组参数），长值允许断行 */
+    html .product-page .specs-section {
+        padding: 6vw 0;
+    }
+
+    html .product-page .specs-table-wrapper {
+        max-width: none;
+        min-height: auto;
+        border-radius: 2vw;
+    }
+
+    html .product-page .specs-table tr {
+        height: auto;
+        border-bottom: 0.3vw solid #dcdbdc;
+    }
+
+    html .product-page .specs-table td {
+        padding: 2.5vw 3vw;
+        font-size: 3vw;
+        overflow-wrap: anywhere;
+        word-break: break-all;
+        line-height: 1.5;
+    }
+
+    html .product-page .spec-label,
+    html .product-page .spec-value {
+        font-size: 3vw !important;
+    }
+
+    /* 空参数单元格：用隐形占位保持一行高度，避免空行塌陷成窄条 */
+    html .product-page .specs-table td:empty::before {
+        content: '-';
+        visibility: hidden;
+        display: block;
+    }
+
+    /* 消防车页参数表列宽校准规则在手机端简化内距 */
+    html .product-page.fire-truck-page .specs-table td {
+        padding: 2.5vw 3vw;
+    }
+
+    /* 两款飞行平台 */
+    html .product-page .platforms-section {
+        padding: 6vw 0;
+    }
+
+    html .product-page .platforms-grid {
+        grid-template-columns: 1fr;
+        gap: 3vw;
+    }
+
+    html .product-page .platform-card {
+        border-radius: 2vw;
+    }
+
+    html .product-page .platform-photo {
+        height: auto;
+        padding: 4vw 0 2vw;
+    }
+
+    html .product-page .platform-photo img {
+        width: 50%;
+        margin-top: 0;
+    }
+
+    html .product-page .platform-head {
+        height: auto;
+        padding: 0 4vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .product-page .platform-name {
+        font-size: 4.5vw;
+    }
+
+    html .product-page .platform-badge {
+        font-size: 3vw;
+        height: 5.5vw;
+        line-height: 5.5vw;
+        padding: 0 2vw;
+    }
+
+    html .product-page .platform-rows {
+        padding: 0 4vw;
+    }
+
+    html .product-page .platform-row {
+        height: auto;
+        padding: 2vw 0;
+        border-bottom: 0.15vw dashed #c9c9c9;
+    }
+
+    html .product-page .platform-row .row-label,
+    html .product-page .platform-row .row-value {
+        font-size: 3vw;
+    }
+
+    html .product-page .platform-desc {
+        font-size: 3vw;
+        line-height: 1.6;
+        margin: 1.5vw 4vw 3vw;
+    }
+
+    /* 场景应用 */
+    html .product-page .scenarios-section {
+        padding: 6vw 0;
+    }
+
+    html .product-page .scenario-card {
+        border-radius: 2vw;
+    }
+
+    html .product-page .scenario-overlay {
+        padding: 3vw 4vw 6vw;
+    }
+
+    html .product-page .scenario-title {
+        font-size: 4vw;
+    }
+
+    /* 交付案例 */
+    html .product-page .cases-section {
+        padding: 6vw 0;
+    }
+
+    html .product-page .cases-grid {
+        grid-template-columns: 1fr;
+        gap: 3vw;
+    }
+
+    html .product-page .case-card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 499 / 456;
+        border-radius: 2vw;
+    }
+}

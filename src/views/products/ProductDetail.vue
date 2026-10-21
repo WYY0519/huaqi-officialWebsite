@@ -150,6 +150,8 @@ import { getProduct } from '../../data/productsData'
 import '@fontsource/noto-sans-sc/400.css'
 import '@fontsource/noto-sans-sc/700.css'
 import '@fontsource/noto-sans-sc/900.css'
+// 产品详情页手机端样式：独立文件，全部以 html .product-page 前缀限定作用域
+import './productDetail.mobile.css'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
@@ -741,69 +743,4 @@ const heroTypeSuffix = computed(() => {
     }
 }
 
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 4.167vw;
-    }
-    
-    .hero-stats {
-        flex-wrap: wrap;
-        gap: 3.906vw;
-        padding: 2.604vw;
-    }
-    
-    .stat-item {
-        width: calc(50% - 1.953vw);
-    }
-    
-    .section-title {
-        font-size: 5vw;
-    }
-    
-    .section-divider {
-        width: 23vw;
-        height: 0.3vw;
-    }
-    
-    .section-subtitle {
-        font-size: 3vw;
-    }
-    
-    .advantages-grid,
-    .scenarios-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .platforms-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .platform-name {
-        font-size: 3vw;
-    }
-
-    .platform-badge {
-        font-size: 2.4vw;
-    }
-
-    .platform-row .row-label,
-    .platform-row .row-value {
-        font-size: 2.6vw;
-    }
-
-    .platform-desc {
-        font-size: 2.4vw;
-    }
-    
-    .cases-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .specs-table td {
-        padding: 1.563vw 1.953vw;
-        font-size: 1.693vw;
-        
-       
-    }
-}
 </style>

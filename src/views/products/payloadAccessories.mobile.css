@@ -1,0 +1,102 @@
+/* ============================================================
+   载荷配件页 手机端适配 (≤768px)
+   与首页/产品详情页同一 vw 体系（城市消防页方案）
+   全部规则以 html .payload-page 前缀限定作用域：
+   1. 只作用于载荷配件页（/payload），不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖组件内桌面样式
+   ============================================================ */
+@media (max-width: 768px) {
+    /* 左右边距与全站统一：7vw */
+    html .payload-page .payload-section {
+        padding: 6vw 7vw;
+    }
+
+    /* Hero 与产品详情页一致 */
+    html .payload-page .hero-title {
+        font-size: 5.3vw;
+    }
+
+    html .payload-page .hero-content {
+        top: 22vw;
+    }
+
+    /* 区块标题（城市消防页体系） */
+    html .payload-page .section-title {
+        font-size: 5.3vw;
+        margin-bottom: 1vw;
+    }
+
+    html .payload-page .section-divider {
+        width: 23vw;
+        height: 0.3vw;
+        margin-bottom: 2vw;
+    }
+
+    html .payload-page .section-subtitle {
+        font-size: 3vw;
+        margin-bottom: 5vw;
+    }
+
+    html .payload-page .payload-top-subtitle {
+        margin-top: 1.5vw;
+        margin-bottom: 6vw;
+    }
+
+    html .payload-page .payload-group + .payload-group {
+        margin-top: 8vw;
+    }
+
+    /* 产品卡片：宽度 100%（边距由容器控制），上下堆叠，卡片间距加大，内文字左右留足边距 */
+    html .payload-page .payload-card {
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 7vw;
+        padding: 4vw 4.5vw;
+        border-radius: 2vw;
+    }
+
+    html .payload-page .payload-photo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        margin: 0 0 3vw;
+        border-radius: 1.5vw;
+    }
+
+    html .payload-page .payload-info {
+        margin-left: 0;
+        padding: 0;
+    }
+
+    html .payload-page .payload-head {
+        margin-bottom: 2vw;
+    }
+
+    html .payload-page .payload-name {
+        font-size: 4.5vw;
+    }
+
+    html .payload-page .payload-suffix {
+        font-size: 3vw;
+    }
+
+    html .payload-page .platform-badge {
+        font-size: 3vw;
+        height: 5.5vw;
+        line-height: 5.5vw;
+        padding: 0 2vw;
+        border-radius: 1vw;
+    }
+
+    html .payload-page .payload-row {
+        height: auto;
+        min-height: 8.6vw;
+        padding: 2vw 0;
+        border-bottom: 0.15vw dashed #dadada;
+    }
+
+    html .payload-page .row-label,
+    html .payload-page .row-value {
+        font-size: 3.4vw;
+    }
+}

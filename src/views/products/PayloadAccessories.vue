@@ -48,6 +48,8 @@
 import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { payloadPage } from '../../data/payloadData'
+// 载荷配件页手机端样式：独立文件，全部以 html .payload-page 前缀限定作用域
+import './payloadAccessories.mobile.css'
 
 const route = useRoute()
 
@@ -310,52 +312,5 @@ watch(() => route.query.type, () => scrollToProduct(true))
     /* 长参数允许换行，行内居中 */
     line-height: 1.5;
     padding-left: 2vw;
-}
-
-/* ===== 移动端 ===== */
-@media (max-width: 768px) {
-    .payload-card {
-        flex-direction: column;
-        width: 92vw;
-        padding: 3vw;
-    }
-
-    .payload-photo {
-        width: 100%;
-        height: 52vw;
-        margin: 0 0 3vw;
-    }
-
-    .payload-info {
-        margin-left: 0;
-        padding: 0;
-    }
-
-    .payload-name {
-        font-size: 4.2vw;
-    }
-
-    .payload-suffix {
-        font-size: 2.8vw;
-    }
-
-    .platform-badge {
-        font-size: 2.9vw;
-        height: 6.4vw;
-        line-height: 6.4vw;
-        padding: 0 2vw;
-        border-radius: 0.8vw;
-    }
-
-    .payload-row {
-        height: auto;
-        min-height: 8.6vw;
-        padding: 1.2vw 0;
-    }
-
-    .row-label,
-    .row-value {
-        font-size: 3.4vw;
-    }
 }
 </style>
