@@ -621,18 +621,19 @@ onUnmounted(() => {
     justify-content: space-between;
   }
 
+  /* logo 随屏幕宽度等比缩放，比例与页脚 logo 保持一致 */
   .logo-icon {
-    width: 32px;
-    height: 32px;
+    width: max(28px, 7.7vw);
+    height: max(28px, 7.7vw);
   }
 
   .logo-name {
-    font-size: 18px;
-    letter-spacing: 1px;
+    font-size: max(15px, 3.9vw);
+    letter-spacing: max(1px, 0.2vw);
   }
 
   .logo-sub {
-    font-size: 11px;
+    font-size: max(9px, 2.2vw);
   }
 }
 

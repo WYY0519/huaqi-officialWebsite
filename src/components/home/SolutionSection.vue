@@ -483,4 +483,82 @@ onUnmounted(() => {
   opacity: 0;
   visibility: hidden;
 }
+
+/* ===== 手机端适配 (≤768px)：左右布局改上下堆叠，字号/间距用 vw 等比（城市消防页体系），颜色/字体/粗细保持原样 ===== */
+@media (max-width: 768px) {
+  /* 左右边距沿用全局 .container 的 7vw，与其他模块一致 */
+  .solutions-section {
+    padding: 6vw 0;
+  }
+
+  .sol-row {
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 6vw;
+    border-radius: 2vw;
+  }
+
+  /* 手机端取消左右交替，统一图片在上、文字在下 */
+  .sol-row.reverse {
+    direction: ltr;
+  }
+
+  .sol-media {
+    flex: none;
+    width: 100%;
+  }
+
+  /* 容器高度改为由图片自然撑开 */
+  .sol-media .sol-image-container {
+    height: auto;
+  }
+
+  .sol-image.active {
+    height: auto;
+  }
+
+  .sol-play-btn {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .sol-play-btn img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sol-text {
+    padding: 4vw;
+  }
+
+  .sol-scene-title {
+    font-size: 5vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .sol-scene-sub {
+    font-size: 3vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .sol-scene-desc {
+    font-size: 2.8vw;
+    line-height: 1.7;
+  }
+
+  .sol-tags {
+    gap: 2vw;
+    padding: 3vw 0 2.5vw;
+  }
+
+  .sol-tag {
+    font-size: 2.6vw;
+    padding: 0.8vw 3vw;
+    border-radius: 999px;
+  }
+
+  .sol-more {
+    font-size: 3.2vw;
+  }
+}
 </style>

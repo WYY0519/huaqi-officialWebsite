@@ -327,4 +327,77 @@ onUnmounted(() => {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ===== 手机端适配 (≤768px)：大卡片改上下堆叠、小卡片单列，字号/间距用 vw 等比（城市消防页体系），颜色/字体/粗细保持原样 ===== */
+@media (max-width: 768px) {
+  .news-section {
+    padding: 6vw 0;
+  }
+
+  .news-layout {
+    gap: 4vw;
+  }
+
+  .news-main-card {
+    flex-direction: column;
+    border-radius: 2vw;
+  }
+
+  .news-main-image {
+    flex: none;
+  }
+
+  .news-main-content {
+    padding: 4vw;
+  }
+
+  .news-hot-tag {
+    width: 13vw;
+    height: 5.5vw;
+    font-size: 2.8vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .news-main-title {
+    font-size: 4.8vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .news-main-excerpt {
+    font-size: 3.2vw;
+    margin-bottom: 3.5vw;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .news-read-more {
+    font-size: 3.4vw;
+  }
+
+  .news-small-grid {
+    grid-template-columns: 1fr;
+    gap: 4vw;
+  }
+
+  .news-small-content {
+    padding-top: 2.5vw;
+  }
+
+  .news-meta {
+    font-size: 2.8vw;
+    gap: 2.5vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .news-category,
+  .news-date {
+    font-size: 2.8vw;
+  }
+
+  .news-title {
+    font-size: 3.6vw;
+  }
+}
 </style>

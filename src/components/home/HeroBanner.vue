@@ -1,5 +1,6 @@
 <template>
-  <section id="home" class="hero-section" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
+  <section id="home" class="hero-section" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay"
+    @touchstart="onTouchStart" @touchend="onTouchEnd">
     <div class="slider-wrapper">
       <div v-for="(slide, index) in slides" :key="index" class="slide" :class="{ active: currentSlide === index }">
         <!-- 第一张图片直接加载，其他轮播图懒加载（4 张合计约 3MB，全部立即加载会抢占首屏带宽导致卡顿） -->
@@ -114,6 +115,27 @@ const goToSlide = (index: number) => {
     carouselControl.carouselIndex.value = index
   }
   resetAutoplay()
+}
+
+// 触摸滑动切换：记录起点，松手时水平位移超过阈值且大于垂直位移才切换（避免与页面上下滚动冲突）
+let touchStartX = 0
+let touchStartY = 0
+const onTouchStart = (e: TouchEvent) => {
+  touchStartX = e.touches[0].clientX
+  touchStartY = e.touches[0].clientY
+  pauseAutoplay()
+}
+const onTouchEnd = (e: TouchEvent) => {
+  const dx = e.changedTouches[0].clientX - touchStartX
+  const dy = e.changedTouches[0].clientY - touchStartY
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    if (dx < 0) {
+      nextSlide()
+    } else {
+      prevSlide()
+    }
+  }
+  resumeAutoplay()
 }
 
 const startAutoplay = () => {
@@ -416,5 +438,94 @@ onUnmounted(() => { stopAutoplay() })
   background: #00D4ff;
   /* 1920 时 = 48px */
   width: 2.5vw;
+}
+
+/* ===== 手机端适配 (≤768px)：布局与字号调整，颜色/字体/粗细保持原样 ===== */
+@media (max-width: 768px) {
+  /* 画面高度 = 图片原始比例高度（宽 100% 完整展示，不裁切、不加高） */
+  .slide.active {
+    min-height: auto;
+  }
+
+  .slide-bg {
+    position: relative;
+    inset: auto;
+  }
+
+  /* 图片按原始比例完整展示：宽度 100%，高度自然撑开（约 40.7vw） */
+  .slide-bg-img {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .slide.active .slide-bg-img {
+    transform: none;
+  }
+
+  /* 底部渐变衬底加强，文字区与画面主体分离 */
+  .slide-overlay {
+    display: block;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5) 78%, rgba(0, 0, 0, 0.68) 100%);
+  }
+
+  /* 文字块整体上移，与底部圆点拉开距离（用 vw 等比，各屏宽下比例一致） */
+  .slide-content {
+    padding: 0 5% 13vw;
+  }
+
+  /* 文字随屏幕宽度等比缩放，max() 保证小屏（<390px）不低于可读字号 */
+  .slide-title {
+    font-size: max(14px, 3.59vw);
+    margin-bottom: max(2px, 0.77vw);
+  }
+
+  /* 保留 PC 端青色渐变分割线，与副标题留足间距 */
+  .slide-line {
+    width: max(36px, 9.23vw);
+    height: 2px;
+    margin-bottom: max(5px, 1.79vw);
+  }
+
+  .slide-subtitle {
+    font-size: max(10px, 2.56vw);
+    margin-bottom: max(5px, 2.05vw);
+  }
+
+  /* 图片高度有限，左右箭头隐藏，用底部圆点切换 */
+  .slide-logos {
+    display: none;
+  }
+
+  .hero-btn {
+    font-size: max(9px, 1.79vw);
+    line-height: 1;
+    padding: max(4px, 0.77vw) max(9px, 2.05vw);
+    border-width: 1px;
+    border-radius: max(9px, 2.31vw);
+    margin-top: 0;
+  }
+
+  .swiper-pagination {
+    bottom: 6px;
+    gap: 6px;
+  }
+
+  .pagination-dot {
+    width: 18px;
+    height: 3px;
+  }
+
+  .pagination-dot.active {
+    width: 28px;
+  }
+}
+
+/* 特小屏 (<360px)：画面高度放不下文字，直接隐藏轮播文字，只保留图片和圆点 */
+@media (max-width: 359.9px) {
+  .slide-content {
+    display: none;
+  }
 }
 </style>

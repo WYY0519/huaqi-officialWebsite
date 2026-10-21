@@ -265,4 +265,74 @@ onUnmounted(() => {
   border: 0.05208vw solid #b1eefa;
   white-space: nowrap;
 }
+
+/* ===== 手机端适配 (≤768px)：栅格改两列/单列，字号/间距用 vw 等比（城市消防页体系），颜色/字体/粗细保持原样 ===== */
+@media (max-width: 768px) {
+  .stats-section {
+    padding: 6vw 0 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5vw;
+    padding: 5vw 4vw;
+    border-radius: 2vw;
+    margin-bottom: 3vw;
+  }
+
+  /* 第 5 个统计项单独占满一行，保持居中 */
+  .stat-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .stat-value {
+    font-size: 8vw;
+  }
+
+  .stat-unit {
+    font-size: 3.5vw;
+  }
+
+  .stat-label {
+    font-size: 3vw;
+  }
+
+  .tech-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 3vw;
+  }
+
+  .tech-card {
+    min-height: auto;
+    border-radius: 2vw;
+  }
+
+  .tech-icon {
+    width: 16vw;
+    height: 16vw;
+    min-width: 16vw;
+    margin: 4vw 3vw 0 4vw;
+    border-radius: 2vw;
+  }
+
+  .tech-card-body {
+    margin: 4vw 3vw 0 0;
+    padding-right: 2vw;
+  }
+
+  .tech-card-title {
+    font-size: 4.5vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .tech-card-desc {
+    font-size: 3vw;
+  }
+
+  .tech-card-tag {
+    font-size: 2.8vw;
+    margin: auto 3vw 3vw 0;
+    padding: 1vw 2.5vw;
+  }
+}
 </style>

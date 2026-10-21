@@ -334,7 +334,7 @@ background: linear-gradient(90deg, #0000 0%, #00d4ff 10% 90%, #0000 100%);
 /* 手机 (≤768px) */
 @media (max-width: 768px) {
   .container {
-    padding: 0 26px;
+    padding: 0 7vw;
   }
 
   .solutions-cards {
@@ -395,5 +395,44 @@ background: linear-gradient(90deg, #0000 0%, #00d4ff 10% 90%, #0000 100%);
   border-top-color: #00D4ff;
   border-radius: 50%;
   animation: app-spin 0.8s linear infinite;
+}
+/* 首页手机端 (≤768px)：仅作用于 .home 容器内的通用区块标题，其他页面不受影响
+   套用城市消防页的 vw 体系：标题 5.3vw / 分割线 23vw / 说明 3vw */
+@media (max-width: 768px) {
+  .home .section-title {
+    font-size: 5.3vw;
+    margin-bottom: 1vw;
+  }
+
+  .home .section-line {
+    width: 23vw;
+    height: 0.3vw;
+    margin-bottom: 2vw;
+  }
+
+  .home .section-subtitle {
+    font-size: 3vw;
+    margin-top: 1.5vw;
+    margin-bottom: 5vw;
+  }
+}/* 首页手机端 (≤768px)：仅作用于 .home 容器内的通用区块标题，其他页面不受影响
+   套用城市消防页的 vw 体系：标题 5.3vw / 分割线 23vw / 说明 3vw */
+@media (max-width: 768px) {
+  .home .section-title {
+    font-size: 5.3vw;
+    margin-bottom: 1vw;
+  }
+
+  .home .section-line {
+    width: 23vw;
+    height: 0.3vw;
+    margin-bottom: 2vw;
+  }
+
+  .home .section-subtitle {
+    font-size: 3vw;
+    margin-top: 1.5vw;
+    margin-bottom: 5vw;
+  }
 }
 </style>

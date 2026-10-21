@@ -349,4 +349,111 @@ const submitForm = () => {
   /* 1920 时 = 10px */
   margin-top: 0.52083vw;
 }
+
+/* ===== 手机端适配 (≤768px)：左右分栏改上下堆叠，字号/间距用 vw 等比（城市消防页体系），颜色/字体/粗细保持原样 ===== */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 6vw 0;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 6vw;
+  }
+
+  .contact-features {
+    gap: 3vw;
+    margin-bottom: 5vw;
+    flex-wrap: wrap;
+  }
+
+  .contact-feature-item {
+    font-size: 3vw;
+    gap: 1vw;
+  }
+
+  .contact-feature-item img {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .contact-info-title {
+    font-size: 5vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .contact-info-desc {
+    font-size: 3.2vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .contact-trusted-label {
+    font-size: 3vw;
+    margin-bottom: 3.5vw;
+  }
+
+  .contact-trusted-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5vw;
+  }
+
+  .trusted-item {
+    height: 9vw;
+    font-size: 3vw;
+    border-radius: 1.5vw;
+  }
+
+  .contact-form-wrapper {
+    padding: 6vw 4vw;
+    border-radius: 2vw;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 3vw;
+    margin-bottom: 3vw;
+  }
+
+  .form-field-icon {
+    width: 5vw;
+    height: 4.4vw;
+    left: 2.5vw;
+  }
+
+  .form-input {
+    height: 11vw;
+    font-size: 3.5vw;
+    border-radius: 2vw;
+    padding: 2vw 2vw 2vw 8vw;
+  }
+
+  .form-field-textarea {
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+  }
+
+  .form-field-textarea .form-textarea {
+    min-height: 24vw;
+  }
+
+  .form-char-count {
+    font-size: 2.6vw;
+  }
+
+  .submit-btn {
+    height: 11.5vw;
+    font-size: 4vw;
+    border-radius: 2vw;
+    padding: 2vw;
+  }
+
+  .submit-arrow {
+    font-size: 3.8vw;
+  }
+
+  .form-privacy {
+    font-size: 2.8vw;
+    margin-top: 2vw;
+  }
+}
 </style>

@@ -418,4 +418,74 @@ onUnmounted(() => {
   height: 100%;
   object-fit: contain;
 }
+
+/* ===== 手机端适配 (≤768px)：一屏约 1.2 张卡片，字号/间距用 vw 等比（城市消防页体系），颜色/字体/粗细保持原样 ===== */
+@media (max-width: 768px) {
+  .products-section {
+    --pl: 5vw;
+    --card-gap: 2.5vw;
+    --card-width: calc((100vw - var(--pl) - var(--card-gap)) / 1.35);
+    padding: 6vw 0 5vw var(--pl);
+  }
+
+  .carousel-wrapper {
+    margin-top: 4vw;
+  }
+
+  .product-card {
+    border-radius: 2vw;
+  }
+
+  .product-overlay {
+    padding: 4vw 3vw;
+  }
+
+  .product-name {
+    font-size: 4.5vw;
+    margin-bottom: 1vw;
+  }
+
+  .product-spec {
+    font-size: 2.8vw;
+    margin-bottom: 2.5vw;
+  }
+
+  .product-buttons {
+    gap: 2vw;
+  }
+
+  .product-btn {
+    font-size: 2.8vw;
+    padding: 1.2vw 4vw;
+    border-radius: 999px;
+  }
+
+  .product-btn-primary,
+  .product-btn-secondary {
+    font-size: 2.8vw;
+  }
+
+  .carousel-controls {
+    gap: 5vw;
+    padding: 4vw 0 0;
+  }
+
+  .product-pagination {
+    gap: 2vw;
+  }
+
+  .product-pagination-dot {
+    width: 4vw;
+    height: 0.6vw;
+  }
+
+  .product-pagination-dot.active {
+    width: 6vw;
+  }
+
+  .product-arrow {
+    width: 8vw;
+    height: 8vw;
+  }
+}
 </style>

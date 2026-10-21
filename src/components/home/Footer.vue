@@ -350,4 +350,121 @@ const qrcodeIcon = new URL('../../assets/home/图标/二维码.png', import.meta
   /* 随字号等比 */
   line-height: 1.6;
 }
+
+/* ============================================================
+   手机端适配 (≤768px)：以下为本次新增的全部样式
+   布局：品牌区 → 链接 2 列 → 二维码，全部纵向排列，字号改 px
+   颜色 / 字体 / 字重全部保持原样
+   ============================================================ */
+@media (max-width: 768px) {
+  .footer {
+    padding-bottom: 16px;
+  }
+
+  /* 三大块改纵向排列，整体居中 */
+  .footer-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 32px 20px 26px;
+    border-bottom-width: 1px;
+  }
+
+  /* 品牌区：放开桌面端宽度限制，logo 居中、社交图标居中在下 */
+  .footer-brand {
+    min-width: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .footer-logo-wrap {
+    margin-bottom: 0;
+    justify-content: center;
+  }
+
+  .footer-logo-icon {
+    width: max(28px, 7.7vw);
+    height: max(30px, 8.2vw);
+  }
+
+  .footer-brand-name {
+    font-size: max(15px, 3.9vw);
+    margin-bottom: 0;
+  }
+
+  .footer-social-icons {
+    margin-left: 0;
+    gap: max(14px, 4.62vw);
+  }
+
+  .footer-social-icon img {
+    width: max(19px, 4.8vw);
+    height: max(19px, 4.8vw);
+  }
+
+  /* 链接菜单：4 列改 2 列，整体居中对齐，链接不换行 */
+  .footer-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: max(20px, 6.15vw) max(30px, 10.26vw);
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+  }
+
+  .footer-menu-grid .footer-menu-col {
+    white-space: nowrap;
+  }
+
+  .footer-menu-title {
+    font-size: max(12px, 2.95vw);
+    margin-bottom: max(8px, 2.3vw);
+  }
+
+  .footer-menu-list li {
+    margin-bottom: max(7px, 2vw);
+  }
+
+  .footer-menu-list a {
+    font-size: max(11px, 2.56vw);
+    white-space: nowrap;
+  }
+
+  /* 二维码：放开桌面端宽度限制，居中 */
+  .footer-qrcode {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .footer-qrcode-img img {
+    width: 92px;
+    height: 92px;
+  }
+
+  .footer-qrcode-text {
+    font-size: max(10px, 2.4vw);
+  }
+
+  /* 底部信息栏：电话与地址改上下两行，居中 */
+  .footer-info-bar {
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 16px;
+    font-size: max(10px, 2.4vw);
+    border-bottom-width: 1px;
+    text-align: center;
+  }
+
+  /* 版权信息 */
+  .footer-bottom {
+    padding: 14px 16px 0;
+    font-size: max(9px, 2.1vw);
+  }
+}
 </style>

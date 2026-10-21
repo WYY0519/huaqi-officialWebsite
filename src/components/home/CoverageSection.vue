@@ -150,4 +150,44 @@ onMounted(() => {
   font-weight: 600;
   border:1px solid #bdf5f9;
 }
+
+/* ===== 手机端适配 (≤768px)：5 列改 2 列，字号/间距用 vw 等比（城市消防页体系），颜色/字体/粗细保持原样 ===== */
+@media (max-width: 768px) {
+  .coverage-section {
+    padding: 6vw 0;
+  }
+
+  .coverage-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3vw;
+  }
+
+  .coverage-item {
+    width: auto;
+    height: auto;
+    padding: 5vw 3vw;
+    border-radius: 2vw;
+  }
+
+  .coverage-icon {
+    width: 12vw;
+    height: 12vw;
+    margin-bottom: 3vw;
+    border-radius: 2vw;
+  }
+
+  .coverage-label {
+    font-size: 4vw;
+    margin-bottom: 2vw;
+  }
+
+  .coverage-desc {
+    font-size: 2.8vw;
+  }
+
+  .coverage-tag {
+    font-size: 2.6vw;
+    padding: 1vw 3vw;
+  }
+}
 </style>
