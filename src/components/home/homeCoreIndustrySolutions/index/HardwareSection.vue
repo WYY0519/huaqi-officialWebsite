@@ -145,6 +145,8 @@
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue'
+// 产品矩阵模块手机端样式：独立文件，全部以 html .hardware-section 前缀限定作用域
+import './hardwareSection.mobile.css'
 
 let observer: IntersectionObserver | null = null
 
@@ -756,95 +758,4 @@ const auxiliaryEquipment = computed(() => {
   font-weight: 500;
 }
 
-@media (max-width: 768px) {
-  .hardware-section {
-    padding: 6vw 4vw 4vw;
-  }
-
-  .container {
-    padding: 0;
-  }
-
-  .section-title-dark {
-    font-size: 5.3vw;
-  }
-
-  .section-divider {
-    width: 23vw;
-    height: 0.3vw !important;
-  }
-
-  .section-desc {
-    font-size: 3vw;
-    margin-bottom: 5vw;
-  }
-
-  .hardware-category {
-    margin-bottom: 6vw;
-  }
-
-  .category-title {
-    font-size: 4.5vw;
-    padding-left: 2vw;
-    border-left-width: 1vw;
-    margin-bottom: 3vw;
-  }
-
-  .hardware-grid,
-  .hardware-grid.grid-3 {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 2.5vw;
-  }
-
-  .hardware-card {
-    height: auto;
-    border-radius: 2vw;
-  }
-
-  .fixed-wing-hardware-card {
-    height: auto;
-    border-radius: 2vw;
-  }
-
-  .projectile-card .hardware-image,
-  .fire-card .hardware-image,
-  .auxiliary-card .hardware-image,
-  .hardware-image {
-    height: 24vw;
-    margin: 3vw 0 2vw;
-  }
-
-  .hardware-title {
-    font-size: 3.2vw;
-    margin-bottom: 1.5vw;
-    padding: 0 2vw;
-    text-align: center;
-  }
-
-  .cleaning-card .hardware-title {
-    text-align: left;
-  }
-
-
-
-  .hardware-specs {
-    font-size: 2.4vw;
-    padding: 0 2.5vw 2.5vw;
-  }
-
-  .spec-row {
-    padding: 1.2vw 0;
-    gap: 1vw;
-  }
-
-  .spec-label {
-    font-size: 2.3vw;
-    flex-shrink: 0;
-  }
-
-  .spec-value {
-    font-size: 2.3vw;
-    text-align: right;
-  }
-}
 </style>

@@ -1,0 +1,103 @@
+/* ============================================================
+   行业页·产品矩阵模块 手机端适配 (≤768px)
+   与首页/产品详情页同一 vw 体系（城市消防页方案）
+   全部规则以 html .hardware-section 前缀限定作用域：
+   1. 只作用于行业页的产品矩阵模块，不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖组件内桌面样式
+   注意：模板里部分网格/卡片带行内样式（gap/height/margin/text-align），
+   对应规则已用 !important 覆盖
+   ============================================================ */
+@media (max-width: 768px) {
+    html .hardware-section {
+        padding: 6vw 7vw 4vw;
+    }
+
+    html .hardware-section .container {
+        padding: 0;
+    }
+
+    html .hardware-section .section-title-dark {
+        font-size: 5.3vw;
+    }
+
+    html .hardware-section .section-divider {
+        width: 23vw;
+        height: 0.3vw !important;
+    }
+
+    html .hardware-section .section-desc {
+        font-size: 3vw;
+        margin-bottom: 5vw;
+    }
+
+    html .hardware-section .hardware-category {
+        margin-bottom: 6vw;
+    }
+
+    html .hardware-section .category-title {
+        font-size: 4.5vw;
+        padding-left: 2vw;
+        border-left-width: 1vw;
+        margin-bottom: 3vw;
+    }
+
+    /* 手机端一行展示一个产品卡片（!important 覆盖模板里的行内 gap 样式） */
+    html .hardware-section .hardware-grid,
+    html .hardware-section .hardware-grid.grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 4vw !important;
+    }
+
+    /* 行内样式兜底：模板里固定翼/系留分支带行内 height/margin/text-align，
+       手机端全部用 !important 接管，保证卡片高度自适应、内容不挤压 */
+    html .hardware-section .hardware-card,
+    html .hardware-section .fixed-wing-card {
+        height: auto !important;
+        border-radius: 2vw !important;
+    }
+
+    html .hardware-section .projectile-card .hardware-image,
+    html .hardware-section .fire-card .hardware-image,
+    html .hardware-section .auxiliary-card .hardware-image,
+    html .hardware-section .fixed-wing-card .hardware-image,
+    html .hardware-section .hardware-image {
+        height: 30vw !important;
+        margin: 3vw 0 2vw !important;
+    }
+
+    html .hardware-section .hardware-title {
+        font-size: 4.2vw !important;
+        margin: 3vw 4vw 1vw !important;
+        padding: 0 !important;
+        text-align: left !important;
+    }
+
+    html .hardware-section .cleaning-card .hardware-title {
+        text-align: left !important;
+    }
+
+    html .hardware-section .hardware-model {
+        font-size: 2.8vw !important;
+        margin: 0 4vw 2vw !important;
+    }
+
+    html .hardware-section .hardware-specs {
+        font-size: 3.2vw;
+        padding: 0 4vw 4vw !important;
+    }
+
+    html .hardware-section .spec-row {
+        padding: 1.8vw 0 !important;
+        gap: 2vw !important;
+    }
+
+    html .hardware-section .spec-label {
+        font-size: 3.2vw !important;
+        flex-shrink: 0;
+    }
+
+    html .hardware-section .spec-value {
+        font-size: 3.2vw !important;
+        text-align: right;
+    }
+}

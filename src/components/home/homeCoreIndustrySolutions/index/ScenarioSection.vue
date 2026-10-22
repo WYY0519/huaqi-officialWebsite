@@ -23,6 +23,8 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
+// 应用场景模块手机端样式：独立文件，全部以 html .scenario-section 前缀限定作用域
+import './scenarioSection.mobile.css'
 
 const props = defineProps<{
   module?: string
@@ -338,46 +340,4 @@ const scenarios = computed(() => {
   line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-  .scenario-section {
-    padding: 6vw 4vw;
-  }
-
-  .section-title-dark {
-    font-size: 5.3vw;
-  }
-
-  .section-divider {
-    width: 23vw;
-    height: 0.3vw !important;
-  }
-
-  .section-desc {
-    font-size: 3vw;
-    margin-bottom: 4vw;
-  }
-
-  .scenario-grid {
-    grid-template-columns: 1fr;
-    gap: 2vw;
-  }
-
-  .scenario-card {
-    width: 100%;
-    height: 60vw;
-  }
-
-  .scenario-info {
-    padding: 2vw;
-  }
-
-  .scenario-title {
-    font-size: 3.5vw;
-  }
-
-  .scenario-desc {
-    font-size: 2.8vw;
-    line-height: 1.6;
-  }
-}
 </style>

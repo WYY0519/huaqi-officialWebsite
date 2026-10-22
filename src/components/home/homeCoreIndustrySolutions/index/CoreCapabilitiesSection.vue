@@ -22,6 +22,8 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
+// 核心适配能力模块手机端样式：独立文件，全部以 html .core-capabilities-section 前缀限定作用域
+import './coreCapabilitiesSection.mobile.css'
 
 const props = defineProps<{
   module?: string
@@ -303,52 +305,4 @@ const capabilities = computed(() => {
   line-height: 1.9vw;
 }
 
-@media (max-width: 768px) {
-  .core-capabilities-section {
-    padding: 6vw 0 0;
-  }
-
-  .section-title-dark {
-    font-size: 5.3vw;
-  }
-
-  .section-divider {
-    width: 23vw;
-    height: 0.3vw !important;
-  }
-
-  .section-desc {
-    font-size: 3vw;
-    margin-bottom: 4vw;
-  }
-
-  .capability-row,
-  .capability-row.reverse {
-    grid-template-columns: 1fr;
-    direction: ltr;
-    gap: 0;
-  }
-
-  .capability-image {
-    width: 100%;
-    height: 56.25vw;
-  }
-
-  .capability-image img {
-    height: 100%;
-  }
-
-  .capability-text {
-    padding: 4vw 3vw;
-  }
-
-  .capability-title {
-    font-size: 4.5vw;
-  }
-
-  .capability-desc {
-    font-size: 2.8vw;
-    line-height: 1.8;
-  }
-}
 </style>

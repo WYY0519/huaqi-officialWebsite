@@ -1,0 +1,98 @@
+/* ============================================================
+   行业页·挂载装备模块 手机端适配 (≤768px)
+   与首页/产品详情页同一 vw 体系（城市消防页方案）
+   全部规则以 html .equipment-section 前缀限定作用域：
+   1. 只作用于行业页的挂载装备模块，不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖组件内桌面样式
+   注意：科研模式（research-mode）的独立样式写在组件源码靠后位置，
+   对应规则已用 !important 覆盖
+   ============================================================ */
+@media (max-width: 768px) {
+    html .equipment-section {
+        padding: 6vw 0 0;
+    }
+
+    html .equipment-section .section-title-dark {
+        font-size: 5.3vw;
+    }
+
+    html .equipment-section .section-divider {
+        width: 23vw;
+        height: 0.3vw !important;
+    }
+
+    html .equipment-section .section-desc {
+        font-size: 3vw;
+        margin-bottom: 4vw;
+    }
+
+    html .equipment-section .equipment-grid {
+        grid-template-columns: 1fr;
+        gap: 4vw;
+    }
+
+    html .equipment-section .equipment-card {
+        width: 100%;
+        height: auto;
+        padding: 5vw 4vw;
+        border-radius: 2vw;
+    }
+
+    /* 图片框高度自适应：消除宽扁图在固定高度框内的上下大片留白 */
+    html .equipment-section .equipment-icon {
+        width: 100%;
+        height: auto;
+        margin: 0 0 3vw;
+    }
+
+    html .equipment-section .equipment-icon img {
+        width: 100%;
+        height: auto;
+        max-height: 55vw;
+        object-fit: contain;
+    }
+
+    html .equipment-section .equipment-title {
+        font-size: 4vw;
+        margin-bottom: 2vw;
+    }
+
+    html .equipment-section .equipment-desc {
+        font-size: 2.8vw;
+        padding: 0 1vw;
+        line-height: 1.6;
+    }
+
+    /* 科研定制模块（research-mode）的手机端覆盖：2 列紧凑网格
+       !important 用于盖过源码靠后的 .research-mode 独立样式 */
+    html .equipment-section.research-mode .equipment-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 3vw !important;
+    }
+
+    html .equipment-section.research-mode .equipment-card {
+        height: auto !important;
+        padding: 3vw 2vw;
+        border-radius: 2vw !important;
+    }
+
+    /* 图标 PNG 源图很大（width auto 会原尺寸渲染），手机端限制为 20vw 方块 */
+    html .equipment-section.research-mode .equipment-icon {
+        margin: 2.5vw auto 3vw !important;
+    }
+
+    html .equipment-section.research-mode .equipment-icon img {
+        width: 20vw !important;
+        height: 20vw !important;
+    }
+
+    html .equipment-section.research-mode .equipment-title {
+        font-size: 3.6vw !important;
+        margin-bottom: 2.5vw !important;
+    }
+
+    html .equipment-section.research-mode .equipment-desc {
+        font-size: 2.8vw !important;
+        line-height: 1.7 !important;
+    }
+}

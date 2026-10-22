@@ -1,0 +1,63 @@
+/* ============================================================
+   行业页·核心适配能力模块 手机端适配 (≤768px)
+   与首页/产品详情页同一 vw 体系（城市消防页方案）
+   全部规则以 html .core-capabilities-section 前缀限定作用域：
+   1. 只作用于行业页的核心适配能力模块，不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖组件内桌面样式
+   ============================================================ */
+@media (max-width: 768px) {
+    html .core-capabilities-section {
+        padding: 6vw 0 0;
+    }
+
+    html .core-capabilities-section .section-title-dark {
+        font-size: 5.3vw;
+    }
+
+    html .core-capabilities-section .section-divider {
+        width: 23vw;
+        height: 0.3vw !important;
+    }
+
+    html .core-capabilities-section .section-desc {
+        font-size: 3vw;
+        margin-bottom: 4vw;
+    }
+
+    /* 卡片改单列堆叠，统一圆角 */
+    html .core-capabilities-section .capability-row,
+    html .core-capabilities-section .capability-row.reverse {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 0;
+        border-radius: 2vw;
+        overflow: hidden;
+    }
+
+    /* 卡片之间的上下间距 */
+    html .core-capabilities-section .capabilities-list {
+        gap: 4vw;
+    }
+
+    html .core-capabilities-section .capability-image {
+        width: 100%;
+        height: 56.25vw;
+    }
+
+    html .core-capabilities-section .capability-image img {
+        height: 100%;
+    }
+
+    html .core-capabilities-section .capability-text {
+        padding: 4vw 3vw;
+    }
+
+    html .core-capabilities-section .capability-title {
+        font-size: 4.5vw;
+    }
+
+    html .core-capabilities-section .capability-desc {
+        font-size: 2.8vw;
+        line-height: 1.8;
+    }
+}

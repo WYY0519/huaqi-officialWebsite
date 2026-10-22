@@ -21,6 +21,8 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
+// 挂载装备模块手机端样式：独立文件，全部以 html .equipment-section 前缀限定作用域
+import './equipmentSection.mobile.css'
 
 const props = defineProps<{
   module?: string
@@ -250,52 +252,6 @@ const equipment = computed(() => {
   font-weight: 500;
 }
 
-@media (max-width: 768px) {
-  .equipment-section {
-    padding: 6vw 0 0;
-  }
-
-  .section-title-dark {
-    font-size: 5.3vw;
-  }
-
-  .section-divider {
-    width: 23vw;
-    height: 0.3vw !important;
-  }
-
-  .section-desc {
-    font-size: 3vw;
-    margin-bottom: 4vw;
-  }
-
-  .equipment-grid {
-    grid-template-columns: 1fr;
-    gap: 0.83333vw;
-  }
-
-  .equipment-card {
-    width: 100%;
-    height: auto;
-    padding: 1.5625vw 1.04167vw;
-  }
-
-  .equipment-icon {
-    width: 100%;
-    height: 40vw;
-    margin: 2vw 0 0.5vw;
-  }
-
-  .equipment-title {
-    font-size: 4vw;
-  }
-
-  .equipment-desc {
-    font-size: 2.8vw;
-    padding: 0 2vw;
-    line-height: 1.6;
-  }
-}
 
 /* 科研定制服务模块独立样式 */
 .research-mode .equipment-grid {
