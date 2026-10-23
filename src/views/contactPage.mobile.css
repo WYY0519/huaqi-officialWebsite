@@ -1,0 +1,33 @@
+/* ============================================================
+   联系我们页 手机端适配 (≤768px)
+   与首页/产品详情页同一 vw 体系（城市消防页方案）
+   全部规则以 html .contact-page 前缀限定作用域：
+   1. 只作用于联系我们页（/contact），不污染首页等其他页面
+   2. html 前缀提高优先级，确保稳定覆盖全局 .section-title 样式
+   说明：页面主体复用 ContactSection 组件，其内部手机样式已在
+   ContactSection.vue 的 ≤768px 块中生效，此处只做页面级补充
+   ============================================================ */
+@media (max-width: 768px) {
+    /* 手机端顶栏更矮，缩小预留高度 */
+    html .contact-page {
+        padding-top: 72px;
+    }
+
+    /* 页面标题（城市消防页体系：5.3vw / 23vw / 3vw） */
+    html .contact-page .section-title {
+        font-size: 5.3vw;
+        margin-bottom: 1vw;
+    }
+
+    html .contact-page .section-line {
+        width: 23vw;
+        height: 0.3vw;
+        margin-bottom: 2vw;
+    }
+
+    html .contact-page .section-subtitle {
+        font-size: 3vw;
+        margin-top: 1.5vw;
+        margin-bottom: 5vw;
+    }
+}
