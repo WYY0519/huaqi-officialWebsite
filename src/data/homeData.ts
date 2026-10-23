@@ -143,7 +143,7 @@ export const products = ref([
     name: 'QX-1',
     spec: '高空清洗无人机',
     image: new URL('../assets/home/旗舰矩阵/7.png', import.meta.url).href,
-    link: '/homeCoreIndustries?module=high-cleaning&scroll=hardware-section',
+    link: '/products/QX-1',
   },
   {
     id: 8,
