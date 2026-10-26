@@ -8,7 +8,9 @@
    对应规则已用 !important 覆盖
    ============================================================ */
 @media (max-width: 768px) {
-    html .hardware-section {
+    /* 双写类名提高优先级：html .hardware-section(0,1,1) 低于
+       scoped 规则 .hardware-section[data-v-xxx](0,2,0)，会被压住 */
+    html .hardware-section.hardware-section {
         padding: 6vw 7vw 4vw;
     }
 

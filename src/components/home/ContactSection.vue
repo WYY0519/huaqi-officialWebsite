@@ -30,13 +30,23 @@
         <div class="contact-form-wrapper">
           <form @submit.prevent="submitForm" class="contact-form">
             <div class="form-row">
-              <div class="form-field">
-                <img :src="nameIcon" alt="您的名字" class="form-field-icon">
-                <input type="text" placeholder="您的名字" class="form-input" v-model="formData.contact">
+              <div class="form-field-wrap">
+                <div class="form-field">
+                  <img :src="nameIcon" alt="您的名字" class="form-field-icon">
+                  <input type="text" placeholder="您的名字" class="form-input" v-model="formData.contact"
+                    @blur="validateField('name', formData.contact)" @input="clearError('name')"
+                    :class="{ 'input-error': errors.name }">
+                </div>
+                <span v-if="errors.name" class="form-field-error">{{ errors.name }}</span>
               </div>
-              <div class="form-field">
-                <img :src="phoneIcon" alt="联系电话" class="form-field-icon">
-                <input type="tel" placeholder="联系电话" class="form-input" v-model="formData.phone">
+              <div class="form-field-wrap">
+                <div class="form-field">
+                  <img :src="phoneIcon" alt="联系电话" class="form-field-icon">
+                  <input type="tel" placeholder="联系电话" class="form-input" v-model="formData.phone"
+                    @blur="validateField('phone', formData.phone)" @input="clearError('phone')"
+                    :class="{ 'input-error': errors.phone }">
+                </div>
+                <span v-if="errors.phone" class="form-field-error">{{ errors.phone }}</span>
               </div>
             </div>
             <div class="form-field">
@@ -62,6 +72,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { trustedBrands } from '../../data/homeData'
+import { useFieldValidation } from '../../composables/useFieldValidation'
 
 // 图标路径
 const consultIcon = new URL('../../assets/home/图标/i.png', import.meta.url).href
@@ -76,14 +87,19 @@ const messageLength = computed(() => formData.value.message.length)
 
 const updateMessageLength = () => { }
 
-const submitForm = () => {
-  console.log('表单提交:', formData.value)
-  if (formData.value.company || formData.value.contact || formData.value.message || formData.value.phone) {
-    alert('感谢您的提交，我们会尽快与您联系！')
-  } else {
-    alert('请输入您的信息')
+// 姓名/电话校验（红框 + 字段下方红字样式）：失焦即时校验，输入时清除错误
+const { errors, validateField, clearError, validateAll } = useFieldValidation()
 
+const submitForm = () => {
+  const isFormValid = validateAll(
+    { name: formData.value.contact, phone: formData.value.phone },
+    ['name', 'phone']
+  )
+  if (!isFormValid) {
+    return
   }
+  console.log('表单提交:', formData.value)
+  alert('感谢您的提交，我们会尽快与您联系！')
   formData.value = { company: '', contact: '', phone: '', message: '' }
 }
 </script>
@@ -216,6 +232,22 @@ const submitForm = () => {
   gap: 0.83333vw;
   /* 1920 时 = 32px */
   margin-bottom: 1.66667vw;
+}
+
+/* 字段 + 错误提示的包裹容器（错误红字显示在字段下方） */
+.form-field-wrap {
+  min-width: 0;
+}
+
+.form-input.input-error {
+  border-color: #e53935 !important;
+}
+
+.form-field-error {
+  display: block;
+  font-size: 0.72917vw;
+  color: #e53935;
+  margin-top: 0.4vw;
 }
 
 .form-field {
@@ -412,6 +444,11 @@ const submitForm = () => {
     grid-template-columns: 1fr;
     gap: 3vw;
     margin-bottom: 3vw;
+  }
+
+  .form-field-error {
+    font-size: 2.8vw;
+    margin-top: 1vw;
   }
 
   .form-field-icon {

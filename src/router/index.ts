@@ -69,11 +69,6 @@ const router = createRouter({
       component: Feedback,
     },
     {
-      path: '/solution/:slug',
-      name: 'SolutionDetail',
-      component: () => import('../views/SolutionDetail.vue'),
-    },
-    {
       path: '/products/:slug',
       name: 'ProductDetail',
       component: ProductDetail,

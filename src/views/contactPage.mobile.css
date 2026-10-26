@@ -8,8 +8,10 @@
    ContactSection.vue 的 ≤768px 块中生效，此处只做页面级补充
    ============================================================ */
 @media (max-width: 768px) {
-    /* 手机端顶栏更矮，缩小预留高度 */
-    html .contact-page {
+    /* 手机端顶栏更矮，缩小预留高度
+       双写类名提高优先级：html .contact-page(0,1,1) 低于
+       scoped 规则 .contact-page[data-v-xxx](0,2,0)，会被压住 */
+    html .contact-page.contact-page {
         padding-top: 72px;
     }
 

@@ -1,0 +1,181 @@
+/* ============================================================
+   新闻中心页 手机端适配 (≤768px)
+   与首页/企业简介页同一 vw 体系（城市消防页方案）
+   全部规则以 html .news-page 前缀限定作用域：
+   1. 只作用于新闻中心页（/news），不污染首页等其他页面
+   2. html 前缀提高优先级，确保稳定覆盖页面内 scoped 样式
+   ============================================================ */
+@media (max-width: 768px) {
+    /* ---------- Hero 大图 ----------
+       顶部导航栏为透明定位，Hero 直接顶到页面顶端，
+       导航栏叠在图上（同首页/企业简介页），标题下移避开导航栏 */
+    html .news-page .section {
+        padding: 8vw 0;
+        /* 锚点跳转时预留固定导航栏高度 */
+        scroll-margin-top: 72px;
+    }
+
+    html .news-page .hero-content {
+        top: 20vw;
+        left: 6vw;
+    }
+
+    html .news-page .home-hero-title {
+        font-size: 5.3vw;
+        letter-spacing: 0.6vw;
+    }
+
+    html .news-page .container {
+        padding: 0 4vw;
+    }
+
+    /* ---------- 分类标签栏 ---------- */
+    html .news-page .categories-section {
+        padding: 6vw 0 2vw;
+    }
+
+    html .news-page .categories-scroll {
+        gap: 2.5vw;
+        justify-content: center;
+    }
+
+    html .news-page .category-btn {
+        padding: 2vw 4.5vw;
+        font-size: 3.2vw;
+        border-radius: 5vw;
+    }
+
+    /* ---------- 新闻列表 ---------- */
+    html .news-page .news-section {
+        padding-bottom: 6vw;
+    }
+
+    html .news-page .news-item {
+        padding: 3vw 3vw;
+    }
+
+    /* 展开对齐时预留固定导航栏高度 */
+    html .news-page .news-item-back {
+        scroll-margin-top: 72px;
+    }
+
+    /* 展开时的内边距（桌面端左侧预留日期大空间，手机端取消） */
+    html .news-page .news-item-back.expanded {
+        padding: 4vw 4vw;
+    }
+
+    /* 收起时：日期/标签一行，标题单独一行完整显示 */
+    html .news-page .news-header-collapsed {
+        padding: 1vw 0;
+    }
+
+    html .news-page .news-header-collapsed .news-meta {
+        flex-wrap: wrap;
+        gap: 2vw;
+    }
+
+    html .news-page .news-date-collapsed {
+        font-size: 3.2vw;
+    }
+
+    html .news-page .news-header-collapsed .news-category-tag {
+        font-size: 2.8vw;
+        padding: 0.5vw 2.5vw;
+        border-radius: 1vw;
+    }
+
+    html .news-page .news-title-collapsed {
+        font-size: 3.6vw;
+        line-height: 1.6;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        flex-basis: 100%;
+    }
+
+    /* 展开箭头（模板内联 width/height 为 vw，需覆盖） */
+    html .news-page .expand-icon {
+        width: 8vw;
+        height: 8vw;
+    }
+
+    html .news-page .expand-icon svg {
+        width: 6vw !important;
+        height: 6vw !important;
+    }
+
+    /* 展开后的完整内容 */
+    html .news-page .news-header-expanded .news-meta {
+        flex-direction: row;
+        align-items: center;
+        gap: 3vw;
+    }
+
+    html .news-page .news-date .day {
+        font-size: 4.5vw;
+    }
+
+    html .news-page .news-date .month-year {
+        font-size: 3.2vw;
+    }
+
+    html .news-page .news-header-expanded .news-category-tag {
+        font-size: 2.8vw;
+        padding: 0.5vw 2.5vw;
+        border-radius: 1vw;
+    }
+
+    html .news-page .news-title {
+        font-size: 3.8vw;
+        line-height: 1.6;
+        margin-right: 0;
+        margin-bottom: 2vw;
+    }
+
+    html .news-page .news-summary {
+        font-size: 3.2vw;
+        line-height: 1.8;
+        padding-right: 0;
+    }
+
+    html .news-page .news-content {
+        margin-top: 2vw;
+    }
+
+    /* 桌面端 max-height: 200vw 在手机端不够长文撑开，会截断内容 */
+    html .news-page .news-item-back.expanded .news-content {
+        max-height: 1000vw;
+    }
+
+    html .news-page .news-content-image {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-bottom: 3vw;
+    }
+
+    html .news-page .news-content-text {
+        font-size: 3.2vw;
+        line-height: 1.8;
+        margin-right: 0;
+        padding-bottom: 3vw;
+    }
+
+    /* 悬浮预览（触屏无 hover，仅兜底保证样式不破版） */
+    html .news-page .news-hover-content {
+        gap: 3vw;
+    }
+
+    html .news-page .news-hover-image {
+        width: 28vw;
+        height: 18vw;
+    }
+
+    html .news-page .news-hover-summary {
+        font-size: 2.8vw;
+    }
+
+    html .news-page .news-hover-link {
+        font-size: 2.8vw;
+    }
+}

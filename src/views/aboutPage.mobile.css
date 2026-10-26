@@ -1,0 +1,214 @@
+/* ============================================================
+   企业简介页 手机端适配 (≤768px)
+   与首页/产品详情页同一 vw 体系（城市消防页方案）
+   全部规则以 html .about-page 前缀限定作用域：
+   1. 只作用于企业简介页（/about），不污染首页等其他页面
+   2. html 前缀提高优先级，确保稳定覆盖页面内 scoped 样式
+   说明：模板里部分元素带有内联 style（统计容器 padding、
+   资质项宽度、地址容器 padding 等），需用 !important 覆盖
+   ============================================================ */
+@media (max-width: 768px) {
+    /* ---------- Hero 大图 ----------
+       顶部导航栏为透明定位，Hero 需直接顶到页面顶端，
+       导航栏叠在图上（同首页），标题下移避开导航栏 */
+    html .about-page .section {
+        padding: 8vw 0;
+        /* 锚点跳转（如 /about#qualifications）时预留固定导航栏高度，
+           避免「资质与荣誉」等标题被导航栏盖住 */
+        scroll-margin-top: 72px;
+    }
+
+    html .about-page .hero-content {
+        top: 20vw;
+        left: 6vw;
+    }
+
+    html .about-page .home-hero-title {
+        font-size: 5.3vw;
+        letter-spacing: 0.6vw;
+    }
+
+    /* ---------- 页面标题（城市消防页体系：5.3vw / 23vw / 3vw） ---------- */
+    html .about-page .section-title {
+        font-size: 5.3vw;
+        margin-bottom: 1vw;
+    }
+
+    html .about-page .section-divider {
+        width: 23vw;
+        height: 0.3vw;
+        margin-bottom: 2vw;
+    }
+
+    html .about-page .section-subtitle {
+        font-size: 3vw;
+        margin-top: 1.5vw;
+        margin-bottom: 5vw;
+    }
+
+    html .about-page .container {
+        padding: 0 6vw;
+    }
+
+    /* ---------- 公司介绍 ---------- */
+    html .about-page .company-section .container {
+        padding: 6vw 6vw 0;
+    }
+
+    html .about-page .company-title {
+        font-size: 4.6vw;
+        margin-bottom: 4vw;
+        padding-bottom: 2vw;
+    }
+
+    html .about-page .company-title::after {
+        width: 10vw;
+        height: 0.3vw;
+    }
+
+    html .about-page .company-content {
+        font-size: 3.4vw;
+        line-height: 1.8;
+    }
+
+    html .about-page .company-content p {
+        margin-bottom: 4.5vw;
+        line-height: 1.8;
+    }
+
+    /* ---------- 数据统计（容器内联 padding 需 !important） ---------- */
+    html .about-page .stats-section {
+        padding: 10vw 0 !important;
+    }
+
+    html .about-page .stats-section .container {
+        padding: 0 6vw !important;
+    }
+
+    html .about-page .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8vw 4vw;
+    }
+
+    html .about-page .stat-item {
+        padding: 0;
+    }
+
+    html .about-page .stat-icon {
+        width: 14vw;
+        height: 14vw;
+        margin-bottom: 2.5vw;
+    }
+
+    /* 覆盖页面内 ≤1024px 旧规则对内部图片的 3vw 限制 */
+    html .about-page .stat-icon img {
+        width: 100%;
+        height: 100%;
+    }
+
+    html .about-page .stat-number {
+        font-size: 6.5vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .about-page .stat-plus {
+        font-size: 4.8vw;
+    }
+
+    html .about-page .stat-plus1 {
+        font-size: 3.6vw;
+    }
+
+    html .about-page .stat-label {
+        font-size: 3vw;
+    }
+
+    /* ---------- 公司地址（容器内联 padding 需 !important） ---------- */
+    html .about-page .address-section {
+        padding-bottom: 0 !important;
+    }
+
+    html .about-page .address-section .container {
+        padding: 0 4vw !important;
+    }
+
+    html .about-page .address-content {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        height: auto;
+        gap: 0;
+        padding: 6vw;
+        border-radius: 2.5vw;
+    }
+
+    html .about-page .address-title {
+        font-size: 4.6vw;
+        margin-top: 0;
+        margin-bottom: 5vw;
+    }
+
+    html .about-page .address-list {
+        gap: 5vw;
+        margin-bottom: 6vw;
+    }
+
+    html .about-page .address-item {
+        gap: 2.5vw;
+        align-items: flex-start;
+    }
+
+    html .about-page .address-name {
+        font-size: 3.8vw;
+        margin-bottom: 1vw;
+    }
+
+    html .about-page .address-detail {
+        font-size: 3.2vw;
+        line-height: 1.6;
+    }
+
+    html .about-page .address-image {
+        width: 100%;
+        height: auto;
+    }
+
+    html .about-page .address-image img {
+        height: auto;
+        border-radius: 2vw;
+    }
+
+    /* ---------- 资质与荣誉（资质项内联宽度需 !important） ---------- */
+    html .about-page .qualifications-section {
+        padding-bottom: 0 !important;
+    }
+
+    html .about-page .qualifications-grid {
+        grid-template-columns: 1fr;
+        gap: 8vw;
+    }
+
+    html .about-page .qualification-item {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+
+    html .about-page .qualification-title {
+        font-size: 3.8vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .about-page .qualification-desc {
+        font-size: 3.2vw;
+    }
+
+    /* ---------- 战略合作伙伴矩阵 ---------- */
+    html .about-page .partners-section {
+        padding-top: 10vw;
+    }
+
+    html .about-page .partners-image img {
+        width: 100%;
+        height: auto;
+    }
+}

@@ -153,6 +153,41 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+// 企业简介页手机端适配样式（独立文件，≤768px）
+import './aboutPage.mobile.css'
+
+const route = useRoute()
+
+// 锚点跳转校正：
+// 路由 scrollBehavior 在跳转瞬间定位，但页面大图（地址照片等）
+// 加载后会撑开上方布局，把锚点区块往下推，导致上方模块露出一截。
+// 等布局稳定后再校正一次滚动位置（scrollIntoView 会自动应用
+// CSS 的 scroll-margin-top：桌面 113px / 移动端 72px）
+function scrollToHash() {
+  if (!route.hash) return
+  const el = document.querySelector(route.hash)
+  if (el) {
+    el.scrollIntoView({ behavior: 'instant', block: 'start' })
+  }
+}
+
+onMounted(() => {
+  if (!route.hash) return
+  if (document.readyState === 'complete') {
+    requestAnimationFrame(scrollToHash)
+  } else {
+    window.addEventListener('load', scrollToHash, { once: true })
+  }
+  // 兜底：图片加载较慢时再校正一次
+  setTimeout(scrollToHash, 800)
+})
+
+watch(() => route.hash, (hash) => {
+  if (hash) setTimeout(scrollToHash, 100)
+})
+
 // 图片资源导入
 const heroBackground = new URL('../assets/home/关于我们/企业介绍/首页.png', import.meta.url).href
 const companyPhoto = new URL('../assets/home/关于我们/企业介绍/公司照片.jpg', import.meta.url).href
@@ -188,6 +223,8 @@ const qualificationImages = {
 }
 .section {
   padding: 5.2vw 0 6.9vw;
+  /* 锚点跳转时预留固定导航栏高度（约 113px @1920） */
+  scroll-margin-top: 113px;
 }
 /* ---------- 静态Hero大图 ---------- */
 .hero-section {

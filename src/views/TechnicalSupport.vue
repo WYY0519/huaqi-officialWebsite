@@ -78,6 +78,9 @@
 </template>
 
 <script setup lang="ts">
+// 技术支持页手机端适配样式（独立文件，≤768px）
+import './technicalSupportPage.mobile.css'
+
 const img = (name: string) => new URL(`../assets/home/行业解决方案/技术支持/${name}`, import.meta.url).href
 
 // 导入图片资源

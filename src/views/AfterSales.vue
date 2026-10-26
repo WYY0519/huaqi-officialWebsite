@@ -78,57 +78,65 @@
         <p class="section-desc">为了及时有效的帮您解决问题，请你完善如下信息。我们在收到留言后24小时内给您回复。</p>
 
         <div class="application-form">
-          <div class="form-row">
-            <div class="form-group">
-              <img :src="formIcons.name" alt="" class="field-icon" />
-              <input type="text" placeholder="您的名字" />
-            </div>
-            <div class="form-group">
-              <img :src="formIcons.phone" alt="" class="field-icon" />
-              <input type="tel" placeholder="电话" />
-            </div>
-            <div class="form-group">
-              <img :src="formIcons.product" alt="" class="field-icon" />
-              <input type="text" placeholder="产品名称" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <img :src="formIcons.region" alt="" class="field-icon" />
-              <input type="text" placeholder="所在地区" />
-            </div>
-            <div class="form-group">
-              <img :src="formIcons.contract" alt="" class="field-icon" />
-              <input type="text" placeholder="合同编号" />
-            </div>
-            <div class="form-group">
-              <img :src="formIcons.warranty" alt="" class="field-icon" />
-              <div class="select-wrapper">
-                <select class="form-select" required>
-                  <option value="" selected>是否在保修期内？</option>
-                  <option value="yes">是</option>
-                  <option value="no">否</option>
-                </select>
+          <form @submit.prevent="handleSubmit">
+            <div class="form-row">
+              <div class="form-group">
+                <div class="input-wrap">
+                  <img :src="formIcons.name" alt="" class="field-icon" />
+                  <input type="text" placeholder="您的名字" v-model="form.name" @blur="validateField('name', form.name)" @input="clearError('name')" :class="{ 'input-error': errors.name }" />
+                </div>
+                <span v-if="errors.name" class="error-msg">{{ errors.name }}</span>
+              </div>
+              <div class="form-group">
+                <div class="input-wrap">
+                  <img :src="formIcons.phone" alt="" class="field-icon" />
+                  <input type="tel" placeholder="电话" v-model="form.phone" @blur="validateField('phone', form.phone)" @input="clearError('phone')" :class="{ 'input-error': errors.phone }" />
+                </div>
+                <span v-if="errors.phone" class="error-msg">{{ errors.phone }}</span>
+              </div>
+              <div class="form-group">
+                <img :src="formIcons.product" alt="" class="field-icon" />
+                <input type="text" placeholder="产品名称" />
               </div>
             </div>
-          </div>
 
-          <div class="form-row">
-            <div class="form-group full-width">
-              <textarea rows="4" placeholder="简述您的问题"></textarea>
+            <div class="form-row">
+              <div class="form-group">
+                <img :src="formIcons.region" alt="" class="field-icon" />
+                <input type="text" placeholder="所在地区" />
+              </div>
+              <div class="form-group">
+                <img :src="formIcons.contract" alt="" class="field-icon" />
+                <input type="text" placeholder="合同编号" />
+              </div>
+              <div class="form-group">
+                <img :src="formIcons.warranty" alt="" class="field-icon" />
+                <div class="select-wrapper">
+                  <select class="form-select">
+                    <option value="" selected>是否在保修期内？</option>
+                    <option value="yes">是</option>
+                    <option value="no">否</option>
+                  </select>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="form-row">
-            <div class="form-group full-width">
-              <textarea rows="3" placeholder="备注："></textarea>
+            <div class="form-row">
+              <div class="form-group full-width">
+                <textarea rows="4" placeholder="简述您的问题"></textarea>
+              </div>
             </div>
-          </div>
 
-          <div class="form-actions">
-            <button type="submit" class="submit-btn">立即提交</button>
-          </div>
+            <div class="form-row">
+              <div class="form-group full-width">
+                <textarea rows="3" placeholder="备注："></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">立即提交</button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -177,7 +185,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { useFieldValidation } from '../composables/useFieldValidation'
+// 售后保障页手机端适配样式（独立文件，≤768px）
+import './afterSalesPage.mobile.css'
 
 const img = (name: string) => new URL(`../assets/home/服务支持/售后保障/${name}`, import.meta.url).href
 
@@ -317,6 +328,20 @@ const activeAccordion = ref(-1)
 
 const toggleAccordion = (index: number) => {
   activeAccordion.value = activeAccordion.value === index ? -1 : index
+}
+
+// 姓名/电话校验（红框 + 字段下方红字样式）：失焦即时校验，输入时清除错误
+const form = reactive({ name: '', phone: '' })
+const { errors, validateField, clearError, validateAll } = useFieldValidation()
+
+// 售后申请提交：先校验姓名/电话，未通过则在字段下方显示红字
+const handleSubmit = () => {
+  if (!validateAll({ name: form.name, phone: form.phone }, ['name', 'phone'])) {
+    return
+  }
+  alert('您的售后申请已提交，我们将在24小时内与您联系！')
+  form.name = ''
+  form.phone = ''
 }
 </script>
 
@@ -707,6 +732,27 @@ const toggleAccordion = (index: number) => {
   z-index: 1;
 }
 
+/* 输入框包裹层：图标相对输入框垂直居中，
+   避免红字出现撑高 form-group 后图标下移 */
+.form-group .input-wrap {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+/* 校验错误：输入框红框 + 字段下方红字 */
+.form-group .input-error {
+  border-color: #e53935 !important;
+}
+
+.error-msg {
+  display: block;
+  font-size: 0.729167vw;
+  color: #e53935;
+  margin-top: 0.4vw;
+  padding-left: 0.83333vw;
+}
+
 /* textarea 的图标：位于输入框内部左上角，与文字对齐 */
 .form-group .field-icon.icon-top {
   top: 0.625vw;
@@ -716,6 +762,7 @@ const toggleAccordion = (index: number) => {
 .form-group input,
 .form-group textarea,
 .form-group select {
+  width: 100%;
   padding: 0 0.83333vw;
   border: 0.05208vw solid #e0e3e6;
   border-radius: 0.20833vw;

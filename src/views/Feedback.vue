@@ -24,21 +24,21 @@
               <div class="form-group">
                 <div class="input-wrap">
                   <img :src="formIcons.name" alt="" class="field-icon" />
-                  <input type="text" v-model="form.name" placeholder="您的名字" @blur="validateName" @input="errors.name = ''" :class="{ 'input-error': errors.name }" required />
+                  <input type="text" v-model="form.name" placeholder="您的名字" @blur="validateField('name', form.name)" @input="clearError('name')" :class="{ 'input-error': errors.name }" required />
                 </div>
                 <span v-if="errors.name" class="error-msg">{{ errors.name }}</span>
               </div>
               <div class="form-group">
                 <div class="input-wrap">
                   <img :src="formIcons.phone" alt="" class="field-icon" />
-                  <input type="tel" v-model="form.phone" placeholder="电话" @blur="validatePhone" @input="errors.phone = ''" :class="{ 'input-error': errors.phone }" required />
+                  <input type="tel" v-model="form.phone" placeholder="电话" @blur="validateField('phone', form.phone)" @input="clearError('phone')" :class="{ 'input-error': errors.phone }" required />
                 </div>
                 <span v-if="errors.phone" class="error-msg">{{ errors.phone }}</span>
               </div>
               <div class="form-group">
                 <div class="input-wrap">
                   <img :src="formIcons.email" alt="" class="field-icon" />
-                  <input type="email" v-model="form.email" placeholder="邮箱" @blur="validateEmail" @input="errors.email = ''" :class="{ 'input-error': errors.email }" required />
+                  <input type="email" v-model="form.email" placeholder="邮箱" @blur="validateField('email', form.email)" @input="clearError('email')" :class="{ 'input-error': errors.email }" required />
                 </div>
                 <span v-if="errors.email" class="error-msg">{{ errors.email }}</span>
               </div>
@@ -120,6 +120,9 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useFieldValidation } from '../composables/useFieldValidation'
+// 意见与反馈页手机端适配样式（独立文件，≤768px）
+import './feedbackPage.mobile.css'
 
 const img = (name: string) => new URL(`../assets/home/行业解决方案/建议反馈/${name}`, import.meta.url).href
 const afterSalesIcons = (name: string) => new URL(`../assets/home/服务支持/售后保障/${name}`, import.meta.url).href
@@ -153,54 +156,8 @@ const form = reactive({
 const isSubmitting = ref(false)
 const fileInput = ref<HTMLInputElement | null>(null)
 
-// 表单校验错误
-const errors = reactive({
-  name: '',
-  phone: '',
-  email: ''
-})
-
-// 校验名字
-const validateName = () => {
-  if (!form.name.trim()) {
-    errors.name = '请输入您的名字'
-    return false
-  }
-  if (form.name.trim().length < 2) {
-    errors.name = '名字至少需要2个字符'
-    return false
-  }
-  errors.name = ''
-  return true
-}
-
-// 校验手机号
-const validatePhone = () => {
-  if (!form.phone.trim()) {
-    errors.phone = '请输入手机号码'
-    return false
-  }
-  if (!/^1[3-9]\d{9}$/.test(form.phone.trim())) {
-    errors.phone = '手机号格式不正确，请输入11位有效手机号'
-    return false
-  }
-  errors.phone = ''
-  return true
-}
-
-// 校验邮箱
-const validateEmail = () => {
-  if (!form.email.trim()) {
-    errors.email = '请输入邮箱地址'
-    return false
-  }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
-    errors.email = '邮箱格式不正确，请检查是否输入有误'
-    return false
-  }
-  errors.email = ''
-  return true
-}
+// 表单校验（红框 + 字段下方红字样式）：失焦即时校验，输入时清除错误
+const { errors, validateField, clearError, validateAll } = useFieldValidation()
 
 // 处理文件选择
 const handleFileChange = (e: Event) => {
@@ -226,13 +183,13 @@ const removeFile = (index: number) => {
   form.files.splice(index, 1)
 }
 
-// 处理表单提交
+// 处理表单提交：先校验姓名/电话/邮箱，未通过则在字段下方显示红字
 const handleSubmit = async () => {
-  const isNameValid = validateName()
-  const isPhoneValid = validatePhone()
-  const isEmailValid = validateEmail()
-
-  if (!isNameValid || !isPhoneValid || !isEmailValid) {
+  const isFormValid = validateAll(
+    { name: form.name, phone: form.phone, email: form.email },
+    ['name', 'phone', 'email']
+  )
+  if (!isFormValid) {
     return
   }
 

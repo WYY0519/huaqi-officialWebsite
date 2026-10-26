@@ -1,0 +1,20 @@
+/* ============================================================
+   行业解决方案子页 手机端适配 (≤768px)
+   与首页/售后保障页同一 vw 体系（城市消防页方案）
+   全部规则以 html .solution-detail 前缀限定作用域：
+   1. 只作用于行业解决方案子页（/homeCoreIndustries），不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖页面内 scoped 样式
+   ============================================================ */
+@media (max-width: 768px) {
+    /* ---------- Hero 大图 ----------
+       顶部导航栏为透明定位，Hero 直接顶到页面顶端，
+       导航栏叠在图上，标题样式参考售后保障页（5.3vw / top 20vw） */
+    html .solution-detail .hero-content {
+        top: 20vw;
+        left: 6vw;
+    }
+
+    html .solution-detail .home-hero-title {
+        font-size: 5.3vw;
+    }
+}

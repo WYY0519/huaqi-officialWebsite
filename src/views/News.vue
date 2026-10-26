@@ -36,7 +36,7 @@
                             :class="['news-item']">
                             <div :class="['news-item-back', { expanded: expandedNewsId === news.id }]">
                                 <!-- 收起时：单行布局 -->
-                                <div class="news-header-collapsed">
+                                <div class="news-header-collapsed" @click="toggleExpand(news.id)">
                                     <div class="news-meta">
                                         <div class="news-date-collapsed">
                                             <span>{{ news.month.replace('-', '.') }}.{{ news.day }}</span>
@@ -44,7 +44,7 @@
                                         <span class="news-category-tag">{{ news.category }}</span>
                                         <h3 class="news-title-collapsed">{{ news.title }}</h3>
                                     </div>
-                                    <div class="expand-icon" @mouseenter="cancelClosePreview(); hoveredNewsId = news.id" @mouseleave="startClosePreview()" @click.stop="hoveredNewsId = null">
+                                    <div class="expand-icon" @mouseenter="cancelClosePreview(); hoveredNewsId = news.id" @mouseleave="startClosePreview()" @click.stop="hoveredNewsId = null; toggleExpand(news.id)">
                                         <svg width="4.166667vw" height="4.166667vw" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M7 10L12 15L17 10" stroke="#333" stroke-width="1"
@@ -103,7 +103,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, nextTick } from 'vue';
+// 新闻中心页手机端适配样式（独立文件，≤768px）
+import './newsPage.mobile.css';
 
 // 图片资源导入
 const heroBackground = new URL('../assets/home/关于我们/新闻动态/首页.png', import.meta.url).href;
@@ -233,6 +235,19 @@ const toggleExpand = (newsId: number) => {
         expandedNewsId.value = null;
     } else {
         expandedNewsId.value = newsId;
+        // 展开新条目后滚动到该条目顶部：
+        // 收起旧条目会让上方页面高度骤减，视口会停在新条目的中部。
+        // 注意等旧条目的 max-height 过渡（0.5s）结束后再对齐，
+        // 否则布局仍在收缩，滚动落点会偏移
+        // （scrollIntoView 自动应用 scroll-margin-top 预留导航栏高度）
+        nextTick(() => {
+            setTimeout(() => {
+                const el = document.querySelector('.news-item-back.expanded');
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 550);
+        });
     }
 };
 </script>
@@ -404,6 +419,8 @@ const toggleExpand = (newsId: number) => {
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
+    /* 展开对齐时预留固定导航栏高度（约 113px @1920） */
+    scroll-margin-top: 113px;
 }
 
 .news-item-back:hover {

@@ -1,0 +1,174 @@
+/* ============================================================
+   意见与反馈页 手机端适配 (≤768px)
+   与首页/售后保障页同一 vw 体系（城市消防页方案）
+   全部规则以 html .feedback-page 前缀限定作用域：
+   1. 只作用于意见与反馈页（/feedback），不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖页面内 scoped 样式
+   ============================================================ */
+@media (max-width: 768px) {
+    /* ---------- 通用 ---------- */
+    html .feedback-page .section {
+        padding: 8vw 0;
+        /* 锚点跳转时预留固定导航栏高度 */
+        scroll-margin-top: 72px;
+    }
+
+    html .feedback-page .container {
+        padding: 0 4vw;
+    }
+
+    /* ---------- Hero 大图 ----------
+       顶部导航栏为透明定位，Hero 直接顶到页面顶端，
+       导航栏叠在图上（同首页/售后保障页），标题下移避开导航栏 */
+    html .feedback-page .hero-content {
+        top: 20vw;
+        left: 6vw;
+    }
+
+    html .feedback-page .home-hero-title {
+        font-size: 5.3vw;
+    }
+
+    /* ---------- 页面标题 ---------- */
+    html .feedback-page .section-title-dark {
+        font-size: 5.3vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .feedback-page .section-divider {
+        width: 23vw;
+        height: 0.3vw;
+        margin-bottom: 2.5vw;
+    }
+
+    html .feedback-page .section-desc {
+        font-size: 3vw;
+        line-height: 1.7;
+        margin-bottom: 6vw;
+    }
+
+    /* ---------- 表单容器 ---------- */
+    html .feedback-page .feedback-form-wrapper {
+        width: 100%;
+        padding: 6vw 5vw;
+        border-radius: 3vw;
+    }
+
+    html .feedback-page .form-row {
+        margin-bottom: 4vw;
+        gap: 4vw;
+    }
+
+    /* ---------- 输入框 / 下拉框 / 文本域 ---------- */
+    html .feedback-page .form-group input:not([type="checkbox"]),
+    html .feedback-page .form-group textarea,
+    html .feedback-page .form-group select {
+        height: 12vw;
+        min-height: 12vw;
+        font-size: 3.6vw;
+        border-radius: 2vw;
+    }
+
+    html .feedback-page .form-group textarea {
+        min-height: 26vw;
+        padding: 3vw 3vw 3vw 3vw;
+    }
+
+    /* 有图标的输入框：图标与左侧留白同步放大 */
+    html .feedback-page .input-wrap .field-icon {
+        width: 4.5vw;
+        height: 4.5vw;
+        left: 3vw;
+    }
+
+    html .feedback-page .input-wrap:has(.field-icon) input {
+        padding-left: 10vw;
+    }
+
+    html .feedback-page .form-group input::placeholder,
+    html .feedback-page .form-group textarea::placeholder,
+    html .feedback-page .form-select:invalid {
+        font-size: 3.6vw;
+    }
+
+    html .feedback-page .error-msg {
+        font-size: 2.8vw;
+        margin-top: 1vw;
+    }
+
+    html .feedback-page .select-wrapper::after {
+        right: 3vw;
+        width: 1.6vw;
+        height: 1.6vw;
+    }
+
+    /* ---------- 上传区域 ---------- */
+    html .feedback-page .upload-area {
+        padding: 7vw 4vw 6vw;
+    }
+
+    html .feedback-page .upload-icon-img {
+        width: 9vw;
+        height: 9vw;
+        margin-bottom: 2.5vw;
+    }
+
+    html .feedback-page .upload-main-text {
+        font-size: 3.4vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .feedback-page .upload-hint-text {
+        font-size: 3vw;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    html .feedback-page .file-item {
+        padding: 2vw 3vw;
+        border-radius: 1vw;
+        margin-bottom: 2vw;
+    }
+
+    html .feedback-page .file-name {
+        font-size: 3.2vw;
+    }
+
+    html .feedback-page .file-remove {
+        font-size: 4.5vw;
+    }
+
+    /* ---------- 保密协议 ---------- */
+    html .feedback-page .agreement-label {
+        gap: 2vw;
+        margin-top: 1vw;
+    }
+
+    html .feedback-page .agreement-checkbox {
+        width: 4vw;
+        height: 4vw;
+        margin-top: 0.5vw;
+    }
+
+    html .feedback-page .agreement-text {
+        font-size: 3.2vw;
+        line-height: 1.6;
+    }
+
+    /* ---------- 提交按钮 ---------- */
+    html .feedback-page .form-actions {
+        margin-top: 5vw;
+    }
+
+    html .feedback-page .submit-btn {
+        padding: 3.2vw;
+        font-size: 3.8vw;
+        border-radius: 2vw;
+        gap: 2vw;
+    }
+
+    html .feedback-page .submit-icon-img {
+        width: 4.5vw;
+        height: 4.5vw;
+    }
+}

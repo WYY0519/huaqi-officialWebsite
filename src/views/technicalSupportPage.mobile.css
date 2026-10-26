@@ -1,0 +1,151 @@
+/* ============================================================
+   技术支持页 手机端适配 (≤768px)
+   与首页/售后保障页同一 vw 体系（城市消防页方案）
+   全部规则以 html .technical-support 前缀限定作用域：
+   1. 只作用于技术支持页（/technical-support），不污染其他页面
+   2. html 前缀提高优先级，确保稳定覆盖页面内 scoped 样式
+   说明：流程区块与配套资料区块带内联 style（padding 等），
+   对应规则已用 !important 覆盖
+   ============================================================ */
+@media (max-width: 768px) {
+    /* ---------- 通用 ---------- */
+    html .technical-support .section {
+        padding: 8vw 0;
+        /* 锚点跳转时预留固定导航栏高度 */
+        scroll-margin-top: 72px;
+    }
+
+    html .technical-support .container {
+        padding: 0 4vw !important;
+    }
+
+    /* ---------- Hero 大图 ----------
+       顶部导航栏为透明定位，Hero 直接顶到页面顶端，
+       导航栏叠在图上（同首页/售后保障页），标题下移避开导航栏 */
+    html .technical-support .hero-content {
+        top: 20vw;
+        left: 6vw;
+    }
+
+    html .technical-support .home-hero-title {
+        font-size: 5.3vw;
+    }
+
+    /* ---------- 页面标题 ---------- */
+    html .technical-support .section-title-dark {
+        font-size: 5.3vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .technical-support .section-divider {
+        width: 23vw;
+        height: 0.3vw;
+        margin-bottom: 2.5vw;
+    }
+
+    html .technical-support .section-desc {
+        font-size: 3vw;
+        line-height: 1.7;
+        margin-bottom: 6vw;
+    }
+
+    /* ---------- 三大技术支持保障 ---------- */
+    html .technical-support .guarantee-cards {
+        grid-template-columns: 1fr;
+        gap: 4vw;
+    }
+
+    html .technical-support .guarantee-card {
+        padding: 6vw 5vw 4vw;
+        border-radius: 2vw;
+    }
+
+    html .technical-support .guarantee-icon img {
+        width: 18vw;
+        height: 18vw;
+    }
+
+    html .technical-support .guarantee-title {
+        font-size: 4vw;
+        margin-bottom: 2vw;
+    }
+
+    html .technical-support .guarantee-desc {
+        font-size: 3.2vw;
+        line-height: 1.7;
+        text-align: justify;
+    }
+
+    /* ---------- 现场实操培训指导核心（内联 padding 需 !important） ---------- */
+    html .technical-support .process-section {
+        padding: 8vw 0 !important;
+    }
+
+    html .technical-support .process-flow {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4vw;
+    }
+
+    /* 竖向排布时隐藏横向箭头 */
+    html .technical-support .step-arrow {
+        display: none;
+    }
+
+    html .technical-support .process-step-card {
+        flex: 1 1 auto;
+        width: 100%;
+        padding: 5vw 4vw;
+        border-radius: 2vw;
+    }
+
+    html .technical-support .step-number {
+        font-size: 5.5vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .technical-support .step-title {
+        font-size: 4vw;
+        margin-bottom: 1.5vw;
+    }
+
+    html .technical-support .step-desc {
+        font-size: 3.2vw;
+        line-height: 1.7;
+        padding: 0 2vw;
+    }
+
+    /* ---------- 完整交付全套设备配套资料（内联 padding 需 !important） ---------- */
+    html .technical-support .materials-section {
+        padding: 8vw 0 10vw !important;
+    }
+
+    html .technical-support .materials-cards {
+        grid-template-columns: 1fr;
+        gap: 4vw;
+    }
+
+    html .technical-support .materials-card {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 4.5vw 4vw;
+        gap: 4vw;
+        border-radius: 2vw;
+    }
+
+    html .technical-support .materials-icon {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    html .technical-support .materials-title {
+        font-size: 3.8vw;
+        margin-bottom: 1.2vw;
+    }
+
+    html .technical-support .materials-desc {
+        font-size: 3.2vw;
+        line-height: 1.6;
+    }
+}
