@@ -436,6 +436,11 @@ onUnmounted(() => {
     border-radius: 2vw;
   }
 
+  /* 手机端一屏仅 1 张多卡片，取消非高亮卡片的白色蒙版，图片完整清晰显示 */
+  .card-mask {
+    display: none;
+  }
+
   .product-overlay {
     padding: 4vw 3vw;
   }
@@ -455,14 +460,21 @@ onUnmounted(() => {
   }
 
   .product-btn {
-    font-size: 2.8vw;
-    padding: 1.2vw 4vw;
+    font-size: 2.3vw;
+    padding: 0.8vw 2.8vw;
     border-radius: 999px;
   }
 
   .product-btn-primary,
   .product-btn-secondary {
-    font-size: 2.8vw;
+    font-size: 2.3vw;
+  }
+
+  /* 手机端蒙版取消后，所有卡片的「了解更多」统一为蓝色胶囊按钮 */
+  .product-btn-secondary {
+    background: #00d4ff;
+    color: #fff;
+    border: none;
   }
 
   .carousel-controls {
