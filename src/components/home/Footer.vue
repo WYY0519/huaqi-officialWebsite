@@ -106,6 +106,7 @@
 <script setup lang="ts">
 // 预加载图片路径
 const footerLogo = new URL('../../assets/home/图标/logo.png', import.meta.url).href
+import './Footer.tablet.css'
 const weiboIcon = new URL('../../assets/home/图标/t.png', import.meta.url).href
 const douyinIcon = new URL('../../assets/home/图标/y.png', import.meta.url).href
 const wechatIcon = new URL('../../assets/home/图标/u.png', import.meta.url).href

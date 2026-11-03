@@ -35,8 +35,8 @@
                         <div v-for="news in filteredNews" :key="news.id"
                             :class="['news-item']">
                             <div :class="['news-item-back', { expanded: expandedNewsId === news.id }]">
-                                <!-- 收起时：单行布局 -->
-                                <div class="news-header-collapsed" @click="toggleExpand(news.id)">
+                                <!-- 收起时：单行布局（点击行不展开，仅右侧箭头按钮可展开） -->
+                                <div class="news-header-collapsed">
                                     <div class="news-meta">
                                         <div class="news-date-collapsed">
                                             <span>{{ news.month.replace('-', '.') }}.{{ news.day }}</span>
@@ -44,7 +44,7 @@
                                         <span class="news-category-tag">{{ news.category }}</span>
                                         <h3 class="news-title-collapsed">{{ news.title }}</h3>
                                     </div>
-                                    <div class="expand-icon" @mouseenter="cancelClosePreview(); hoveredNewsId = news.id" @mouseleave="startClosePreview()" @click.stop="hoveredNewsId = null; toggleExpand(news.id)">
+                                    <div class="expand-icon" @click.stop="togglePreview(news.id)">
                                         <svg width="4.166667vw" height="4.166667vw" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M7 10L12 15L17 10" stroke="#333" stroke-width="1"
@@ -53,8 +53,8 @@
                                     </div>
                                 </div>
 
-                                <!-- 悬浮预览 -->
-                                <div class="news-hover-preview" v-show="hoveredNewsId === news.id" @mouseenter="cancelClosePreview()" @mouseleave="startClosePreview()">
+                                <!-- 点击箭头后显示的预览面板 -->
+                                <div class="news-hover-preview" v-show="hoveredNewsId === news.id">
                                     <div class="news-hover-content">
                                         <img v-if="getFirstImage(news)" :src="getFirstImage(news)" class="news-hover-image" />
                                         <div class="news-hover-text">
@@ -103,7 +103,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue';
+import { ref, computed, nextTick, onMounted, onUnmounted } from 'vue';
 // 新闻中心页手机端适配样式（独立文件，≤768px）
 import './newsPage.mobile.css';
 
@@ -130,7 +130,7 @@ const newsData = ref([
             { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/市委书记/市委书记2.png', import.meta.url).href },
             { type: 'text', text: '以下为新乡广播电视台视频号发布的调研现场实况，直观了解此次视察调研详情：' },
             { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/市委书记/市委书记3.png', import.meta.url).href },
-            { type: 'text', text: '李卫东强调，各级各部门要深入学习全国两会精神，切实增强“抓项目就是抓发展”的意识，主动服务、精准服务，引导企业加大创新投入、优化产品结构、拓展市场空间，全面提升核心竞争力，推动实体经济高质量发展，为“十五五”开好局、起好步提供坚实支撑。' },
+            { type: 'text', text: '李卫东强调，各级各部门要深入学习全国两会精神，切实增强"抓项目就是抓发展"的意识，主动服务、精准服务，引导企业加大创新投入、优化产品结构、拓展市场空间，全面提升核心竞争力，推动实体经济高质量发展，为"十五五"开好局、起好步提供坚实支撑。' },
             { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/市委书记/市委书记4.png', import.meta.url).href },
                     ]
     },
@@ -139,8 +139,8 @@ const newsData = ref([
         day: '16',
         month: '2026-06',
         category: '公司动态',
-        title: '携手“十五五”向新向未来｜华启天成无人机参展第七届跨国公司领导人青岛峰会',
-        summary: '6月16日，第七届跨国公司领导人青岛峰会正式启幕。本届峰会以“跨国公司与中国 —— 携手‘十五五’向新向未来”为主题，汇聚来自36个国家和地区的435位企业嘉宾，举办29场主体活动，聚焦科技创新、绿色低碳、数字经济等前沿赛道，搭建全球资本与国内产业生态共建的高能级对话平台。通过聚焦人工智能、低空经济、新型储能等前沿领域举办专题对接，引导跨国公司以先进技术、管理经验，深度参与传统产业智能化、绿色化升级。',
+        title: '携手"十五五"向新向未来｜华启天成无人机参展第七届跨国公司领导人青岛峰会',
+        summary: '6月16日，第七届跨国公司领导人青岛峰会正式启幕。本届峰会以"跨国公司与中国 —— 携手‘十五五’向新向未来"为主题，汇聚来自36个国家和地区的435位企业嘉宾，举办29场主体活动，聚焦科技创新、绿色低碳、数字经济等前沿赛道，搭建全球资本与国内产业生态共建的高能级对话平台。通过聚焦人工智能、低空经济、新型储能等前沿领域举办专题对接，引导跨国公司以先进技术、管理经验，深度参与传统产业智能化、绿色化升级。',
         content: [
             { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/十五五/十五五1.png', import.meta.url).href },
             { type: 'text', text: '当前全球产业链深度重构，峰会以高水平制度型开放，为跨国企业与国内产业搭建协同发展桥梁。历经六届沉淀，峰会累计签约投资项目632个，总投资757.3亿美元，已有236家世界500强企业在山东落地947个外资项目，持续印证全球资本对中国市场、山东产业配套的长期信心。' },
@@ -148,7 +148,7 @@ const newsData = ref([
             { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/十五五/十五五2.png', import.meta.url).href },
             { type: 'text', text: '展会期间，企业依托峰会开放交流平台，与多国客商围绕科技创新、低空产业国际化协同、场景落地等方向开展沟通交流。峰会带来的开放合作窗口，也让我们清晰看到，低空经济正成为国内外企业协同创新、优势互补的全新赛道。' },
             { type: 'text', text: '从2019年首届峰会的破冰启航，到如今第七届的全面升级，跨国公司领导人青岛峰会已不止于一座城市、一个省份的开放窗口，更成为全球资本感知中国经济脉动、校准投资航向的重要坐标。' },
-            { type: 'text', text: '开放的大门越开越大，合作的道路越走越宽。当全球产业链在不确定性中寻找确定性，青岛峰会给出的答案清晰而坚定：向新，是共同的奔赴；向未来，是彼此的承诺。华启天成愿与所有跨国伙伴一道，乘峰会之势，驭低空之风，在这场全球资本与中国产业的“共同进化”中，飞得更高，行得更远。' }
+            { type: 'text', text: '开放的大门越开越大，合作的道路越走越宽。当全球产业链在不确定性中寻找确定性，青岛峰会给出的答案清晰而坚定：向新，是共同的奔赴；向未来，是彼此的承诺。华启天成愿与所有跨国伙伴一道，乘峰会之势，驭低空之风，在这场全球资本与中国产业的"共同进化"中，飞得更高，行得更远。' }
         ]
     },
     {
@@ -161,11 +161,11 @@ const newsData = ref([
         content: [
             { type: 'text', text: '新疆地域辽阔，地形复杂多样，特殊的地理环境和安保需求，对军警部队的响应与处置能力产生了客观压力。传统处置模式中，人员巡逻范围有限、危险系数较高，复杂地形下的火情扑救、应急救援也面临多重技术难题。此次交付的定制化无人机及多系列挂载装备，以科技之力破局，在较大程度上拓展了军警消防在复杂环境下的现场处置能力。' },
             { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/赋能武警/赋能武警1.png', import.meta.url).href },
-            { type: 'text', text: '搭载95式发射器的无人机具备一定距离内的精准打击能力，可用于承担实战、训练任务，辅助模拟暴恐等特殊突发场景下的非接触式警示及处置作业，以降低人员近距离接触风险、积累战术动作与装备协同经验，为后续实战应用打牢基础。同时，结合无人机的高空侦察功能，可辅助快速定位目标、排查周边隐患，为地面警力部署提供参考信息，形成“空中侦察+地面处置”的立体化防控模式，提升特警队伍的应急处突效率。' },
+            { type: 'text', text: '搭载95式发射器的无人机具备一定距离内的精准打击能力，可用于承担实战、训练任务，辅助模拟暴恐等特殊突发场景下的非接触式警示及处置作业，以降低人员近距离接触风险、积累战术动作与装备协同经验，为后续实战应用打牢基础。同时，结合无人机的高空侦察功能，可辅助快速定位目标、排查周边隐患，为地面警力部署提供参考信息，形成"空中侦察+地面处置"的立体化防控模式，提升特警队伍的应急处突效率。' },
             { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/赋能武警/赋能武警2.png', import.meta.url).href },
-            { type: 'text', text: '灭火弹、灭火罐、消防水枪（水带）等系列挂载结合消防无人机的投入使用，突破传统灭火装备的多方局限。针对高层火灾、山林火情或人员难以靠近的危险火场，无人机可快速升空，抛投灭火弹覆盖火源，实现“点对点”精准灭火，形成有效隔离带；无人机搭载消防水枪（水带）连接地面供压设备，向火场喷射消防泡沫或水剂，降温控火，阻断火势蔓延；应急降落伞则为无人机飞行安全提供双重保障，以上多种“空中灭火”方案，极大程度地解决了复杂地形下的防灭火难题，与各地消防救援部门探索的无人机智能消防体系形成呼应，以科技手段提升灾情处置能力。+地面处置”的立体化防控模式，提升特警队伍的应急处突效率。' },
+            { type: 'text', text: '灭火弹、灭火罐、消防水枪（水带）等系列挂载结合消防无人机的投入使用，突破传统灭火装备的多方局限。针对高层火灾、山林火情或人员难以靠近的危险火场，无人机可快速升空，抛投灭火弹覆盖火源，实现"点对点"精准灭火，形成有效隔离带；无人机搭载消防水枪（水带）连接地面供压设备，向火场喷射消防泡沫或水剂，降温控火，阻断火势蔓延；应急降落伞则为无人机飞行安全提供双重保障，以上多种"空中灭火"方案，极大程度地解决了复杂地形下的防灭火难题，与各地消防救援部门探索的无人机智能消防体系形成呼应，以科技手段提升灾情处置能力。+地面处置"的立体化防控模式，提升特警队伍的应急处突效率。' },
           { type: 'image', src: new URL('../assets/home/关于我们/新闻动态/赋能武警/赋能武警3.png', import.meta.url).href },
-            { type: 'text', text: '近年来，随着低空经济的快速发展，无人机已成为军警消防领域的“全能战友”，从巡逻防控、侦察取证到应急救援、火情处置，科技装备的应用正在重塑工作模式，推动军警消防工作从“人力主导”向“科技驱动”转型升级。华启天成通过对军警消防需求的深刻洞察，将科技与实战场景融合，依托核心技术积累，打造定制化、高性能的多场景解决方案，助力军警部队提升实战能力，为守护边疆稳定、保障人民安全贡献力量。+地面处置”的立体化防控模式，提升特警队伍的应急处突效率。' },
+            { type: 'text', text: '近年来，随着低空经济的快速发展，无人机已成为军警消防领域的"全能战友"，从巡逻防控、侦察取证到应急救援、火情处置，科技装备的应用正在重塑工作模式，推动军警消防工作从"人力主导"向"科技驱动"转型升级。华启天成通过对军警消防需求的深刻洞察，将科技与实战场景融合，依托核心技术积累，打造定制化、高性能的多场景解决方案，助力军警部队提升实战能力，为守护边疆稳定、保障人民安全贡献力量。+地面处置"的立体化防控模式，提升特警队伍的应急处突效率。' },
 
         ]
     },
@@ -174,7 +174,7 @@ const newsData = ref([
 
 // 展开的新闻ID
 const expandedNewsId = ref<number | null>(null); // 默认全部收起
-const hoveredNewsId = ref<number | null>(null); // 当前hover的新闻
+const hoveredNewsId = ref<number | null>(null); // 当前显示预览面板的新闻
 
 // 按日期排序（最新在前）
 const sortedNewsData = computed(() => {
@@ -184,23 +184,6 @@ const sortedNewsData = computed(() => {
         return dateB.getTime() - dateA.getTime(); // 降序，最新在前
     });
 });
-
-let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
-
-// 开始关闭预览的延时
-const startClosePreview = () => {
-    hoverTimeout = setTimeout(() => {
-        hoveredNewsId.value = null;
-    }, 200);
-};
-
-// 取消关闭预览
-const cancelClosePreview = () => {
-    if (hoverTimeout) {
-        clearTimeout(hoverTimeout);
-        hoverTimeout = null;
-    }
-};
 
 // 计算过滤后的新闻
 const filteredNews = computed(() => {
@@ -222,12 +205,27 @@ const getFirstImage = (news: any) => {
     return imageItem ? imageItem.src : null;
 };
 
-// 展开并关闭预览
+// 点击箭头：打开/关闭预览面板（不直接展开详情）
+const togglePreview = (newsId: number) => {
+    hoveredNewsId.value = hoveredNewsId.value === newsId ? null : newsId;
+};
+
+// 预览面板中点击"阅读全文"：展开详情并关闭预览
 const expandAndClosePreview = (newsId: number) => {
-    cancelClosePreview();
     hoveredNewsId.value = null;
     expandedNewsId.value = newsId;
 };
+
+// 点击面板以外的区域时关闭预览
+const onGlobalClick = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.news-hover-preview') && !target.closest('.expand-icon')) {
+        hoveredNewsId.value = null;
+    }
+};
+
+onMounted(() => window.addEventListener('click', onGlobalClick));
+onUnmounted(() => window.removeEventListener('click', onGlobalClick));
 
 // 点击展开/合上
 const toggleExpand = (newsId: number) => {
@@ -442,7 +440,6 @@ const toggleExpand = (newsId: number) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
     padding: 0.5vw 0;
 }
 
@@ -498,6 +495,7 @@ const toggleExpand = (newsId: number) => {
 }
 
 .expand-icon {
+    cursor: pointer;
     transition: transform 0.3s ease;
     display: flex;
     align-items: center;
@@ -558,7 +556,7 @@ const toggleExpand = (newsId: number) => {
     stroke: #00D4FF;
 }
 
-/* 悬浮预览 */
+/* 预览面板（点击箭头后显示） */
 .news-hover-preview {
     padding: 1.2vw 0;
     cursor: pointer;
@@ -621,9 +619,6 @@ const toggleExpand = (newsId: number) => {
 .news-item-back:not(.expanded) .news-summary {
     display: none;
 }
-
-/* 展开时隐藏hover预览 */
-
 
 .news-content {
     max-height: 0;

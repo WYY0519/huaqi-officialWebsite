@@ -90,6 +90,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import ProductDropdown from './ProductDropdown.vue'
+import './NavBar.tablet.css'
 
 // 图标路径
 const logoIcon = new URL('../assets/home/图标/logo.png', import.meta.url).href

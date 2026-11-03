@@ -1,0 +1,38 @@
+/* ============================================================
+   顶部导航 平板适配：单位 vw（以 1024px 视口为基准换算）
+   769~1024 为汉堡菜单区间；1025~1366 桌面菜单字号加大
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    html .header .header-container {
+        padding: 1.95vw 3.13vw;
+    }
+
+    html .header .logo-icon {
+        width: 4.88vw;
+        height: 5.37vw;
+    }
+
+    html .header .logo-name {
+        font-size: 2.54vw !important;
+        letter-spacing: 0.24vw;
+    }
+
+    html .header .logo-sub {
+        font-size: 1.27vw !important;
+    }
+
+    html .header .mobile-menu-btn {
+        width: 4.2vw;
+        height: 3.32vw;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1366px) {
+    html .header .nav-link {
+        font-size: 1.56vw !important;
+    }
+
+    html .header .contact-btn {
+        font-size: 1.37vw !important;
+    }
+}

@@ -157,6 +157,7 @@ import { onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 // 企业简介页手机端适配样式（独立文件，≤768px）
 import './aboutPage.mobile.css'
+import './aboutPage.tablet.css'
 
 const route = useRoute()
 

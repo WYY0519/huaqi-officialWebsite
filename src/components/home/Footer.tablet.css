@@ -1,0 +1,45 @@
+/* ============================================================
+   页脚 平板适配：单位 vw（以 1024px 视口为基准换算）
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1366px) {
+    html .footer .footer-brand-name {
+        font-size: 2.34vw !important;
+    }
+
+    html .footer .footer-brand-sub {
+        font-size: 1.37vw !important;
+    }
+
+    html .footer .footer-menu-title,
+    html .footer .footer-menu-title-link {
+        font-size: 1.95vw !important;
+    }
+
+    html .footer .footer-menu-list a {
+        font-size: 1.86vw !important;
+    }
+
+    /* 桌面样式列间距被注释，字放大后相邻列文字会贴在一起，补上列间距 */
+    html .footer .footer-menu-grid {
+        gap: 2vw 2.93vw !important;
+    }
+
+    html .footer .footer-social-icon {
+        width: 3.32vw;
+        height: 3.32vw;
+    }
+
+    html .footer .footer-qrcode-img {
+        width: 12.11vw;
+        height: 12.11vw;
+    }
+
+    html .footer .footer-qrcode-text {
+        font-size: 1.56vw !important;
+    }
+
+    html .footer .footer-info-bar,
+    html .footer .footer-bottom {
+        font-size: 1.46vw !important;
+    }
+}
