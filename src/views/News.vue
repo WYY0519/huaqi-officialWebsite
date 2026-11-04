@@ -210,10 +210,54 @@ const togglePreview = (newsId: number) => {
     hoveredNewsId.value = hoveredNewsId.value === newsId ? null : newsId;
 };
 
+// 展开新条目后，把该条目顶部对齐到导航栏下方：
+// 旧条目收起是 0.5s 的 max-height 过渡，期间上方高度持续变化，
+// 视口内容会先滑走再跳回。这里改为：
+// 1. 点击后瞬时对齐（无平滑动画）
+// 2. 过渡期间用 rAF 逐帧补偿滚动，让条目顶部始终钉在导航栏下方，
+//    整个切换过程画面稳定，不会出现"先滑下去再弹上来"
+const scrollToExpanded = () => {
+    nextTick(() => {
+        const el = document.querySelector('.news-item-back.expanded') as HTMLElement | null;
+        if (!el) return;
+        const navOffset = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+        // 过渡期间禁用浏览器滚动锚定，避免它和逐帧补偿互相打架产生抖动
+        const root = document.documentElement;
+        root.style.setProperty('overflow-anchor', 'none');
+        // 立即对齐到目标位置（强制瞬时，覆盖全局 scroll-behavior: smooth）
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navOffset, behavior: 'instant' });
+        // 过渡期间逐帧补偿，保持条目顶部位置稳定
+        const start = performance.now();
+        const step = () => {
+            if (!el.isConnected || performance.now() - start >= 600) {
+                root.style.removeProperty('overflow-anchor');
+                return;
+            }
+            const err = el.getBoundingClientRect().top - navOffset;
+            if (Math.abs(err) > 1) {
+                window.scrollBy({ top: err, behavior: 'instant' });
+            }
+            requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    });
+};
+
 // 预览面板中点击"阅读全文"：展开详情并关闭预览
 const expandAndClosePreview = (newsId: number) => {
     hoveredNewsId.value = null;
-    expandedNewsId.value = newsId;
+    if (expandedNewsId.value !== newsId) {
+        // 切换时旧条目瞬时收起（收起过程在视口外，看不见），
+        // 避免其 0.5s 收起动画在结束阶段高度骤降、拉动页面产生跳动
+        // （max-height 过渡定义在内部 .news-content 上，需对它设置）
+        const prevContent = document.querySelector('.news-item-back.expanded .news-content') as HTMLElement | null;
+        if (prevContent) {
+            prevContent.style.transition = 'none';
+            setTimeout(() => { prevContent.style.transition = ''; }, 600);
+        }
+        expandedNewsId.value = newsId;
+        scrollToExpanded();
+    }
 };
 
 // 点击面板以外的区域时关闭预览
@@ -233,19 +277,7 @@ const toggleExpand = (newsId: number) => {
         expandedNewsId.value = null;
     } else {
         expandedNewsId.value = newsId;
-        // 展开新条目后滚动到该条目顶部：
-        // 收起旧条目会让上方页面高度骤减，视口会停在新条目的中部。
-        // 注意等旧条目的 max-height 过渡（0.5s）结束后再对齐，
-        // 否则布局仍在收缩，滚动落点会偏移
-        // （scrollIntoView 自动应用 scroll-margin-top 预留导航栏高度）
-        nextTick(() => {
-            setTimeout(() => {
-                const el = document.querySelector('.news-item-back.expanded');
-                if (el) {
-                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 550);
-        });
+        scrollToExpanded();
     }
 };
 </script>
